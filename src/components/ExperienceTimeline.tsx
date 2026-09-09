@@ -1,9 +1,10 @@
-﻿import React, { useState } from 'react';
-import { experiences } from '../data/portfolioData';
+import React, { useState } from 'react';
 import { Briefcase, Calendar, ChevronDown, ChevronUp, Building } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export const ExperienceTimeline: React.FC = () => {
-  const [expandedId, setExpandedId] = useState<string>(experiences[0].id);
+  const { t } = useLanguage();
+  const [expandedId, setExpandedId] = useState<string>(t.experience.items[0].id);
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? '' : id);
@@ -17,19 +18,19 @@ export const ExperienceTimeline: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/60 text-xs font-mono text-cyan-400 mb-3">
             <Briefcase className="w-3.5 h-3.5" />
-            <span>TRAJETÓRIA PROFISSIONAL</span>
+            <span>{t.experience.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-            Experiência & Evolução Técnica
+            {t.experience.title}
           </h2>
           <p className="text-slate-400 text-base leading-relaxed">
-            5 anos de consistência, evolução contínua de liderança técnica e entrega em ambientes corporativos de alto ritmo.
+            {t.experience.subtitle}
           </p>
         </div>
 
         {/* Timeline Container */}
         <div className="relative border-l-2 border-slate-800 ml-4 sm:ml-32 space-y-12">
-          {experiences.map((exp) => {
+          {t.experience.items.map((exp) => {
             const isExpanded = expandedId === exp.id;
             return (
               <div key={exp.id} className="relative group pl-6 sm:pl-10">
@@ -64,7 +65,7 @@ export const ExperienceTimeline: React.FC = () => {
                         </h3>
                         {exp.current && (
                           <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                            POSIÇÃO ATUAL
+                            {t.experience.currentPositionBadge}
                           </span>
                         )}
                       </div>
@@ -77,7 +78,7 @@ export const ExperienceTimeline: React.FC = () => {
                         {exp.client && (
                           <>
                             <span>•</span>
-                            <span className="text-slate-300">Cliente: {exp.client}</span>
+                            <span className="text-slate-300">{t.experience.clientPrefix} {exp.client}</span>
                           </>
                         )}
                         <span className="sm:hidden flex items-center gap-1 text-slate-500">
@@ -90,7 +91,7 @@ export const ExperienceTimeline: React.FC = () => {
                     <button
                       onClick={() => toggleExpand(exp.id)}
                       className="p-2 rounded-lg bg-slate-800/60 hover:bg-slate-700/60 text-slate-400 hover:text-white transition-colors"
-                      aria-label="Expandir detalhes"
+                      aria-label={t.experience.expandDetailsAria}
                     >
                       {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </button>
@@ -105,7 +106,7 @@ export const ExperienceTimeline: React.FC = () => {
                   {isExpanded && (
                     <div className="mt-4 pt-4 border-t border-slate-800 space-y-3">
                       <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold mb-2">
-                        Principais Atividades & Entregas:
+                        {t.experience.responsibilitiesTitle}
                       </h4>
                       <ul className="space-y-2">
                         {exp.responsibilities.map((resp, rIdx) => (

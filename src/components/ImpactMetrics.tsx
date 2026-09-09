@@ -1,10 +1,12 @@
-﻿import React, { useState } from 'react';
-import { impactMetrics } from '../data/portfolioData';
+import React, { useState } from 'react';
 import { TrendingDown, Zap, DollarSign, CheckCircle2, ChevronRight, Activity, Terminal } from 'lucide-react';
-import type { MetricItem } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export const ImpactMetrics: React.FC = () => {
-  const [selectedMetric, setSelectedMetric] = useState<MetricItem>(impactMetrics[0]);
+  const { t } = useLanguage();
+  const [selectedMetricId, setSelectedMetricId] = useState<string>(t.impact.metrics[0].id);
+
+  const selectedMetric = t.impact.metrics.find((m) => m.id === selectedMetricId) || t.impact.metrics[0];
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -33,24 +35,24 @@ export const ImpactMetrics: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/60 text-xs font-mono text-cyan-400 mb-3">
             <Activity className="w-3.5 h-3.5 animate-pulse" />
-            <span>ENGENHARIA ORIENTADA A RESULTADOS</span>
+            <span>{t.impact.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-            Métricas que comprovam o impacto técnico.
+            {t.impact.title}
           </h2>
           <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
-            Números auditados de performance, estabilidade de escala e eficiência financeira conquistados na liderança e modernização de grandes produtos.
+            {t.impact.subtitle}
           </p>
         </div>
 
         {/* Metrics Grid Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
-          {impactMetrics.map((item) => {
+          {t.impact.metrics.map((item) => {
             const isSelected = selectedMetric.id === item.id;
             return (
               <button
                 key={item.id}
-                onClick={() => setSelectedMetric(item)}
+                onClick={() => setSelectedMetricId(item.id)}
                 className={`text-left p-5 rounded-2xl border transition-all duration-300 relative group flex flex-col justify-between ${
                   isSelected
                     ? 'bg-slate-800/90 border-cyan-400 shadow-xl shadow-cyan-500/15 scale-[1.02]'
@@ -81,7 +83,7 @@ export const ImpactMetrics: React.FC = () => {
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-cyan-400 group-hover:translate-x-1 transition-transform">
-                  <span>Ver detalhes</span>
+                  <span>{t.impact.viewDetails}</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </div>
               </button>
@@ -102,7 +104,7 @@ export const ImpactMetrics: React.FC = () => {
               <div>
                 <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono font-bold mb-2">
                   <Terminal className="w-4 h-4" />
-                  <span>CASO TÉCNICO DETALHADO</span>
+                  <span>{t.impact.detailedCaseBadge}</span>
                 </div>
                 <div className="text-5xl sm:text-6xl font-black text-white tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-sky-200">
                   {selectedMetric.metric}
@@ -119,8 +121,8 @@ export const ImpactMetrics: React.FC = () => {
               </div>
 
               <div className="mt-6 p-4 rounded-xl bg-cyan-950/30 border border-cyan-800/40 text-xs text-slate-300">
-                <strong className="text-cyan-300 block mb-1 font-semibold">Impacto no Negócio:</strong>
-                Garante retenção de usuários ativos, estabilidade nas transações bancárias e redução drástica de chamados de suporte técnico.
+                <strong className="text-cyan-300 block mb-1 font-semibold">{t.impact.businessImpactTitle}</strong>
+                {t.impact.businessImpactText}
               </div>
             </div>
 
@@ -128,7 +130,7 @@ export const ImpactMetrics: React.FC = () => {
             <div className="lg:w-2/3">
               <h4 className="text-sm font-mono uppercase tracking-wider text-slate-400 font-bold mb-4 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                Estratégia de Engenharia e Soluções Aplicadas:
+                {t.impact.engineeringStrategyTitle}
               </h4>
 
               <div className="space-y-3.5">
@@ -150,12 +152,12 @@ export const ImpactMetrics: React.FC = () => {
               {/* Architecture Highlight Note */}
               <div className="mt-6 flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl bg-slate-800/40 border border-slate-700/60 text-xs text-slate-400">
                 <div className="flex items-center gap-2">
-                  <span className="text-emerald-400 font-semibold">✔ Validação em Produção</span>
+                  <span className="text-emerald-400 font-semibold">{t.impact.productionValidation}</span>
                   <span>•</span>
-                  <span>Ambiente de alta volumetria (milhões de downloads)</span>
+                  <span>{t.impact.productionScale}</span>
                 </div>
                 <div className="font-mono text-slate-500">
-                  Stack: React Native + Kotlin/Swift
+                  {t.impact.stackLabel}
                 </div>
               </div>
             </div>
@@ -167,4 +169,3 @@ export const ImpactMetrics: React.FC = () => {
     </section>
   );
 };
-

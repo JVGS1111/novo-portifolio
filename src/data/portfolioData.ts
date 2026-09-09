@@ -1,4 +1,7 @@
-﻿import type { MetricItem, ExperienceItem, CaseStudyItem, SkillCategory, EducationItem } from '../types';
+import type { MetricItem, ExperienceItem, CaseStudyItem, SkillCategory, EducationItem } from '../types';
+import mobileArchImg from '../assets/mobile_architecture.jpg';
+import aiWorkflowImg from '../assets/ai_workflow.jpg';
+import designSystemImg from '../assets/design_system.jpg';
 
 export const personalInfo = {
   name: 'João Vinícius Guerber',
@@ -88,7 +91,7 @@ export const caseStudies: CaseStudyItem[] = [
     title: 'Modernização & Estabilização em Hiperescala',
     clientOrProject: 'banQi — Casas Bahia Group',
     badge: 'Mobile Engineering Lead',
-    image: '/assets/mobile_architecture.jpg',
+    image: mobileArchImg,
     summary: 'Reengenharia sistêmica de um dos maiores apps de serviços financeiros do varejo brasileiro, impactando milhões de usuários com estabilidade crítica.',
     problem: 'O aplicativo sofria com volume massivo de crashes semanais (120k/semana), consumo proibitivo de memória RAM (900MB) que derrubava aparelhos modestos e lentidão de até 60s no carregamento.',
     solution: 'Liderança técnica na refatoração de fluxos legados, reengenharia de módulos nativos (Kotlin/Swift), introdução de segurança móvel avançada (RASP com AppDome) e esteiras automatizadas de CI/CD com Fastlane.',
@@ -105,7 +108,7 @@ export const caseStudies: CaseStudyItem[] = [
     title: 'Automação de Engenharia Orientada a IA',
     clientOrProject: 'Inovação Estratégica & Produtividade',
     badge: 'AI Dev Tools & Workflow',
-    image: '/assets/ai_workflow.jpg',
+    image: aiWorkflowImg,
     summary: 'Desenvolvimento de ferramentas customizadas e agentes de IA para aceleração do ciclo de desenvolvimento de software e qualidade de código.',
     problem: 'Altos gargalos de tempo em revisões manuais de PRs repetitivos, elaboração demorada de documentação de negócios (KRs, User Stories e Blueprints) e lacunas em testes unitários.',
     solution: 'Criação de prompts técnicos e pipelines automatizados com IA que realizam análise preliminar de código, identificam potenciais regressões e geram rascunhos de testes e especificações técnicas.',
@@ -121,7 +124,7 @@ export const caseStudies: CaseStudyItem[] = [
     title: 'Design System & Módulos Multiplataforma',
     clientOrProject: 'banQi & WiiD',
     badge: 'Design System & Architecture',
-    image: '/assets/design_system.jpg',
+    image: designSystemImg,
     summary: 'Construção e sustentação de sistemas de design unificados entre Mobile e Web, acelerando o lançamento de novas features com consistência visual rigorosa.',
     problem: 'Inconsistência entre interfaces Android, iOS e Web, com duplicação de componentes, bugs visuais em diferentes densidades de tela e lentidão no design-to-code.',
     solution: 'Desenvolvimento de uma biblioteca de componentes altamente desacoplada, tipada com TypeScript, com suporte a tokens de design e pontes nativas para funcionalidades proprietárias dos sistemas operacionais.',

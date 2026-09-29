@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 interface TiltCardProps {
@@ -18,6 +18,21 @@ export const TiltCard: React.FC<TiltCardProps> = ({
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [canHover, setCanHover] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+      const handler = (e: MediaQueryListEvent) => setCanHover(e.matches);
+      mq.addEventListener('change', handler);
+      return () => mq.removeEventListener('change', handler);
+    }
+  }, []);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -27,7 +42,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({
   const rotateY = useSpring(0, springConfig);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!canHover || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -46,7 +61,9 @@ export const TiltCard: React.FC<TiltCardProps> = ({
   };
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    if (canHover) {
+      setIsHovered(true);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -62,18 +79,22 @@ export const TiltCard: React.FC<TiltCardProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      style={{
-        transformStyle: 'preserve-3d',
-        rotateX,
-        rotateY,
-      }}
-      whileHover={{ scale: 1.015 }}
+      style={
+        canHover
+          ? {
+              transformStyle: 'preserve-3d',
+              rotateX,
+              rotateY,
+            }
+          : undefined
+      }
+      whileHover={canHover ? { scale: 1.015 } : undefined}
       whileTap={{ scale: 0.985 }}
       transition={{ duration: 0.2 }}
-      className={`relative overflow-hidden ${className}`}
+      className={`relative overflow-hidden w-full h-full min-w-0 ${className}`}
     >
-      {/* Dynamic Cursor Spotlight Overlay */}
-      {isHovered && (
+      {/* Dynamic Cursor Spotlight Overlay (Desktop pointer only) */}
+      {canHover && isHovered && (
         <motion.div
           className="pointer-events-none absolute -inset-px z-10 transition-opacity duration-300 rounded-[inherit]"
           style={{
@@ -82,8 +103,8 @@ export const TiltCard: React.FC<TiltCardProps> = ({
         />
       )}
 
-      {/* Content */}
-      <div className="relative z-0 h-full w-full">
+      {/* Content wrapper with robust flex and sizing */}
+      <div className="relative z-0 h-full w-full min-w-0 flex flex-col">
         {children}
       </div>
     </motion.div>

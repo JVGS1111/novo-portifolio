@@ -39,14 +39,14 @@ export const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           whileHover={{ scale: 1.03 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md text-xs font-mono text-cyan-300 mb-6 shadow-lg shadow-cyan-500/10 cursor-default"
+          className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md text-xs font-mono text-cyan-300 mb-6 shadow-lg shadow-cyan-500/10 cursor-default max-w-full text-center"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
           </span>
           <span>{t.hero.badgeRole}</span>
-          <span className="text-slate-600">|</span>
+          <span className="text-slate-600 hidden xs:inline">|</span>
           <span className="text-slate-400 font-sans">{t.hero.badgeYears}</span>
         </motion.div>
 
@@ -55,7 +55,7 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6"
+          className="text-3xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.15] sm:leading-[1.1] max-w-4xl mb-6"
         >
           {t.hero.headlinePrefix}
           <span className="text-shimmer drop-shadow-[0_0_35px_rgba(56,189,248,0.35)]">
@@ -78,81 +78,81 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-3.5 w-full max-w-3xl mb-10 text-left"
+          className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5 w-full max-w-3xl mb-10 text-left"
         >
           <TiltCard
             maxTilt={8}
             spotlightColor="rgba(6, 182, 212, 0.16)"
-            className="rounded-xl"
+            className="rounded-xl h-full"
           >
-            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-cyan-500/40 transition-all h-full flex flex-col justify-between">
-              <div className="flex items-center gap-2 text-cyan-400 mb-1">
-                <ShieldCheck className="w-4 h-4 shrink-0" />
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-2.5 sm:p-3.5 backdrop-blur-md hover:border-cyan-500/40 transition-all h-full flex flex-col justify-between min-w-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-cyan-400 mb-1 min-w-0">
+                <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
                   {t.hero.statStabilityLabel}
                 </span>
               </div>
-              <div className="text-lg font-extrabold text-white my-0.5">
+              <div className="text-base sm:text-lg font-extrabold text-white my-0.5 truncate">
                 <AnimatedCounter value={t.hero.statStabilityValue} />
               </div>
-              <div className="text-[11px] text-slate-400 line-clamp-1">{t.hero.statStabilitySub}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-400 line-clamp-1 leading-tight">{t.hero.statStabilitySub}</div>
             </div>
           </TiltCard>
 
           <TiltCard
             maxTilt={8}
             spotlightColor="rgba(56, 189, 248, 0.16)"
-            className="rounded-xl"
+            className="rounded-xl h-full"
           >
-            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-sky-500/40 transition-all h-full flex flex-col justify-between">
-              <div className="flex items-center gap-2 text-sky-400 mb-1">
-                <Cpu className="w-4 h-4 shrink-0" />
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-2.5 sm:p-3.5 backdrop-blur-md hover:border-sky-500/40 transition-all h-full flex flex-col justify-between min-w-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-sky-400 mb-1 min-w-0">
+                <Cpu className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
                   {t.hero.statMemoryLabel}
                 </span>
               </div>
-              <div className="text-lg font-extrabold text-white my-0.5">
+              <div className="text-base sm:text-lg font-extrabold text-white my-0.5 truncate">
                 <AnimatedCounter value={t.hero.statMemoryValue} />
               </div>
-              <div className="text-[11px] text-slate-400 line-clamp-1">{t.hero.statMemorySub}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-400 line-clamp-1 leading-tight">{t.hero.statMemorySub}</div>
             </div>
           </TiltCard>
 
           <TiltCard
             maxTilt={8}
             spotlightColor="rgba(129, 140, 248, 0.16)"
-            className="rounded-xl"
+            className="rounded-xl h-full"
           >
-            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-indigo-500/40 transition-all h-full flex flex-col justify-between">
-              <div className="flex items-center gap-2 text-indigo-400 mb-1">
-                <Flame className="w-4 h-4 shrink-0" />
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-2.5 sm:p-3.5 backdrop-blur-md hover:border-indigo-500/40 transition-all h-full flex flex-col justify-between min-w-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-indigo-400 mb-1 min-w-0">
+                <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
                   {t.hero.statStartupLabel}
                 </span>
               </div>
-              <div className="text-lg font-extrabold text-white my-0.5">
+              <div className="text-base sm:text-lg font-extrabold text-white my-0.5 truncate">
                 <AnimatedCounter value={t.hero.statStartupValue} />
               </div>
-              <div className="text-[11px] text-slate-400 line-clamp-1">{t.hero.statStartupSub}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-400 line-clamp-1 leading-tight">{t.hero.statStartupSub}</div>
             </div>
           </TiltCard>
 
           <TiltCard
             maxTilt={8}
             spotlightColor="rgba(168, 85, 247, 0.16)"
-            className="rounded-xl"
+            className="rounded-xl h-full"
           >
-            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-purple-500/40 transition-all h-full flex flex-col justify-between">
-              <div className="flex items-center gap-2 text-purple-400 mb-1">
-                <Sparkles className="w-4 h-4 shrink-0" />
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-2.5 sm:p-3.5 backdrop-blur-md hover:border-purple-500/40 transition-all h-full flex flex-col justify-between min-w-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-purple-400 mb-1 min-w-0">
+                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
                   {t.hero.statInnovationLabel}
                 </span>
               </div>
-              <div className="text-lg font-extrabold text-white my-0.5">
+              <div className="text-base sm:text-lg font-extrabold text-white my-0.5 truncate">
                 <AnimatedCounter value={t.hero.statInnovationValue} />
               </div>
-              <div className="text-[11px] text-slate-400 line-clamp-1">{t.hero.statInnovationSub}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-400 line-clamp-1 leading-tight">{t.hero.statInnovationSub}</div>
             </div>
           </TiltCard>
         </motion.div>

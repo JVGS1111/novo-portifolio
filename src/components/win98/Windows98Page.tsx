@@ -12,6 +12,7 @@ import { CaseStudiesApp } from './apps/CaseStudiesApp';
 import { DosPromptApp } from './apps/DosPromptApp';
 import { InternetExplorerApp } from './apps/InternetExplorerApp';
 import { RecycleBinApp } from './apps/RecycleBinApp';
+import { Win98PortfolioSelector } from './Win98PortfolioSelector';
 import { playStartupChime, playRestoreSound, playMinimizeSound } from './soundEffects';
 
 interface Windows98PageProps {
@@ -218,17 +219,9 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
         />
       )}
 
-      {/* Floating Retro Banner to return to Modern Portfolio */}
+      {/* Portfolio Selector Hub (Select / Dropdown with all registered portfolios) */}
       <div className="absolute top-2 right-2 sm:right-3 z-[8000] flex items-center gap-2">
-        <button
-          type="button"
-          onClick={onNavigateModern}
-          className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 bg-[#C0C0C0] text-black font-bold text-[11px] sm:text-xs border-2 border-t-white border-l-white border-r-black border-b-black active:border-t-black active:border-l-black active:border-r-white active:border-b-white shadow-lg hover:bg-slate-200 cursor-pointer"
-        >
-          <span>🚀</span>
-          <span className="hidden sm:inline">Voltar ao Portfólio Moderno</span>
-          <span className="sm:hidden">Portfólio Moderno</span>
-        </button>
+        <Win98PortfolioSelector />
       </div>
 
       {/* Desktop Icons: FIXED z-[2] so all windows (z-[10]+) ALWAYS sit above them cleanly! */}

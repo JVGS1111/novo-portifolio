@@ -5,6 +5,8 @@ import { LinkedinIcon, GithubIcon } from './SocialIcons';
 import { UsaFlagIcon, BrazilFlagIcon } from './FlagIcons';
 import { personalInfo } from '../data/portfolioData';
 import { useLanguage } from '../i18n/LanguageContext';
+import { PortfolioSwitcher } from './PortfolioSwitcher';
+import { portfolioRegistry, navigateToPortfolio } from '../data/portfolioRegistry';
 
 export const Navbar: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -130,17 +132,8 @@ export const Navbar: React.FC = () => {
           >
             <GithubIcon className="w-4 h-4" />
           </motion.a>
-          {/* Retro OS Switcher Button */}
-          <motion.a
-            href="#/win98"
-            whileHover={{ scale: 1.05, y: -1 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-1.5 px-3 py-1 bg-teal-500/15 hover:bg-teal-500/25 text-teal-300 hover:text-teal-200 border border-teal-500/40 rounded-full text-xs font-mono transition-all cursor-pointer shadow-sm shadow-teal-950/30"
-            title="Alternar para a versão Windows 98"
-          >
-            <span>🕹️</span>
-            <span className="font-bold">Win 98</span>
-          </motion.a>
+          {/* Dynamic Portfolio Hub Switcher Dropdown */}
+          <PortfolioSwitcher variant="navbar" />
 
           <motion.a
             whileHover={{ scale: 1.05 }}
@@ -217,20 +210,42 @@ export const Navbar: React.FC = () => {
                 </motion.a>
               ))}
 
-              {/* Win 98 Mobile Switcher */}
-              <a
-                href="#/win98"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between px-4 py-2.5 text-sm font-medium text-teal-300 bg-teal-500/10 hover:bg-teal-500/20 rounded-lg border border-teal-500/30 transition-colors font-mono"
-              >
-                <span className="flex items-center gap-2">
-                  <span>🕹️</span>
-                  <span>Windows 98 Edition</span>
-                </span>
-                <span className="text-[10px] uppercase font-bold bg-teal-500/20 px-2 py-0.5 rounded text-teal-200">
-                  Retro OS
-                </span>
-              </a>
+              {/* Registered Portfolios Gallery in Mobile Drawer */}
+              <div className="pt-2 border-t border-slate-800/80">
+                <div className="px-2 py-1 text-[11px] font-mono uppercase text-slate-400 font-bold flex items-center justify-between">
+                  <span>🎨 Portfólios & Conceitos</span>
+                  <span className="text-[10px] text-cyan-400 font-normal">
+                    {portfolioRegistry.filter((p) => p.status === 'active').length} versões
+                  </span>
+                </div>
+                <div className="space-y-1.5 mt-1.5">
+                  {portfolioRegistry.map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        navigateToPortfolio(item);
+                      }}
+                      className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-slate-200 bg-slate-900/60 hover:bg-slate-800/70 rounded-lg border border-slate-800 transition-colors font-mono cursor-pointer text-left"
+                    >
+                      <span className="flex items-center gap-2 truncate">
+                        <span className="text-base">{item.icon}</span>
+                        <span className="truncate">{item.name}</span>
+                      </span>
+                      <span
+                        className={`text-[9px] uppercase font-bold px-1.5 py-0.5 rounded shrink-0 ${
+                          item.status === 'coming_soon'
+                            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                            : 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
+                        }`}
+                      >
+                        {item.tag}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </nav>
             
             {/* Mobile Language Selection Buttons */}

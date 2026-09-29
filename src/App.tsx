@@ -11,7 +11,7 @@ import { ContactFooter } from './components/ContactFooter';
 import { MotionCursor } from './components/motion/MotionCursor';
 import { ScrollProgress } from './components/motion/ScrollProgress';
 import { Windows98Page } from './components/win98/Windows98Page';
-import { FloatingRetroButton } from './components/FloatingRetroButton';
+import { PortfolioSwitcher } from './components/PortfolioSwitcher';
 
 export const App: React.FC = () => {
   const [isWin98, setIsWin98] = useState(() => {
@@ -59,8 +59,8 @@ export const App: React.FC = () => {
           <CertificationsEducation />
         </main>
 
-        {/* Floating Switcher to Win98 */}
-        <FloatingRetroButton />
+        {/* Floating Portfolio Gallery Switcher */}
+        <PortfolioSwitcher variant="floating" />
 
         {/* Footer & Contact */}
         <ContactFooter />

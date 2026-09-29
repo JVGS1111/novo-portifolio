@@ -33,14 +33,24 @@ Aqui coexistem diferentes propostas visuais (ex.: portfólio moderno/executivo d
 
 Mantenha esta seção sempre atualizada com todos os portfólios e páginas disponíveis no repositório:
 
-| # | Nome do Portfólio / Ideia | Rota / Hash | Componente Raiz | Descrição e Conceito |
-|---|---------------------------|-------------|-----------------|----------------------|
-| 1 | **Modern Executive & High-Tech** | `#/` ou vazio | `src/App.tsx` (Default) | Portfólio corporativo de alta conversão, estética dark mode/cyberpunk futurista, 3D interativo com Three.js, internacionalização (i18n com 5 idiomas), cursor com efeitos de física e métricas de impacto. |
-| 2 | **Retro Desktop Windows 98** | `#/win98` ou `#win98` | `src/components/win98/Windows98Page.tsx` | Simulação completa de sistema operacional retrô Win98, janelas arrastáveis, barra de tarefas, menu Iniciar, sons sintetizados (Web Audio API), apps funcionais (DOS Prompt, IE, Explorer de Projetos, Monitor de CPU/RAM, Lixeira) e tela CRT. |
+| # | Nome do Portfólio / Ideia | Rota / Hash | Componente Raiz | Status | Descrição e Conceito |
+|---|---------------------------|-------------|-----------------|--------|----------------------|
+| 1 | **Modern Executive & High-Tech** | `#/` ou vazio | `src/App.tsx` (Default) | Ativo | Portfólio corporativo de alta conversão, estética dark mode/cyberpunk futurista, 3D interativo com Three.js, internacionalização (i18n com 5 idiomas), cursor com efeitos de física e métricas de impacto. |
+| 2 | **Retro Desktop Windows 98** | `#/win98` ou `#win98` | `src/components/win98/Windows98Page.tsx` | Ativo | Simulação completa de sistema operacional retrô Win98, janelas arrastáveis, barra de tarefas, menu Iniciar, sons sintetizados (Web Audio API), apps funcionais (DOS Prompt, IE, Explorer de Projetos, Monitor de CPU/RAM, Lixeira) e tela CRT. |
+| 3 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Protótipo Figma / Em breve | Catalogado | Console administrativo corporativo NT 5.0, visualizador de eventos, gerenciador de serviços e diagnóstico. |
+| 4 | **Windows XP Luna Golden Era** | `#/winxp` | Protótipo Figma / Em breve | Catalogado | Era dourada dos anos 2000 com wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde. |
 
 ---
 
-### Detalhamento das Páginas Existentes
+### Detalhamento das Páginas e Hub de Navegação
+
+#### Central de Registro de Portfólios (`src/data/portfolioRegistry.ts`)
+- **Fonte da Verdade**: Todos os portfólios existentes e planejados estão centralizados em `src/data/portfolioRegistry.ts`.
+- Qualquer nova página ou ideia deve ser registrada nessa lista para alimentar automaticamente os componentes de alternância.
+
+#### Componentes de Alternância (Switchers)
+- `PortfolioSwitcher.tsx`: Seletor moderno em formato de galeria flutuante ou navbar, com animações em Framer Motion e tags de status.
+- `Win98PortfolioSelector.tsx`: Combobox retrô estilizado fiel aos diálogos clássicos do Windows 98.
 
 #### 1. Modern Executive & High-Tech Portfolio
 - **Acesso**: Raiz (`/` ou `#/`)
@@ -50,7 +60,7 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
   - `LanguageProvider.tsx`: Suporte a múltiplos idiomas (PT-BR, EN, ES, DE, JA).
   - `MotionCursor.tsx` & `ScrollProgress.tsx`: Feedback háptico visual com Framer Motion.
   - Seções: `Hero`, `ImpactMetrics`, `CaseStudies`, `ExperienceTimeline`, `TechMatrix`, `CertificationsEducation`, `ContactFooter`.
-  - `FloatingRetroButton.tsx`: Botão flutuante estilizado para alternar rapidamente para o modo Windows 98.
+  - `PortfolioSwitcher.tsx`: Menu interativo para transição entre temas.
 
 #### 2. Retro Desktop Windows 98 Portfolio
 - **Acesso**: Hash `#win98`
@@ -65,7 +75,7 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
     - `PerformanceMonitorApp.tsx`: Gráficos de performance do sistema simulados.
     - `InternetExplorerApp.tsx`: Navegador retrô com links e páginas simuladas.
     - `RecycleBinApp.tsx`: Lixeira com itens descartados e easter eggs.
-  - Menu Iniciar funcional com opção de Desligamento do sistema (`ShutdownScreen.tsx`) e atalho de retorno ao portfólio moderno.
+  - Menu Iniciar funcional com opção de Desligamento do sistema (`ShutdownScreen.tsx`) e seletor `Win98PortfolioSelector.tsx`.
 
 ---
 

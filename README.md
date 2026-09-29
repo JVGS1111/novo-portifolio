@@ -1,32 +1,67 @@
-# React + TypeScript + Vite
+# João Vinícius Guerber — Portfolio Hub & Creative Lab
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> Hub interativo e laboratório contínuo de múltiplos portfólios, conceitos de UI/UX, temas visuais e experimentos interativos convivendo sob a mesma base de código.
 
-Currently, two official plugins are available:
+🚀 **Deploy**: [https://jvgs1111.github.io/novo-portifolio/](https://jvgs1111.github.io/novo-portifolio/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🎨 Galeria de Portfólios Disponíveis
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| # | Nome do Portfólio / Ideia | Rota / Hash | Status | Destaques |
+|---|---------------------------|-------------|--------|-----------|
+| 1 | **Modern Executive & High-Tech** | `#/` | Ativo | Three.js 3D interativo, estética dark mode/cyberpunk, i18n (5 idiomas), métricas de impacto e animações Framer Motion. |
+| 2 | **Retro Desktop Windows 98** | `#/win98` | Ativo | Simulação completa do Windows 98 SE com janelas arrastáveis, efeitos sonoros sintetizados via Web Audio API, CRT overlay e aplicativos clássicos. |
+| 3 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Em Breve | Console administrativo corporativo NT 5.0, visualizador de eventos e diagnóstico (protótipo de alta fidelidade no Figma). |
+| 4 | **Windows XP Luna Golden Era** | `#/winxp` | Em Breve | Wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde (protótipo de alta fidelidade no Figma). |
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 🧩 Central de Registro de Portfólios (`src/data/portfolioRegistry.ts`)
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+O projeto utiliza um registro centralizado para gerenciar todos os portfólios existentes e novos:
+
+```typescript
+// Adicione novos portfólios em src/data/portfolioRegistry.ts
+export const portfolioRegistry: PortfolioItem[] = [
+  // ...
+  {
+    id: 'novo-tema',
+    name: 'Nome do Conceito',
+    shortName: 'Tema Curto',
+    hash: '#/novo-tema',
+    icon: '✨',
+    tag: 'Next-Gen',
+    description: 'Descrição do novo design...',
+    status: 'active', // ou 'coming_soon'
+    yearVibe: '2026'
   }
-}
+];
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Todos os seletores (`PortfolioSwitcher` moderno e `Win98PortfolioSelector` retrô) consomem automaticamente essa lista.
+
+---
+
+## 🛠️ Stack Tecnológica
+
+- **Framework**: React 19 + TypeScript
+- **Bundler & Dev Server**: Vite 8 (com `@tailwindcss/vite` e `@vitejs/plugin-react`)
+- **Estilização**: Tailwind CSS v4
+- **Animações**: Framer Motion
+- **3D**: Three.js
+- **Ícones**: Lucide React
+- **Linter**: Oxlint
+- **Deploy**: GitHub Pages via `gh-pages`
+
+### Scripts
+
+```bash
+npm run dev      # Inicia servidor local de desenvolvimento
+npm run build    # Compila TypeScript e gera bundle de produção
+npm run lint     # Executa verificação rápida com Oxlint
+npm run preview  # Visualiza build localmente
+npm run deploy   # Publica no GitHub Pages
+```
+
+Consulte [AGENTS.md](./AGENTS.md) para diretrizes de desenvolvimento e governança para agentes de IA.

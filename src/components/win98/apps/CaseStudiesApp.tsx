@@ -15,7 +15,7 @@ export const CaseStudiesApp: React.FC = () => {
           <span>📁</span>
           <span>Projetos & Cases</span>
         </div>
-        <div className="space-y-1">
+        <div className="flex md:flex-col gap-1 overflow-x-auto md:overflow-visible pb-1 md:pb-0">
           {caseStudies.map((cs) => {
             const isSel = cs.id === selectedCaseId;
             return (
@@ -26,7 +26,7 @@ export const CaseStudiesApp: React.FC = () => {
                   playClickSound();
                   setSelectedCaseId(cs.id);
                 }}
-                className={`w-full text-left p-1.5 rounded-xs flex items-start gap-1.5 cursor-pointer border ${
+                className={`w-auto md:w-full min-w-[180px] md:min-w-0 text-left p-1.5 rounded-xs flex items-start gap-1.5 cursor-pointer border shrink-0 ${
                   isSel
                     ? 'bg-[#000080] text-white border-[#000080] font-bold'
                     : 'bg-white text-slate-800 border-slate-300 hover:bg-slate-100'

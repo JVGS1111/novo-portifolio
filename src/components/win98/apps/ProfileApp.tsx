@@ -15,7 +15,7 @@ export const ProfileApp: React.FC = () => {
   return (
     <div className="p-3 text-[11px] font-['Tahoma',sans-serif] text-black h-full flex flex-col">
       {/* Windows 98 Tab Controls */}
-      <div className="flex items-center gap-[2px] border-b border-[#808080] mb-3">
+      <div className="flex items-center gap-[2px] flex-wrap gap-y-1 border-b border-[#808080] mb-3">
         {tabs.map((tab) => {
           const isSelected = activeTab === tab.id;
           return (

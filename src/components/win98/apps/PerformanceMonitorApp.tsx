@@ -77,7 +77,7 @@ export const PerformanceMonitorApp: React.FC = () => {
   return (
     <div className="p-3 text-[11px] font-['Tahoma',sans-serif] bg-black text-[#00FF00] h-full flex flex-col font-mono">
       {/* Top Header / Oscillo Monitor Banner */}
-      <div className="flex items-center justify-between pb-2 border-b border-[#0e3a16] mb-2 text-xs">
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-[#0e3a16] mb-2 text-xs">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-[#00FF00] animate-ping" />
           <span className="font-bold text-white font-mono tracking-wider">

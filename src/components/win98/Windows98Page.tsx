@@ -24,7 +24,10 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
   const [shutdownActive, setShutdownActive] = useState(false);
   const [selectedIconId, setSelectedIconId] = useState<string | null>(null);
   const [activeWindowId, setActiveWindowId] = useState<WindowId | null>('profile');
-  const [nextZIndex, setNextZIndex] = useState(10);
+  const [nextZIndex, setNextZIndex] = useState(20);
+
+  // Check if screen is mobile initially
+  const isMobileInitial = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
 
   // Initialize Window States
   const [windows, setWindows] = useState<Record<WindowId, WindowState>>({
@@ -34,20 +37,20 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       icon: '💻',
       isOpen: true,
       isMinimized: false,
-      isMaximized: false,
-      zIndex: 5,
-      defaultPosition: { x: 120, y: 30 },
+      isMaximized: isMobileInitial,
+      zIndex: 10,
+      defaultPosition: { x: isMobileInitial ? 4 : 120, y: isMobileInitial ? 4 : 30 },
       defaultSize: { width: 720, height: 520 }
     },
     perf: {
       id: 'perf',
       title: 'Performance_Monitor.exe — [Telemetria Real banQi]',
       icon: '📊',
-      isOpen: true,
+      isOpen: !isMobileInitial, // On mobile, start minimized so screen isn't overloaded
       isMinimized: false,
-      isMaximized: false,
-      zIndex: 6,
-      defaultPosition: { x: 440, y: 180 },
+      isMaximized: isMobileInitial,
+      zIndex: 11,
+      defaultPosition: { x: isMobileInitial ? 4 : 440, y: isMobileInitial ? 4 : 180 },
       defaultSize: { width: 680, height: 480 }
     },
     cases: {
@@ -56,9 +59,9 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       icon: '🚀',
       isOpen: false,
       isMinimized: false,
-      isMaximized: false,
-      zIndex: 7,
-      defaultPosition: { x: 200, y: 80 },
+      isMaximized: isMobileInitial,
+      zIndex: 12,
+      defaultPosition: { x: isMobileInitial ? 4 : 200, y: isMobileInitial ? 4 : 80 },
       defaultSize: { width: 740, height: 490 }
     },
     cmd: {
@@ -67,9 +70,9 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       icon: '📟',
       isOpen: false,
       isMinimized: false,
-      isMaximized: false,
-      zIndex: 8,
-      defaultPosition: { x: 160, y: 140 },
+      isMaximized: isMobileInitial,
+      zIndex: 13,
+      defaultPosition: { x: isMobileInitial ? 4 : 160, y: isMobileInitial ? 4 : 140 },
       defaultSize: { width: 600, height: 380 }
     },
     ie: {
@@ -78,9 +81,9 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       icon: '🌐',
       isOpen: false,
       isMinimized: false,
-      isMaximized: false,
-      zIndex: 9,
-      defaultPosition: { x: 240, y: 90 },
+      isMaximized: isMobileInitial,
+      zIndex: 14,
+      defaultPosition: { x: isMobileInitial ? 4 : 240, y: isMobileInitial ? 4 : 90 },
       defaultSize: { width: 640, height: 440 }
     },
     recycle: {
@@ -89,9 +92,9 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       icon: '🗑️',
       isOpen: false,
       isMinimized: false,
-      isMaximized: false,
-      zIndex: 4,
-      defaultPosition: { x: 300, y: 150 },
+      isMaximized: isMobileInitial,
+      zIndex: 10,
+      defaultPosition: { x: isMobileInitial ? 4 : 300, y: isMobileInitial ? 4 : 150 },
       defaultSize: { width: 440, height: 300 }
     },
     about: {
@@ -100,9 +103,9 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       icon: 'ℹ️',
       isOpen: false,
       isMinimized: false,
-      isMaximized: false,
-      zIndex: 4,
-      defaultPosition: { x: 320, y: 160 },
+      isMaximized: isMobileInitial,
+      zIndex: 10,
+      defaultPosition: { x: isMobileInitial ? 4 : 320, y: isMobileInitial ? 4 : 160 },
       defaultSize: { width: 400, height: 260 }
     }
   });
@@ -216,19 +219,20 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       )}
 
       {/* Floating Retro Banner to return to Modern Portfolio */}
-      <div className="absolute top-2 right-3 z-[8000] flex items-center gap-2">
+      <div className="absolute top-2 right-2 sm:right-3 z-[8000] flex items-center gap-2">
         <button
           type="button"
           onClick={onNavigateModern}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#C0C0C0] text-black font-bold text-xs border-2 border-t-white border-l-white border-r-black border-b-black active:border-t-black active:border-l-black active:border-r-white active:border-b-white shadow-lg hover:bg-slate-200 cursor-pointer"
+          className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 bg-[#C0C0C0] text-black font-bold text-[11px] sm:text-xs border-2 border-t-white border-l-white border-r-black border-b-black active:border-t-black active:border-l-black active:border-r-white active:border-b-white shadow-lg hover:bg-slate-200 cursor-pointer"
         >
           <span>🚀</span>
-          <span>Voltar ao Portfólio Moderno</span>
+          <span className="hidden sm:inline">Voltar ao Portfólio Moderno</span>
+          <span className="sm:hidden">Portfólio Moderno</span>
         </button>
       </div>
 
-      {/* Desktop Icons Column (Left Side) */}
-      <div className="absolute top-3 left-3 z-[100] flex flex-col gap-2 p-1">
+      {/* Desktop Icons: FIXED z-[2] so all windows (z-[10]+) ALWAYS sit above them cleanly! */}
+      <div className="absolute top-2 left-2 z-[2] flex flex-col flex-wrap max-h-[calc(100vh-50px)] gap-1.5 p-1">
         {desktopIcons.map((ic) => (
           <Win98Icon
             key={ic.id}

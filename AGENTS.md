@@ -37,8 +37,9 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
 |---|---------------------------|-------------|-----------------|--------|----------------------|
 | 1 | **Modern Executive & High-Tech** | `#/` ou vazio | `src/App.tsx` (Default) | Ativo | Portfólio corporativo de alta conversão, estética dark mode/cyberpunk futurista, 3D interativo com Three.js, internacionalização (i18n com 5 idiomas), cursor com efeitos de física e métricas de impacto. |
 | 2 | **Retro Desktop Windows 98** | `#/win98` ou `#win98` | `src/components/win98/Windows98Page.tsx` | Ativo | Simulação completa de sistema operacional retrô Win98, janelas arrastáveis, barra de tarefas, menu Iniciar, sons sintetizados (Web Audio API), apps funcionais (DOS Prompt, IE, Explorer de Projetos, Monitor de CPU/RAM, Lixeira) e tela CRT. |
-| 3 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Protótipo Figma / Em breve | Catalogado | Console administrativo corporativo NT 5.0, visualizador de eventos, gerenciador de serviços e diagnóstico. |
-| 4 | **Windows XP Luna Golden Era** | `#/winxp` | Protótipo Figma / Em breve | Catalogado | Era dourada dos anos 2000 com wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde. |
+| 3 | **Steamy Frosted Glass & Bath Fog (Proposta 06)** | `#/steamy-glass` ou `#/proposta-6` | `src/components/steamy/SteamyGlassPage.tsx` | Ativo | Vidro embaçado tátil, condensação física, névoa térmica matinal, silhuetas botânicas com paralaxe, espelho interativo para limpar vapor com dedo/cursor (Web Audio API), 5 Dew Pods de métricas e design tokens de refração. |
+| 4 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Protótipo Figma / Em breve | Catalogado | Console administrativo corporativo NT 5.0, visualizador de eventos, gerenciador de serviços e diagnóstico. |
+| 5 | **Windows XP Luna Golden Era** | `#/winxp` | Protótipo Figma / Em breve | Catalogado | Era dourada dos anos 2000 com wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde. |
 
 ---
 
@@ -76,6 +77,22 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
     - `InternetExplorerApp.tsx`: Navegador retrô com links e páginas simuladas.
     - `RecycleBinApp.tsx`: Lixeira com itens descartados e easter eggs.
   - Menu Iniciar funcional com opção de Desligamento do sistema (`ShutdownScreen.tsx`) e seletor `Win98PortfolioSelector.tsx`.
+
+#### 3. Steamy Frosted Glass & Bath Fog Portfolio (Proposta 06)
+- **Acesso**: Hash `#/steamy-glass` ou `#/proposta-6`
+- **Estilo Visual**: Light Theme tátil (`#F0F4F8`), curvatura pillow squircle (`rounded-[32px] - rounded-[44px]`), glassmorphism translúcido (`backdrop-filter: blur(20px) saturate(140%)`), sombras suaves multicamadas e destaques internos especulares (`inset 0 2px 4px rgba(255,255,255,0.9)`).
+- **Destaques de Motion Design e Interatividade**:
+  - `SteamyBackground.tsx`: Silhuetas botânicas profundas (`blur: 52px`) com paralaxe ao mover o mouse, nebulosas de vapor térmico flutuantes (`blur: 100px-120px`), gotículas de condensação com relevo 3D e rastros verticais animados de gotas escorrendo (`Moisture_Wipe_Trail`).
+  - `SteamWipeCanvas.tsx`: Espelho e vidro embaçado interativo com efeito de limpeza com dedo (`finger wipe`) e rodo (`squeegee`). Utiliza `destination-out` e gradiente radial suave para revelar a superfície cristalina por baixo, acompanhado de feedback sonoro procedural.
+  - `steamyAudio.ts`: Efeitos sonoros procedurais gerados via Web Audio API (som suave de gota de água `playDropletSound()`, vapor térmico `playSteamSound()` e fricção no vidro `playWipeSound()`), sem arquivos de áudio externos.
+  - Seções fiéis ao Figma:
+    - `SteamyTopBar.tsx`: Barra de status com sensor de umidade (98%), névoa matinal e alternador de temas.
+    - `SteamyHeroCard.tsx`: Cartão executivo com badges, biografia e ações de contato de João Vinícius Guerber.
+    - `SteamyImpactMetrics.tsx`: 5 Dew Pods com métricas de hiperescala (-98% crashes, -55% RAM, -75% splash, +$10k AWS, 0%→40% testes).
+    - `SteamyCaseStudies.tsx`: 3 casos de engenharia com desafios, soluções e resultados quantificados.
+    - `SteamyExperiences.tsx`: Linha do tempo de carreira na Invillia e WiiD.
+    - `SteamyTechMatrix.tsx`: Matriz com 32 skills em 4 categorias técnicas, certificações e idiomas.
+    - `SteamyBottomBar.tsx`: Barra de especificações com tokens de transmissão (0.92) e refração IOR (1.52).
 
 ---
 

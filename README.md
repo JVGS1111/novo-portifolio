@@ -12,8 +12,9 @@
 |---|---------------------------|-------------|--------|-----------|
 | 1 | **Modern Executive & High-Tech** | `#/` | Ativo | Three.js 3D interativo, estética dark mode/cyberpunk, i18n (5 idiomas), métricas de impacto e animações Framer Motion. |
 | 2 | **Retro Desktop Windows 98** | `#/win98` | Ativo | Simulação completa do Windows 98 SE com janelas arrastáveis, efeitos sonoros sintetizados via Web Audio API, CRT overlay e aplicativos clássicos. |
-| 3 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Em Breve | Console administrativo corporativo NT 5.0, visualizador de eventos e diagnóstico (protótipo de alta fidelidade no Figma). |
-| 4 | **Windows XP Luna Golden Era** | `#/winxp` | Em Breve | Wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde (protótipo de alta fidelidade no Figma). |
+| 3 | **Steamy Frosted Glass & Bath Fog (Proposta 06)** | `#/steamy-glass` | Ativo | Vidro embaçado tátil, névoa térmica matinal, silhuetas botânicas, espelho interativo para limpar vapor com dedo/cursor (Web Audio API), 5 Dew Pods de métricas e refração física. |
+| 4 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Em Breve | Console administrativo corporativo NT 5.0, visualizador de eventos e diagnóstico (protótipo de alta fidelidade no Figma). |
+| 5 | **Windows XP Luna Golden Era** | `#/winxp` | Em Breve | Wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde (protótipo de alta fidelidade no Figma). |
 
 ---
 

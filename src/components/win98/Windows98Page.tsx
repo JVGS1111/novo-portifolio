@@ -197,6 +197,15 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       icon: '🚀',
       badge: 'Next-Gen',
       action: onNavigateModern
+    },
+    {
+      id: 'steamy',
+      title: 'Vidro com Vapor',
+      icon: '💧',
+      badge: 'Proposta 6',
+      action: () => {
+        window.location.hash = '#/steamy-glass';
+      }
     }
   ];
 

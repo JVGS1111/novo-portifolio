@@ -11,19 +11,22 @@ import { ContactFooter } from './components/ContactFooter';
 import { MotionCursor } from './components/motion/MotionCursor';
 import { ScrollProgress } from './components/motion/ScrollProgress';
 import { Windows98Page } from './components/win98/Windows98Page';
+import { SteamyGlassPage } from './components/steamy/SteamyGlassPage';
+import { FrutigerAeroPage } from './components/frutiger/FrutigerAeroPage';
+import { MonolithicBrutalismPage } from './components/monolith/MonolithicBrutalismPage';
 import { PortfolioSwitcher } from './components/PortfolioSwitcher';
 
 export const App: React.FC = () => {
-  const [isWin98, setIsWin98] = useState(() => {
+  const [currentHash, setCurrentHash] = useState(() => {
     if (typeof window !== 'undefined') {
-      return window.location.hash.toLowerCase().includes('win98');
+      return window.location.hash.toLowerCase();
     }
-    return false;
+    return '';
   });
 
   useEffect(() => {
     const handleHashChange = () => {
-      setIsWin98(window.location.hash.toLowerCase().includes('win98'));
+      setCurrentHash(window.location.hash.toLowerCase());
     };
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
@@ -32,6 +35,42 @@ export const App: React.FC = () => {
   const navigateToModern = () => {
     window.location.hash = '';
   };
+
+  const isMonolith =
+    currentHash.includes('monolith') ||
+    currentHash.includes('brutalism') ||
+    currentHash.includes('proposta-4') ||
+    currentHash.includes('proposal-4') ||
+    currentHash.includes('proposta4');
+
+  if (isMonolith) {
+    return <MonolithicBrutalismPage onNavigateModern={navigateToModern} />;
+  }
+
+  const isSteamy =
+    currentHash.includes('steamy') ||
+    currentHash.includes('proposta-6') ||
+    currentHash.includes('proposal-6') ||
+    currentHash.includes('fog') ||
+    currentHash.includes('frosted');
+
+  if (isSteamy) {
+    return <SteamyGlassPage onNavigateModern={navigateToModern} />;
+  }
+
+  const isAero =
+    currentHash.includes('frutiger') ||
+    currentHash.includes('aero') ||
+    currentHash.includes('proposta5') ||
+    currentHash.includes('proposta-5') ||
+    currentHash.includes('proposal-5') ||
+    currentHash.includes('msn');
+
+  if (isAero) {
+    return <FrutigerAeroPage onNavigateModern={navigateToModern} />;
+  }
+
+  const isWin98 = currentHash.includes('win98');
 
   if (isWin98) {
     return <Windows98Page onNavigateModern={navigateToModern} />;

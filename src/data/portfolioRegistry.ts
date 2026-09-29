@@ -34,6 +34,39 @@ export const portfolioRegistry: PortfolioItem[] = [
     yearVibe: '1998'
   },
   {
+    id: 'monolith',
+    name: 'Monolithic Concrete Sci-Fi Brutalism',
+    shortName: 'Monolith 3D',
+    hash: '#/monolith',
+    icon: '🗿',
+    tag: 'Sci-Fi Brutalism',
+    description: 'Monolito colossal em Three.js PBR, telemetria HUD sci-fi, corte laser e motion industrial.',
+    status: 'active',
+    yearVibe: '2026'
+  },
+  {
+    id: 'frutiger-aero',
+    name: 'Frutiger Aero & Aqua Ecotopia',
+    shortName: 'Frutiger Aero',
+    hash: '#/proposta5',
+    icon: '🫧',
+    tag: 'Proposta 5',
+    description: 'Estética 2000s Frutiger Aero, MSN 8.5 com Wizz real, Three.js esferas aquáticas e botões skeuomórficos.',
+    status: 'active',
+    yearVibe: '2007'
+  },
+  {
+    id: 'steamy',
+    name: 'Steamy Frosted Glass & Bath Fog',
+    shortName: 'Steamy Glass',
+    hash: '#/steamy-glass',
+    icon: '💧',
+    tag: 'Proposta 6',
+    description: 'Vidro embaçado tátil, condensação dinâmica, limpeza interativa por toque e névoa matinal.',
+    status: 'active',
+    yearVibe: '2026'
+  },
+  {
     id: 'win2000',
     name: 'Windows 2000 Pro Enterprise MMC',
     shortName: 'Windows 2000',
@@ -59,6 +92,28 @@ export const portfolioRegistry: PortfolioItem[] = [
 
 export const getCurrentPortfolio = (hash: string): PortfolioItem => {
   const cleanHash = hash.toLowerCase();
+  if (
+    cleanHash.includes('frutiger') ||
+    cleanHash.includes('aero') ||
+    cleanHash.includes('proposta5') ||
+    cleanHash.includes('proposta-5') ||
+    cleanHash.includes('proposal-5') ||
+    cleanHash.includes('msn')
+  ) {
+    return portfolioRegistry.find((p) => p.id === 'frutiger-aero') || portfolioRegistry[0];
+  }
+  if (
+    cleanHash.includes('steamy') ||
+    cleanHash.includes('proposta-6') ||
+    cleanHash.includes('proposal-6') ||
+    cleanHash.includes('fog') ||
+    cleanHash.includes('frosted')
+  ) {
+    return portfolioRegistry.find((p) => p.id === 'steamy') || portfolioRegistry[0];
+  }
+  if (cleanHash.includes('monolith') || cleanHash.includes('brutalism') || cleanHash.includes('proposta-4') || cleanHash.includes('proposal-4')) {
+    return portfolioRegistry.find((p) => p.id === 'monolith') || portfolioRegistry[0];
+  }
   if (cleanHash.includes('win98')) {
     return portfolioRegistry.find((p) => p.id === 'win98') || portfolioRegistry[0];
   }

@@ -20,7 +20,7 @@ export interface WindowState {
 }
 
 export interface DesktopIconItem {
-  id: WindowId | 'modern' | 'shutdown';
+  id: WindowId | 'modern' | 'shutdown' | 'steamy' | string;
   title: string;
   icon: string;
   badge?: string;

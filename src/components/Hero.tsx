@@ -1,129 +1,230 @@
 import React from 'react';
 import { ArrowRight, ShieldCheck, Cpu, Flame, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { ThreeHeroCanvas } from './ThreeHeroCanvas';
 import { personalInfo } from '../data/portfolioData';
 import { useLanguage } from '../i18n/LanguageContext';
+import { TiltCard } from './motion/TiltCard';
+import { AnimatedCounter } from './motion/AnimatedCounter';
 
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
 
+  const techStack = [
+    'React Native',
+    'Kotlin',
+    'Swift',
+    'TypeScript',
+    'Next.js',
+    'Fastlane',
+    'AppDome (RASP)',
+    'GitHub Copilot',
+    'Redux Toolkit',
+    'Tailwind CSS',
+    'Three.js',
+    'CI/CD Pipelines',
+  ];
+
   return (
-    <section className="relative min-h-[95vh] flex items-center justify-center pt-28 pb-16 overflow-hidden">
+    <section className="relative min-h-[96vh] flex items-center justify-center pt-28 pb-16 overflow-hidden">
       {/* 3D Interactive Three.js Background Canvas */}
       <ThreeHeroCanvas />
 
       {/* Hero Content Overlay */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         
-        {/* Availability & Seniority Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md text-xs font-mono text-cyan-300 mb-6 shadow-lg shadow-cyan-500/10">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+        {/* Availability & Seniority Badge with Floating Motion */}
+        <motion.div
+          initial={{ opacity: 0, y: -20, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ scale: 1.03 }}
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md text-xs font-mono text-cyan-300 mb-6 shadow-lg shadow-cyan-500/10 cursor-default"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
+          </span>
           <span>{t.hero.badgeRole}</span>
           <span className="text-slate-600">|</span>
           <span className="text-slate-400 font-sans">{t.hero.badgeYears}</span>
-        </div>
+        </motion.div>
 
-        {/* Main Headline */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6">
+        {/* Main Headline with Staggered Entrance */}
+        <motion.h1
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6"
+        >
           {t.hero.headlinePrefix}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400">
+          <span className="text-shimmer drop-shadow-[0_0_35px_rgba(56,189,248,0.35)]">
             {t.hero.headlineHighlight}
           </span>
           {t.hero.headlineSuffix}
-        </h1>
+        </motion.h1>
 
         {/* Subtitle / Value Proposition */}
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="text-base sm:text-xl text-slate-300 max-w-3xl mb-8 leading-relaxed font-normal text-balance"
           dangerouslySetInnerHTML={{ __html: t.hero.subtitleHtml }}
         />
 
-        {/* Quick Highlights Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full max-w-3xl mb-10 text-left">
-          <div className="bg-slate-900/70 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-cyan-500/40 transition-all">
-            <div className="flex items-center gap-2 text-cyan-400 mb-1">
-              <ShieldCheck className="w-4 h-4" />
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
-                {t.hero.statStabilityLabel}
-              </span>
+        {/* Quick Highlights Strip with 3D Tilt Cards & Count-Up */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-3.5 w-full max-w-3xl mb-10 text-left"
+        >
+          <TiltCard
+            maxTilt={8}
+            spotlightColor="rgba(6, 182, 212, 0.16)"
+            className="rounded-xl"
+          >
+            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-cyan-500/40 transition-all h-full flex flex-col justify-between">
+              <div className="flex items-center gap-2 text-cyan-400 mb-1">
+                <ShieldCheck className="w-4 h-4 shrink-0" />
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+                  {t.hero.statStabilityLabel}
+                </span>
+              </div>
+              <div className="text-lg font-extrabold text-white my-0.5">
+                <AnimatedCounter value={t.hero.statStabilityValue} />
+              </div>
+              <div className="text-[11px] text-slate-400 line-clamp-1">{t.hero.statStabilitySub}</div>
             </div>
-            <div className="text-lg font-extrabold text-white">{t.hero.statStabilityValue}</div>
-            <div className="text-[11px] text-slate-400">{t.hero.statStabilitySub}</div>
-          </div>
+          </TiltCard>
 
-          <div className="bg-slate-900/70 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-sky-500/40 transition-all">
-            <div className="flex items-center gap-2 text-sky-400 mb-1">
-              <Cpu className="w-4 h-4" />
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
-                {t.hero.statMemoryLabel}
-              </span>
+          <TiltCard
+            maxTilt={8}
+            spotlightColor="rgba(56, 189, 248, 0.16)"
+            className="rounded-xl"
+          >
+            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-sky-500/40 transition-all h-full flex flex-col justify-between">
+              <div className="flex items-center gap-2 text-sky-400 mb-1">
+                <Cpu className="w-4 h-4 shrink-0" />
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+                  {t.hero.statMemoryLabel}
+                </span>
+              </div>
+              <div className="text-lg font-extrabold text-white my-0.5">
+                <AnimatedCounter value={t.hero.statMemoryValue} />
+              </div>
+              <div className="text-[11px] text-slate-400 line-clamp-1">{t.hero.statMemorySub}</div>
             </div>
-            <div className="text-lg font-extrabold text-white">{t.hero.statMemoryValue}</div>
-            <div className="text-[11px] text-slate-400">{t.hero.statMemorySub}</div>
-          </div>
+          </TiltCard>
 
-          <div className="bg-slate-900/70 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-indigo-500/40 transition-all">
-            <div className="flex items-center gap-2 text-indigo-400 mb-1">
-              <Flame className="w-4 h-4" />
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
-                {t.hero.statStartupLabel}
-              </span>
+          <TiltCard
+            maxTilt={8}
+            spotlightColor="rgba(129, 140, 248, 0.16)"
+            className="rounded-xl"
+          >
+            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-indigo-500/40 transition-all h-full flex flex-col justify-between">
+              <div className="flex items-center gap-2 text-indigo-400 mb-1">
+                <Flame className="w-4 h-4 shrink-0" />
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+                  {t.hero.statStartupLabel}
+                </span>
+              </div>
+              <div className="text-lg font-extrabold text-white my-0.5">
+                <AnimatedCounter value={t.hero.statStartupValue} />
+              </div>
+              <div className="text-[11px] text-slate-400 line-clamp-1">{t.hero.statStartupSub}</div>
             </div>
-            <div className="text-lg font-extrabold text-white">{t.hero.statStartupValue}</div>
-            <div className="text-[11px] text-slate-400">{t.hero.statStartupSub}</div>
-          </div>
+          </TiltCard>
 
-          <div className="bg-slate-900/70 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-purple-500/40 transition-all">
-            <div className="flex items-center gap-2 text-purple-400 mb-1">
-              <Sparkles className="w-4 h-4" />
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
-                {t.hero.statInnovationLabel}
-              </span>
+          <TiltCard
+            maxTilt={8}
+            spotlightColor="rgba(168, 85, 247, 0.16)"
+            className="rounded-xl"
+          >
+            <div className="bg-slate-900/75 border border-slate-800/90 rounded-xl p-3.5 backdrop-blur-md hover:border-purple-500/40 transition-all h-full flex flex-col justify-between">
+              <div className="flex items-center gap-2 text-purple-400 mb-1">
+                <Sparkles className="w-4 h-4 shrink-0" />
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+                  {t.hero.statInnovationLabel}
+                </span>
+              </div>
+              <div className="text-lg font-extrabold text-white my-0.5">
+                <AnimatedCounter value={t.hero.statInnovationValue} />
+              </div>
+              <div className="text-[11px] text-slate-400 line-clamp-1">{t.hero.statInnovationSub}</div>
             </div>
-            <div className="text-lg font-extrabold text-white">{t.hero.statInnovationValue}</div>
-            <div className="text-[11px] text-slate-400">{t.hero.statInnovationSub}</div>
-          </div>
-        </div>
+          </TiltCard>
+        </motion.div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <a
+        {/* Action Buttons with Spring Hover Effects */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-wrap items-center justify-center gap-4"
+        >
+          <motion.a
             href="#metricas"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 shadow-xl shadow-cyan-500/20 transition-all duration-300 hover:scale-105 active:scale-95 group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 shadow-xl shadow-cyan-500/25 transition-all group cursor-pointer"
           >
             {t.hero.ctaMetrics}
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+          </motion.a>
 
-          <a
+          <motion.a
             href="#projetos"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-slate-800/70 hover:bg-slate-700/80 border border-slate-700/80 backdrop-blur-md transition-all duration-200 hover:border-slate-500"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-slate-800/70 hover:bg-slate-700/80 border border-slate-700/80 backdrop-blur-md transition-all duration-200 hover:border-slate-500 cursor-pointer"
           >
             {t.hero.ctaProjects}
-          </a>
+          </motion.a>
 
-          <a
+          <motion.a
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-slate-300 hover:text-white bg-slate-900/40 hover:bg-slate-800/50 border border-slate-800 transition-all duration-200"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-slate-300 hover:text-white bg-slate-900/40 hover:bg-slate-800/50 border border-slate-800 hover:border-cyan-500/30 transition-all duration-200 cursor-pointer"
           >
             {t.hero.ctaLinkedin}
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
-        {/* Tech Stack Horizontal Ticker */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-2 max-w-3xl text-xs font-mono text-slate-400">
-          <span className="text-slate-500 mr-2">{t.hero.techCoreLabel}</span>
-          {['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Next.js', 'Fastlane', 'AppDome (RASP)', 'GitHub Copilot'].map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 rounded-md bg-slate-900/60 border border-slate-800/80 text-slate-300 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors"
-            >
-              {tech}
+        {/* Tech Stack Infinite Horizontal Marquee Ticker */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="mt-14 w-full max-w-4xl overflow-hidden relative"
+        >
+          {/* Edge fade masks */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#07090e] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#07090e] to-transparent z-10 pointer-events-none" />
+
+          <div className="flex items-center gap-4">
+            <span className="text-xs font-mono text-slate-500 whitespace-nowrap shrink-0 z-20 bg-[#07090e]/80 px-2 py-1 rounded">
+              {t.hero.techCoreLabel}
             </span>
-          ))}
-        </div>
+
+            <div className="flex overflow-hidden group">
+              <div className="animate-marquee flex items-center gap-2.5">
+                {[...techStack, ...techStack].map((tech, idx) => (
+                  <span
+                    key={`${tech}-${idx}`}
+                    className="px-3 py-1 rounded-md bg-slate-900/60 border border-slate-800/80 text-xs font-mono text-slate-300 hover:border-cyan-400/50 hover:text-cyan-300 transition-colors cursor-default whitespace-nowrap"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
       </div>
     </section>

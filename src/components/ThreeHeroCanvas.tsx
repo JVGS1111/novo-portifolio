@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 export const ThreeHeroCanvas: React.FC = () => {
@@ -106,6 +106,18 @@ export const ThreeHeroCanvas: React.FC = () => {
     ring2.rotation.x = -Math.PI / 6;
     masterGroup.add(ring2);
 
+    // Holographic Pulse Wave Rings (Radar Echo Effect)
+    const waveGeo = new THREE.RingGeometry(1.5, 1.55, 64);
+    const waveMat = new THREE.MeshBasicMaterial({
+      color: 0x38bdf8,
+      transparent: true,
+      opacity: 0.4,
+      side: THREE.DoubleSide
+    });
+    const pulseWave = new THREE.Mesh(waveGeo, waveMat);
+    pulseWave.rotation.x = Math.PI / 2;
+    masterGroup.add(pulseWave);
+
     // 4. Floating Data Nodes
     const nodeCount = 12;
     const nodesGroup = new THREE.Group();
@@ -130,9 +142,10 @@ export const ThreeHeroCanvas: React.FC = () => {
     masterGroup.add(nodesGroup);
 
     // 5. Starfield Particles
-    const particleCount = 700;
+    const particleCount = 750;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
+    const basePositions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
     const color1 = new THREE.Color(0x38bdf8);
@@ -140,9 +153,17 @@ export const ThreeHeroCanvas: React.FC = () => {
     const color3 = new THREE.Color(0xa855f7);
 
     for (let i = 0; i < particleCount * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 40;
-      positions[i + 1] = (Math.random() - 0.5) * 30;
-      positions[i + 2] = (Math.random() - 0.5) * 30;
+      const px = (Math.random() - 0.5) * 44;
+      const py = (Math.random() - 0.5) * 32;
+      const pz = (Math.random() - 0.5) * 32;
+
+      positions[i] = px;
+      positions[i + 1] = py;
+      positions[i + 2] = pz;
+
+      basePositions[i] = px;
+      basePositions[i + 1] = py;
+      basePositions[i + 2] = pz;
 
       const mixedColor = Math.random() > 0.6 ? color1 : Math.random() > 0.3 ? color2 : color3;
       colors[i] = mixedColor.r;
@@ -154,10 +175,10 @@ export const ThreeHeroCanvas: React.FC = () => {
     particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: 0.08,
+      size: 0.09,
       vertexColors: true,
       transparent: true,
-      opacity: 0.7,
+      opacity: 0.75,
       blending: THREE.AdditiveBlending
     });
 
@@ -168,6 +189,7 @@ export const ThreeHeroCanvas: React.FC = () => {
     let mouseY = 0;
     let targetX = 0;
     let targetY = 0;
+    let scrollYOffset = 0;
 
     const handleMouseMove = (event: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
@@ -175,7 +197,22 @@ export const ThreeHeroCanvas: React.FC = () => {
       mouseY = (event.clientY / innerHeight - 0.5) * 2;
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    const handleTouchMove = (event: TouchEvent) => {
+      if (event.touches.length > 0) {
+        const touch = event.touches[0];
+        const { innerWidth, innerHeight } = window;
+        mouseX = (touch.clientX / innerWidth - 0.5) * 2;
+        mouseY = (touch.clientY / innerHeight - 0.5) * 2;
+      }
+    };
+
+    const handleScroll = () => {
+      scrollYOffset = window.scrollY * 0.002;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     const handleResize = () => {
       if (!container) return;
@@ -198,26 +235,42 @@ export const ThreeHeroCanvas: React.FC = () => {
       animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
-      targetX += (mouseX - targetX) * 0.05;
-      targetY += (mouseY - targetY) * 0.05;
+      // Fluid spring interpolation for mouse interaction
+      targetX += (mouseX - targetX) * 0.04;
+      targetY += (mouseY - targetY) * 0.04;
 
-      masterGroup.rotation.y = elapsedTime * 0.15 + targetX * 0.8;
-      masterGroup.rotation.x = Math.sin(elapsedTime * 0.1) * 0.1 - targetY * 0.6;
+      masterGroup.rotation.y = elapsedTime * 0.12 + targetX * 0.75;
+      masterGroup.rotation.x = Math.sin(elapsedTime * 0.08) * 0.08 - targetY * 0.5 + scrollYOffset;
 
-      phoneGroup.rotation.y = Math.sin(elapsedTime * 0.4) * 0.2;
-      phoneGroup.rotation.z = Math.cos(elapsedTime * 0.3) * 0.08;
-      phoneGroup.position.y = Math.sin(elapsedTime * 0.8) * 0.25;
+      phoneGroup.rotation.y = Math.sin(elapsedTime * 0.4) * 0.18;
+      phoneGroup.rotation.z = Math.cos(elapsedTime * 0.3) * 0.07;
+      phoneGroup.position.y = Math.sin(elapsedTime * 0.7) * 0.22;
 
-      coreWire.rotation.y = -elapsedTime * 0.25;
-      coreWire.rotation.x = elapsedTime * 0.2;
-      innerCore.rotation.y = elapsedTime * 0.35;
+      coreWire.rotation.y = -elapsedTime * 0.22;
+      coreWire.rotation.x = elapsedTime * 0.18;
+      innerCore.rotation.y = elapsedTime * 0.32;
 
-      ring1.rotation.z = elapsedTime * 0.2;
-      ring2.rotation.y = -elapsedTime * 0.18;
-      nodesGroup.rotation.y = elapsedTime * 0.1;
+      ring1.rotation.z = elapsedTime * 0.18;
+      ring2.rotation.y = -elapsedTime * 0.15;
+      nodesGroup.rotation.y = elapsedTime * 0.09;
 
-      particles.rotation.y = elapsedTime * 0.02;
-      particles.rotation.x = targetY * 0.1;
+      // Pulse wave expanding radar motion
+      const waveCycle = (elapsedTime * 0.6) % 1;
+      const waveScale = 1 + waveCycle * 3.5;
+      pulseWave.scale.set(waveScale, waveScale, waveScale);
+      waveMat.opacity = Math.max(0, (1 - waveCycle) * 0.45);
+
+      // Organic subtle undulating particle ripple
+      const posAttr = particleGeo.attributes.position as THREE.BufferAttribute;
+      const posArr = posAttr.array as Float32Array;
+      for (let i = 0; i < particleCount; i++) {
+        const i3 = i * 3;
+        posArr[i3 + 1] = basePositions[i3 + 1] + Math.sin(elapsedTime * 1.5 + basePositions[i3] * 0.3) * 0.2;
+      }
+      posAttr.needsUpdate = true;
+
+      particles.rotation.y = elapsedTime * 0.015;
+      particles.rotation.x = targetY * 0.08;
 
       renderer.render(scene, camera);
     };
@@ -226,6 +279,8 @@ export const ThreeHeroCanvas: React.FC = () => {
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
 
@@ -243,6 +298,8 @@ export const ThreeHeroCanvas: React.FC = () => {
       ringMat1.dispose();
       ringGeo2.dispose();
       ringMat2.dispose();
+      waveGeo.dispose();
+      waveMat.dispose();
       nodeGeo.dispose();
       nodeMat.dispose();
       particleGeo.dispose();

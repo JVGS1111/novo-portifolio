@@ -1,0 +1,418 @@
+import React, { useState, useEffect } from 'react';
+import type { WindowId, WindowState, DesktopIconItem } from './win98Types';
+import { Win98Window } from './Win98Window';
+import { Win98Icon } from './Win98Icon';
+import { Win98Taskbar } from './Win98Taskbar';
+import { Win98StartMenu } from './Win98StartMenu';
+import { CrtOverlay } from './CrtOverlay';
+import { ShutdownScreen } from './ShutdownScreen';
+import { ProfileApp } from './apps/ProfileApp';
+import { PerformanceMonitorApp } from './apps/PerformanceMonitorApp';
+import { CaseStudiesApp } from './apps/CaseStudiesApp';
+import { DosPromptApp } from './apps/DosPromptApp';
+import { InternetExplorerApp } from './apps/InternetExplorerApp';
+import { RecycleBinApp } from './apps/RecycleBinApp';
+import { playStartupChime, playRestoreSound, playMinimizeSound } from './soundEffects';
+
+interface Windows98PageProps {
+  onNavigateModern: () => void;
+}
+
+export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }) => {
+  const [crtEnabled, setCrtEnabled] = useState(true);
+  const [startMenuOpen, setStartMenuOpen] = useState(false);
+  const [shutdownActive, setShutdownActive] = useState(false);
+  const [selectedIconId, setSelectedIconId] = useState<string | null>(null);
+  const [activeWindowId, setActiveWindowId] = useState<WindowId | null>('profile');
+  const [nextZIndex, setNextZIndex] = useState(10);
+
+  // Initialize Window States
+  const [windows, setWindows] = useState<Record<WindowId, WindowState>>({
+    profile: {
+      id: 'profile',
+      title: 'Guerber_Profile.exe — [João Vinícius Guerber]',
+      icon: '💻',
+      isOpen: true,
+      isMinimized: false,
+      isMaximized: false,
+      zIndex: 5,
+      defaultPosition: { x: 120, y: 30 },
+      defaultSize: { width: 720, height: 520 }
+    },
+    perf: {
+      id: 'perf',
+      title: 'Performance_Monitor.exe — [Telemetria Real banQi]',
+      icon: '📊',
+      isOpen: true,
+      isMinimized: false,
+      isMaximized: false,
+      zIndex: 6,
+      defaultPosition: { x: 440, y: 180 },
+      defaultSize: { width: 680, height: 480 }
+    },
+    cases: {
+      id: 'cases',
+      title: 'C:\\Projetos_Case_Studies\\ — [banQi, IA & Design System]',
+      icon: '🚀',
+      isOpen: false,
+      isMinimized: false,
+      isMaximized: false,
+      zIndex: 7,
+      defaultPosition: { x: 200, y: 80 },
+      defaultSize: { width: 740, height: 490 }
+    },
+    cmd: {
+      id: 'cmd',
+      title: 'MS-DOS Prompt — C:\\WINDOWS\\system32\\cmd.exe',
+      icon: '📟',
+      isOpen: false,
+      isMinimized: false,
+      isMaximized: false,
+      zIndex: 8,
+      defaultPosition: { x: 160, y: 140 },
+      defaultSize: { width: 600, height: 380 }
+    },
+    ie: {
+      id: 'ie',
+      title: 'Internet Explorer 5.0 — Guerber Online',
+      icon: '🌐',
+      isOpen: false,
+      isMinimized: false,
+      isMaximized: false,
+      zIndex: 9,
+      defaultPosition: { x: 240, y: 90 },
+      defaultSize: { width: 640, height: 440 }
+    },
+    recycle: {
+      id: 'recycle',
+      title: 'Lixeira — 0 Débitos Técnicos',
+      icon: '🗑️',
+      isOpen: false,
+      isMinimized: false,
+      isMaximized: false,
+      zIndex: 4,
+      defaultPosition: { x: 300, y: 150 },
+      defaultSize: { width: 440, height: 300 }
+    },
+    about: {
+      id: 'about',
+      title: 'Sobre o Sistema',
+      icon: 'ℹ️',
+      isOpen: false,
+      isMinimized: false,
+      isMaximized: false,
+      zIndex: 4,
+      defaultPosition: { x: 320, y: 160 },
+      defaultSize: { width: 400, height: 260 }
+    }
+  });
+
+  // Play startup sound on mount (once user has interacted or gesture unlocks audio)
+  useEffect(() => {
+    const handleFirstGesture = () => {
+      playStartupChime();
+      window.removeEventListener('pointerdown', handleFirstGesture);
+    };
+    window.addEventListener('pointerdown', handleFirstGesture, { once: true });
+    return () => window.removeEventListener('pointerdown', handleFirstGesture);
+  }, []);
+
+  // Bring window to top focus
+  const focusWindow = (id: WindowId) => {
+    setNextZIndex((prev) => prev + 1);
+    setActiveWindowId(id);
+    setWindows((prev) => ({
+      ...prev,
+      [id]: {
+        ...prev[id],
+        isOpen: true,
+        isMinimized: false,
+        zIndex: nextZIndex + 1
+      }
+    }));
+  };
+
+  const openWindow = (id: WindowId) => {
+    playRestoreSound();
+    focusWindow(id);
+  };
+
+  const closeWindow = (id: WindowId) => {
+    setWindows((prev) => ({
+      ...prev,
+      [id]: { ...prev[id], isOpen: false }
+    }));
+    if (activeWindowId === id) {
+      setActiveWindowId(null);
+    }
+  };
+
+  const minimizeWindow = (id: WindowId) => {
+    playMinimizeSound();
+    setWindows((prev) => ({
+      ...prev,
+      [id]: { ...prev[id], isMinimized: true }
+    }));
+    if (activeWindowId === id) {
+      setActiveWindowId(null);
+    }
+  };
+
+  const toggleMaximizeWindow = (id: WindowId) => {
+    setWindows((prev) => ({
+      ...prev,
+      [id]: { ...prev[id], isMaximized: !prev[id].isMaximized }
+    }));
+    focusWindow(id);
+  };
+
+  // Toggle window from taskbar
+  const toggleWindowFromTaskbar = (id: WindowId) => {
+    const win = windows[id];
+    if (win.isMinimized) {
+      playRestoreSound();
+      focusWindow(id);
+    } else if (activeWindowId === id) {
+      minimizeWindow(id);
+    } else {
+      focusWindow(id);
+    }
+  };
+
+  // Desktop Icons Configuration
+  const desktopIcons: DesktopIconItem[] = [
+    { id: 'profile', title: 'Meu Computador', icon: '💻', badge: 'Guerber' },
+    { id: 'perf', title: 'Performance_Monitor', icon: '📊', badge: '-98% Crash' },
+    { id: 'cases', title: 'Meus Projetos', icon: '📁', badge: '3 Cases' },
+    { id: 'cmd', title: 'MS-DOS Prompt', icon: '📟' },
+    { id: 'ie', title: 'Internet Explorer', icon: '🌐' },
+    { id: 'recycle', title: 'Lixeira (Vazia)', icon: '🗑️' },
+    {
+      id: 'modern',
+      title: 'Portfólio Moderno',
+      icon: '🚀',
+      badge: 'Next-Gen',
+      action: onNavigateModern
+    }
+  ];
+
+  return (
+    <div
+      onClick={() => {
+        setSelectedIconId(null);
+        if (startMenuOpen) setStartMenuOpen(false);
+      }}
+      className="fixed inset-0 w-screen h-screen overflow-hidden select-none bg-[#008080] font-['Tahoma',sans-serif]"
+    >
+      {/* CRT Scanline & Phosphor Overlay */}
+      <CrtOverlay enabled={crtEnabled} />
+
+      {/* Shutdown Modal Screen */}
+      {shutdownActive && (
+        <ShutdownScreen
+          onRestart={() => setShutdownActive(false)}
+          onNavigateModern={onNavigateModern}
+        />
+      )}
+
+      {/* Floating Retro Banner to return to Modern Portfolio */}
+      <div className="absolute top-2 right-3 z-[8000] flex items-center gap-2">
+        <button
+          type="button"
+          onClick={onNavigateModern}
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#C0C0C0] text-black font-bold text-xs border-2 border-t-white border-l-white border-r-black border-b-black active:border-t-black active:border-l-black active:border-r-white active:border-b-white shadow-lg hover:bg-slate-200 cursor-pointer"
+        >
+          <span>🚀</span>
+          <span>Voltar ao Portfólio Moderno</span>
+        </button>
+      </div>
+
+      {/* Desktop Icons Column (Left Side) */}
+      <div className="absolute top-3 left-3 z-[100] flex flex-col gap-2 p-1">
+        {desktopIcons.map((ic) => (
+          <Win98Icon
+            key={ic.id}
+            id={ic.id}
+            title={ic.title}
+            icon={ic.icon}
+            badge={ic.badge}
+            isSelected={selectedIconId === ic.id}
+            onSelect={() => setSelectedIconId(ic.id)}
+            onOpen={() => {
+              if (ic.action) {
+                ic.action();
+              } else {
+                openWindow(ic.id as WindowId);
+              }
+            }}
+          />
+        ))}
+      </div>
+
+      {/* WINDOW 1: Guerber_Profile.exe */}
+      <Win98Window
+        id="profile"
+        title={windows.profile.title}
+        icon={windows.profile.icon}
+        isOpen={windows.profile.isOpen}
+        isMinimized={windows.profile.isMinimized}
+        isMaximized={windows.profile.isMaximized}
+        isActive={activeWindowId === 'profile'}
+        zIndex={windows.profile.zIndex}
+        initialX={windows.profile.defaultPosition.x}
+        initialY={windows.profile.defaultPosition.y}
+        width={windows.profile.defaultSize.width}
+        height={windows.profile.defaultSize.height}
+        menuItems={['Arquivo', 'Editar', 'Exibir', 'Ajuda']}
+        statusText="Status: 100% Operacional | Disponível para novos desafios de alto impacto"
+        onFocus={() => focusWindow('profile')}
+        onClose={() => closeWindow('profile')}
+        onMinimize={() => minimizeWindow('profile')}
+        onToggleMaximize={() => toggleMaximizeWindow('profile')}
+      >
+        <ProfileApp />
+      </Win98Window>
+
+      {/* WINDOW 2: Performance_Monitor.exe */}
+      <Win98Window
+        id="perf"
+        title={windows.perf.title}
+        icon={windows.perf.icon}
+        isOpen={windows.perf.isOpen}
+        isMinimized={windows.perf.isMinimized}
+        isMaximized={windows.perf.isMaximized}
+        isActive={activeWindowId === 'perf'}
+        zIndex={windows.perf.zIndex}
+        initialX={windows.perf.defaultPosition.x}
+        initialY={windows.perf.defaultPosition.y}
+        width={windows.perf.defaultSize.width}
+        height={windows.perf.defaultSize.height}
+        menuItems={['Telemetria', 'Sensores', 'Relatórios', 'Ajuda']}
+        statusText="Métricas Auditadas: -98% Crashes | -55% RAM | -75% Boot | +$10k Cloud"
+        onFocus={() => focusWindow('perf')}
+        onClose={() => closeWindow('perf')}
+        onMinimize={() => minimizeWindow('perf')}
+        onToggleMaximize={() => toggleMaximizeWindow('perf')}
+      >
+        <PerformanceMonitorApp />
+      </Win98Window>
+
+      {/* WINDOW 3: Meus Projetos / Case Studies */}
+      <Win98Window
+        id="cases"
+        title={windows.cases.title}
+        icon={windows.cases.icon}
+        isOpen={windows.cases.isOpen}
+        isMinimized={windows.cases.isMinimized}
+        isMaximized={windows.cases.isMaximized}
+        isActive={activeWindowId === 'cases'}
+        zIndex={windows.cases.zIndex}
+        initialX={windows.cases.defaultPosition.x}
+        initialY={windows.cases.defaultPosition.y}
+        width={windows.cases.defaultSize.width}
+        height={windows.cases.defaultSize.height}
+        menuItems={['Arquivo', 'Exibir', 'Ferramentas', 'Ajuda']}
+        statusText="3 Objetos de Produção Encontrados"
+        onFocus={() => focusWindow('cases')}
+        onClose={() => closeWindow('cases')}
+        onMinimize={() => minimizeWindow('cases')}
+        onToggleMaximize={() => toggleMaximizeWindow('cases')}
+      >
+        <CaseStudiesApp />
+      </Win98Window>
+
+      {/* WINDOW 4: MS-DOS Prompt */}
+      <Win98Window
+        id="cmd"
+        title={windows.cmd.title}
+        icon={windows.cmd.icon}
+        isOpen={windows.cmd.isOpen}
+        isMinimized={windows.cmd.isMinimized}
+        isMaximized={windows.cmd.isMaximized}
+        isActive={activeWindowId === 'cmd'}
+        zIndex={windows.cmd.zIndex}
+        initialX={windows.cmd.defaultPosition.x}
+        initialY={windows.cmd.defaultPosition.y}
+        width={windows.cmd.defaultSize.width}
+        height={windows.cmd.defaultSize.height}
+        menuItems={[]}
+        statusText="Console DOS 16-bit Emulation"
+        onFocus={() => focusWindow('cmd')}
+        onClose={() => closeWindow('cmd')}
+        onMinimize={() => minimizeWindow('cmd')}
+        onToggleMaximize={() => toggleMaximizeWindow('cmd')}
+      >
+        <DosPromptApp onNavigateModern={onNavigateModern} />
+      </Win98Window>
+
+      {/* WINDOW 5: Internet Explorer 5.0 */}
+      <Win98Window
+        id="ie"
+        title={windows.ie.title}
+        icon={windows.ie.icon}
+        isOpen={windows.ie.isOpen}
+        isMinimized={windows.ie.isMinimized}
+        isMaximized={windows.ie.isMaximized}
+        isActive={activeWindowId === 'ie'}
+        zIndex={windows.ie.zIndex}
+        initialX={windows.ie.defaultPosition.x}
+        initialY={windows.ie.defaultPosition.y}
+        width={windows.ie.defaultSize.width}
+        height={windows.ie.defaultSize.height}
+        menuItems={['Arquivo', 'Editar', 'Exibir', 'Favoritos', 'Ajuda']}
+        statusText="Conexão com a Internet Estabelecida (T1 1.544 Mbps)"
+        onFocus={() => focusWindow('ie')}
+        onClose={() => closeWindow('ie')}
+        onMinimize={() => minimizeWindow('ie')}
+        onToggleMaximize={() => toggleMaximizeWindow('ie')}
+      >
+        <InternetExplorerApp />
+      </Win98Window>
+
+      {/* WINDOW 6: Lixeira */}
+      <Win98Window
+        id="recycle"
+        title={windows.recycle.title}
+        icon={windows.recycle.icon}
+        isOpen={windows.recycle.isOpen}
+        isMinimized={windows.recycle.isMinimized}
+        isMaximized={windows.recycle.isMaximized}
+        isActive={activeWindowId === 'recycle'}
+        zIndex={windows.recycle.zIndex}
+        initialX={windows.recycle.defaultPosition.x}
+        initialY={windows.recycle.defaultPosition.y}
+        width={windows.recycle.defaultSize.width}
+        height={windows.recycle.defaultSize.height}
+        menuItems={['Arquivo', 'Editar', 'Exibir', 'Ajuda']}
+        statusText="0 itens na Lixeira"
+        onFocus={() => focusWindow('recycle')}
+        onClose={() => closeWindow('recycle')}
+        onMinimize={() => minimizeWindow('recycle')}
+        onToggleMaximize={() => toggleMaximizeWindow('recycle')}
+      >
+        <RecycleBinApp />
+      </Win98Window>
+
+      {/* Start Menu */}
+      <Win98StartMenu
+        isOpen={startMenuOpen}
+        onClose={() => setStartMenuOpen(false)}
+        onOpenWindow={openWindow}
+        onShutdown={() => setShutdownActive(true)}
+        onNavigateModern={onNavigateModern}
+      />
+
+      {/* Taskbar */}
+      <Win98Taskbar
+        windows={windows}
+        activeWindowId={activeWindowId}
+        startMenuOpen={startMenuOpen}
+        crtEnabled={crtEnabled}
+        onToggleStartMenu={() => setStartMenuOpen(!startMenuOpen)}
+        onToggleWindow={toggleWindowFromTaskbar}
+        onToggleCrt={() => setCrtEnabled(!crtEnabled)}
+        onNavigateModern={onNavigateModern}
+      />
+    </div>
+  );
+};

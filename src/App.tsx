@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { LanguageProvider } from './i18n';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -10,8 +10,33 @@ import { CertificationsEducation } from './components/CertificationsEducation';
 import { ContactFooter } from './components/ContactFooter';
 import { MotionCursor } from './components/motion/MotionCursor';
 import { ScrollProgress } from './components/motion/ScrollProgress';
+import { Windows98Page } from './components/win98/Windows98Page';
+import { FloatingRetroButton } from './components/FloatingRetroButton';
 
 export const App: React.FC = () => {
+  const [isWin98, setIsWin98] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.hash.toLowerCase().includes('win98');
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setIsWin98(window.location.hash.toLowerCase().includes('win98'));
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigateToModern = () => {
+    window.location.hash = '';
+  };
+
+  if (isWin98) {
+    return <Windows98Page onNavigateModern={navigateToModern} />;
+  }
+
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden">
@@ -33,6 +58,9 @@ export const App: React.FC = () => {
           <TechMatrix />
           <CertificationsEducation />
         </main>
+
+        {/* Floating Switcher to Win98 */}
+        <FloatingRetroButton />
 
         {/* Footer & Contact */}
         <ContactFooter />

@@ -130,6 +130,18 @@ export const Navbar: React.FC = () => {
           >
             <GithubIcon className="w-4 h-4" />
           </motion.a>
+          {/* Retro OS Switcher Button */}
+          <motion.a
+            href="#/win98"
+            whileHover={{ scale: 1.05, y: -1 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-1.5 px-3 py-1 bg-teal-500/15 hover:bg-teal-500/25 text-teal-300 hover:text-teal-200 border border-teal-500/40 rounded-full text-xs font-mono transition-all cursor-pointer shadow-sm shadow-teal-950/30"
+            title="Alternar para a versão Windows 98"
+          >
+            <span>🕹️</span>
+            <span className="font-bold">Win 98</span>
+          </motion.a>
+
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -204,6 +216,21 @@ export const Navbar: React.FC = () => {
                   {link.name}
                 </motion.a>
               ))}
+
+              {/* Win 98 Mobile Switcher */}
+              <a
+                href="#/win98"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between px-4 py-2.5 text-sm font-medium text-teal-300 bg-teal-500/10 hover:bg-teal-500/20 rounded-lg border border-teal-500/30 transition-colors font-mono"
+              >
+                <span className="flex items-center gap-2">
+                  <span>🕹️</span>
+                  <span>Windows 98 Edition</span>
+                </span>
+                <span className="text-[10px] uppercase font-bold bg-teal-500/20 px-2 py-0.5 rounded text-teal-200">
+                  Retro OS
+                </span>
+              </a>
             </nav>
             
             {/* Mobile Language Selection Buttons */}

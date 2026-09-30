@@ -75,18 +75,18 @@ export const ImpactMetrics: React.FC = () => {
                 >
                   <button
                     onClick={() => setSelectedMetricId(item.id)}
-                    className={`text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 relative group flex flex-col justify-between w-full h-full cursor-pointer ${
+                    className={`text-left p-4 sm:p-5 rounded-2xl transition-all duration-300 relative group flex flex-col justify-between w-full h-full cursor-pointer ${
                       isSelected
-                        ? 'bg-slate-800/95 border-cyan-400 shadow-xl shadow-cyan-500/20'
-                        : 'bg-slate-900/60 border-slate-800 hover:border-slate-700 hover:bg-slate-850'
+                        ? 'apple-liquid-card border-cyan-400/60 shadow-2xl shadow-cyan-950/40 ring-1 ring-cyan-400/30'
+                        : 'apple-liquid-glass hover:border-white/25'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full mb-3">
-                      <div className="p-2 rounded-xl bg-slate-800/80 border border-slate-700/60 group-hover:scale-110 transition-transform">
+                      <div className="p-2 rounded-xl bg-white/10 border border-white/15 group-hover:scale-110 transition-transform shadow-inner">
                         {getCategoryIcon(item.impactCategory)}
                       </div>
                       <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border transition-colors ${
-                        isSelected ? 'bg-cyan-400/20 text-cyan-300 border-cyan-400/40 font-bold' : 'bg-slate-800 text-slate-400 border-slate-700'
+                        isSelected ? 'bg-cyan-400/20 text-cyan-300 border-cyan-400/40 font-bold' : 'bg-white/5 text-slate-400 border-white/10'
                       }`}>
                         {item.impactCategory}
                       </span>
@@ -104,7 +104,7 @@ export const ImpactMetrics: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-cyan-400 w-full">
+                    <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-cyan-400 w-full">
                       <span className="group-hover:translate-x-1 transition-transform">{t.impact.viewDetails}</span>
                       <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform" />
                     </div>
@@ -115,8 +115,10 @@ export const ImpactMetrics: React.FC = () => {
           })}
         </div>
 
-        {/* Selected Metric Deep Dive with Smooth AnimatePresence Transition */}
-        <div className="bg-slate-900/80 border border-slate-700/70 rounded-2xl p-5 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden max-w-full">
+        {/* Selected Metric Deep Dive with Smooth AnimatePresence Transition — Apple Liquid Glass Pod */}
+        <div className="apple-liquid-glass rounded-3xl p-5 sm:p-8 backdrop-blur-2xl shadow-2xl relative overflow-hidden max-w-full border border-white/15">
+          {/* Top specular reflection glint */}
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent pointer-events-none" />
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedMetric.id}

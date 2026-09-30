@@ -38,8 +38,10 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
 | 1 | **Modern Executive & High-Tech** | `#/` ou vazio | `src/App.tsx` (Default) | Ativo | Portfólio corporativo de alta conversão, estética dark mode/cyberpunk futurista, 3D interativo com Three.js, internacionalização (i18n com 5 idiomas), cursor com efeitos de física e métricas de impacto. |
 | 2 | **Retro Desktop Windows 98** | `#/win98` ou `#win98` | `src/components/win98/Windows98Page.tsx` | Ativo | Simulação completa de sistema operacional retrô Win98, janelas arrastáveis, barra de tarefas, menu Iniciar, sons sintetizados (Web Audio API), apps funcionais (DOS Prompt, IE, Explorer de Projetos, Monitor de CPU/RAM, Lixeira) e tela CRT. |
 | 3 | **Steamy Frosted Glass & Bath Fog (Proposta 06)** | `#/steamy-glass` ou `#/proposta-6` | `src/components/steamy/SteamyGlassPage.tsx` | Ativo | Vidro embaçado tátil, condensação física, névoa térmica matinal, silhuetas botânicas com paralaxe, espelho interativo para limpar vapor com dedo/cursor (Web Audio API), 5 Dew Pods de métricas e design tokens de refração. |
-| 4 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Protótipo Figma / Em breve | Catalogado | Console administrativo corporativo NT 5.0, visualizador de eventos, gerenciador de serviços e diagnóstico. |
-| 5 | **Windows XP Luna Golden Era** | `#/winxp` | Protótipo Figma / Em breve | Catalogado | Era dourada dos anos 2000 com wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde. |
+| 4 | **Monolithic Concrete Sci-Fi Brutalism (Proposta 04)** | `#/monolith` ou `#/proposta-4` | `src/components/monolith/MonolithicBrutalismPage.tsx` | Ativo | Brutalismo colossal sci-fi de concreto monolítico, Three.js PBR interativo com rotação orbital pesada (damping: 0.05), plano de corte a laser (`CUT_PLANE: Z+42.0`), telemetria HUD ao vivo, snap industrial rígido (`-2px, -2px`), áudio procedural Web Audio API, 5 métricas auditadas, 3 cases de hiperescala e 32 habilidades. |
+| 5 | **Frutiger Aero & Aqua Ecotopia (Proposta 05)** | `#/proposta5` ou `#/frutiger-aero` | `src/components/frutiger/FrutigerAeroPage.tsx` | Ativo | Estética anos 2000 Frutiger Aero / Aqua Ecotopia, Windows Live Messenger 8.5 funcional com Wizz/shake e sons procedurais (Web Audio API), Three.js WebGL 2.0 Bio-Spheres com transmissão física e cáusticas, 5 cartões Aero Glass, 3 cases de arquitetura, matriz aquática de 32 skills e barra de tarefas Vista. |
+| 6 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Protótipo Figma / Em breve | Catalogado | Console administrativo corporativo NT 5.0, visualizador de eventos, gerenciador de serviços e diagnóstico. |
+| 7 | **Windows XP Luna Golden Era** | `#/winxp` | Protótipo Figma / Em breve | Catalogado | Era dourada dos anos 2000 com wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde. |
 
 ---
 
@@ -93,6 +95,38 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
     - `SteamyExperiences.tsx`: Linha do tempo de carreira na Invillia e WiiD.
     - `SteamyTechMatrix.tsx`: Matriz com 32 skills em 4 categorias técnicas, certificações e idiomas.
     - `SteamyBottomBar.tsx`: Barra de especificações com tokens de transmissão (0.92) e refração IOR (1.52).
+
+#### 4. Frutiger Aero & Aqua Ecotopia (Proposta 05)
+- **Acesso**: Hash `#/proposta5` ou `#/frutiger-aero`
+- **Estilo Visual**: Céu azul cerúleo vibrante (`#0D8BF2`), colinas verdes orgânicas (`#2ED18C`), reflexos aquáticos calmos, botões gelatinosos convexos (skeuomorphic gel buttons com sweep de luz), bolhas d'água 3D translúcidas e vidro Aero Vista (`backdrop-filter: blur(20px)`).
+- **Destaques**:
+  - `ThreeAquaSpheres.tsx`: Experimento interativo Three.js WebGL 2.0 com 3 esferas aquáticas de material físico (`MeshPhysicalMaterial`, transmissão 0.88, IOR 1.333, reflexos cáusticos, partículas micro-bolhas flutuantes e órbita suave por cursor/toque).
+  - `MsnMessengerWindow.tsx`: Interface completa e interativa do Windows Live Messenger 8.5:
+    - **Wizz (Chamar Atenção)** funcional com física de vibração da janela (`animate-wizz`) e áudio procedimental via Web Audio API.
+    - Chat interativo onde o visitante pode enviar mensagens com resposta inteligente simulada do João Vinícius e feedback sonoro autêntico.
+  - `FrutigerBackground.tsx`: Cenário atmosférico com sunburst radial, colinas em camadas e 8 bolhas d'água interativas que estouram com som procedural (`playBubblePop()`) e reaparecem.
+  - `AeroMetricsSection.tsx`: 5 cards de vidro Aero com números monumentais (-98% crashes, -55% RAM, -75% boot, +$10k AWS, 0%→40% testes) e efeito de reflexo de luz no hover.
+  - `AeroCaseStudies.tsx`: 3 janelas com cases arquiteturais de hiperescala (banQi, IA/Automação e Design System).
+  - `AeroExperienceAndTech.tsx`: Trajetória executiva (4 posições) e matriz tecnológica aquática com 32 competências.
+  - `AeroActionDock.tsx`: Docas de chamada para ação com botões de gelatina translúcidos (MSN Live, Currículo, E-mail).
+  - `AeroTaskbarVista.tsx`: Barra de tarefas Vista Aero translúcida com relógio digital ao vivo, botão do menu Iniciar, controle de áudio e seletor rápido de portfólios.
+#### 5. Monolithic Concrete Sci-Fi Brutalism (Proposta 04)
+- **Acesso**: Hash `#/monolith` ou `#/proposta-4`
+- **Estilo Visual**: Brutalismo industrial monolítico de ficção científica, superfícies de concreto escuro texturizado (`#16181c` / `#0c0e11`), bordas de aço de 1.5px (`#484b54`), rebites/parafusos industriais em cada canto de painel (`Ellipse 8x8` + dot `3x3`), acentos neon laser âmbar (`#ff9900`) e ciano laser (`#00f0ff`), tipografia com Space Grotesk monumental e telemetria mono/Courier.
+- **Destaques**:
+  - `MonolithCanvas.tsx`: Viewport WebGL 2.0 com Three.js r164 renderizando um monólito de concreto monumental 3D com shader PBR (`MeshStandardMaterial`, roughness: 0.85, metalness: 0.15, textura procedural gerada via canvas 512x512).
+    - Anel de corte a laser (`CUT_PLANE: Z+42.0`) com varredura contínua e brilho âmbar.
+    - Controles interativos em tempo real: `[ X-AXIS ]`, `[ Y-AXIS ]`, `[ WIRE: ON/OFF ]`, `[ BLOOM: ON/OFF ]`, `[ RESET_VIEW ]`.
+    - Painel HUD de telemetria ao vivo com ângulos de rotação Euler X/Y/Z, FOV, vértices (1.42M), modo de shader e contagem de draw calls.
+    - Física de amortecimento inercial pesado (damping: 0.05) respondendo a arrasto do mouse/toque.
+  - `MonolithMasthead.tsx`: HUD superior com telemetria do motor, status `ONLINE: DISPONÍVEL P/ PROJETOS DE ALTO IMPACTO`, alternador de áudio e seletor de versões.
+  - `MonolithHero.tsx`: Dossiê do engenheiro com diretiva de perfil (`SYS_CORE_DIRECTIVE`) e badges de contato direto.
+  - `MonolithImpactMetrics.tsx`: 5 métricas de impacto auditadas (-98% crashes, -55% RAM, -75% splash, +$10k AWS, 0%→40% testes) com barras de sinal digital.
+  - `MonolithCaseStudies.tsx`: 3 cases de engenharia de hiperescala detalhando Desafio, Solução e Impacto/Resultados com tags de stack.
+  - `MonolithExperience.tsx`: 4 posições de carreira na Invillia e WiiD formatadas como logs de operações de sistema.
+  - `MonolithTechMatrix.tsx`: Matriz completa de 32 competências em 4 domínios, certificação oficial GitHub Copilot, graduação superior e idiomas globais.
+  - `monolithAudio.ts`: Síntese de áudio procedural via Web Audio API para cliques metálicos industriais e hum de laser sem dependências externas.
+  - `MonolithPanel.tsx`: Componente base com chanfro, rebites industriais e snap rígido de interação (`whileHover: { x: -2, y: -2 }`).
 
 ---
 

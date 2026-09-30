@@ -199,6 +199,24 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       action: onNavigateModern
     },
     {
+      id: 'monolith',
+      title: 'Monolito Sci-Fi',
+      icon: '🗿',
+      badge: 'Proposta 4',
+      action: () => {
+        window.location.hash = '#/monolith';
+      }
+    },
+    {
+      id: 'frutiger',
+      title: 'Frutiger Aero MSN',
+      icon: '🫧',
+      badge: 'Proposta 5',
+      action: () => {
+        window.location.hash = '#/proposta5';
+      }
+    },
+    {
       id: 'steamy',
       title: 'Vidro com Vapor',
       icon: '💧',

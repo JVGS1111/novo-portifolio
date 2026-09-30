@@ -112,21 +112,31 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
   - `AeroTaskbarVista.tsx`: Barra de tarefas Vista Aero translúcida com relógio digital ao vivo, botão do menu Iniciar, controle de áudio e seletor rápido de portfólios.
 #### 5. Monolithic Concrete Sci-Fi Brutalism (Proposta 04)
 - **Acesso**: Hash `#/monolith` ou `#/proposta-4`
-- **Estilo Visual**: Brutalismo industrial monolítico de ficção científica, superfícies de concreto escuro texturizado (`#16181c` / `#0c0e11`), bordas de aço de 1.5px (`#484b54`), rebites/parafusos industriais em cada canto de painel (`Ellipse 8x8` + dot `3x3`), acentos neon laser âmbar (`#ff9900`) e ciano laser (`#00f0ff`), tipografia com Space Grotesk monumental e telemetria mono/Courier.
+- **Estilo Visual**: Brutalismo monumental cinematográfico sci-fi ("BUILDING SOFTWARE FOR A BIGGER TOMORROW"), superfícies de concreto escuro texturizado (`#16181c` / `#0a0d12`), reflexos aquáticos molhados, fendas verticais iluminadas em ouro/âmbar (`#ffaa33`), névoa volumétrica e silhueta humana de escala épica, tipografia Space Grotesk com tracking largo e telemetria mono.
 - **Destaques**:
-  - `MonolithCanvas.tsx`: Viewport WebGL 2.0 com Three.js r164 renderizando um monólito de concreto monumental 3D com shader PBR (`MeshStandardMaterial`, roughness: 0.85, metalness: 0.15, textura procedural gerada via canvas 512x512).
-    - Anel de corte a laser (`CUT_PLANE: Z+42.0`) com varredura contínua e brilho âmbar.
-    - Controles interativos em tempo real: `[ X-AXIS ]`, `[ Y-AXIS ]`, `[ WIRE: ON/OFF ]`, `[ BLOOM: ON/OFF ]`, `[ RESET_VIEW ]`.
-    - Painel HUD de telemetria ao vivo com ângulos de rotação Euler X/Y/Z, FOV, vértices (1.42M), modo de shader e contagem de draw calls.
-    - Física de amortecimento inercial pesado (damping: 0.05) respondendo a arrasto do mouse/toque.
-  - `MonolithMasthead.tsx`: HUD superior com telemetria do motor, status `ONLINE: DISPONÍVEL P/ PROJETOS DE ALTO IMPACTO`, alternador de áudio e seletor de versões.
-  - `MonolithHero.tsx`: Dossiê do engenheiro com diretiva de perfil (`SYS_CORE_DIRECTIVE`) e badges de contato direto.
-  - `MonolithImpactMetrics.tsx`: 5 métricas de impacto auditadas (-98% crashes, -55% RAM, -75% splash, +$10k AWS, 0%→40% testes) com barras de sinal digital.
+  - `MonolithCinematicCanvas.tsx`: Experiência Three.js 3D realista:
+    - Cidadela monolítica colossal gerada proceduralmente com blocos de concreto escalonados, torres e passadiços.
+    - Textura procedural de concreto de alta resolução (1024x1024) com agregados minerais, juntas de fôrma arquitetônica e estrias verticais de escorrimento de chuva.
+    - Fendas de energia vertical com materiais emissivos âmbar/dourados pulsantes e PointLights que iluminam as paredes adjacentes e refletem na água.
+    - Superfície de água reflexiva líquida com perturbação de vértices em tempo real refletindo o céu e as luzes.
+    - Silhueta 3D do viajante/desenvolvedor sobre o penhasco rochoso em primeiro plano, conferindo escala monumental ao cenário.
+    - 55 puffs de névoa volumétrica procedural em órbita suave gerando atmosfera densa de tempestade.
+    - Modo de Exploração 3D Livre (`// EXPLORE 3D`): órbita interativa com amortecimento inercial, zoom por scroll, HUD de telemetria em tempo real (posição da câmera, altitude, densidade de névoa, altura da cidadela e FPS).
+    - Efeito de paralaxe de câmera no mouse durante a visualização normal.
+  - `MonolithCinematicHero.tsx`: Recriação 1:1 da interface conceitual:
+    - Cabeçalho minimalista `JV — JOÃO VINÍCIUS SOFTWARE DEVELOPER`, links `HOME`, `PROJECTS`, `EXPERIENCE`, `ABOUT` e botão bracketed `[ /// CONTACT /// ]`.
+    - Tipografia display monumental `BUILDING SOFTWARE FOR A BIGGER TOMORROW`.
+    - Botões de ação rápida: `VIEW PROJECTS ↗` e `// EXPLORE 3D`.
+    - Trilha horizontal de projetos destacados (`// FEATURED PROJECTS`): cards interativos para `BANQI (MOBILE APP)`, `GUEPSI (SAAS PLATFORM)` e `OPEN SOURCE (TOOLS & LIBS)` com modal de dossiê técnico.
+    - Paginação vertical `01` a `05` sincronizada com a rolagem suave das seções.
+    - Slogan minimalista `IDEAS / SYSTEMS / PEOPLE` com régua vertical no canto inferior direito.
+  - `MonolithImpactMetrics.tsx`: 5 métricas de impacto auditadas (-98% crashes, -55% RAM, -75% splash, +$10k AWS, 0%→40% testes).
   - `MonolithCaseStudies.tsx`: 3 cases de engenharia de hiperescala detalhando Desafio, Solução e Impacto/Resultados com tags de stack.
-  - `MonolithExperience.tsx`: 4 posições de carreira na Invillia e WiiD formatadas como logs de operações de sistema.
-  - `MonolithTechMatrix.tsx`: Matriz completa de 32 competências em 4 domínios, certificação oficial GitHub Copilot, graduação superior e idiomas globais.
-  - `monolithAudio.ts`: Síntese de áudio procedural via Web Audio API para cliques metálicos industriais e hum de laser sem dependências externas.
-  - `MonolithPanel.tsx`: Componente base com chanfro, rebites industriais e snap rígido de interação (`whileHover: { x: -2, y: -2 }`).
+  - `MonolithExperience.tsx`: 4 posições de carreira na Invillia e WiiD formatadas como registros de operações.
+  - `MonolithTechMatrix.tsx`: Matriz completa de 32 competências, certificação GitHub Copilot, graduação superior e idiomas.
+  - `MonolithContact.tsx`: Terminal de transmissão criptografado direto com cópia de email com 1 clique e formulário.
+  - `monolithAudio.ts`: Áudio tátil procedural via Web Audio API (drone atmosférico sub-grave `54Hz`, cliques metálicos e hum de laser).
+
 
 ---
 

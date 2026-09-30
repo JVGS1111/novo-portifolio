@@ -43,7 +43,7 @@ const casesData: CaseItem[] = [
 
 export const MonolithCaseStudies: React.FC = () => {
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 py-6">
+    <section id="monolith-projects" className="w-full max-w-7xl mx-auto px-4 py-6 scroll-mt-20">
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-l-4 border-[#00f0ff] bg-[#14161a] p-3 mb-4 font-mono text-[11px] text-slate-300 border border-[#383b44]">
         <div className="flex flex-wrap items-center gap-2">

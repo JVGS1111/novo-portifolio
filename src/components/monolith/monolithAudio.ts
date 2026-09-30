@@ -93,3 +93,76 @@ export const playTelemetryBeep = () => {
     // Ignore
   }
 };
+
+let ambientOsc: OscillatorNode | null = null;
+let ambientGain: GainNode | null = null;
+
+export const startAtmosphericDrone = () => {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx || ambientOsc) return;
+
+    ambientOsc = ctx.createOscillator();
+    ambientGain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+
+    ambientOsc.type = 'sawtooth';
+    ambientOsc.frequency.setValueAtTime(54, ctx.currentTime); // Deep low A1
+
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(140, ctx.currentTime);
+
+    ambientGain.gain.setValueAtTime(0.001, ctx.currentTime);
+    ambientGain.gain.linearRampToValueAtTime(0.015, ctx.currentTime + 3.0); // very soft subtle ambient
+
+    ambientOsc.connect(filter);
+    filter.connect(ambientGain);
+    ambientGain.connect(ctx.destination);
+
+    ambientOsc.start();
+  } catch {
+    // Ignore autoplay restriction
+  }
+};
+
+export const stopAtmosphericDrone = () => {
+  try {
+    if (ambientGain && audioCtx) {
+      ambientGain.gain.linearRampToValueAtTime(0.0001, audioCtx.currentTime + 1.0);
+      setTimeout(() => {
+        ambientOsc?.stop();
+        ambientOsc?.disconnect();
+        ambientGain?.disconnect();
+        ambientOsc = null;
+        ambientGain = null;
+      }, 1000);
+    }
+  } catch {
+    // Ignore
+  }
+};
+
+export const playButtonHover = () => {
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(880, ctx.currentTime);
+
+    gain.gain.setValueAtTime(0.012, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.02);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 0.02);
+  } catch {
+    // Ignore
+  }
+};
+

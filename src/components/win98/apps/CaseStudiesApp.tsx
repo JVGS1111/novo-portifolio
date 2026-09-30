@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { caseStudies } from '../../../data/portfolioData';
 import { playClickSound } from '../soundEffects';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 export const CaseStudiesApp: React.FC = () => {
-  const [selectedCaseId, setSelectedCaseId] = useState<string>(caseStudies[0].id);
+  const { t, language } = useLanguage();
+  const isPt = language === 'pt';
+  const studies = t.cases.studies;
+  const [selectedCaseId, setSelectedCaseId] = useState<string>(studies[0].id);
 
-  const activeCase = caseStudies.find((c) => c.id === selectedCaseId) || caseStudies[0];
+  const activeCase = studies.find((c) => c.id === selectedCaseId) || studies[0];
 
   return (
     <div className="flex flex-col md:flex-row h-full font-['Tahoma',sans-serif] text-black text-[11px] bg-white">
@@ -13,10 +16,10 @@ export const CaseStudiesApp: React.FC = () => {
       <div className="w-full md:w-56 shrink-0 bg-[#F4F4F4] border-b md:border-b-0 md:border-r border-[#808080] p-2 overflow-y-auto">
         <div className="font-bold text-[10px] text-slate-600 mb-2 uppercase flex items-center gap-1">
           <span>📁</span>
-          <span>Projetos & Cases</span>
+          <span>{isPt ? 'Projetos & Cases' : 'Projects & Cases'}</span>
         </div>
         <div className="flex md:flex-col gap-1 overflow-x-auto md:overflow-visible pb-1 md:pb-0">
-          {caseStudies.map((cs) => {
+          {studies.map((cs) => {
             const isSel = cs.id === selectedCaseId;
             return (
               <button
@@ -62,18 +65,24 @@ export const CaseStudiesApp: React.FC = () => {
 
         {/* Case Summary */}
         <div className="p-2.5 bg-[#F9FAFB] border border-[#808080] rounded-xs">
-          <span className="font-bold text-slate-800 text-[10px] block mb-0.5">RESUMO EXECUTIVO:</span>
+          <span className="font-bold text-slate-800 text-[10px] block mb-0.5">
+            {isPt ? 'RESUMO EXECUTIVO:' : 'EXECUTIVE SUMMARY:'}
+          </span>
           <p className="text-slate-700 leading-relaxed">{activeCase.summary}</p>
         </div>
 
         {/* Problem & Solution Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
           <div className="p-2 bg-red-50 border border-red-200 rounded-xs">
-            <span className="font-bold text-red-900 text-[10px] block mb-1">🔴 O DESAFIO / PROBLEMA:</span>
+            <span className="font-bold text-red-900 text-[10px] block mb-1">
+              {isPt ? '🔴 O DESAFIO / PROBLEMA:' : '🔴 THE CHALLENGE / PROBLEM:'}
+            </span>
             <p className="text-red-950 text-[10px] leading-relaxed">{activeCase.problem}</p>
           </div>
           <div className="p-2 bg-emerald-50 border border-emerald-200 rounded-xs">
-            <span className="font-bold text-emerald-900 text-[10px] block mb-1">🟢 A SOLUÇÃO TÉCNICA:</span>
+            <span className="font-bold text-emerald-900 text-[10px] block mb-1">
+              {isPt ? '🟢 A SOLUÇÃO TÉCNICA:' : '🟢 TECHNICAL SOLUTION:'}
+            </span>
             <p className="text-emerald-950 text-[10px] leading-relaxed">{activeCase.solution}</p>
           </div>
         </div>
@@ -81,7 +90,7 @@ export const CaseStudiesApp: React.FC = () => {
         {/* Results List */}
         <div className="p-2.5 bg-blue-50/50 border border-blue-200 rounded-xs">
           <span className="font-bold text-[#000080] text-[10px] block mb-1.5">
-            RESULTADOS COMPROVADOS EM PRODUÇÃO:
+            {isPt ? 'RESULTADOS COMPROVADOS EM PRODUÇÃO:' : 'PRODUCTION PROVEN RESULTS:'}
           </span>
           <div className="space-y-1">
             {activeCase.results.map((res, i) => (
@@ -96,7 +105,7 @@ export const CaseStudiesApp: React.FC = () => {
         {/* Tech Stack */}
         <div>
           <span className="font-bold text-slate-700 text-[10px] block mb-1">
-            TECNOLOGIAS EMPREGADAS:
+            {isPt ? 'TECNOLOGIAS EMPREGADAS:' : 'TECHNOLOGIES EMPLOYED:'}
           </span>
           <div className="flex flex-wrap gap-1">
             {activeCase.technologies.map((t) => (

@@ -14,9 +14,11 @@ import { Windows98Page } from './components/win98/Windows98Page';
 import { SteamyGlassPage } from './components/steamy/SteamyGlassPage';
 import { FrutigerAeroPage } from './components/frutiger/FrutigerAeroPage';
 import { MonolithicBrutalismPage } from './components/monolith/MonolithicBrutalismPage';
+import { EvaEpisodePage } from './components/eva/EvaEpisodePage';
 import { PortfolioSwitcher } from './components/PortfolioSwitcher';
+import { LiquidGlassBackground } from './components/LiquidGlassBackground';
 
-export const App: React.FC = () => {
+const AppContent: React.FC = () => {
   const [currentHash, setCurrentHash] = useState(() => {
     if (typeof window !== 'undefined') {
       return window.location.hash.toLowerCase();
@@ -51,6 +53,8 @@ export const App: React.FC = () => {
     currentHash.includes('steamy') ||
     currentHash.includes('proposta-6') ||
     currentHash.includes('proposal-6') ||
+    currentHash.includes('glass') ||
+    currentHash.includes('glassmorphism') ||
     currentHash.includes('fog') ||
     currentHash.includes('frosted');
 
@@ -76,34 +80,59 @@ export const App: React.FC = () => {
     return <Windows98Page onNavigateModern={navigateToModern} />;
   }
 
+  const isEva =
+    currentHash.includes('eva') ||
+    currentHash.includes('nerv') ||
+    currentHash.includes('dogma') ||
+    currentHash.includes('central-dogma') ||
+    currentHash.includes('proposta-8') ||
+    currentHash.includes('proposta8') ||
+    currentHash.includes('proposal-8') ||
+    currentHash.includes('proposta-7') ||
+    currentHash.includes('proposta7') ||
+    currentHash.includes('evangelion');
+
+  if (isEva) {
+    return <EvaEpisodePage onNavigateModern={navigateToModern} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden w-full max-w-full">
+      {/* Apple Liquid Glass Ambient Aurora & Optical Refraction Canvas */}
+      <LiquidGlassBackground />
+
+      {/* Top Scroll Progress Indicator */}
+      <ScrollProgress />
+
+      {/* Ambient Interactive Motion Cursor */}
+      <MotionCursor />
+
+      {/* Navigation */}
+      <Navbar />
+
+      {/* Main Content */}
+      <main className="flex-1 w-full max-w-full overflow-x-hidden">
+        <Hero />
+        <ImpactMetrics />
+        <CaseStudies />
+        <ExperienceTimeline />
+        <TechMatrix />
+        <CertificationsEducation />
+      </main>
+
+      {/* Floating Portfolio Gallery Switcher */}
+      <PortfolioSwitcher variant="floating" />
+
+      {/* Footer & Contact */}
+      <ContactFooter />
+    </div>
+  );
+};
+
+export const App: React.FC = () => {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden">
-        {/* Top Scroll Progress Indicator */}
-        <ScrollProgress />
-
-        {/* Ambient Interactive Motion Cursor */}
-        <MotionCursor />
-
-        {/* Navigation */}
-        <Navbar />
-
-        {/* Main Content */}
-        <main className="flex-1">
-          <Hero />
-          <ImpactMetrics />
-          <CaseStudies />
-          <ExperienceTimeline />
-          <TechMatrix />
-          <CertificationsEducation />
-        </main>
-
-        {/* Floating Portfolio Gallery Switcher */}
-        <PortfolioSwitcher variant="floating" />
-
-        {/* Footer & Contact */}
-        <ContactFooter />
-      </div>
+      <AppContent />
     </LanguageProvider>
   );
 };

@@ -41,146 +41,147 @@ export const Navbar: React.FC = () => {
         {/* Monogram / Logo with Hover Spring */}
         <motion.a
           href="#"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-3 group"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 via-indigo-500/20 to-purple-500/20 border border-cyan-500/40 flex items-center justify-center font-mono font-bold text-cyan-400 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 shadow-lg shadow-cyan-500/10">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 via-indigo-500/20 to-purple-500/20 border border-cyan-500/40 flex items-center justify-center font-mono font-bold text-xs sm:text-sm text-cyan-400 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 shadow-md shadow-cyan-500/10 shrink-0">
             JG
           </div>
           <div className="flex flex-col text-left">
-            <span className="text-sm font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors">
+            <span className="text-xs sm:text-sm font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors whitespace-nowrap">
               {personalInfo.name}
             </span>
-            <span className="text-xs text-slate-400 font-mono flex items-center gap-1.5">
-              <span className="relative flex h-2 w-2">
+            <span className="text-[10px] sm:text-xs text-slate-400 font-mono flex items-center gap-1.5 whitespace-nowrap">
+              <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-emerald-500" />
               </span>
-              {t.nav.roleBadge}
+              <span className="hidden sm:inline">{t.nav.roleBadge}</span>
+              <span className="sm:hidden text-emerald-400 font-medium">Disponível</span>
             </span>
           </div>
         </motion.a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-full border border-slate-800/80 backdrop-blur-md shadow-inner">
+        {/* Desktop Navigation Links (Visible on large screens) */}
+        <nav className="hidden lg:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-full border border-slate-800/80 backdrop-blur-md shadow-inner">
           {navLinks.map((link) => (
             <motion.a
               key={link.name}
               href={link.href}
               whileHover={{ y: -1 }}
-              className="px-4 py-1.5 text-xs font-medium text-slate-300 hover:text-cyan-300 hover:bg-slate-800/70 rounded-full transition-all duration-200"
+              className="px-3.5 py-1.5 text-xs font-medium text-slate-300 hover:text-cyan-300 hover:bg-slate-800/70 rounded-full transition-all duration-200 whitespace-nowrap"
             >
               {link.name}
             </motion.a>
           ))}
         </nav>
 
-        {/* Action, Flags & Social Icons */}
-        <div className="hidden md:flex items-center gap-3">
-          {/* Language Switcher with USA & BR Flags */}
-          <div className="flex items-center bg-slate-900/80 p-1 rounded-full border border-slate-800/90 shadow-inner">
+        {/* Action, Flags & Social Icons (Desktop) */}
+        <div className="hidden lg:flex items-center gap-2.5">
+          {/* Streamlined Language Toggle */}
+          <div className="flex items-center bg-slate-900/80 p-0.5 rounded-full border border-slate-800/90 shadow-inner">
             <button
               type="button"
               onClick={() => setLanguage('en')}
-              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono transition-all cursor-pointer ${
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono transition-all cursor-pointer ${
                 language === 'en'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm font-bold'
+                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-xs font-bold'
                   : 'text-slate-400 hover:text-slate-200 border border-transparent'
               }`}
               aria-label="Switch to English"
               title="English (US)"
             >
-              <UsaFlagIcon className="w-4 h-3" />
-              <span className="text-[11px]">EN</span>
+              <UsaFlagIcon className="w-3.5 h-2.5" />
+              <span>EN</span>
             </button>
             <button
               type="button"
               onClick={() => setLanguage('pt')}
-              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono transition-all cursor-pointer ${
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono transition-all cursor-pointer ${
                 language === 'pt'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm font-bold'
+                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-xs font-bold'
                   : 'text-slate-400 hover:text-slate-200 border border-transparent'
               }`}
               aria-label="Mudar para Português"
               title="Português (Brasil)"
             >
-              <BrazilFlagIcon className="w-4 h-3" />
-              <span className="text-[11px]">PT</span>
+              <BrazilFlagIcon className="w-3.5 h-2.5" />
+              <span>PT</span>
             </button>
           </div>
 
-          <motion.a
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            href={personalInfo.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-800/60 rounded-lg transition-colors border border-transparent hover:border-slate-700"
-            title="LinkedIn Profile"
-          >
-            <LinkedinIcon className="w-4 h-4" />
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            href={personalInfo.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 text-slate-400 hover:text-purple-400 hover:bg-slate-800/60 rounded-lg transition-colors border border-transparent hover:border-slate-700"
-            title="GitHub Profile"
-          >
-            <GithubIcon className="w-4 h-4" />
-          </motion.a>
+          {/* Social Icons (Extra Large Screens) */}
+          <div className="hidden xl:flex items-center gap-1">
+            <motion.a
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 text-slate-400 hover:text-cyan-400 hover:bg-slate-800/60 rounded-lg transition-colors border border-transparent hover:border-slate-700"
+              title="LinkedIn Profile"
+            >
+              <LinkedinIcon className="w-4 h-4" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 text-slate-400 hover:text-purple-400 hover:bg-slate-800/60 rounded-lg transition-colors border border-transparent hover:border-slate-700"
+              title="GitHub Profile"
+            >
+              <GithubIcon className="w-4 h-4" />
+            </motion.a>
+          </div>
+
           {/* Dynamic Portfolio Hub Switcher Dropdown */}
           <PortfolioSwitcher variant="navbar" />
 
+          {/* Connect CTA Button */}
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contato"
-            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-slate-900 bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 rounded-full shadow-lg shadow-cyan-500/25 transition-all duration-200 cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 rounded-full shadow-md shadow-cyan-500/20 transition-all duration-200 cursor-pointer whitespace-nowrap"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            {t.nav.connectBtn}
+            <span>{t.nav.connectBtn}</span>
           </motion.a>
         </div>
 
-        {/* Mobile Flag Switcher & Hamburger Button */}
-        <div className="md:hidden flex items-center gap-2">
-          {/* Quick Language Toggle in Mobile Header */}
-          <div className="flex items-center bg-slate-900/80 p-0.5 rounded-full border border-slate-800">
-            <button
-              type="button"
-              onClick={() => setLanguage('en')}
-              className={`p-1.5 rounded-full transition-all cursor-pointer ${
-                language === 'en' ? 'bg-cyan-500/20 border border-cyan-500/40' : 'opacity-60 hover:opacity-100'
-              }`}
-              aria-label="English"
-              title="English"
-            >
-              <UsaFlagIcon className="w-4 h-3" />
-            </button>
-            <button
-              type="button"
-              onClick={() => setLanguage('pt')}
-              className={`p-1.5 rounded-full transition-all cursor-pointer ${
-                language === 'pt' ? 'bg-cyan-500/20 border border-cyan-500/40' : 'opacity-60 hover:opacity-100'
-              }`}
-              aria-label="Português"
-              title="Português"
-            >
-              <BrazilFlagIcon className="w-4 h-3" />
-            </button>
-          </div>
+        {/* Mobile Header Right: One-touch Language Toggle & Hamburger */}
+        <div className="lg:hidden flex items-center gap-2">
+          {/* Quick One-touch Language Toggle */}
+          <button
+            type="button"
+            onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-[11px] font-mono text-cyan-300 hover:bg-slate-800 transition-colors cursor-pointer shadow-sm"
+            aria-label="Toggle language"
+            title={language === 'en' ? 'Mudar para Português' : 'Switch to English'}
+          >
+            {language === 'en' ? (
+              <>
+                <UsaFlagIcon className="w-3.5 h-2.5" />
+                <span className="font-bold">EN</span>
+              </>
+            ) : (
+              <>
+                <BrazilFlagIcon className="w-3.5 h-2.5" />
+                <span className="font-bold">PT</span>
+              </>
+            )}
+          </button>
 
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800/50 transition-colors cursor-pointer"
+            className="p-2 text-slate-300 hover:text-white rounded-lg bg-slate-900/80 border border-slate-800 hover:bg-slate-800/80 transition-colors cursor-pointer"
             aria-label="Toggle Menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5" />}
           </motion.button>
         </div>
       </div>
@@ -193,7 +194,7 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden md:hidden px-4 pt-4 pb-6 bg-[#0c0f18]/95 backdrop-blur-xl border-b border-slate-800 space-y-3"
+            className="overflow-hidden lg:hidden px-4 pt-4 pb-6 bg-[#0c0f18]/95 backdrop-blur-xl border-b border-slate-800 space-y-3"
           >
             <nav className="flex flex-col space-y-1">
               {navLinks.map((link, idx) => (

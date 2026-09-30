@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { WindowState, WindowId } from './win98Types';
 import { playClickSound, getMuted, setMuted } from './soundEffects';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 interface Win98TaskbarProps {
   windows: Record<WindowId, WindowState>;
@@ -23,6 +24,7 @@ export const Win98Taskbar: React.FC<Win98TaskbarProps> = ({
   onToggleCrt,
   onNavigateModern
 }) => {
+  const { language, setLanguage } = useLanguage();
   const [currentTime, setCurrentTime] = useState('');
   const [muted, setMutedState] = useState(getMuted());
 
@@ -30,13 +32,13 @@ export const Win98Taskbar: React.FC<Win98TaskbarProps> = ({
     const updateTime = () => {
       const now = new Date();
       setCurrentTime(
-        now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+        now.toLocaleTimeString(language === 'pt' ? 'pt-BR' : 'en-US', { hour: '2-digit', minute: '2-digit' })
       );
     };
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [language]);
 
   const handleToggleMute = () => {
     playClickSound();
@@ -73,7 +75,7 @@ export const Win98Taskbar: React.FC<Win98TaskbarProps> = ({
             <span className="bg-[#FBBC05]" />
             <span className="bg-[#34A853]" />
           </div>
-          <span>Iniciar</span>
+          <span>{language === 'pt' ? 'Iniciar' : 'Start'}</span>
         </button>
 
         {/* Separator */}
@@ -87,10 +89,12 @@ export const Win98Taskbar: React.FC<Win98TaskbarProps> = ({
             onNavigateModern();
           }}
           className="h-full px-1.5 flex items-center gap-1 bg-[#C0C0C0] hover:bg-slate-200 border border-transparent hover:border-slate-400 rounded-xs text-[10px] text-slate-800 cursor-pointer"
-          title="Alternar para o Portfólio Moderno 3D"
+          title={language === 'pt' ? 'Alternar para o Portfólio Moderno 3D' : 'Switch to Modern 3D Portfolio'}
         >
           <span>🚀</span>
-          <span className="hidden sm:inline font-bold text-blue-900">Portfólio Moderno</span>
+          <span className="hidden sm:inline font-bold text-blue-900">
+            {language === 'pt' ? 'Portfólio Moderno' : 'Modern Portfolio'}
+          </span>
         </button>
 
         {/* Separator */}
@@ -127,6 +131,19 @@ export const Win98Taskbar: React.FC<Win98TaskbarProps> = ({
 
       {/* Right side: System Tray */}
       <div className="flex items-center gap-2 px-2 py-0.5 bg-[#C0C0C0] border-2 border-t-[#808080] border-l-[#808080] border-r-white border-b-white text-[11px] text-black">
+        {/* Language Locale Toggle (Classic Win98 System Tray Taskbar) */}
+        <button
+          type="button"
+          onClick={() => {
+            playClickSound();
+            setLanguage(language === 'en' ? 'pt' : 'en');
+          }}
+          className="px-1.5 py-0.5 text-[10px] font-bold border border-t-[#808080] border-l-[#808080] border-r-white border-b-white bg-[#C0C0C0] hover:bg-slate-200 cursor-pointer flex items-center gap-1"
+          title={language === 'en' ? 'Switch to Portuguese (PT)' : 'Switch to English (EN)'}
+        >
+          <span>{language === 'pt' ? '🇧🇷 PT' : '🇺🇸 EN'}</span>
+        </button>
+
         {/* CRT Scanline Toggle */}
         <button
           type="button"
@@ -137,7 +154,7 @@ export const Win98Taskbar: React.FC<Win98TaskbarProps> = ({
           className={`px-1 text-[10px] rounded cursor-pointer ${
             crtEnabled ? 'bg-emerald-700 text-white font-bold' : 'text-slate-600 hover:text-black'
           }`}
-          title={crtEnabled ? 'Desativar Efeito CRT' : 'Ativar Efeito CRT'}
+          title={crtEnabled ? (language === 'pt' ? 'Desativar Efeito CRT' : 'Disable CRT Effect') : (language === 'pt' ? 'Ativar Efeito CRT' : 'Enable CRT Effect')}
         >
           📺 CRT {crtEnabled ? 'ON' : 'OFF'}
         </button>
@@ -147,7 +164,7 @@ export const Win98Taskbar: React.FC<Win98TaskbarProps> = ({
           type="button"
           onClick={handleToggleMute}
           className="text-xs cursor-pointer hover:opacity-80"
-          title={muted ? 'Desmutar Som' : 'Mutar Som'}
+          title={muted ? (language === 'pt' ? 'Desmutar Som' : 'Unmute Sound') : (language === 'pt' ? 'Mutar Som' : 'Mute Sound')}
         >
           {muted ? '🔇' : '🔊'}
         </button>

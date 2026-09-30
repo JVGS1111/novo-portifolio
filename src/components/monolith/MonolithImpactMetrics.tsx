@@ -1,6 +1,7 @@
 import React from 'react';
 import { MonolithPanel } from './MonolithPanel';
 import { ShieldCheck } from 'lucide-react';
+import { useLanguage } from '../../i18n';
 
 interface MetricItem {
   id: string;
@@ -11,7 +12,50 @@ interface MetricItem {
   description: string;
 }
 
-const metricsData: MetricItem[] = [
+const metricsDataEn: MetricItem[] = [
+  {
+    id: 'MTR-01',
+    value: '-98%',
+    label: 'WEEKLY CRASHES',
+    bars: 5,
+    highlightText: 'From 120,000 to 2,000 crashes/week in banQi app.',
+    description: 'React Native async bridge auditing, resilient Error Boundaries, and Dynatrace/Databricks telemetry.'
+  },
+  {
+    id: 'MTR-02',
+    value: '-55%',
+    label: 'RAM CONSUMPTION',
+    bars: 4,
+    highlightText: 'From 900MB to 400MB memory footprint.',
+    description: 'Deep list virtualization, native listener cleanup, and Android/iOS bitmap tuning via Xcode & Profiler.'
+  },
+  {
+    id: 'MTR-03',
+    value: '-75%',
+    label: 'SPLASH TO HOME',
+    bars: 4,
+    highlightText: 'From 60s to 15s boot time in production.',
+    description: 'Granular code-splitting, lazy loading, Hermes bundle optimization, and parallel initialization requests.'
+  },
+  {
+    id: 'MTR-04',
+    value: '+$10k',
+    label: 'ANNUAL SAVINGS',
+    bars: 5,
+    highlightText: 'Direct AWS infrastructure operational cost reduction.',
+    description: 'Smart client-side request aggregation, CI/CD pipeline optimization, and drastic data egress cut.'
+  },
+  {
+    id: 'MTR-05',
+    value: '0%→40%',
+    label: 'CRITICAL TESTS',
+    bars: 3,
+    highlightText: 'Coverage on financial and authentication flows.',
+    description: 'Automated Jest and Vitest suites, quality gates on GitHub Actions & Azure DevOps, TDD and Clean Architecture.'
+  }
+];
+
+const metricsDataPt: MetricItem[] = [
   {
     id: 'MTR-01',
     value: '-98%',
@@ -55,6 +99,9 @@ const metricsData: MetricItem[] = [
 ];
 
 export const MonolithImpactMetrics: React.FC = () => {
+  const { language } = useLanguage();
+  const metricsData = language === 'pt' ? metricsDataPt : metricsDataEn;
+
   return (
     <section id="monolith-metrics" className="w-full max-w-7xl mx-auto px-6 sm:px-12 py-10 scroll-mt-24">
       {/* Cinematic Section Header */}
@@ -62,19 +109,21 @@ export const MonolithImpactMetrics: React.FC = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2 font-mono text-[11px] font-semibold tracking-widest uppercase text-white/50">
             <span className="text-[#ffaa00]">// 02</span>
-            <span>TELEMETRY & IMPACT</span>
+            <span>{language === 'pt' ? 'TELEMETRIA & IMPACTO' : 'TELEMETRY & IMPACT'}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-['Space_Grotesk'] text-white tracking-tight uppercase">
-            MÉTRICAS AUDITADAS EM PRODUÇÃO
+            {language === 'pt' ? 'MÉTRICAS AUDITADAS EM PRODUÇÃO' : 'AUDITED PRODUCTION METRICS'}
           </h2>
           <p className="font-mono text-xs text-white/60 tracking-wider uppercase max-w-2xl leading-relaxed">
-            RESULTADOS QUANTIFICADOS EM AMBIENTES DE HIPERESCALA NO GRUPO CASAS BAHIA E SISTEMAS EM NUVEM.
+            {language === 'pt'
+              ? 'RESULTADOS QUANTIFICADOS EM AMBIENTES DE HIPERESCALA NO GRUPO CASAS BAHIA E SISTEMAS EM NUVEM.'
+              : 'QUANTIFIED RESULTS IN HYPERSCALE PRODUCTION ENVIRONMENTS AT GRUPO CASAS BAHIA AND CLOUD SYSTEMS.'}
           </p>
         </div>
 
         <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 font-mono text-[10px] text-white/70 tracking-widest uppercase">
           <ShieldCheck size={14} className="text-[#ffaa00]" />
-          <span>5 METRICS VERIFIED</span>
+          <span>{language === 'pt' ? '5 MÉTRICAS AUDITADAS' : '5 METRICS VERIFIED'}</span>
         </div>
       </div>
 

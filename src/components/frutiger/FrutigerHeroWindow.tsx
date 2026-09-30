@@ -3,42 +3,45 @@ import { motion } from 'framer-motion';
 import { ThreeAquaSpheres } from './ThreeAquaSpheres';
 import { playAeroClick } from './soundEffectsAero';
 import { personalInfo } from '../../data/portfolioData';
+import { useLanguage } from '../../i18n';
 
 interface FrutigerHeroWindowProps {
   className?: string;
 }
 
 export const FrutigerHeroWindow: React.FC<FrutigerHeroWindowProps> = ({ className = '' }) => {
+  const { language } = useLanguage();
+
   return (
     <div className={`aero-window flex flex-col overflow-hidden text-slate-800 ${className}`}>
       {/* 1. Vista Aero Glass Header */}
-      <div className="aero-titlebar px-3 py-2 flex items-center justify-between select-none">
-        <div className="flex items-center gap-2">
-          <span className="text-sm">🌐</span>
-          <span className="text-xs font-bold text-white tracking-tight drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]">
+      <div className="aero-titlebar px-3.5 py-2.5 min-h-[38px] flex items-center justify-between select-none">
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="text-sm shrink-0 drop-shadow-sm">🌐</span>
+          <span className="aero-titlebar-text text-xs tracking-tight truncate">
             João Vinícius — Senior Software Engineer | Portfolio Explorer v8.5
           </span>
         </div>
 
         {/* Aero Window Control Dots */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 shrink-0 ml-3">
           <button
             type="button"
             onClick={playAeroClick}
-            className="w-3.5 h-3.5 rounded-full bg-emerald-400/90 border border-white/80 shadow-sm hover:brightness-110 cursor-pointer"
-            title="Minimizar"
+            className="aero-ctrl-btn aero-ctrl-min w-3.5 h-3.5"
+            title={language === 'pt' ? 'Minimizar' : 'Minimize'}
           />
           <button
             type="button"
             onClick={playAeroClick}
-            className="w-3.5 h-3.5 rounded-full bg-amber-400/90 border border-white/80 shadow-sm hover:brightness-110 cursor-pointer"
-            title="Maximizar"
+            className="aero-ctrl-btn aero-ctrl-max w-3.5 h-3.5"
+            title={language === 'pt' ? 'Maximizar' : 'Maximize'}
           />
           <button
             type="button"
             onClick={playAeroClick}
-            className="w-3.5 h-3.5 rounded-full bg-rose-500/90 border border-white/80 shadow-sm hover:brightness-110 cursor-pointer"
-            title="Fechar"
+            className="aero-ctrl-btn aero-ctrl-close w-3.5 h-3.5"
+            title={language === 'pt' ? 'Fechar' : 'Close'}
           />
         </div>
       </div>
@@ -58,7 +61,10 @@ export const FrutigerHeroWindow: React.FC<FrutigerHeroWindowProps> = ({ classNam
               {personalInfo.fullName}
             </h1>
             <p className="text-xs font-semibold text-sky-800">
-              {personalInfo.title} ({personalInfo.subtitle}) • {personalInfo.yearsOfExperience} de Experiência
+              {personalInfo.title} ({personalInfo.subtitle}) •{' '}
+              {language === 'pt'
+                ? `${personalInfo.yearsOfExperience} de Experiência`
+                : `${personalInfo.yearsOfExperience} of Experience`}
             </p>
           </div>
         </div>
@@ -67,16 +73,20 @@ export const FrutigerHeroWindow: React.FC<FrutigerHeroWindowProps> = ({ classNam
         <div className="flex flex-wrap items-center gap-2 mb-3">
           <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            Disponível para Projetos de Alto Impacto
+            {language === 'pt'
+              ? 'Disponível para Projetos de Alto Impacto'
+              : 'Available for High-Impact Projects'}
           </span>
           <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-sky-100 text-sky-800 border border-sky-300 shadow-sm">
-            <span>📍</span> Brasil (Remoto/Híbrido)
+            <span>📍</span> {language === 'pt' ? 'Brasil (Remoto/Híbrido)' : 'Brazil (Remote/Hybrid)'}
           </span>
         </div>
 
         {/* Bio Copy */}
         <p className="text-xs text-slate-700 leading-relaxed font-normal mb-3.5">
-          {personalInfo.bio}
+          {language === 'pt'
+            ? personalInfo.bio
+            : 'Senior Software Engineer specializing in mobile architecture, high-performance React Native ecosystems, native Kotlin/Swift bridges, and AI-accelerated developer velocity.'}
         </p>
 
         {/* Quick Social / Contact Jelly Buttons */}

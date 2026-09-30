@@ -12,6 +12,7 @@ import {
   stopAtmosphericDrone
 } from './monolithAudio';
 import { PortfolioSwitcher } from '../PortfolioSwitcher';
+import { useLanguage } from '../../i18n';
 import thumbBanqi from '../../assets/monolith_thumb_banqi.jpg';
 import thumbAi from '../../assets/monolith_thumb_ai.jpg';
 import thumbDesign from '../../assets/monolith_thumb_design.jpg';
@@ -31,10 +32,77 @@ interface ProjectPreviewModal {
   link?: string;
 }
 
+const featuredProjectsEn = [
+  {
+    id: 'banqi',
+    title: 'BANQI',
+    category: 'MOBILE FINTECH',
+    thumbImg: thumbBanqi,
+    description:
+      'Senior mobile engineering for Grupo Casas Bahia app serving millions of active users. Architectural refactoring, 98% crash elimination, and drastic boot time reduction.',
+    metrics: ['-98% Production crashes', '-55% RAM consumption', '-75% Splash Time', '$10k AWS monthly savings'],
+    stack: ['React Native', 'Kotlin Native', 'Swift', 'TypeScript', 'Fastlane', 'AppDome RASP']
+  },
+  {
+    id: 'ai-agents',
+    title: 'AI AGENTS',
+    category: 'DEV WORKFLOW & AI',
+    thumbImg: thumbAi,
+    description:
+      'Orchestration of autonomous AI agents and continuous static analysis pipelines for test suite generation, regression auditing, and accelerated CI/CD pipelines.',
+    metrics: ['GitHub Copilot Certified', 'Automated Jest/Vitest suites', 'Accelerated PR review & signoff', 'Autonomous code agents'],
+    stack: ['GitHub Copilot', 'TypeScript', 'Custom AI Agents', 'Vitest', 'CI/CD Automation']
+  },
+  {
+    id: 'design-system',
+    title: 'DESIGN SYSTEM',
+    category: 'MULTI-OS TOKENS',
+    thumbImg: thumbDesign,
+    description:
+      'Unified ecosystem of design tokens and decoupled TypeScript components, with native bridges and absolute parity across Android, iOS, and Web.',
+    metrics: ['Multi-OS Standardization', '2x Delivery speed', '100% Type coverage', 'Automated Jest/Vitest tests'],
+    stack: ['Design Tokens', 'React Native', 'React', 'Next.js', 'TypeScript', 'Storybook']
+  }
+];
+
+const featuredProjectsPt = [
+  {
+    id: 'banqi',
+    title: 'BANQI',
+    category: 'MOBILE FINTECH',
+    thumbImg: thumbBanqi,
+    description:
+      'Engenharia mobile sênior no aplicativo do Grupo Casas Bahia com milhões de usuários ativos. Refatoração arquitetural, eliminação de 98% dos crashes e redução drástica do tempo de boot.',
+    metrics: ['-98% Crashes em produção', '-55% Consumo de RAM', '-75% Splash Time', '$10k economia AWS'],
+    stack: ['React Native', 'Kotlin Native', 'Swift', 'TypeScript', 'Fastlane', 'AppDome RASP']
+  },
+  {
+    id: 'ai-agents',
+    title: 'AI AGENTS',
+    category: 'DEV WORKFLOW & IA',
+    thumbImg: thumbAi,
+    description:
+      'Orquestração de agentes autônomos de IA e pipelines contínuos de análise estática para geração de suítes de testes, auditoria de regressões e aceleração de esteiras CI/CD.',
+    metrics: ['GitHub Copilot Certified', 'Suítes automatizadas Jest/Vitest', 'Homologação acelerada de PRs', 'Agentes autônomos de código'],
+    stack: ['GitHub Copilot', 'TypeScript', 'Custom AI Agents', 'Vitest', 'CI/CD Automation']
+  },
+  {
+    id: 'design-system',
+    title: 'DESIGN SYSTEM',
+    category: 'TOKENS MULTI-SO',
+    thumbImg: thumbDesign,
+    description:
+      'Ecossistema unificado de design tokens e componentes desacoplados tipados em TypeScript, com pontes nativas e paridade absoluta entre Android, iOS e Web.',
+    metrics: ['Padronização Multi-SO', '2x Velocidade de entrega', '100% Cobertura de tipos', 'Testes automatizados Jest/Vitest'],
+    stack: ['Design Tokens', 'React Native', 'React', 'Next.js', 'TypeScript', 'Storybook']
+  }
+];
+
 export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
   onNavigateSection,
   activeSection
 }) => {
+  const { language, setLanguage } = useLanguage();
   const [soundOn, setSoundOn] = useState(() => isSoundEnabled());
   const [selectedProject, setSelectedProject] = useState<ProjectPreviewModal | null>(null);
 
@@ -50,38 +118,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
     }
   };
 
-  const featuredProjects = [
-    {
-      id: 'banqi',
-      title: 'BANQI',
-      category: 'MOBILE FINTECH',
-      thumbImg: thumbBanqi,
-      description:
-        'Engenharia mobile sênior no aplicativo do Grupo Casas Bahia com milhões de usuários ativos. Refatoração arquitetural, eliminação de 98% dos crashes e redução drástica do tempo de boot.',
-      metrics: ['-98% Crashes em produção', '-55% Consumo de RAM', '-75% Splash Time', '$10k economia AWS'],
-      stack: ['React Native', 'Kotlin Native', 'Swift', 'TypeScript', 'Fastlane', 'AppDome RASP']
-    },
-    {
-      id: 'ai-agents',
-      title: 'AI AGENTS',
-      category: 'DEV WORKFLOW & IA',
-      thumbImg: thumbAi,
-      description:
-        'Orquestração de agentes autônomos de IA e pipelines contínuos de análise estática para geração de suítes de testes, auditoria de regressões e aceleração de esteiras CI/CD.',
-      metrics: ['GitHub Copilot Certified', 'Suítes automatizadas Jest/Vitest', 'Homologação acelerada de PRs', 'Agentes autônomos de código'],
-      stack: ['GitHub Copilot', 'TypeScript', 'Custom AI Agents', 'Vitest', 'CI/CD Automation']
-    },
-    {
-      id: 'design-system',
-      title: 'DESIGN SYSTEM',
-      category: 'MULTI-OS TOKENS',
-      thumbImg: thumbDesign,
-      description:
-        'Ecossistema unificado de design tokens e componentes desacoplados tipados em TypeScript, com pontes nativas e paridade absoluta entre Android, iOS e Web.',
-      metrics: ['Padronização Multi-SO', '2x Velocidade de entrega', '100% Cobertura de tipos', 'Testes automatizados Jest/Vitest'],
-      stack: ['Design Tokens', 'React Native', 'React', 'Next.js', 'TypeScript', 'Storybook']
-    }
-  ];
+  const featuredProjects = language === 'pt' ? featuredProjectsPt : featuredProjectsEn;
 
   return (
     <section id="citadel-hero" className="relative w-full h-screen min-h-[720px] overflow-hidden select-none bg-[#0a0d12]">
@@ -130,7 +167,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
               activeSection === 'citadel-hero' ? 'text-white font-bold' : 'hover:text-white'
             }`}
           >
-            <span>HOME</span>
+            <span>{language === 'pt' ? 'INÍCIO' : 'HOME'}</span>
             {activeSection === 'citadel-hero' && (
               <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#ffaa00]" />
             )}
@@ -147,7 +184,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
               activeSection === 'monolith-projects' ? 'text-white font-bold' : 'hover:text-white'
             }`}
           >
-            <span>PROJECTS</span>
+            <span>{language === 'pt' ? 'PROJETOS' : 'PROJECTS'}</span>
             {activeSection === 'monolith-projects' && (
               <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#ffaa00]" />
             )}
@@ -164,7 +201,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
               activeSection === 'monolith-experience' ? 'text-white font-bold' : 'hover:text-white'
             }`}
           >
-            <span>EXPERIENCE</span>
+            <span>{language === 'pt' ? 'EXPERIÊNCIA' : 'EXPERIENCE'}</span>
             {activeSection === 'monolith-experience' && (
               <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#ffaa00]" />
             )}
@@ -181,23 +218,36 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
               activeSection === 'monolith-tech' ? 'text-white font-bold' : 'hover:text-white'
             }`}
           >
-            <span>ABOUT</span>
+            <span>{language === 'pt' ? 'SOBRE' : 'ABOUT'}</span>
             {activeSection === 'monolith-tech' && (
               <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#ffaa00]" />
             )}
           </button>
         </nav>
 
-        {/* Right: Sound Toggle, Switcher & [ /// CONTACT /// ] */}
+        {/* Right: Sound Toggle, Language Switcher, Switcher & [ /// CONTACT /// ] */}
         <div className="flex items-center gap-3">
           {/* Sound Toggle */}
           <button
             type="button"
             onClick={toggleSound}
-            title={soundOn ? 'Desativar áudio tátil & atmosfera' : 'Ativar áudio tátil & atmosfera'}
+            title={soundOn ? (language === 'pt' ? 'Desativar áudio tátil & atmosfera' : 'Disable tactile audio & atmosphere') : (language === 'pt' ? 'Ativar áudio tátil & atmosfera' : 'Enable tactile audio & atmosphere')}
             className="p-2 text-white/70 hover:text-white bg-white/5 hover:bg-white/10 rounded-sm border border-white/10 transition-colors cursor-pointer"
           >
             {soundOn ? <Volume2 size={13} className="text-[#ffaa00]" /> : <VolumeX size={13} />}
+          </button>
+
+          {/* Language Switch Button */}
+          <button
+            type="button"
+            onClick={() => {
+              playIndustrialClick();
+              setLanguage(language === 'en' ? 'pt' : 'en');
+            }}
+            className="px-2.5 py-1.5 font-mono text-[10px] font-bold tracking-widest text-[#ffaa00] hover:text-white border border-[#ffaa00]/40 hover:border-[#ffaa00] bg-black/40 hover:bg-black/80 transition-all cursor-pointer"
+            title={language === 'en' ? 'Mudar para Português' : 'Switch to English'}
+          >
+            [{language === 'en' ? 'EN' : 'PT'}]
           </button>
 
           {/* Quick Portfolio Theme Switcher */}
@@ -215,7 +265,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
             onMouseEnter={playButtonHover}
             className="px-4 py-2 font-mono text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-white hover:text-[#ffaa00] border border-white/30 hover:border-[#ffaa00] bg-black/40 hover:bg-black/80 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer"
           >
-            [ /// CONTACT /// ]
+            {language === 'pt' ? '[ /// CONTATO /// ]' : '[ /// CONTACT /// ]'}
           </button>
         </div>
       </header>
@@ -236,16 +286,30 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
 
           {/* Massive Monumental Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-black uppercase tracking-tight text-white font-['Space_Grotesk'] leading-[1.03]">
-            BUILDING<br />
-            SOFTWARE<br />
-            FOR A<br />
-            BIGGER<br />
-            TOMORROW
+            {language === 'pt' ? (
+              <>
+                CONSTRUINDO<br />
+                SOFTWARE<br />
+                PARA UM<br />
+                FUTURO<br />
+                MAIOR
+              </>
+            ) : (
+              <>
+                BUILDING<br />
+                SOFTWARE<br />
+                FOR A<br />
+                BIGGER<br />
+                TOMORROW
+              </>
+            )}
           </h1>
 
           {/* Subtext */}
           <p className="font-mono text-xs sm:text-[13px] tracking-wider uppercase text-white/70 max-w-md leading-relaxed pt-2">
-            I TURN COMPLEX IDEAS INTO SCALABLE PRODUCTS, FOCUSED ON MOBILE, WEB AND REAL-WORLD IMPACT.
+            {language === 'pt'
+              ? 'TRANSFORMO IDEIAS COMPLEXAS EM PRODUTOS ESCALÁVEIS, FOCADO EM MOBILE, WEB E IMPACTO REAL.'
+              : 'I TURN COMPLEX IDEAS INTO SCALABLE PRODUCTS, FOCUSED ON MOBILE, WEB AND REAL-WORLD IMPACT.'}
           </p>
 
           {/* CTA Action Buttons */}
@@ -260,7 +324,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
               onMouseEnter={playButtonHover}
               className="px-6 py-3.5 bg-white hover:bg-slate-200 text-black font-mono font-extrabold text-xs uppercase tracking-widest flex items-center gap-2.5 transition-all shadow-[0_8px_30px_rgba(255,255,255,0.2)] hover:shadow-[0_10px_35px_rgba(255,255,255,0.35)] cursor-pointer"
             >
-              <span>VIEW PROJECTS</span>
+              <span>{language === 'pt' ? 'VER PROJETOS' : 'VIEW PROJECTS'}</span>
               <ArrowUpRight size={16} strokeWidth={2.5} />
             </button>
 
@@ -275,7 +339,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
               className="px-5 py-3.5 bg-transparent hover:bg-white/10 text-white/80 hover:text-white font-mono font-bold text-xs uppercase tracking-widest flex items-center gap-2 border border-transparent hover:border-white/20 transition-all cursor-pointer"
             >
               <Sparkles size={14} className="text-[#ffaa00]" />
-              <span>// EXPLORE</span>
+              <span>{language === 'pt' ? '// EXPLORAR' : '// EXPLORE'}</span>
             </button>
           </div>
         </div>
@@ -285,7 +349,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
               {/* Left: // FEATURED PROJECTS Strip */}
               <div className="w-full md:max-w-2xl space-y-2.5">
                 <div className="font-mono text-[11px] font-semibold tracking-widest uppercase text-white/50">
-                  // FEATURED PROJECTS
+                  {language === 'pt' ? '// PROJETOS EM DESTAQUE' : '// FEATURED PROJECTS'}
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -331,9 +395,9 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
               {/* Bottom Right: IDEAS / SYSTEMS / PEOPLE Slogan */}
               <div className="hidden lg:flex items-center gap-3 font-mono text-[10px] tracking-widest uppercase text-white/60 text-right">
                 <div className="space-y-0.5">
-                  <div>IDEAS</div>
-                  <div>SYSTEMS</div>
-                  <div>PEOPLE</div>
+                  <div>{language === 'pt' ? 'IDEIAS' : 'IDEAS'}</div>
+                  <div>{language === 'pt' ? 'SISTEMAS' : 'SYSTEMS'}</div>
+                  <div>{language === 'pt' ? 'PESSOAS' : 'PEOPLE'}</div>
                 </div>
                 <div className="w-[1.5px] h-10 bg-white/40" />
               </div>
@@ -412,7 +476,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
                 {/* Key Metrics */}
                 <div className="space-y-2 pt-2 border-t border-[#383b44]">
                   <div className="text-[11px] font-bold text-[#00f0ff] uppercase tracking-wider">
-                    ◆ RESULTADOS & IMPACTO:
+                    {language === 'pt' ? '◆ RESULTADOS & IMPACTO:' : '◆ RESULTS & IMPACT:'}
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {selectedProject.metrics.map((m, idx) => (
@@ -429,7 +493,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
                 {/* Tech Stack */}
                 <div className="pt-2">
                   <div className="text-[11px] font-bold text-white/60 uppercase tracking-wider mb-2">
-                    ■ STACK TECNOLÓGICA:
+                    {language === 'pt' ? '■ STACK TECNOLÓGICA:' : '■ TECH STACK:'}
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {selectedProject.stack.map((s, idx) => (
@@ -454,14 +518,14 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
                     }}
                     className="px-5 py-2.5 bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-slate-200 transition-colors cursor-pointer"
                   >
-                    VER DETALHES COMPLETOS NO DOSSIÊ ↗
+                    {language === 'pt' ? 'VER DETALHES COMPLETOS NO DOSSIÊ ↗' : 'VIEW FULL DOSSIER DETAILS ↗'}
                   </button>
                   <button
                     type="button"
                     onClick={() => setSelectedProject(null)}
                     className="text-xs text-white/50 hover:text-white uppercase font-bold"
                   >
-                    FECHAR
+                    {language === 'pt' ? 'FECHAR' : 'CLOSE'}
                   </button>
                 </div>
               </div>

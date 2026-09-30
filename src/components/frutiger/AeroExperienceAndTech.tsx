@@ -1,9 +1,47 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { playAeroClick } from './soundEffectsAero';
+import { useLanguage } from '../../i18n';
 
 export const AeroExperienceAndTech: React.FC = () => {
-  const experiences = [
+  const { language } = useLanguage();
+
+  const experiencesEn = [
+    {
+      role: 'Senior Mobile & Front-end Engineer',
+      company: 'Invillia / Casas Bahia (banQi)',
+      period: '2022 – Present',
+      isCurrent: true,
+      description:
+        'Technical leadership in mobile modernization, modular architecture, and native bridges (Kotlin/Swift). Record -98% reduction in weekly crashes, developer mentoring, and CI/CD automation.'
+    },
+    {
+      role: 'Mid-Level Mobile Engineer',
+      company: 'Invillia / banQi',
+      period: '2021 – 2022',
+      isCurrent: false,
+      description:
+        'Critical rendering and re-render optimizations in React Native, global state redesign, and integration with Pix and credit card payment gateways at scale.'
+    },
+    {
+      role: 'Mid-Level Full Stack & Mobile Developer',
+      company: 'WiiD Studio',
+      period: '2020 – 2021',
+      isCurrent: false,
+      description:
+        'High-performance React Native and React/Next.js application engineering, RESTful and GraphQL API integrations, and shared component libraries.'
+    },
+    {
+      role: 'Junior Frontend Developer',
+      company: 'WiiD Studio',
+      period: '2019 – 2020',
+      isCurrent: false,
+      description:
+        'Responsive high-fidelity user interface development, interactive web animations, and automated unit testing with Jest.'
+    }
+  ];
+
+  const experiencesPt = [
     {
       role: 'Senior Mobile & Front-end Engineer',
       company: 'Invillia / Casas Bahia (banQi)',
@@ -38,13 +76,15 @@ export const AeroExperienceAndTech: React.FC = () => {
     }
   ];
 
+  const experiences = language === 'pt' ? experiencesPt : experiencesEn;
+
   const skillGroups = [
     {
-      title: '📱 Mobile & Nativos (8)',
+      title: language === 'pt' ? '📱 Mobile & Nativos (8)' : '📱 Mobile & Native (8)',
       skills: ['React Native', 'Kotlin', 'Swift', 'Expo', 'Android Studio', 'Xcode', 'Hermes Engine', 'Native Modules']
     },
     {
-      title: '🌐 Front-end & Web Moderno (8)',
+      title: language === 'pt' ? '🌐 Front-end & Web Moderno (8)' : '🌐 Front-end & Modern Web (8)',
       skills: ['React', 'Next.js', 'TypeScript', 'JavaScript ES6+', 'HTML5/CSS3', 'Tailwind CSS', 'Redux', 'Zustand']
     },
     {
@@ -52,13 +92,29 @@ export const AeroExperienceAndTech: React.FC = () => {
       skills: ['Azure DevOps', 'GitHub Actions', 'Fastlane', 'AWS S3/CloudFront', 'Docker', 'CI/CD Pipelines', 'Databricks', 'Dynatrace']
     },
     {
-      title: '🛡️ Qualidade & Arquitetura (8)',
+      title: language === 'pt' ? '🛡️ Qualidade & Arquitetura (8)' : '🛡️ Quality & Architecture (8)',
       skills: ['Clean Architecture', 'TDD', 'Jest', 'Vitest', 'Testing Library', 'Design Systems', 'Clean Code', 'Micro-frontends']
     }
   ];
 
   return (
     <section className="relative z-10 my-6">
+      {/* Section Header Badge */}
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 px-1">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-white/90 shadow-sm text-sky-900 text-xs font-bold tracking-tight">
+          <span className="text-sm">⚡</span>
+          <span>
+            {language === 'pt'
+              ? 'TRAJETÓRIA EXECUTIVA & BANCO TECNOLÓGICO'
+              : 'EXECUTIVE TRAJECTORY & TECH MATRIX'}
+          </span>
+          <span className="text-sky-300">•</span>
+          <span className="text-sky-600 font-mono text-[11px] font-semibold">
+            {language === 'pt' ? 'Invillia • WiiD • Casas Bahia / banQi' : 'Invillia • WiiD • Casas Bahia / banQi'}
+          </span>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Left Window: Professional Trajectory */}
         <motion.div
@@ -69,17 +125,19 @@ export const AeroExperienceAndTech: React.FC = () => {
           className="aero-window flex flex-col overflow-hidden text-slate-800 shadow-xl"
         >
           {/* Aero Titlebar */}
-          <div className="aero-titlebar px-3 py-2 flex items-center justify-between select-none">
-            <div className="flex items-center gap-2">
-              <span className="text-sm">💼</span>
-              <span className="text-xs font-bold text-white tracking-tight drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]">
-                Trajetória Profissional — 4 Posições de Sucesso & Alto Impacto
+          <div className="aero-titlebar px-3.5 py-2.5 min-h-[38px] flex items-center justify-between select-none">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-sm shrink-0 drop-shadow-sm">💼</span>
+              <span className="aero-titlebar-text text-xs tracking-tight truncate">
+                {language === 'pt'
+                  ? 'Trajetória Profissional — 4 Posições de Sucesso & Alto Impacto'
+                  : 'Professional Trajectory — 4 High-Impact Positions'}
               </span>
             </div>
-            <div className="flex items-center gap-1">
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 border border-white/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-amber-400 border border-white/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-rose-500 border border-white/80" />
+            <div className="flex items-center gap-1 shrink-0 ml-2">
+              <div className="aero-ctrl-btn aero-ctrl-min w-2.5 h-2.5" />
+              <div className="aero-ctrl-btn aero-ctrl-max w-2.5 h-2.5" />
+              <div className="aero-ctrl-btn aero-ctrl-close w-2.5 h-2.5" />
             </div>
           </div>
 
@@ -121,17 +179,19 @@ export const AeroExperienceAndTech: React.FC = () => {
           className="aero-window flex flex-col overflow-hidden text-slate-800 shadow-xl"
         >
           {/* Aero Titlebar */}
-          <div className="aero-titlebar px-3 py-2 flex items-center justify-between select-none">
-            <div className="flex items-center gap-2">
-              <span className="text-sm">🫧</span>
-              <span className="text-xs font-bold text-white tracking-tight drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]">
-                Matriz Tecnológica Aquática (32 Competências) & Certificações
+          <div className="aero-titlebar px-3.5 py-2.5 min-h-[38px] flex items-center justify-between select-none">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-sm shrink-0 drop-shadow-sm">🫧</span>
+              <span className="aero-titlebar-text text-xs tracking-tight truncate">
+                {language === 'pt'
+                  ? 'Matriz Tecnológica Aquática (32 Competências) & Certificações'
+                  : 'Aquatic Tech Matrix (32 Competencies) & Certifications'}
               </span>
             </div>
-            <div className="flex items-center gap-1">
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 border border-white/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-amber-400 border border-white/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-rose-500 border border-white/80" />
+            <div className="flex items-center gap-1 shrink-0 ml-2">
+              <div className="aero-ctrl-btn aero-ctrl-min w-2.5 h-2.5" />
+              <div className="aero-ctrl-btn aero-ctrl-max w-2.5 h-2.5" />
+              <div className="aero-ctrl-btn aero-ctrl-close w-2.5 h-2.5" />
             </div>
           </div>
 
@@ -165,10 +225,10 @@ export const AeroExperienceAndTech: React.FC = () => {
                 🏛️ Uninter ADS
               </span>
               <span className="px-2 py-1 rounded-full bg-white border border-sky-200 text-slate-800 font-medium text-[10.5px]">
-                🇧🇷 Português Nativo
+                {language === 'pt' ? '🇧🇷 Português Nativo' : '🇺🇸 English (Full Professional)'}
               </span>
               <span className="px-2 py-1 rounded-full bg-white border border-sky-200 text-slate-800 font-medium text-[10.5px]">
-                🇺🇸 Inglês B2
+                {language === 'pt' ? '🇺🇸 Inglês B2' : '🇧🇷 Portuguese (Native)'}
               </span>
             </div>
           </div>

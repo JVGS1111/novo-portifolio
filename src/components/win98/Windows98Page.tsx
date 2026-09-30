@@ -14,12 +14,36 @@ import { InternetExplorerApp } from './apps/InternetExplorerApp';
 import { RecycleBinApp } from './apps/RecycleBinApp';
 import { Win98PortfolioSelector } from './Win98PortfolioSelector';
 import { playStartupChime, playRestoreSound, playMinimizeSound } from './soundEffects';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 interface Windows98PageProps {
   onNavigateModern: () => void;
 }
 
+const windowTitles: Record<'en' | 'pt', Record<WindowId, string>> = {
+  en: {
+    profile: 'Guerber_Profile.exe — [João Vinícius Guerber]',
+    perf: 'Performance_Monitor.exe — [Real-time banQi Telemetry]',
+    cases: 'C:\\Projects_Case_Studies\\ — [banQi, AI & Design System]',
+    cmd: 'MS-DOS Prompt — C:\\WINDOWS\\system32\\cmd.exe',
+    ie: 'Internet Explorer 5.0 — Guerber Online',
+    recycle: 'Recycle Bin — 0 Technical Debt',
+    about: 'About System'
+  },
+  pt: {
+    profile: 'Guerber_Profile.exe — [João Vinícius Guerber]',
+    perf: 'Performance_Monitor.exe — [Telemetria Real banQi]',
+    cases: 'C:\\Projetos_Case_Studies\\ — [banQi, IA & Design System]',
+    cmd: 'MS-DOS Prompt — C:\\WINDOWS\\system32\\cmd.exe',
+    ie: 'Internet Explorer 5.0 — Guerber Online',
+    recycle: 'Lixeira — 0 Débitos Técnicos',
+    about: 'Sobre o Sistema'
+  }
+};
+
 export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }) => {
+  const { language } = useLanguage();
+  const isPt = language === 'pt';
   const [crtEnabled, setCrtEnabled] = useState(true);
   const [startMenuOpen, setStartMenuOpen] = useState(false);
   const [shutdownActive, setShutdownActive] = useState(false);
@@ -34,7 +58,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
   const [windows, setWindows] = useState<Record<WindowId, WindowState>>({
     profile: {
       id: 'profile',
-      title: 'Guerber_Profile.exe — [João Vinícius Guerber]',
+      title: windowTitles[language].profile,
       icon: '💻',
       isOpen: true,
       isMinimized: false,
@@ -45,7 +69,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
     },
     perf: {
       id: 'perf',
-      title: 'Performance_Monitor.exe — [Telemetria Real banQi]',
+      title: windowTitles[language].perf,
       icon: '📊',
       isOpen: !isMobileInitial, // On mobile, start minimized so screen isn't overloaded
       isMinimized: false,
@@ -56,7 +80,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
     },
     cases: {
       id: 'cases',
-      title: 'C:\\Projetos_Case_Studies\\ — [banQi, IA & Design System]',
+      title: windowTitles[language].cases,
       icon: '🚀',
       isOpen: false,
       isMinimized: false,
@@ -67,7 +91,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
     },
     cmd: {
       id: 'cmd',
-      title: 'MS-DOS Prompt — C:\\WINDOWS\\system32\\cmd.exe',
+      title: windowTitles[language].cmd,
       icon: '📟',
       isOpen: false,
       isMinimized: false,
@@ -78,7 +102,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
     },
     ie: {
       id: 'ie',
-      title: 'Internet Explorer 5.0 — Guerber Online',
+      title: windowTitles[language].ie,
       icon: '🌐',
       isOpen: false,
       isMinimized: false,
@@ -89,7 +113,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
     },
     recycle: {
       id: 'recycle',
-      title: 'Lixeira — 0 Débitos Técnicos',
+      title: windowTitles[language].recycle,
       icon: '🗑️',
       isOpen: false,
       isMinimized: false,
@@ -100,7 +124,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
     },
     about: {
       id: 'about',
-      title: 'Sobre o Sistema',
+      title: windowTitles[language].about,
       icon: 'ℹ️',
       isOpen: false,
       isMinimized: false,
@@ -110,6 +134,18 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       defaultSize: { width: 400, height: 260 }
     }
   });
+
+  // Dynamically localized windows with localized titles
+  const localizedWindows = {
+    ...windows,
+    profile: { ...windows.profile, title: windowTitles[language].profile },
+    perf: { ...windows.perf, title: windowTitles[language].perf },
+    cases: { ...windows.cases, title: windowTitles[language].cases },
+    cmd: { ...windows.cmd, title: windowTitles[language].cmd },
+    ie: { ...windows.ie, title: windowTitles[language].ie },
+    recycle: { ...windows.recycle, title: windowTitles[language].recycle },
+    about: { ...windows.about, title: windowTitles[language].about },
+  };
 
   // Play startup sound on mount (once user has interacted or gesture unlocks audio)
   useEffect(() => {
@@ -185,24 +221,24 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
 
   // Desktop Icons Configuration
   const desktopIcons: DesktopIconItem[] = [
-    { id: 'profile', title: 'Meu Computador', icon: '💻', badge: 'Guerber' },
+    { id: 'profile', title: isPt ? 'Meu Computador' : 'My Computer', icon: '💻', badge: 'Guerber' },
     { id: 'perf', title: 'Performance_Monitor', icon: '📊', badge: '-98% Crash' },
-    { id: 'cases', title: 'Meus Projetos', icon: '📁', badge: '3 Cases' },
+    { id: 'cases', title: isPt ? 'Meus Projetos' : 'My Projects', icon: '📁', badge: '3 Cases' },
     { id: 'cmd', title: 'MS-DOS Prompt', icon: '📟' },
     { id: 'ie', title: 'Internet Explorer', icon: '🌐' },
-    { id: 'recycle', title: 'Lixeira (Vazia)', icon: '🗑️' },
+    { id: 'recycle', title: isPt ? 'Lixeira (Vazia)' : 'Recycle Bin (Empty)', icon: '🗑️' },
     {
       id: 'modern',
-      title: 'Portfólio Moderno',
+      title: isPt ? 'Portfólio Moderno' : 'Modern Portfolio',
       icon: '🚀',
       badge: 'Next-Gen',
       action: onNavigateModern
     },
     {
       id: 'monolith',
-      title: 'Monolito Sci-Fi',
+      title: isPt ? 'Monolito Sci-Fi' : 'Sci-Fi Monolith',
       icon: '🗿',
-      badge: 'Proposta 4',
+      badge: isPt ? 'Proposta 4' : 'Proposal 4',
       action: () => {
         window.location.hash = '#/monolith';
       }
@@ -211,16 +247,16 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       id: 'frutiger',
       title: 'Frutiger Aero MSN',
       icon: '🫧',
-      badge: 'Proposta 5',
+      badge: isPt ? 'Proposta 5' : 'Proposal 5',
       action: () => {
         window.location.hash = '#/proposta5';
       }
     },
     {
       id: 'steamy',
-      title: 'Vidro com Vapor',
+      title: isPt ? 'Vidro Prismático' : 'Prism Glass',
       icon: '💧',
-      badge: 'Proposta 6',
+      badge: isPt ? 'Proposta 6' : 'Proposal 6',
       action: () => {
         window.location.hash = '#/steamy-glass';
       }
@@ -276,7 +312,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       {/* WINDOW 1: Guerber_Profile.exe */}
       <Win98Window
         id="profile"
-        title={windows.profile.title}
+        title={localizedWindows.profile.title}
         icon={windows.profile.icon}
         isOpen={windows.profile.isOpen}
         isMinimized={windows.profile.isMinimized}
@@ -287,8 +323,8 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
         initialY={windows.profile.defaultPosition.y}
         width={windows.profile.defaultSize.width}
         height={windows.profile.defaultSize.height}
-        menuItems={['Arquivo', 'Editar', 'Exibir', 'Ajuda']}
-        statusText="Status: 100% Operacional | Disponível para novos desafios de alto impacto"
+        menuItems={isPt ? ['Arquivo', 'Editar', 'Exibir', 'Ajuda'] : ['File', 'Edit', 'View', 'Help']}
+        statusText={isPt ? 'Status: 100% Operacional | Disponível para novos desafios' : 'Status: 100% Operational | Open for high-impact challenges'}
         onFocus={() => focusWindow('profile')}
         onClose={() => closeWindow('profile')}
         onMinimize={() => minimizeWindow('profile')}
@@ -300,7 +336,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       {/* WINDOW 2: Performance_Monitor.exe */}
       <Win98Window
         id="perf"
-        title={windows.perf.title}
+        title={localizedWindows.perf.title}
         icon={windows.perf.icon}
         isOpen={windows.perf.isOpen}
         isMinimized={windows.perf.isMinimized}
@@ -311,8 +347,8 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
         initialY={windows.perf.defaultPosition.y}
         width={windows.perf.defaultSize.width}
         height={windows.perf.defaultSize.height}
-        menuItems={['Telemetria', 'Sensores', 'Relatórios', 'Ajuda']}
-        statusText="Métricas Auditadas: -98% Crashes | -55% RAM | -75% Boot | +$10k Cloud"
+        menuItems={isPt ? ['Telemetria', 'Sensores', 'Relatórios', 'Ajuda'] : ['Telemetry', 'Sensors', 'Reports', 'Help']}
+        statusText={isPt ? 'Métricas Auditadas: -98% Crashes | -55% RAM | -75% Boot | +$10k Cloud' : 'Audited Metrics: -98% Crashes | -55% RAM | -75% Boot | +$10k Cloud'}
         onFocus={() => focusWindow('perf')}
         onClose={() => closeWindow('perf')}
         onMinimize={() => minimizeWindow('perf')}
@@ -324,7 +360,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       {/* WINDOW 3: Meus Projetos / Case Studies */}
       <Win98Window
         id="cases"
-        title={windows.cases.title}
+        title={localizedWindows.cases.title}
         icon={windows.cases.icon}
         isOpen={windows.cases.isOpen}
         isMinimized={windows.cases.isMinimized}
@@ -335,8 +371,8 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
         initialY={windows.cases.defaultPosition.y}
         width={windows.cases.defaultSize.width}
         height={windows.cases.defaultSize.height}
-        menuItems={['Arquivo', 'Exibir', 'Ferramentas', 'Ajuda']}
-        statusText="3 Objetos de Produção Encontrados"
+        menuItems={isPt ? ['Arquivo', 'Exibir', 'Ferramentas', 'Ajuda'] : ['File', 'View', 'Tools', 'Help']}
+        statusText={isPt ? '3 Objetos de Produção Encontrados' : '3 Production Objects Found'}
         onFocus={() => focusWindow('cases')}
         onClose={() => closeWindow('cases')}
         onMinimize={() => minimizeWindow('cases')}
@@ -348,7 +384,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       {/* WINDOW 4: MS-DOS Prompt */}
       <Win98Window
         id="cmd"
-        title={windows.cmd.title}
+        title={localizedWindows.cmd.title}
         icon={windows.cmd.icon}
         isOpen={windows.cmd.isOpen}
         isMinimized={windows.cmd.isMinimized}
@@ -372,7 +408,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       {/* WINDOW 5: Internet Explorer 5.0 */}
       <Win98Window
         id="ie"
-        title={windows.ie.title}
+        title={localizedWindows.ie.title}
         icon={windows.ie.icon}
         isOpen={windows.ie.isOpen}
         isMinimized={windows.ie.isMinimized}
@@ -383,8 +419,8 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
         initialY={windows.ie.defaultPosition.y}
         width={windows.ie.defaultSize.width}
         height={windows.ie.defaultSize.height}
-        menuItems={['Arquivo', 'Editar', 'Exibir', 'Favoritos', 'Ajuda']}
-        statusText="Conexão com a Internet Estabelecida (T1 1.544 Mbps)"
+        menuItems={isPt ? ['Arquivo', 'Editar', 'Exibir', 'Favoritos', 'Ajuda'] : ['File', 'Edit', 'View', 'Favorites', 'Help']}
+        statusText={isPt ? 'Conexão com a Internet Estabelecida (T1 1.544 Mbps)' : 'Connected to the Internet (T1 1.544 Mbps)'}
         onFocus={() => focusWindow('ie')}
         onClose={() => closeWindow('ie')}
         onMinimize={() => minimizeWindow('ie')}
@@ -396,7 +432,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       {/* WINDOW 6: Lixeira */}
       <Win98Window
         id="recycle"
-        title={windows.recycle.title}
+        title={localizedWindows.recycle.title}
         icon={windows.recycle.icon}
         isOpen={windows.recycle.isOpen}
         isMinimized={windows.recycle.isMinimized}
@@ -407,8 +443,8 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
         initialY={windows.recycle.defaultPosition.y}
         width={windows.recycle.defaultSize.width}
         height={windows.recycle.defaultSize.height}
-        menuItems={['Arquivo', 'Editar', 'Exibir', 'Ajuda']}
-        statusText="0 itens na Lixeira"
+        menuItems={isPt ? ['Arquivo', 'Editar', 'Exibir', 'Ajuda'] : ['File', 'Edit', 'View', 'Help']}
+        statusText={isPt ? '0 itens na Lixeira' : '0 items in Recycle Bin'}
         onFocus={() => focusWindow('recycle')}
         onClose={() => closeWindow('recycle')}
         onMinimize={() => minimizeWindow('recycle')}
@@ -428,7 +464,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
 
       {/* Taskbar */}
       <Win98Taskbar
-        windows={windows}
+        windows={localizedWindows}
         activeWindowId={activeWindowId}
         startMenuOpen={startMenuOpen}
         crtEnabled={crtEnabled}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { MonolithPanel } from './MonolithPanel';
 import { ArrowUpRight, Layers } from 'lucide-react';
+import { useLanguage } from '../../i18n';
 import thumbBanqi from '../../assets/monolith_thumb_banqi.jpg';
 import thumbAi from '../../assets/monolith_thumb_ai.jpg';
 import thumbDesign from '../../assets/monolith_thumb_design.jpg';
@@ -18,7 +19,46 @@ interface CaseItem {
   stack: string[];
 }
 
-const casesData: CaseItem[] = [
+const casesDataEn: CaseItem[] = [
+  {
+    id: 'banqi-scale',
+    num: '01',
+    tag: 'HYPERSCALE MOBILE ARCHITECTURE',
+    title: 'banQi Modernization & Stabilization',
+    company: 'BANQI — GRUPO CASAS BAHIA',
+    bgImg: thumbBanqi,
+    challenge: '120,000 crashes/week, 900MB RAM footprint, and 60s cold start under millions of active financial transactions.',
+    solution: 'Decoupled React Native modular refactoring, Kotlin/Swift native bridges, AppDome RASP, Hermes compilation, and Fastlane/Azure DevOps pipelines.',
+    impact: '-98% production crashes, -55% RAM consumption, -75% splash boot time, and $10k/year in AWS infrastructure savings.',
+    stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Hermes', 'Fastlane', 'AppDome']
+  },
+  {
+    id: 'ai-devtools',
+    num: '02',
+    tag: 'AI DEV WORKFLOW & AGENTS',
+    title: 'AI-Driven Engineering & Automation',
+    company: 'GUEPSI & DEV PRODUCTIVITY LABS',
+    bgImg: thumbAi,
+    challenge: 'Bottlenecks in repetitive manual code reviews, high latency in architectural documentation, and low unit test coverage.',
+    solution: 'Orchestration of autonomous AI agents and continuous static analysis pipelines for test suite generation, regression auditing, and living docs.',
+    impact: 'Drastic reduction in PR lead time, accelerated review turnaround with high precision, and 100% CI/CD pipeline reliability.',
+    stack: ['GitHub Copilot Certified', 'Custom AI Agents', 'TypeScript', 'Node.js', 'Vitest', 'CI/CD']
+  },
+  {
+    id: 'design-system',
+    num: '03',
+    tag: 'MULTI-OS DESIGN SYSTEM',
+    title: 'Design System & Cross-Platform Modules',
+    company: 'BANQI & WIID ARCHITECTURE',
+    bgImg: thumbDesign,
+    challenge: 'Visual and functional discrepancies between Android, iOS, and Web, duplicate components, and high friction in design-to-engineering handoff.',
+    solution: 'Decoupled ecosystem of platform-agnostic design tokens, strictly typed components, and universal native bridges.',
+    impact: 'Absolute visual and functional parity, 2x faster delivery velocity for new product features, and automated test suites.',
+    stack: ['Design Tokens', 'React', 'React Native', 'Next.js', 'TypeScript', 'Jest', 'Storybook']
+  }
+];
+
+const casesDataPt: CaseItem[] = [
   {
     id: 'banqi-scale',
     num: '01',
@@ -58,6 +98,9 @@ const casesData: CaseItem[] = [
 ];
 
 export const MonolithCaseStudies: React.FC = () => {
+  const { language } = useLanguage();
+  const casesData = language === 'pt' ? casesDataPt : casesDataEn;
+
   return (
     <section id="monolith-projects" className="w-full max-w-7xl mx-auto px-6 sm:px-12 py-12 scroll-mt-24">
       {/* Cinematic Section Header */}
@@ -65,19 +108,21 @@ export const MonolithCaseStudies: React.FC = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2 font-mono text-[11px] font-semibold tracking-widest uppercase text-white/50">
             <span className="text-[#ffaa00]">// 03</span>
-            <span>CASE STUDIES & ARCHITECTURE</span>
+            <span>{language === 'pt' ? 'CASOS DE ESTUDO & ARQUITETURA' : 'CASE STUDIES & ARCHITECTURE'}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-['Space_Grotesk'] text-white tracking-tight uppercase">
-            CASOS DE ENGENHARIA CRÍTICA
+            {language === 'pt' ? 'CASOS DE ENGENHARIA CRÍTICA' : 'CRITICAL ENGINEERING CASE STUDIES'}
           </h2>
           <p className="font-mono text-xs text-white/60 tracking-wider uppercase max-w-2xl leading-relaxed">
-            ARQUITETURA DE ALTO DESEMPENHO, RESOLUÇÃO DE PROBLEMAS COMPLEXOS E IMPACTO TÉCNICO COMPROVADO.
+            {language === 'pt'
+              ? 'ARQUITETURA DE ALTO DESEMPENHO, RESOLUÇÃO DE PROBLEMAS COMPLEXOS E IMPACTO TÉCNICO COMPROVADO.'
+              : 'HIGH-PERFORMANCE ARCHITECTURE, COMPLEX PROBLEM SOLVING, AND PROVEN TECHNICAL IMPACT.'}
           </p>
         </div>
 
         <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 font-mono text-[10px] text-white/70 tracking-widest uppercase">
           <Layers size={14} className="text-[#ffaa00]" />
-          <span>3 ARCHITECTURAL CASES</span>
+          <span>{language === 'pt' ? '3 CASOS ARQUITETURAIS' : '3 ARCHITECTURAL CASES'}</span>
         </div>
       </div>
 
@@ -118,7 +163,7 @@ export const MonolithCaseStudies: React.FC = () => {
               {/* Challenge */}
               <div className="space-y-1.5">
                 <div className="text-[10px] font-mono font-bold text-white/50 tracking-widest uppercase">
-                  ▲ DESAFIO TÉCNICO:
+                  {language === 'pt' ? '▲ DESAFIO TÉCNICO:' : '▲ TECHNICAL CHALLENGE:'}
                 </div>
                 <p className="text-xs font-sans text-white/70 leading-relaxed">
                   {c.challenge}
@@ -128,7 +173,7 @@ export const MonolithCaseStudies: React.FC = () => {
               {/* Solution */}
               <div className="space-y-1.5">
                 <div className="text-[10px] font-mono font-bold text-[#ffaa00] tracking-widest uppercase">
-                  ■ SOLUÇÃO ARQUITETURAL:
+                  {language === 'pt' ? '■ SOLUÇÃO ARQUITETURAL:' : '■ ARCHITECTURAL SOLUTION:'}
                 </div>
                 <p className="text-xs font-sans text-white/80 leading-relaxed">
                   {c.solution}
@@ -138,7 +183,7 @@ export const MonolithCaseStudies: React.FC = () => {
               {/* Impact / Results */}
               <div className="space-y-1.5 pt-1">
                 <div className="text-[10px] font-mono font-bold text-[#22c55e] tracking-widest uppercase">
-                  ◆ RESULTADOS QUANTIFICADOS:
+                  {language === 'pt' ? '◆ RESULTADOS QUANTIFICADOS:' : '◆ QUANTIFIED RESULTS:'}
                 </div>
                 <div className="p-3 bg-white/5 border border-white/10 group-hover:border-[#22c55e]/40 text-xs font-mono text-white font-medium leading-relaxed transition-colors">
                   {c.impact}
@@ -149,7 +194,7 @@ export const MonolithCaseStudies: React.FC = () => {
             {/* Stack Badges */}
             <div className="pt-6 mt-4 border-t border-white/10">
               <div className="text-[9px] font-mono font-semibold text-white/40 tracking-widest uppercase mb-2">
-                STACK TECNOLÓGICA:
+                {language === 'pt' ? 'STACK TECNOLÓGICA:' : 'TECH STACK:'}
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {c.stack.map((item, sIdx) => (

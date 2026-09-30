@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { playMsnNudgeSound, playMsnReceiveMessage, playAeroClick } from './soundEffectsAero';
+import { useLanguage } from '../../i18n';
 
 interface Message {
   id: string;
@@ -9,6 +10,82 @@ interface Message {
   time: string;
   text: string;
 }
+
+const initialMessagesEn: Message[] = [
+  {
+    id: 'm1',
+    sender: 'recruiter',
+    senderName: 'Recruiter / Tech Lead',
+    time: '10:14',
+    text: 'Hello João! We saw your banQi case study with 120k weekly crashes. How did you achieve a -98% reduction?'
+  },
+  {
+    id: 'm2',
+    sender: 'joao',
+    senderName: 'João Vinícius',
+    time: '10:15',
+    text: 'We refactored React Native’s async bridge, engineered native Kotlin/Swift modules, integrated Error Boundaries and AppDome RASP. Crashes plunged from 120k to 2k weekly, and cold boot dropped from 60s to 15s!'
+  },
+  {
+    id: 'm3',
+    sender: 'system',
+    senderName: 'System',
+    time: '10:15',
+    text: '⚡ You just sent a Nudge! (*Wizz!*)'
+  },
+  {
+    id: 'm4',
+    sender: 'recruiter',
+    senderName: 'Recruiter / Tech Lead',
+    time: '10:16',
+    text: 'Impressive! And how have you accelerated engineering velocity with AI automation?'
+  },
+  {
+    id: 'm5',
+    sender: 'joao',
+    senderName: 'João Vinícius',
+    time: '10:17',
+    text: 'I engineered custom AI agents for PR triage and regression checks, plus automated Jest/Vitest test suite generation integrated directly into Azure DevOps and GitHub Actions!'
+  }
+];
+
+const initialMessagesPt: Message[] = [
+  {
+    id: 'm1',
+    sender: 'recruiter',
+    senderName: 'Recruiter / Tech Lead',
+    time: '10:14',
+    text: 'Olá João! Vimos o caso do banQi com 120k crashes/semana. Como você atingiu -98% de redução?'
+  },
+  {
+    id: 'm2',
+    sender: 'joao',
+    senderName: 'João Vinícius',
+    time: '10:15',
+    text: 'Refatoramos a bridge assíncrona do React Native, criamos módulos nativos Kotlin/Swift, adicionamos Error Boundaries e RASP AppDome. Fomos de 120k para 2k crashes semanais e boot de 60s para 15s!'
+  },
+  {
+    id: 'm3',
+    sender: 'system',
+    senderName: 'Sistema',
+    time: '10:15',
+    text: '⚡ Você acabou de enviar um Chamar Atenção! (*Wizz!*)'
+  },
+  {
+    id: 'm4',
+    sender: 'recruiter',
+    senderName: 'Recruiter / Tech Lead',
+    time: '10:16',
+    text: 'Impressionante! E como você tem acelerado engenharia com automação de IA?'
+  },
+  {
+    id: 'm5',
+    sender: 'joao',
+    senderName: 'João Vinícius',
+    time: '10:17',
+    text: 'Desenvolvi agentes de IA customizados para triagem de PRs e regressões, além de geração automatizada de testes Jest/Vitest integrados ao Azure DevOps e GitHub Actions!'
+  }
+];
 
 interface MsnMessengerWindowProps {
   className?: string;
@@ -19,48 +96,15 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
   className = '',
   onFocusMessenger
 }) => {
+  const { language } = useLanguage();
   const [isShaking, setIsShaking] = useState(false);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [customMessages, setCustomMessages] = useState<Message[]>([]);
   const chatScrollRef = useRef<HTMLDivElement>(null);
 
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 'm1',
-      sender: 'recruiter',
-      senderName: 'Recruiter / Tech Lead',
-      time: '10:14',
-      text: 'Olá João! Vimos o caso do banQi com 120k crashes/semana. Como você atingiu -98% de redução?'
-    },
-    {
-      id: 'm2',
-      sender: 'joao',
-      senderName: 'João Vinícius',
-      time: '10:15',
-      text: 'Refatoramos a bridge assíncrona do React Native, criamos módulos nativos Kotlin/Swift, adicionamos Error Boundaries e RASP AppDome. Fomos de 120k para 2k crashes semanais e boot de 60s para 15s!'
-    },
-    {
-      id: 'm3',
-      sender: 'system',
-      senderName: 'Sistema',
-      time: '10:15',
-      text: '⚡ Você acabou de enviar um Chamar Atenção! (*Wizz!*)'
-    },
-    {
-      id: 'm4',
-      sender: 'recruiter',
-      senderName: 'Recruiter / Tech Lead',
-      time: '10:16',
-      text: 'Impressionante! E como você tem acelerado engenharia com automação de IA?'
-    },
-    {
-      id: 'm5',
-      sender: 'joao',
-      senderName: 'João Vinícius',
-      time: '10:17',
-      text: 'Desenvolvi agentes de IA customizados para triagem de PRs e regressões, além de geração automatizada de testes Jest/Vitest integrados ao Azure DevOps e GitHub Actions!'
-    }
-  ]);
+  const baseMessages = language === 'pt' ? initialMessagesPt : initialMessagesEn;
+  const messages = React.useMemo(() => [...baseMessages, ...customMessages], [baseMessages, customMessages]);
 
   // Scroll to bottom when messages update
   useEffect(() => {
@@ -80,14 +124,17 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
 
     setTimeout(() => {
       setIsShaking(false);
-      setMessages((prev) => [
+      setCustomMessages((prev) => [
         ...prev,
         {
           id: `wizz-${Date.now()}`,
           sender: 'system',
-          senderName: 'Sistema',
+          senderName: language === 'pt' ? 'Sistema' : 'System',
           time: timeStr,
-          text: '⚡ Você acabou de enviar um Chamar Atenção! (*Wizz!*)'
+          text:
+            language === 'pt'
+              ? '⚡ Você acabou de enviar um Chamar Atenção! (*Wizz!*)'
+              : '⚡ You just sent a Nudge! (*Wizz!*)'
         }
       ]);
     }, 380);
@@ -105,12 +152,12 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
     const userMsg: Message = {
       id: `usr-${Date.now()}`,
       sender: 'recruiter',
-      senderName: 'Você',
+      senderName: language === 'pt' ? 'Você' : 'You',
       time: timeStr,
       text: trimmed
     };
 
-    setMessages((prev) => [...prev, userMsg]);
+    setCustomMessages((prev) => [...prev, userMsg]);
     setInputText('');
     setIsTyping(true);
 
@@ -119,19 +166,51 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
       setIsTyping(false);
       playMsnReceiveMessage();
 
-      let reply = 'Excelente pergunta! Foco total em entregar arquiteturas ultra estáveis, código limpo e valor tangível para o produto. Vamos bater um papo no LinkedIn ou por e-mail?';
+      let reply =
+        language === 'pt'
+          ? 'Excelente pergunta! Foco total em entregar arquiteturas ultra estáveis, código limpo e valor tangível para o produto. Vamos bater um papo no LinkedIn ou por e-mail?'
+          : 'Great question! My core focus is delivering ultra-stable architectures, clean code, and tangible product impact. Shall we connect on LinkedIn or via email?';
+
       const lower = trimmed.toLowerCase();
 
-      if (lower.includes('contato') || lower.includes('email') || lower.includes('conversar') || lower.includes('vaga') || lower.includes('trabalho')) {
-        reply = 'Estou disponível para novas oportunidades e desafios de alto impacto! Me envie um e-mail em joaoviniciusgs@gmail.com ou me adicione no LinkedIn: linkedin.com/in/joaoguebrer 😊';
-      } else if (lower.includes('react') || lower.includes('mobile') || lower.includes('swift') || lower.includes('kotlin')) {
-        reply = 'Trabalho com React Native a fundo (New Architecture, Hermes, C++ JSI) e módulos nativos em Kotlin/Swift para extrair 100% de performance do hardware!';
-      } else if (lower.includes('wizz') || lower.includes('atenção') || lower.includes('shake')) {
+      if (
+        lower.includes('contato') ||
+        lower.includes('email') ||
+        lower.includes('conversar') ||
+        lower.includes('vaga') ||
+        lower.includes('trabalho') ||
+        lower.includes('contact') ||
+        lower.includes('hire') ||
+        lower.includes('job')
+      ) {
+        reply =
+          language === 'pt'
+            ? 'Estou disponível para novas oportunidades e desafios de alto impacto! Me envie um e-mail em joaoviniciusgs@gmail.com ou me adicione no LinkedIn: linkedin.com/in/joaoguebrer 😊'
+            : 'I am available for new high-impact challenges! Send me an email at joaoviniciusgs@gmail.com or connect with me on LinkedIn: linkedin.com/in/joaoguebrer 😊';
+      } else if (
+        lower.includes('react') ||
+        lower.includes('mobile') ||
+        lower.includes('swift') ||
+        lower.includes('kotlin')
+      ) {
+        reply =
+          language === 'pt'
+            ? 'Trabalho com React Native a fundo (New Architecture, Hermes, C++ JSI) e módulos nativos em Kotlin/Swift para extrair 100% de performance do hardware!'
+            : 'I specialize in deep React Native engineering (New Architecture, Hermes, C++ JSI) and native Kotlin/Swift modules to extract maximum performance from the hardware!';
+      } else if (
+        lower.includes('wizz') ||
+        lower.includes('atenção') ||
+        lower.includes('shake') ||
+        lower.includes('nudge')
+      ) {
         handleWizz();
-        reply = 'Haha, você apertou o Wizz! Essa vibração clássica do MSN Messenger 8.5 nunca perde a graça! ⚡';
+        reply =
+          language === 'pt'
+            ? 'Haha, você apertou o Wizz! Essa vibração clássica do MSN Messenger 8.5 nunca perde a graça! ⚡'
+            : 'Haha, you triggered the Wizz! That classic MSN Messenger 8.5 shake never gets old! ⚡';
       }
 
-      setMessages((prev) => [
+      setCustomMessages((prev) => [
         ...prev,
         {
           id: `joao-${Date.now()}`,
@@ -156,37 +235,37 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
       }}
     >
       {/* 1. MSN Vista Aero Window Header */}
-      <div className="msn-titlebar px-3 py-2 flex items-center justify-between select-none">
-        <div className="flex items-center gap-2">
+      <div className="msn-titlebar px-3.5 py-2.5 min-h-[38px] flex items-center justify-between select-none">
+        <div className="flex items-center gap-2 min-w-0">
           {/* Authentic MSN Green/Blue Duo Buddies Logo */}
-          <div className="flex -space-x-1">
+          <div className="flex -space-x-1 shrink-0">
             <div className="w-3.5 h-3.5 rounded-full bg-emerald-400 border border-white/80 shadow-sm" />
             <div className="w-3.5 h-3.5 rounded-full bg-cyan-400 border border-white/80 shadow-sm" />
           </div>
-          <span className="text-xs font-bold text-white tracking-tight drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]">
-            💬 Windows Live Messenger — João Vinícius (Online)
+          <span className="aero-titlebar-text text-xs tracking-tight truncate">
+            💬 Windows Live Messenger — João Vinícius ({language === 'pt' ? 'Online' : 'Online'})
           </span>
         </div>
 
         {/* Aero Window Buttons */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 shrink-0 ml-3">
           <button
             type="button"
             onClick={playAeroClick}
-            className="w-3.5 h-3.5 rounded-full bg-emerald-400/90 border border-white/80 shadow-sm hover:brightness-110 cursor-pointer"
-            title="Minimizar"
+            className="aero-ctrl-btn aero-ctrl-min w-3.5 h-3.5"
+            title={language === 'pt' ? 'Minimizar' : 'Minimize'}
           />
           <button
             type="button"
             onClick={playAeroClick}
-            className="w-3.5 h-3.5 rounded-full bg-amber-400/90 border border-white/80 shadow-sm hover:brightness-110 cursor-pointer"
-            title="Maximizar"
+            className="aero-ctrl-btn aero-ctrl-max w-3.5 h-3.5"
+            title={language === 'pt' ? 'Maximizar' : 'Maximize'}
           />
           <button
             type="button"
             onClick={playAeroClick}
-            className="w-3.5 h-3.5 rounded-full bg-rose-500/90 border border-white/80 shadow-sm hover:brightness-110 cursor-pointer"
-            title="Fechar"
+            className="aero-ctrl-btn aero-ctrl-close w-3.5 h-3.5"
+            title={language === 'pt' ? 'Fechar' : 'Close'}
           />
         </div>
       </div>
@@ -208,11 +287,13 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
           <div className="flex items-center gap-2">
             <h4 className="text-sm font-bold text-slate-800 tracking-tight">João Vinícius</h4>
             <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100 border border-emerald-300 px-1.5 py-0.2 rounded-full">
-              [Online]
+              [{language === 'pt' ? 'Disponível' : 'Available'}]
             </span>
           </div>
           <p className="text-[11px] text-emerald-700 italic truncate font-medium">
-            Modernizando arquiteturas mobile 🎵 banQi -98% crashes
+            {language === 'pt'
+              ? 'Modernizando arquiteturas mobile 🎵 banQi -98% crashes'
+              : 'Modernizing mobile architectures 🎵 banQi -98% crashes'}
           </p>
         </div>
 
@@ -232,10 +313,12 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
           type="button"
           onClick={handleWizz}
           className="btn-jelly-glass px-2.5 py-1 rounded-md text-[11px] font-bold flex items-center gap-1 text-amber-700 hover:text-amber-800 cursor-pointer"
-          title="Fazer a janela tremer!"
+          title={language === 'pt' ? 'Fazer a janela tremer!' : 'Make the window shake!'}
         >
           <span>🔔</span>
-          <span className="font-extrabold">Chamar atenção! (Wizz)</span>
+          <span className="font-extrabold">
+            {language === 'pt' ? 'Chamar atenção! (Wizz)' : 'Nudge! (Wizz)'}
+          </span>
         </button>
 
         <button
@@ -244,7 +327,7 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
           className="btn-jelly-glass px-2 py-1 rounded-md text-[11px] font-medium flex items-center gap-1 text-slate-700 cursor-pointer"
         >
           <span>🎙️</span>
-          <span className="hidden sm:inline">Áudio</span>
+          <span className="hidden sm:inline">{language === 'pt' ? 'Áudio' : 'Audio'}</span>
         </button>
 
         <button
@@ -289,7 +372,7 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
             <div key={msg.id} className="space-y-0.5">
               <div className="flex items-center gap-1 text-[10.5px]">
                 <span className={`font-bold ${isJoao ? 'text-blue-700' : 'text-slate-600'}`}>
-                  {msg.senderName} diz ({msg.time}):
+                  {msg.senderName} {language === 'pt' ? 'diz' : 'says'} ({msg.time}):
                 </span>
               </div>
               <p
@@ -315,7 +398,11 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
               className="text-[10.5px] italic text-sky-700 flex items-center gap-1.5"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-ping" />
-              <span>João Vinícius está digitando uma mensagem...</span>
+              <span>
+                {language === 'pt'
+                  ? 'João Vinícius está digitando uma mensagem...'
+                  : 'João Vinícius is typing a message...'}
+              </span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -330,14 +417,18 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
           type="text"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          placeholder="Digite uma mensagem para João Vinícius..."
+          placeholder={
+            language === 'pt'
+              ? 'Digite uma mensagem para João Vinícius...'
+              : 'Type a message to João Vinícius...'
+          }
           className="flex-1 px-3 py-1.5 rounded-full bg-white border border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent text-xs text-slate-800 placeholder-slate-400 shadow-inner"
         />
         <button
           type="submit"
           className="btn-jelly-green px-4 py-1.5 rounded-full text-xs font-bold shrink-0 cursor-pointer shadow-md"
         >
-          Enviar (↵)
+          {language === 'pt' ? 'Enviar (↵)' : 'Send (↵)'}
         </button>
       </form>
     </div>

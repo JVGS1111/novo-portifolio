@@ -2,12 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { playAeroClick, playMsnNudgeSound } from './soundEffectsAero';
 import { personalInfo } from '../../data/portfolioData';
+import { useLanguage } from '../../i18n';
 
 interface AeroActionDockProps {
   onScrollToMsn?: () => void;
 }
 
 export const AeroActionDock: React.FC<AeroActionDockProps> = ({ onScrollToMsn }) => {
+  const { language } = useLanguage();
+
   const handleMsnClick = () => {
     playMsnNudgeSound();
     if (onScrollToMsn) {
@@ -28,10 +31,14 @@ export const AeroActionDock: React.FC<AeroActionDockProps> = ({ onScrollToMsn })
       >
         <div className="max-w-2xl text-center md:text-left">
           <h3 className="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight mb-1.5">
-            Pronto para modernizar seu ecossistema mobile e web com estabilidade extrema?
+            {language === 'pt'
+              ? 'Pronto para modernizar seu ecossistema mobile e web com estabilidade extrema?'
+              : 'Ready to modernize your mobile and web ecosystem with extreme stability?'}
           </h3>
           <p className="text-xs sm:text-sm text-slate-700 leading-relaxed mb-2.5">
-            Liderança técnica, módulos nativos Kotlin/Swift, Clean Architecture e aceleração de engenharia com IA.
+            {language === 'pt'
+              ? 'Liderança técnica, módulos nativos Kotlin/Swift, Clean Architecture e aceleração de engenharia com IA.'
+              : 'Technical leadership, Kotlin/Swift native modules, Clean Architecture, and AI-accelerated engineering.'}
           </p>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/90 border border-emerald-300 text-emerald-800 text-[10.5px] font-bold">
             <span>🌿</span>
@@ -49,7 +56,7 @@ export const AeroActionDock: React.FC<AeroActionDockProps> = ({ onScrollToMsn })
             className="btn-jelly-green px-4 py-2.5 rounded-full text-xs font-extrabold flex items-center gap-2 cursor-pointer shadow-lg"
           >
             <span>💬</span>
-            <span>Chamar no MSN Live</span>
+            <span>{language === 'pt' ? 'Chamar no MSN Live' : 'Chat on MSN Live'}</span>
           </motion.button>
 
           <motion.a
@@ -60,7 +67,7 @@ export const AeroActionDock: React.FC<AeroActionDockProps> = ({ onScrollToMsn })
             className="btn-jelly-blue px-4 py-2.5 rounded-full text-xs font-bold flex items-center gap-2 cursor-pointer shadow-lg"
           >
             <span>📧</span>
-            <span>Enviar E-mail</span>
+            <span>{language === 'pt' ? 'Enviar E-mail' : 'Send Email'}</span>
           </motion.a>
 
           <motion.a

@@ -15,8 +15,9 @@
 | 3 | **Steamy Frosted Glass & Bath Fog (Proposta 06)** | `#/steamy-glass` | Ativo | Vidro embaçado tátil, névoa térmica matinal, silhuetas botânicas, espelho interativo para limpar vapor com dedo/cursor (Web Audio API), 5 Dew Pods de métricas e refração física. |
 | 4 | **Monolithic Concrete Sci-Fi Brutalism (Proposta 04)** | `#/monolith` | Ativo | Cidadela monumental 3D em Three.js PBR realista ("BUILDING SOFTWARE FOR A BIGGER TOMORROW"), fendas verticais de luz âmbar, água reflexiva, névoa volumétrica, silhueta do explorador e modo de inspeção 3D livre. |
 | 5 | **Frutiger Aero & Aqua Ecotopia (Proposta 05)** | `#/proposta5` | Ativo | Estética 2000s Frutiger Aero, MSN 8.5 com Wizz/shake real, Three.js esferas aquáticas com cáusticas, botões de gelatina skeuomórficos e barra Vista. |
-| 6 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Em Breve | Console administrativo corporativo NT 5.0, visualizador de eventos e diagnóstico (protótipo de alta fidelidade no Figma). |
-| 7 | **Windows XP Luna Golden Era** | `#/winxp` | Em Breve | Wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde (protótipo de alta fidelidade no Figma). |
+| 6 | **Neon Genesis Evangelion Episode UI & MAGI (Proposta 08)** | `#/proposta-8` | Ativo | Estética cinematográfica e tipografia de episódios de Evangelion (Matisse kanji), A.T. Field interativo, deliberação MAGI, contagem de bateria interna e dossiês de combate. Sem som ("só coda"). |
+| 7 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Em Breve | Console administrativo corporativo NT 5.0, visualizador de eventos e diagnóstico (protótipo de alta fidelidade no Figma). |
+| 8 | **Windows XP Luna Golden Era** | `#/winxp` | Em Breve | Wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde (protótipo de alta fidelidade no Figma). |
 
 ---
 

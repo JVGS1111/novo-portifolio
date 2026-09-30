@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { personalInfo } from '../../../data/portfolioData';
 import { playClickSound } from '../soundEffects';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 export const InternetExplorerApp: React.FC = () => {
+  const { language } = useLanguage();
+  const isPt = language === 'pt';
   const [url, setUrl] = useState('https://github.com/Guerber');
 
   return (
@@ -15,27 +18,27 @@ export const InternetExplorerApp: React.FC = () => {
             onClick={playClickSound}
             className="px-2 py-0.5 bg-[#C0C0C0] border border-t-white border-l-white border-r-black border-b-black hover:bg-slate-200 cursor-pointer"
           >
-            ◀ Voltar
+            {isPt ? '◀ Voltar' : '◀ Back'}
           </button>
           <button
             type="button"
             onClick={playClickSound}
             className="px-2 py-0.5 bg-[#C0C0C0] border border-t-white border-l-white border-r-black border-b-black hover:bg-slate-200 cursor-pointer"
           >
-            ▶ Avançar
+            {isPt ? '▶ Avançar' : '▶ Forward'}
           </button>
           <button
             type="button"
             onClick={playClickSound}
             className="px-2 py-0.5 bg-[#C0C0C0] border border-t-white border-l-white border-r-black border-b-black hover:bg-slate-200 cursor-pointer"
           >
-            🏠 Início
+            {isPt ? '🏠 Início' : '🏠 Home'}
           </button>
         </div>
 
         {/* Address Input */}
         <div className="flex-1 flex items-center gap-1">
-          <span className="font-bold text-[10px] text-slate-700">Endereço:</span>
+          <span className="font-bold text-[10px] text-slate-700">{isPt ? 'Endereço:' : 'Address:'}</span>
           <input
             type="text"
             value={url}
@@ -53,7 +56,9 @@ export const InternetExplorerApp: React.FC = () => {
             <span className="text-xs font-mono text-emerald-400">● 100% ONLINE</span>
           </div>
           <p className="text-xs text-slate-300 mt-1">
-            Conectividade direta aos repositórios e redes profissionais de João Vinícius Guerber.
+            {isPt
+              ? 'Conectividade direta aos repositórios e redes profissionais de João Vinícius Guerber.'
+              : 'Direct connectivity to repositories and professional engineering networks of João Vinícius Guerber.'}
           </p>
         </div>
 
@@ -73,7 +78,7 @@ export const InternetExplorerApp: React.FC = () => {
               github.com/Guerber
             </p>
             <span className="text-[9px] text-blue-600 underline mt-2 block">
-              Acessar repositórios, commits e projetos open-source
+              {isPt ? 'Acessar repositórios, commits e projetos open-source' : 'Explore repositories, commits, and open-source packages'}
             </span>
           </a>
 
@@ -92,13 +97,16 @@ export const InternetExplorerApp: React.FC = () => {
               linkedin.com/in/joaoguebrer
             </p>
             <span className="text-[9px] text-blue-600 underline mt-2 block">
-              Conectar profissionalmente e acompanhar publicações
+              {isPt ? 'Conectar profissionalmente e acompanhar publicações' : 'Connect professionally and follow engineering publications'}
             </span>
           </a>
         </div>
 
         <div className="p-3 bg-amber-50 border border-amber-200 rounded text-amber-900 text-xs">
-          <span className="font-bold">Dica:</span> Para contatar João Vinícius Guerber diretamente para posições e projetos de alto impacto, envie um e-mail para{' '}
+          <span className="font-bold">{isPt ? 'Dica:' : 'Tip:'}</span>{' '}
+          {isPt
+            ? 'Para contatar João Vinícius Guerber diretamente para posições e projetos de alto impacto, envie um e-mail para '
+            : 'To contact João Vinícius Guerber directly regarding senior engineering positions and high-impact projects, send an email to '}
           <a href={`mailto:${personalInfo.email}`} className="font-bold underline text-blue-800">
             {personalInfo.email}
           </a>.

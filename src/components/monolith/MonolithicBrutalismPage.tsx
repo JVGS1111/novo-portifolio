@@ -9,6 +9,7 @@ import { MonolithContact } from './MonolithContact';
 import { PortfolioSwitcher } from '../PortfolioSwitcher';
 import { ArrowUp, Compass } from 'lucide-react';
 import { playIndustrialClick } from './monolithAudio';
+import { useLanguage } from '../../i18n';
 
 interface MonolithicBrutalismPageProps {
   onNavigateModern?: () => void;
@@ -17,6 +18,7 @@ interface MonolithicBrutalismPageProps {
 export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = ({
   onNavigateModern
 }) => {
+  const { language, setLanguage } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('citadel-hero');
 
@@ -103,7 +105,7 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
               </span>
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 sm:gap-6">
               <nav className="hidden md:flex items-center gap-5 text-[10px] tracking-widest uppercase text-white/60">
                 <button
                   type="button"
@@ -121,7 +123,7 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
                     activeSection === 'monolith-metrics' ? 'text-white font-bold' : ''
                   }`}
                 >
-                  02 METRICS
+                  02 {language === 'pt' ? 'MÉTRICAS' : 'METRICS'}
                 </button>
                 <button
                   type="button"
@@ -130,7 +132,7 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
                     activeSection === 'monolith-projects' ? 'text-white font-bold' : ''
                   }`}
                 >
-                  03 PROJECTS
+                  03 {language === 'pt' ? 'PROJETOS' : 'PROJECTS'}
                 </button>
                 <button
                   type="button"
@@ -139,7 +141,7 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
                     activeSection === 'monolith-experience' ? 'text-white font-bold' : ''
                   }`}
                 >
-                  04 EXPERIENCE
+                  04 {language === 'pt' ? 'EXPERIÊNCIA' : 'EXPERIENCE'}
                 </button>
                 <button
                   type="button"
@@ -157,9 +159,22 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
                     activeSection === 'monolith-contact' ? 'font-bold' : ''
                   }`}
                 >
-                  06 CONTACT
+                  06 {language === 'pt' ? 'CONTATO' : 'CONTACT'}
                 </button>
               </nav>
+
+              {/* Language Switch Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  playIndustrialClick();
+                  setLanguage(language === 'en' ? 'pt' : 'en');
+                }}
+                className="px-2 py-1 bg-white/5 hover:bg-white/10 border border-white/20 text-[#ffaa00] text-[10px] font-mono font-bold uppercase transition-colors cursor-pointer"
+                title={language === 'en' ? 'Mudar para Português' : 'Switch to English'}
+              >
+                [{language === 'en' ? 'EN' : 'PT'}]
+              </button>
 
               {onNavigateModern && (
                 <button
@@ -215,15 +230,15 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
           </div>
 
           <div className="flex items-center gap-4 text-[10px] tracking-widest uppercase text-white/50">
-            <span>IDEAS</span>
+            <span>{language === 'pt' ? 'IDEIAS' : 'IDEAS'}</span>
             <span className="text-white/20">/</span>
-            <span>SYSTEMS</span>
+            <span>{language === 'pt' ? 'SISTEMAS' : 'SYSTEMS'}</span>
             <span className="text-white/20">/</span>
-            <span>PEOPLE</span>
+            <span>{language === 'pt' ? 'PESSOAS' : 'PEOPLE'}</span>
           </div>
 
           <div className="text-[10px] text-white/40 text-center md:text-right tracking-widest uppercase">
-            © {new Date().getFullYear()} · ARQUITETURA MOBILE & WEB DE ALTA CONVERSÃO
+            © {new Date().getFullYear()} · {language === 'pt' ? 'ARQUITETURA MOBILE & WEB DE ALTA CONVERSÃO' : 'HIGH-CONVERSION MOBILE & WEB ARCHITECTURE'}
           </div>
         </div>
       </footer>
@@ -238,7 +253,7 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={scrollToTop}
             className="fixed bottom-22 right-6 z-40 p-3 bg-[#0e1117]/95 backdrop-blur-md border border-white/20 hover:border-[#ffaa00] text-white/80 hover:text-[#ffaa00] shadow-[0_4px_20px_rgba(0,0,0,0.8)] transition-all cursor-pointer"
-            title="Voltar ao topo"
+            title={language === 'pt' ? 'Voltar ao topo' : 'Scroll to top'}
           >
             <ArrowUp size={16} />
           </motion.button>

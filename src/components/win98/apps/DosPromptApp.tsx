@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { personalInfo, impactMetrics, skillCategories } from '../../../data/portfolioData';
+import { personalInfo } from '../../../data/portfolioData';
 import { playClickSound } from '../soundEffects';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 interface CommandOutput {
   id: number;
@@ -9,6 +10,9 @@ interface CommandOutput {
 }
 
 export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNavigateModern }) => {
+  const { t, language } = useLanguage();
+  const isPt = language === 'pt';
+
   const [history, setHistory] = useState<CommandOutput[]>([
     {
       id: 0,
@@ -20,27 +24,27 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
       command: 'help',
       output: (
         <div className="space-y-1">
-          <div>Comandos disponíveis no Guerber MS-DOS:</div>
+          <div>{isPt ? 'Comandos disponíveis no Guerber MS-DOS:' : 'Available commands in Guerber MS-DOS:'}</div>
           <div className="text-emerald-400">
-            • <span className="font-bold text-white">help</span> : Lista todos os comandos
+            • <span className="font-bold text-white">help</span> : {isPt ? 'Lista todos os comandos' : 'List all commands'}
           </div>
           <div className="text-emerald-400">
-            • <span className="font-bold text-white">bio</span> : Perfil e resumo do engenheiro
+            • <span className="font-bold text-white">bio</span> : {isPt ? 'Perfil e resumo do engenheiro' : 'Engineer profile and summary'}
           </div>
           <div className="text-emerald-400">
-            • <span className="font-bold text-white">metrics</span> : Métricas reais de impacto de produção
+            • <span className="font-bold text-white">metrics</span> : {isPt ? 'Métricas reais de impacto de produção' : 'Audited production impact metrics'}
           </div>
           <div className="text-emerald-400">
-            • <span className="font-bold text-white">skills</span> : Matriz completa de tecnologias
+            • <span className="font-bold text-white">skills</span> : {isPt ? 'Matriz completa de tecnologias' : 'Comprehensive skills matrix'}
           </div>
           <div className="text-emerald-400">
-            • <span className="font-bold text-white">contact</span> : E-mail, LinkedIn e GitHub
+            • <span className="font-bold text-white">contact</span> : {isPt ? 'E-mail, LinkedIn e GitHub' : 'Direct Email, LinkedIn and GitHub'}
           </div>
           <div className="text-emerald-400">
-            • <span className="font-bold text-white">modern</span> : Alternar para o Portfólio Moderno
+            • <span className="font-bold text-white">modern</span> : {isPt ? 'Alternar para o Portfólio Moderno' : 'Switch to Modern 3D Portfolio'}
           </div>
           <div className="text-emerald-400">
-            • <span className="font-bold text-white">cls</span> : Limpar a tela
+            • <span className="font-bold text-white">cls</span> : {isPt ? 'Limpar a tela' : 'Clear screen'}
           </div>
         </div>
       )
@@ -70,7 +74,7 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
       case 'help':
         resultNode = (
           <div className="space-y-1 text-slate-300">
-            <div>Comandos: bio, metrics, skills, cases, contact, modern, cls, easteregg, ver</div>
+            <div>Commands: bio, metrics, skills, cases, contact, modern, cls, easteregg, ver</div>
           </div>
         );
         break;
@@ -84,8 +88,14 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
           <div className="text-slate-200 space-y-1">
             <div className="font-bold text-emerald-400">{personalInfo.fullName}</div>
             <div>{personalInfo.title} — {personalInfo.subtitle}</div>
-            <div className="text-slate-400">{personalInfo.bio}</div>
-            <div className="text-amber-300 font-bold">Status: {personalInfo.status}</div>
+            <div className="text-slate-400">
+              {isPt
+                ? personalInfo.bio
+                : 'Senior Software Engineer specializing in modernizing hyper-scale mobile/web applications, clean architecture, native Kotlin/Swift modules and automated AI dev workflows.'}
+            </div>
+            <div className="text-amber-300 font-bold">
+              Status: {isPt ? personalInfo.status : 'Available for high-impact opportunities'}
+            </div>
           </div>
         );
         break;
@@ -93,8 +103,10 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
       case 'metrics':
         resultNode = (
           <div className="space-y-1.5 text-slate-200">
-            <div className="text-amber-300 font-bold">MÉTRICAS AUDITADAS EM PRODUÇÃO (banQi / Casas Bahia):</div>
-            {impactMetrics.map((m) => (
+            <div className="text-amber-300 font-bold">
+              {isPt ? 'MÉTRICAS AUDITADAS EM PRODUÇÃO (banQi / Casas Bahia):' : 'AUDITED PRODUCTION METRICS (banQi / Casas Bahia Group):'}
+            </div>
+            {t.impact.metrics.map((m) => (
               <div key={m.id} className="text-xs">
                 <span className="font-bold text-emerald-400">{m.metric}</span> {m.label} ({m.sublabel})
               </div>
@@ -106,7 +118,7 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
       case 'skills':
         resultNode = (
           <div className="space-y-2 text-slate-200">
-            {skillCategories.map((c) => (
+            {t.tech.categories.map((c) => (
               <div key={c.id}>
                 <div className="font-bold text-emerald-400">[{c.name.toUpperCase()}]:</div>
                 <div className="text-slate-300 text-xs">
@@ -129,7 +141,9 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
         break;
 
       case 'modern':
-        resultNode = 'Carregando interface moderna... Redirecionando!';
+        resultNode = isPt
+          ? 'Carregando interface moderna... Redirecionando!'
+          : 'Loading Modern 3D interface... Redirecting!';
         if (onNavigateModern) {
           setTimeout(onNavigateModern, 300);
         }
@@ -152,7 +166,9 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
         break;
 
       default:
-        resultNode = `Comando '${trimmed}' não reconhecido. Digite 'help' para a lista de comandos.`;
+        resultNode = isPt
+          ? `Comando '${trimmed}' não reconhecido. Digite 'help' para a lista de comandos.`
+          : `Command '${trimmed}' not recognized. Type 'help' for the list of commands.`;
         break;
     }
 
@@ -190,7 +206,7 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
 
       {/* Suggested Quick Command Badges */}
       <div className="flex flex-wrap items-center gap-1 py-1.5 border-t border-[#0e3a16] text-[10px]">
-        <span className="text-slate-500">Atalhos rápidos:</span>
+        <span className="text-slate-500">{isPt ? 'Atalhos rápidos:' : 'Quick shortcuts:'}</span>
         {['bio', 'metrics', 'skills', 'contact', 'modern', 'cls'].map((cmd) => (
           <button
             key={cmd}
@@ -212,7 +228,7 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
           onChange={(e) => setInputVal(e.target.value)}
           autoFocus
           className="flex-1 bg-transparent border-none outline-none text-white font-mono text-[11px]"
-          placeholder="Digite um comando..."
+          placeholder={isPt ? 'Digite um comando...' : 'Type a command (try help)...'}
         />
       </form>
     </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { playAeroClick, setAeroMuted, getAeroMuted } from './soundEffectsAero';
 import { portfolioRegistry, navigateToPortfolio } from '../../data/portfolioRegistry';
+import { useLanguage } from '../../i18n';
 
 interface AeroTaskbarVistaProps {
   onScrollToMsn?: () => void;
@@ -16,6 +17,7 @@ export const AeroTaskbarVista: React.FC<AeroTaskbarVistaProps> = ({
   onScrollToCases,
   onNavigateModern
 }) => {
+  const { language, setLanguage } = useLanguage();
   const [timeStr, setTimeStr] = useState('');
   const [isMuted, setIsMutedState] = useState(() => getAeroMuted());
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
@@ -69,7 +71,7 @@ export const AeroTaskbarVista: React.FC<AeroTaskbarVistaProps> = ({
               setIsStartMenuOpen(!isStartMenuOpen);
             }}
             className="vista-orb w-9 h-9 rounded-full flex items-center justify-center cursor-pointer shadow-lg relative group"
-            title="Menu Iniciar Frutiger Aero"
+            title={language === 'pt' ? 'Menu Iniciar Frutiger Aero' : 'Frutiger Aero Start Menu'}
           >
             <span className="text-sm drop-shadow-md">🌐</span>
           </button>
@@ -97,7 +99,7 @@ export const AeroTaskbarVista: React.FC<AeroTaskbarVistaProps> = ({
 
                 {/* Portfolio Selector in Start Menu */}
                 <div className="text-[11px] font-bold text-sky-950 px-2 py-1 uppercase tracking-wider font-mono">
-                  Alternar Portfólio / Temas
+                  {language === 'pt' ? 'Alternar Portfólio / Temas' : 'Switch Portfolio / Themes'}
                 </div>
 
                 <div className="space-y-1 my-1">
@@ -136,7 +138,7 @@ export const AeroTaskbarVista: React.FC<AeroTaskbarVistaProps> = ({
                     }}
                     className="w-full py-1.5 px-3 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold text-xs hover:brightness-110 cursor-pointer shadow-sm text-center"
                   >
-                    ✨ Retornar ao Portfólio Moderno 3D
+                    {language === 'pt' ? '✨ Retornar ao Portfólio Moderno 3D' : '✨ Return to Modern 3D Portfolio'}
                   </button>
                 </div>
               </motion.div>
@@ -185,22 +187,35 @@ export const AeroTaskbarVista: React.FC<AeroTaskbarVistaProps> = ({
       </div>
 
       {/* 2. Right: System Tray & Clock */}
-      <div className="flex items-center gap-3 text-white/90 text-xs">
+      <div className="flex items-center gap-2.5 text-white/90 text-xs">
+        {/* Language Switch Button */}
+        <button
+          type="button"
+          onClick={() => {
+            playAeroClick();
+            setLanguage(language === 'en' ? 'pt' : 'en');
+          }}
+          className="px-2 py-0.5 rounded-md bg-white/20 hover:bg-white/30 border border-white/30 text-[11px] font-bold text-white transition-all cursor-pointer shadow-xs flex items-center gap-1 font-mono"
+          title={language === 'en' ? 'Mudar para Português' : 'Switch to English'}
+        >
+          <span>{language === 'en' ? '🇺🇸 EN' : '🇧🇷 PT'}</span>
+        </button>
+
         {/* Audio Mute Toggle Button */}
         <button
           type="button"
           onClick={toggleMute}
           className="p-1 rounded hover:bg-white/20 cursor-pointer transition-colors"
-          title={isMuted ? 'Desmutar sons' : 'Mutar sons'}
+          title={isMuted ? (language === 'pt' ? 'Desmutar sons' : 'Unmute sounds') : (language === 'pt' ? 'Mutar sons' : 'Mute sounds')}
         >
           <span>{isMuted ? '🔇' : '🔊'}</span>
         </button>
 
         {/* Network and Battery Icons */}
-        <span className="hidden sm:inline" title="Conexão de Rede Ativa">
+        <span className="hidden sm:inline" title={language === 'pt' ? 'Conexão de Rede Ativa' : 'Network Connected'}>
           📶
         </span>
-        <span className="hidden sm:inline" title="Energia Otimizada">
+        <span className="hidden sm:inline" title={language === 'pt' ? 'Energia Otimizada' : 'Optimized Power'}>
           ⚡
         </span>
 

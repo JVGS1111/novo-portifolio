@@ -17,26 +17,41 @@ export const MotionCursor: React.FC = () => {
       return;
     }
 
+    let isCurrentlyVisible = false;
+    let isCurrentlyHovering = false;
+
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      if (!isCurrentlyVisible) {
+        isCurrentlyVisible = true;
+        setIsVisible(true);
+      }
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => {
+      isCurrentlyVisible = false;
+      setIsVisible(false);
+    };
+    const handleMouseEnter = () => {
+      isCurrentlyVisible = true;
+      setIsVisible(true);
+    };
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
 
     const handleElementHover = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       if (!target) return;
-      const interactive = target.closest('a, button, input, textarea, [role="button"], .cursor-pointer, .interactive-card');
-      setIsHovering(!!interactive);
+      const interactive = !!target.closest('a, button, input, textarea, [role="button"], .cursor-pointer, .interactive-card');
+      if (interactive !== isCurrentlyHovering) {
+        isCurrentlyHovering = interactive;
+        setIsHovering(interactive);
+      }
     };
 
-    window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mousemove', handleElementHover);
+    window.addEventListener('mousemove', moveCursor, { passive: true });
+    window.addEventListener('mousemove', handleElementHover, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
     window.addEventListener('mousedown', handleMouseDown);
@@ -50,7 +65,7 @@ export const MotionCursor: React.FC = () => {
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [cursorX, cursorY, isVisible]);
+  }, [cursorX, cursorY]);
 
   if (!isVisible) return null;
 

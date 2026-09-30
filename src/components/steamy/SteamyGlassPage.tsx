@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { SteamyBackground } from './SteamyBackground';
-import { SteamyTopBar } from './SteamyTopBar';
-import { SteamWipeCanvas } from './SteamWipeCanvas';
-import { SteamyHeroCard } from './SteamyHeroCard';
-import { SteamyImpactMetrics } from './SteamyImpactMetrics';
-import { SteamyCaseStudies } from './SteamyCaseStudies';
-import { SteamyExperiences } from './SteamyExperiences';
-import { SteamyTechMatrix } from './SteamyTechMatrix';
-import { SteamyBottomBar } from './SteamyBottomBar';
+import { PrismBackground } from './PrismBackground';
+import { PrismNavbar } from './PrismNavbar';
+import { PrismHeroSection } from './PrismHeroSection';
+import { PrismFeaturedProjects } from './PrismFeaturedProjects';
+import { PrismImpactMetrics } from './PrismImpactMetrics';
+import { PrismExperience } from './PrismExperience';
+import { PrismTechMatrix } from './PrismTechMatrix';
+import { PrismContact } from './PrismContact';
+import { PrismBottomBar } from './PrismBottomBar';
 import { PortfolioSwitcher } from '../PortfolioSwitcher';
 
 interface SteamyGlassPageProps {
@@ -16,55 +16,59 @@ interface SteamyGlassPageProps {
 
 export const SteamyGlassPage: React.FC<SteamyGlassPageProps> = ({ onNavigateModern }) => {
   useEffect(() => {
-    document.title = 'João Vinícius Guerber | Proposta 06 — Steamy Frosted Glass & Bath Fog';
+    document.title = 'João Vinícius Guerber | Proposta 06 — Luminous Prism Glassmorphism';
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
+  const handleOpenContact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      const topOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - topOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
-    <div className="min-h-screen text-slate-800 relative overflow-x-hidden select-text font-sans antialiased">
-      {/* 1. Atmospheric Morning Bath Mist Background with Botanical Leaves & Droplets */}
-      <SteamyBackground steamDensity={0.88} />
+    <div className="min-h-screen text-slate-900 relative overflow-x-hidden select-text font-sans antialiased bg-[#F4F6F9]">
+      {/* 1. Luminous Studio White & Prismatic Caustics Background */}
+      <PrismBackground />
 
       {/* 2. Main Page Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
-        {/* Sticky Tactile Top Bar */}
-        <SteamyTopBar onNavigateModern={onNavigateModern} />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+        {/* Sticky Frosted Glass Navbar */}
+        <PrismNavbar
+          onNavigateModern={onNavigateModern}
+          onOpenContact={handleOpenContact}
+        />
 
-        {/* Interactive Finger Wipe Glass Mirror Sandbox */}
-        <SteamWipeCanvas />
+        {/* Hero Section: Typography, 3D WebGL Crystal Glass & Code Card Centerpiece */}
+        <PrismHeroSection />
 
-        {/* Finger Wiped Clear Area (Figma: Finger_Wiped_Clear_Area) */}
-        <main
-          className="relative w-full p-4 sm:p-8 md:p-10 rounded-[32px] sm:rounded-[44px] bg-white/70 backdrop-blur-2xl border border-white/85 shadow-[0_24px_56px_rgba(30,45,65,0.07),0_4px_16px_rgba(30,45,65,0.03),inset_0_2.5px_4px_rgba(255,255,255,0.95),inset_0_-2.5px_6px_rgba(0,0,0,0.02)] transition-all"
-        >
-          {/* Hero Section Card */}
-          <SteamyHeroCard />
+        {/* Featured Projects: BanQi App (Phone), Guepsi (SaaS Dashboard), Open Source (Terminal) */}
+        <PrismFeaturedProjects />
 
-          {/* Quantified Impact Metrics Section (5 Dew Pods) */}
-          <SteamyImpactMetrics />
+        {/* Quantified Engineering Impact (5 Glass Pods) */}
+        <PrismImpactMetrics />
 
-          {/* Engineering & Architecture Case Studies (3 Cards) */}
-          <SteamyCaseStudies />
+        {/* Professional Career Timeline */}
+        <PrismExperience />
 
-          {/* Split Row: Career Experiences & Tech Matrix */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left Column: Career Timeline */}
-            <div className="lg:col-span-5">
-              <SteamyExperiences />
-            </div>
+        {/* Comprehensive Tech Stack & Certifications */}
+        <PrismTechMatrix />
 
-            {/* Right Column: 32 Skills Matrix, Certifications & Languages */}
-            <div className="lg:col-span-7">
-              <SteamyTechMatrix />
-            </div>
-          </div>
-        </main>
+        {/* Contact & Let's Talk CTA */}
+        <PrismContact />
 
-        {/* Telemetry & Specifications Bottom Bar */}
-        <SteamyBottomBar />
+        {/* Optical Glass Spec & Footer */}
+        <PrismBottomBar />
       </div>
 
-      {/* Floating Portfolio Switcher */}
+      {/* Floating Portfolio Hub Switcher */}
       <PortfolioSwitcher variant="floating" />
     </div>
   );

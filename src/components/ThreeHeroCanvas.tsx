@@ -275,14 +275,40 @@ export const ThreeHeroCanvas: React.FC = () => {
       renderer.render(scene, camera);
     };
 
+    let isVisible = true;
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const nowVisible = entry.isIntersecting;
+            if (nowVisible && !isVisible) {
+              isVisible = true;
+              clock.start();
+              animate();
+            } else if (!nowVisible && isVisible) {
+              isVisible = false;
+              cancelAnimationFrame(animationFrameId);
+            }
+          });
+        },
+        { threshold: 0 }
+      );
+      observer.observe(container);
+    }
+
     animate();
 
     return () => {
+      if (observer) {
+        observer.disconnect();
+      }
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
+
 
       phoneGeo.dispose();
       phoneEdges.dispose();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { playClickSound, playMinimizeSound } from './soundEffects';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 interface Win98WindowProps {
   id: string;
@@ -36,14 +37,17 @@ export const Win98Window: React.FC<Win98WindowProps> = ({
   initialY = 40,
   width = 720,
   height = 500,
-  menuItems = ['Arquivo', 'Editar', 'Exibir', 'Ajuda'],
-  statusText = 'Pronto',
+  menuItems,
+  statusText,
   onFocus,
   onClose,
   onMinimize,
   onToggleMaximize,
   children
 }) => {
+  const { language } = useLanguage();
+  const resolvedMenuItems = menuItems || (language === 'pt' ? ['Arquivo', 'Editar', 'Exibir', 'Ajuda'] : ['File', 'Edit', 'View', 'Help']);
+  const resolvedStatusText = statusText || (language === 'pt' ? 'Pronto' : 'Ready');
   const [screenDims, setScreenDims] = useState(() => ({
     isMobile: typeof window !== 'undefined' ? window.innerWidth < 768 : false,
     width: typeof window !== 'undefined' ? window.innerWidth : 1200,
@@ -151,7 +155,7 @@ export const Win98Window: React.FC<Win98WindowProps> = ({
                   onMinimize();
                 }}
                 className="w-4 h-3.5 bg-[#C0C0C0] text-black font-bold text-[9px] flex items-center justify-center border-t border-l border-white border-r border-b border-black active:border-t-black active:border-l-black active:border-r-white active:border-b-white active:pt-[1px] active:pl-[1px] cursor-pointer"
-                title="Minimizar"
+                title={language === 'pt' ? 'Minimizar' : 'Minimize'}
               >
                 _
               </button>
@@ -166,7 +170,7 @@ export const Win98Window: React.FC<Win98WindowProps> = ({
                 className={`w-4 h-3.5 bg-[#C0C0C0] text-black font-bold text-[9px] items-center justify-center border-t border-l border-white border-r border-b border-black active:border-t-black active:border-l-black active:border-r-white active:border-b-white active:pt-[1px] active:pl-[1px] cursor-pointer ${
                   screenDims.isMobile ? 'hidden' : 'flex'
                 }`}
-                title={isMaximized ? 'Restaurar' : 'Maximizar'}
+                title={isMaximized ? (language === 'pt' ? 'Restaurar' : 'Restore') : (language === 'pt' ? 'Maximizar' : 'Maximize')}
               >
                 {isMaximized ? '❐' : '□'}
               </button>
@@ -179,7 +183,7 @@ export const Win98Window: React.FC<Win98WindowProps> = ({
                   onClose();
                 }}
                 className="w-4 h-3.5 bg-[#C0C0C0] text-black font-bold text-[10px] flex items-center justify-center border-t border-l border-white border-r border-b border-black active:border-t-black active:border-l-black active:border-r-white active:border-b-white active:pt-[1px] active:pl-[1px] cursor-pointer"
-                title="Fechar"
+                title={language === 'pt' ? 'Fechar' : 'Close'}
               >
                 ×
               </button>
@@ -187,9 +191,9 @@ export const Win98Window: React.FC<Win98WindowProps> = ({
           </div>
 
           {/* Menu Bar */}
-          {menuItems.length > 0 && (
+          {resolvedMenuItems.length > 0 && (
             <div className="flex items-center gap-2 sm:gap-3 px-1.5 py-0.5 bg-[#C0C0C0] border-b border-[#808080] text-[10.5px] text-black overflow-x-auto shrink-0">
-              {menuItems.map((item) => (
+              {resolvedMenuItems.map((item) => (
                 <span
                   key={item}
                   onClick={playClickSound}
@@ -207,9 +211,9 @@ export const Win98Window: React.FC<Win98WindowProps> = ({
           </div>
 
           {/* Status Bar */}
-          {statusText && (
+          {resolvedStatusText && (
             <div className="flex items-center justify-between px-2 py-0.5 mt-[1px] bg-[#C0C0C0] text-[10px] text-black border-t border-l border-[#808080] border-r border-b border-white shrink-0">
-              <span className="truncate">{statusText}</span>
+              <span className="truncate">{resolvedStatusText}</span>
               <span className="shrink-0 text-slate-600 font-mono text-[9px] hidden sm:inline">
                 Guerber OS 98 SE
               </span>

@@ -10,12 +10,14 @@ import { AeroActionDock } from './AeroActionDock';
 import { AeroTaskbarVista } from './AeroTaskbarVista';
 import { PortfolioSwitcher } from '../PortfolioSwitcher';
 import { playAeroClick } from './soundEffectsAero';
+import { useLanguage } from '../../i18n';
 
 interface FrutigerAeroPageProps {
   onNavigateModern?: () => void;
 }
 
 export const FrutigerAeroPage: React.FC<FrutigerAeroPageProps> = ({ onNavigateModern }) => {
+  const { language, setLanguage } = useLanguage();
   const msnRef = useRef<HTMLDivElement>(null);
   const threeRef = useRef<HTMLDivElement>(null);
   const casesRef = useRef<HTMLDivElement>(null);
@@ -44,7 +46,9 @@ export const FrutigerAeroPage: React.FC<FrutigerAeroPageProps> = ({ onNavigateMo
           <div className="flex items-center gap-2 text-xs sm:text-sm font-bold tracking-tight">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-sm animate-pulse shrink-0" />
             <span className="text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
-              PROPOSTA 5: FRUTIGER AERO & AQUA ECOTOPIA
+              {language === 'pt'
+                ? 'PROPOSTA 5: FRUTIGER AERO & AQUA ECOTOPIA'
+                : 'PROPOSAL 5: FRUTIGER AERO & AQUA ECOTOPIA'}
             </span>
             <span className="hidden lg:inline text-sky-200 text-xs font-normal opacity-90">
               • Windows Live Messenger 8.5 • Three.js WebGL Bio-Spheres • Skeuomorphic Gel & Aero Glass
@@ -63,6 +67,19 @@ export const FrutigerAeroPage: React.FC<FrutigerAeroPageProps> = ({ onNavigateMo
               🌱 Ecotopia 2000s
             </span>
 
+            {/* Language Toggle Button */}
+            <button
+              type="button"
+              onClick={() => {
+                playAeroClick();
+                setLanguage(language === 'en' ? 'pt' : 'en');
+              }}
+              className="btn-jelly-glass px-2.5 py-1 rounded-full text-xs font-bold font-mono text-sky-950 flex items-center gap-1 cursor-pointer"
+              title={language === 'en' ? 'Mudar para Português' : 'Switch to English'}
+            >
+              <span>{language === 'en' ? '🇺🇸 EN' : '🇧🇷 PT'}</span>
+            </button>
+
             {/* Switch to Modern Portfolio Button */}
             <button
               type="button"
@@ -75,7 +92,7 @@ export const FrutigerAeroPage: React.FC<FrutigerAeroPageProps> = ({ onNavigateMo
                 }
               }}
               className="btn-jelly-blue px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 cursor-pointer"
-              title="Voltar ao Portfólio Moderno 3D"
+              title={language === 'pt' ? 'Voltar ao Portfólio Moderno 3D' : 'Back to Modern 3D Portfolio'}
             >
               <span>✨</span>
               <span>Modern 3D</span>
@@ -89,7 +106,7 @@ export const FrutigerAeroPage: React.FC<FrutigerAeroPageProps> = ({ onNavigateMo
                 window.location.hash = '#/win98';
               }}
               className="btn-jelly-green px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 cursor-pointer"
-              title="Ir para o Windows 98"
+              title={language === 'pt' ? 'Ir para o Windows 98' : 'Go to Windows 98'}
             >
               <span>🕹️</span>
               <span>Win 98</span>

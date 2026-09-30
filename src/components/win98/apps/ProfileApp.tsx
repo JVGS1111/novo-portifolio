@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
-import { personalInfo, experiences, skillCategories, education, languages } from '../../../data/portfolioData';
+import { personalInfo } from '../../../data/portfolioData';
 import { playClickSound } from '../soundEffects';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 export const ProfileApp: React.FC = () => {
+  const { t, language } = useLanguage();
+  const isPt = language === 'pt';
   const [activeTab, setActiveTab] = useState<'bio' | 'exp' | 'skills' | 'certs'>('bio');
 
   const tabs: { id: 'bio' | 'exp' | 'skills' | 'certs'; label: string }[] = [
-    { id: 'bio', label: 'Visão Geral & Bio' },
-    { id: 'exp', label: 'Carreira & XP' },
+    { id: 'bio', label: isPt ? 'Visão Geral & Bio' : 'Overview & Bio' },
+    { id: 'exp', label: isPt ? 'Carreira & XP' : 'Career & Experience' },
     { id: 'skills', label: 'Tech Matrix' },
-    { id: 'certs', label: 'Certificados & Idiomas' }
+    { id: 'certs', label: isPt ? 'Certificados & Idiomas' : 'Certs & Languages' }
   ];
+
+  const bioText = isPt
+    ? personalInfo.bio
+    : 'Senior Software Engineer specializing in modernizing high-impact, hyper-scale mobile and web applications. Strong focus on clean architecture, native Kotlin/Swift modules, extreme runtime stability, eliminating critical technical debt, and driving velocity with intelligent AI tooling.';
+
+  const statusText = isPt
+    ? personalInfo.status
+    : 'Available for high-impact engineering projects & roles';
 
   return (
     <div className="p-3 text-[11px] font-['Tahoma',sans-serif] text-black h-full flex flex-col">
@@ -56,14 +67,14 @@ export const ProfileApp: React.FC = () => {
                     {personalInfo.fullName}
                   </h1>
                   <span className="px-2 py-0.5 text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-400 rounded-xs">
-                    ● {personalInfo.status}
+                    ● {statusText}
                   </span>
                 </div>
                 <div className="text-xs font-semibold text-slate-800">
                   {personalInfo.title} — <span className="text-blue-800">{personalInfo.subtitle}</span>
                 </div>
                 <div className="text-[10px] text-slate-600">
-                  Experiência: <span className="font-bold text-black">{personalInfo.yearsOfExperience}</span> | Localização: <span className="font-bold text-black">{personalInfo.location}</span>
+                  {isPt ? 'Experiência:' : 'Experience:'} <span className="font-bold text-black">{isPt ? '5 anos' : '5 Years'}</span> | {isPt ? 'Localização:' : 'Location:'} <span className="font-bold text-black">{isPt ? 'Brasil (Remoto)' : 'Brazil (Remote)'}</span>
                 </div>
               </div>
             </div>
@@ -71,17 +82,17 @@ export const ProfileApp: React.FC = () => {
             {/* Executive Bio Box */}
             <div className="p-2.5 bg-[#F4F4F4] border border-[#808080] rounded-xs space-y-1">
               <span className="font-bold text-[#000080] uppercase text-[10px] block">
-                Perfil de Engenharia & Especialidade:
+                {isPt ? 'Perfil de Engenharia & Especialidade:' : 'Engineering Profile & Focus Area:'}
               </span>
               <p className="text-slate-800 leading-relaxed">
-                {personalInfo.bio}
+                {bioText}
               </p>
             </div>
 
             {/* Communication & Social Contacts (Sunken Table) */}
             <div className="border border-[#808080] rounded-xs overflow-hidden">
               <div className="bg-[#C0C0C0] px-2 py-1 font-bold text-[10px] border-b border-[#808080]">
-                CANAIS DE CONTATO & REFERÊNCIAS
+                {isPt ? 'CANAIS DE CONTATO & REFERÊNCIAS' : 'CONTACT CHANNELS & REFERENCES'}
               </div>
               <table className="w-full text-left border-collapse">
                 <tbody>
@@ -110,9 +121,9 @@ export const ProfileApp: React.FC = () => {
                     </td>
                   </tr>
                   <tr className="hover:bg-blue-50">
-                    <td className="px-2 py-1 font-bold text-slate-700">🛡️ Certificação:</td>
+                    <td className="px-2 py-1 font-bold text-slate-700">🛡️ {isPt ? 'Certificação:' : 'Certification:'}</td>
                     <td className="px-2 py-1 text-purple-900 font-bold">
-                      GitHub Copilot Certified (Oficial 2025–2028)
+                      GitHub Copilot Certified (Official 2025–2028)
                     </td>
                   </tr>
                 </tbody>
@@ -125,9 +136,9 @@ export const ProfileApp: React.FC = () => {
         {activeTab === 'exp' && (
           <div className="space-y-3">
             <div className="font-bold text-[#000080] text-xs pb-1 border-b border-slate-300">
-              HISTÓRICO PROFISSIONAL EM PRODUÇÃO (2021 – PRESENTE)
+              {isPt ? 'HISTÓRICO PROFISSIONAL EM PRODUÇÃO (2021 – PRESENTE)' : 'PRODUCTION CAREER TIMELINE (2021 – PRESENT)'}
             </div>
-            {experiences.map((exp) => (
+            {t.experience.items.map((exp) => (
               <div key={exp.id} className="p-2.5 bg-[#FAFAFA] border border-[#808080] rounded-xs space-y-1.5">
                 <div className="flex flex-wrap items-center justify-between gap-1">
                   <span className="font-bold text-slate-900 text-xs">{exp.role}</span>
@@ -136,7 +147,7 @@ export const ProfileApp: React.FC = () => {
                   </span>
                 </div>
                 <div className="text-[10.5px] font-semibold text-blue-800">
-                  {exp.company} {exp.client && `• Cliente: ${exp.client}`}
+                  {exp.company} {exp.client && `• ${isPt ? 'Cliente:' : 'Client:'} ${exp.client}`}
                 </div>
                 <p className="text-slate-700 italic text-[10px]">
                   {exp.summary}
@@ -165,10 +176,10 @@ export const ProfileApp: React.FC = () => {
         {activeTab === 'skills' && (
           <div className="space-y-3">
             <div className="font-bold text-[#000080] text-xs pb-1 border-b border-slate-300">
-              MATRIZ DE COMPETÊNCIAS TÉCNICAS & ARQUITETURA
+              {isPt ? 'MATRIZ DE COMPETÊNCIAS TÉCNICAS & ARQUITETURA' : 'TECHNICAL SKILLS MATRIX & ARCHITECTURE'}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {skillCategories.map((cat) => (
+              {t.tech.categories.map((cat) => (
                 <div key={cat.id} className="p-2 bg-[#F8FAFC] border border-[#808080] rounded-xs space-y-1.5">
                   <div className="font-bold text-xs text-[#000080] border-b border-slate-200 pb-0.5">
                     {cat.name}
@@ -199,10 +210,10 @@ export const ProfileApp: React.FC = () => {
           <div className="space-y-4">
             <div>
               <div className="font-bold text-[#000080] text-xs pb-1 border-b border-slate-300 mb-2">
-                CERTIFICAÇÕES OFICIAIS & FORMAÇÃO ACADÊMICA
+                {isPt ? 'CERTIFICAÇÕES OFICIAIS & FORMAÇÃO ACADÊMICA' : 'OFFICIAL CERTIFICATIONS & EDUCATION'}
               </div>
               <div className="space-y-2">
-                {education.map((item, idx) => (
+                {t.educationSection.educationItems.map((item, idx) => (
                   <div key={idx} className="p-2.5 bg-[#FAFAFA] border border-[#808080] rounded-xs space-y-1">
                     <div className="flex items-center justify-between">
                       <span className="font-bold text-xs text-purple-900">{item.title}</span>
@@ -223,10 +234,10 @@ export const ProfileApp: React.FC = () => {
 
             <div>
               <div className="font-bold text-[#000080] text-xs pb-1 border-b border-slate-300 mb-2">
-                PROFICIÊNCIA LINGUÍSTICA
+                {isPt ? 'PROFICIÊNCIA LINGUÍSTICA' : 'LANGUAGE PROFICIENCY'}
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {languages.map((lang, idx) => (
+                {t.educationSection.languagesList.map((lang, idx) => (
                   <div key={idx} className="p-2 bg-[#F8FAFC] border border-[#808080] rounded-xs">
                     <div className="font-bold text-xs text-blue-900">{lang.name}</div>
                     <div className="text-[10px] font-bold text-emerald-700">{lang.level}</div>

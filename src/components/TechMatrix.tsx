@@ -53,10 +53,10 @@ export const TechMatrix: React.FC = () => {
         {/* Filter Controls Bar */}
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mb-10">
           {/* Category Pills with Sliding Layout Indicator */}
-          <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 w-full sm:w-auto">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`relative px-4 py-2 rounded-xl text-xs font-mono font-medium transition-colors cursor-pointer ${
+              className={`relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-mono font-medium transition-colors cursor-pointer ${
                 selectedCategory === 'all'
                   ? 'text-slate-950 font-bold'
                   : 'text-slate-400 hover:text-white bg-slate-900/60 border border-slate-800'
@@ -78,7 +78,7 @@ export const TechMatrix: React.FC = () => {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`relative px-4 py-2 rounded-xl text-xs font-mono font-medium transition-colors cursor-pointer ${
+                  className={`relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-mono font-medium transition-colors cursor-pointer ${
                     isSelected
                       ? 'text-slate-950 font-bold'
                       : 'text-slate-400 hover:text-white bg-slate-900/60 border border-slate-800'

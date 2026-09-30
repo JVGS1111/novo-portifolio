@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import type { WindowId } from './win98Types';
 import { playClickSound } from './soundEffects';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 interface Win98StartMenuProps {
   isOpen: boolean;
@@ -18,15 +19,42 @@ export const Win98StartMenu: React.FC<Win98StartMenuProps> = ({
   onShutdown,
   onNavigateModern
 }) => {
+  const { language, setLanguage } = useLanguage();
   if (!isOpen) return null;
 
+  const isPt = language === 'pt';
+
   const menuItems: { id?: WindowId; label: string; icon: string; action?: () => void }[] = [
-    { id: 'profile', label: 'Guerber_Profile.exe (Bio & Carreira)', icon: '💻' },
-    { id: 'perf', label: 'Performance_Monitor.exe (-98% Crashes)', icon: '📊' },
-    { id: 'cases', label: 'Meus Projetos & Case Studies', icon: '🚀' },
-    { id: 'cmd', label: 'Terminal MS-DOS Prompt', icon: '📟' },
-    { id: 'ie', label: 'Internet Explorer (Redes & Contato)', icon: '🌐' },
-    { id: 'recycle', label: 'Lixeira (0 Débito Técnico)', icon: '🗑️' }
+    {
+      id: 'profile',
+      label: isPt ? 'Guerber_Profile.exe (Bio & Carreira)' : 'Guerber_Profile.exe (Bio & Career)',
+      icon: '💻'
+    },
+    {
+      id: 'perf',
+      label: isPt ? 'Performance_Monitor.exe (-98% Crashes)' : 'Performance_Monitor.exe (-98% Crashes)',
+      icon: '📊'
+    },
+    {
+      id: 'cases',
+      label: isPt ? 'Meus Projetos & Case Studies' : 'My Projects & Case Studies',
+      icon: '🚀'
+    },
+    {
+      id: 'cmd',
+      label: isPt ? 'Terminal MS-DOS Prompt' : 'MS-DOS Prompt Terminal',
+      icon: '📟'
+    },
+    {
+      id: 'ie',
+      label: isPt ? 'Internet Explorer (Redes & Contato)' : 'Internet Explorer (Links & Contact)',
+      icon: '🌐'
+    },
+    {
+      id: 'recycle',
+      label: isPt ? 'Lixeira (0 Débito Técnico)' : 'Recycle Bin (0 Tech Debt)',
+      icon: '🗑️'
+    }
   ];
 
   return (
@@ -68,6 +96,27 @@ export const Win98StartMenu: React.FC<Win98StartMenuProps> = ({
 
           <div className="my-1 border-t border-slate-400 border-b border-white" />
 
+          {/* Language Switch Option */}
+          <button
+            type="button"
+            onClick={() => {
+              playClickSound();
+              setLanguage(isPt ? 'en' : 'pt');
+              onClose();
+            }}
+            className="w-full text-left px-2 py-1.5 flex items-center gap-2 hover:bg-[#000080] hover:text-white cursor-pointer rounded-xs transition-colors group"
+          >
+            <span className="text-base">{isPt ? '🇺🇸' : '🇧🇷'}</span>
+            <div className="truncate">
+              <div className="font-bold">{isPt ? 'Switch to English (EN)' : 'Mudar para Português (PT)'}</div>
+              <div className="text-[9px] text-slate-600 group-hover:text-blue-200">
+                {isPt ? 'Set primary language to English' : 'Definir idioma principal como PT'}
+              </div>
+            </div>
+          </button>
+
+          <div className="my-1 border-t border-slate-400 border-b border-white" />
+
           {/* Switch to Modern Portfolio Button */}
           <button
             type="button"
@@ -80,9 +129,9 @@ export const Win98StartMenu: React.FC<Win98StartMenuProps> = ({
           >
             <span className="text-base group-hover:scale-110 transition-transform">✨</span>
             <div className="truncate">
-              <div>Portfólio Moderno</div>
+              <div>{isPt ? 'Portfólio Moderno' : 'Modern Portfolio'}</div>
               <div className="text-[9px] font-normal text-slate-600 group-hover:text-blue-200">
-                Alternar para versão 3D / Web moderna
+                {isPt ? 'Alternar para versão 3D / Web moderna' : 'Switch to 3D / Next-Gen modern web'}
               </div>
             </div>
           </button>
@@ -100,7 +149,7 @@ export const Win98StartMenu: React.FC<Win98StartMenuProps> = ({
             className="w-full text-left px-2 py-1.5 flex items-center gap-2 hover:bg-[#000080] hover:text-white cursor-pointer rounded-xs text-red-900 font-medium"
           >
             <span className="text-base">🛑</span>
-            <span>Desligar o Computador...</span>
+            <span>{isPt ? 'Desligar o Computador...' : 'Shut Down Computer...'}</span>
           </button>
         </div>
       </motion.div>

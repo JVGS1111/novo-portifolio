@@ -1,6 +1,7 @@
 import React from 'react';
 import { MonolithPanel } from './MonolithPanel';
 import { Award, GraduationCap, Globe, Cpu } from 'lucide-react';
+import { useLanguage } from '../../i18n';
 
 interface TechDomain {
   id: string;
@@ -8,7 +9,66 @@ interface TechDomain {
   skills: string[];
 }
 
-const techDomains: TechDomain[] = [
+const techDomainsEn: TechDomain[] = [
+  {
+    id: '01',
+    name: 'MOBILE & NATIVE',
+    skills: [
+      'React Native',
+      'Kotlin (Android)',
+      'Swift (iOS)',
+      'Expo & Bare Workflow',
+      'Native Modules (Bridge)',
+      'Android Studio / Profiler',
+      'Xcode / Instruments',
+      'Hermes Engine Opt'
+    ]
+  },
+  {
+    id: '02',
+    name: 'FRONT-END & WEB',
+    skills: [
+      'Modern React.js',
+      'Next.js (App Router)',
+      'Strict TypeScript',
+      'JavaScript (ESNext)',
+      'Tailwind CSS',
+      'Three.js / WebGL',
+      'Semantic HTML5 / CSS3',
+      'Zustand / Redux State'
+    ]
+  },
+  {
+    id: '03',
+    name: 'DEVOPS & CLOUD',
+    skills: [
+      'Fastlane CI/CD',
+      'Azure DevOps Pipelines',
+      'GitHub Actions',
+      'AWS (S3, CloudFront)',
+      'AppDome RASP Security',
+      'Docker Containers',
+      'Databricks Analytics',
+      'Dynatrace APM'
+    ]
+  },
+  {
+    id: '04',
+    name: 'QUALITY & DEV AI',
+    skills: [
+      'Jest & Vitest Suites',
+      'Clean Architecture & SOLID',
+      'TDD & BDD Practices',
+      'Design Systems & Tokens',
+      'GitHub Copilot Certified',
+      'AI Custom Dev Agents',
+      'Prompt Engineering',
+      'Performance Profiling'
+    ]
+  }
+];
+
+const techDomainsPt: TechDomain[] = [
   {
     id: '01',
     name: 'MOBILE & NATIVO',
@@ -68,6 +128,9 @@ const techDomains: TechDomain[] = [
 ];
 
 export const MonolithTechMatrix: React.FC = () => {
+  const { language } = useLanguage();
+  const techDomains = language === 'pt' ? techDomainsPt : techDomainsEn;
+
   return (
     <section id="monolith-tech" className="w-full max-w-7xl mx-auto px-6 sm:px-12 py-12 scroll-mt-24">
       {/* Cinematic Section Header */}
@@ -75,19 +138,21 @@ export const MonolithTechMatrix: React.FC = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2 font-mono text-[11px] font-semibold tracking-widest uppercase text-white/50">
             <span className="text-[#ffaa00]">// 05</span>
-            <span>TECHNICAL MATRIX & CREDENTIALS</span>
+            <span>{language === 'pt' ? 'MATRIZ TÉCNICA & CREDENCIAIS' : 'TECHNICAL MATRIX & CREDENTIALS'}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-['Space_Grotesk'] text-white tracking-tight uppercase">
-            MATRIZ TECNOLÓGICA & CREDENCIAIS
+            {language === 'pt' ? 'MATRIZ TECNOLÓGICA & CREDENCIAIS' : 'TECHNICAL MATRIX & CREDENTIALS'}
           </h2>
           <p className="font-mono text-xs text-white/60 tracking-wider uppercase max-w-2xl leading-relaxed">
-            32 COMPETÊNCIAS MAPEADAS, CERTIFICAÇÃO OFICIAL MICROSOFT/GITHUB, GRADUAÇÃO E IDIOMAS.
+            {language === 'pt'
+              ? '32 COMPETÊNCIAS MAPEADAS, CERTIFICAÇÃO OFICIAL MICROSOFT/GITHUB, GRADUAÇÃO E IDIOMAS.'
+              : '32 MAPPED CORE SKILLS, OFFICIAL MICROSOFT/GITHUB CERTIFICATION, DEGREE, AND LANGUAGES.'}
           </p>
         </div>
 
         <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 font-mono text-[10px] text-white/70 tracking-widest uppercase">
           <Cpu size={14} className="text-[#ffaa00]" />
-          <span>32 CORE SKILLS</span>
+          <span>{language === 'pt' ? '32 COMPETÊNCIAS CENTRAIS' : '32 CORE SKILLS'}</span>
         </div>
       </div>
 
@@ -138,16 +203,18 @@ export const MonolithTechMatrix: React.FC = () => {
             <div className="space-y-2">
               <div className="text-[10px] font-mono font-bold text-[#ffaa00] tracking-widest uppercase flex items-center gap-2">
                 <Award size={14} className="text-[#ffaa00]" />
-                <span>CERTIFICAÇÃO OFICIAL // IA</span>
+                <span>{language === 'pt' ? 'CERTIFICAÇÃO OFICIAL // IA' : 'OFFICIAL CERTIFICATION // AI'}</span>
               </div>
               <h4 className="text-base font-black font-['Space_Grotesk'] text-white group-hover:text-[#ffaa00] transition-colors">
                 GitHub Copilot Certified
               </h4>
               <div className="text-[10px] font-mono text-white/50 uppercase">
-                EMISSOR: MICROSOFT / GITHUB · 2025 – 2028
+                {language === 'pt' ? 'EMISSOR: MICROSOFT / GITHUB · 2025 – 2028' : 'ISSUER: MICROSOFT / GITHUB · 2025 – 2028'}
               </div>
               <p className="text-xs font-sans text-white/70 leading-relaxed pt-1">
-                Especialização em engenharia orientada a inteligência artificial, automação avançada de código e agentes para aceleração de entrega.
+                {language === 'pt'
+                  ? 'Especialização em engenharia orientada a inteligência artificial, automação avançada de código e agentes para aceleração de entrega.'
+                  : 'Specialization in AI-driven software engineering, advanced code automation, and intelligent agents for delivery acceleration.'}
               </p>
             </div>
           </MonolithPanel>
@@ -157,16 +224,18 @@ export const MonolithTechMatrix: React.FC = () => {
             <div className="space-y-2">
               <div className="text-[10px] font-mono font-bold text-[#ffaa00] tracking-widest uppercase flex items-center gap-2">
                 <GraduationCap size={14} className="text-[#ffaa00]" />
-                <span>GRADUAÇÃO SUPERIOR</span>
+                <span>{language === 'pt' ? 'GRADUAÇÃO SUPERIOR' : 'HIGHER EDUCATION'}</span>
               </div>
               <h4 className="text-base font-black font-['Space_Grotesk'] text-white group-hover:text-[#ffaa00] transition-colors">
-                Análise e Desenvolvimento de Sistemas
+                {language === 'pt' ? 'Análise e Desenvolvimento de Sistemas' : 'Analysis and Systems Development'}
               </h4>
               <div className="text-[10px] font-mono text-white/50 uppercase">
-                INSTITUIÇÃO: UNINTER · 2019 – 2021
+                {language === 'pt' ? 'INSTITUIÇÃO: UNINTER · 2019 – 2021' : 'INSTITUTION: UNINTER · 2019 – 2021'}
               </div>
               <p className="text-xs font-sans text-white/70 leading-relaxed pt-1">
-                Formação com sólida base em arquitetura de software, orientação a objetos, algoritmos, modelagem de banco de dados e sistemas distribuídos.
+                {language === 'pt'
+                  ? 'Formação com sólida base em arquitetura de software, orientação a objetos, algoritmos, modelagem de banco de dados e sistemas distribuídos.'
+                  : 'Degree with a solid foundation in software architecture, object-oriented design, algorithms, database modeling, and distributed systems.'}
               </p>
             </div>
           </MonolithPanel>
@@ -176,25 +245,29 @@ export const MonolithTechMatrix: React.FC = () => {
             <div className="space-y-2">
               <div className="text-[10px] font-mono font-bold text-[#ffaa00] tracking-widest uppercase flex items-center gap-2">
                 <Globe size={14} className="text-[#ffaa00]" />
-                <span>IDIOMAS & COMUNICAÇÃO GLOBAL</span>
+                <span>{language === 'pt' ? 'IDIOMAS & COMUNICAÇÃO GLOBAL' : 'LANGUAGES & GLOBAL COMMUNICATION'}</span>
               </div>
               <div className="space-y-2 pt-1 text-xs">
                 <div>
                   <div className="font-mono font-bold text-white flex items-center justify-between">
-                    <span>Português: Nativo</span>
-                    <span className="text-[#ffaa00] text-[10px] font-mono">[FLUÊNCIA]</span>
+                    <span>{language === 'pt' ? 'Português: Nativo' : 'Portuguese: Native'}</span>
+                    <span className="text-[#ffaa00] text-[10px] font-mono">{language === 'pt' ? '[FLUÊNCIA]' : '[NATIVE]'}</span>
                   </div>
                   <p className="text-[11px] font-sans text-white/50">
-                    Comunicação executiva, liderança técnica e alinhamento com stakeholders.
+                    {language === 'pt'
+                      ? 'Comunicação executiva, liderança técnica e alinhamento com stakeholders.'
+                      : 'Executive communication, technical leadership, and strategic stakeholder alignment.'}
                   </p>
                 </div>
                 <div>
                   <div className="font-mono font-bold text-white flex items-center justify-between">
-                    <span>Inglês: B2 Intermediário Superior</span>
-                    <span className="text-[#ffaa00] text-[10px] font-mono">[PROFICIENTE]</span>
+                    <span>{language === 'pt' ? 'Inglês: B2 Intermediário Superior' : 'English: B2 Upper Intermediate'}</span>
+                    <span className="text-[#ffaa00] text-[10px] font-mono">{language === 'pt' ? '[PROFICIENTE]' : '[PROFICIENT]'}</span>
                   </div>
                   <p className="text-[11px] font-sans text-white/50">
-                    Fluência para reuniões técnicas internacionais, documentação e times globais.
+                    {language === 'pt'
+                      ? 'Fluência para reuniões técnicas internacionais, documentação e times globais.'
+                      : 'Fluency for international technical syncs, documentation, and global distributed teams.'}
                   </p>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useSpring, useMotionValue } from 'framer-motion';
+import { motion, useSpring, useMotionValue, useMotionTemplate } from 'framer-motion';
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -40,6 +40,9 @@ export const TiltCard: React.FC<TiltCardProps> = ({
   const springConfig = { damping: 20, stiffness: 260 };
   const rotateX = useSpring(0, springConfig);
   const rotateY = useSpring(0, springConfig);
+
+  const spotlightBg = useMotionTemplate`radial-gradient(360px circle at ${mouseX}px ${mouseY}px, ${spotlightColor}, transparent 80%)`;
+  const specularGlassGlint = useMotionTemplate`radial-gradient(160px circle at ${mouseX}px ${mouseY}px, rgba(255, 255, 255, 0.22), transparent 75%)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!canHover || !cardRef.current) return;
@@ -93,14 +96,18 @@ export const TiltCard: React.FC<TiltCardProps> = ({
       transition={{ duration: 0.2 }}
       className={`relative overflow-hidden w-full h-full min-w-0 ${className}`}
     >
-      {/* Dynamic Cursor Spotlight Overlay (Desktop pointer only) */}
+      {/* Dynamic Cursor Spotlight & Apple Liquid Glass Specular Glint */}
       {canHover && isHovered && (
-        <motion.div
-          className="pointer-events-none absolute -inset-px z-10 transition-opacity duration-300 rounded-[inherit]"
-          style={{
-            background: `radial-gradient(400px circle at ${mouseX.get()}px ${mouseY.get()}px, ${spotlightColor}, transparent 80%)`,
-          }}
-        />
+        <>
+          <motion.div
+            className="pointer-events-none absolute -inset-px z-10 transition-opacity duration-300 rounded-[inherit]"
+            style={{ background: spotlightBg }}
+          />
+          <motion.div
+            className="pointer-events-none absolute -inset-px z-20 transition-opacity duration-300 rounded-[inherit] mix-blend-screen"
+            style={{ background: specularGlassGlint }}
+          />
+        </>
       )}
 
       {/* Content wrapper with robust flex and sizing */}

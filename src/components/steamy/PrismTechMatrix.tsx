@@ -67,7 +67,7 @@ export const PrismTechMatrix: React.FC = () => {
   ];
 
   return (
-    <section id="stack" className="w-full pt-6 pb-16">
+    <section id="stack" className="w-full pt-6 pb-16 glass-section-contain">
       {/* Section Header */}
       <div className="flex items-center gap-4 mb-8">
         <h2 className="text-xs sm:text-[13px] font-bold text-slate-400 uppercase tracking-widest shrink-0">
@@ -78,20 +78,16 @@ export const PrismTechMatrix: React.FC = () => {
 
       {/* 4 Skill Categories Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        {categories.map((cat, idx) => (
+        {categories.map((cat) => (
           <motion.div
             key={cat.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -4 }}
-            className="p-5 sm:p-6 rounded-[28px] bg-white/80 hover:bg-white/95 backdrop-blur-md border border-white/90 shadow-[0_16px_36px_rgba(20,30,45,0.04),inset_0_1.5px_2px_rgba(255,255,255,0.95)] hover:shadow-[0_24px_48px_rgba(20,30,45,0.08)] transition-all flex flex-col justify-between transform-gpu"
+            className="p-5 sm:p-6 rounded-[28px] apple-liquid-card-light transition-all flex flex-col justify-between transform-gpu"
           >
             <div>
               {/* Category Header */}
               <div className="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100">
-                <div className="p-2 rounded-xl bg-slate-50 border border-slate-200/60 shadow-xs">
+                <div className="p-2 rounded-xl apple-liquid-chip shadow-xs">
                   {cat.icon}
                 </div>
                 <h3 className="text-sm font-bold text-slate-900">
@@ -104,7 +100,7 @@ export const PrismTechMatrix: React.FC = () => {
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 rounded-xl bg-white hover:bg-indigo-50/80 border border-slate-200/70 hover:border-indigo-300 text-slate-700 hover:text-indigo-900 text-xs font-medium shadow-2xs transition-all cursor-default"
+                    className="px-2.5 py-1 rounded-xl apple-liquid-chip hover:bg-white border border-white/80 hover:border-indigo-300 text-slate-700 hover:text-indigo-900 text-xs font-medium shadow-2xs transition-all cursor-default"
                   >
                     {skill}
                   </span>
@@ -118,8 +114,8 @@ export const PrismTechMatrix: React.FC = () => {
       {/* Certification, Degree & Languages Footer Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Certification */}
-        <div className="p-5 rounded-[24px] bg-white/80 backdrop-blur-md border border-white/90 shadow-sm flex items-center gap-3.5 transform-gpu">
-          <div className="p-2.5 rounded-2xl bg-indigo-50 border border-indigo-200/60 text-indigo-600">
+        <div className="p-5 rounded-[24px] apple-liquid-card-light flex items-center gap-3.5 transform-gpu">
+          <div className="p-2.5 rounded-2xl apple-liquid-chip text-indigo-600 shadow-xs">
             <Award className="w-5 h-5" />
           </div>
           <div>
@@ -132,8 +128,8 @@ export const PrismTechMatrix: React.FC = () => {
         </div>
 
         {/* Education */}
-        <div className="p-5 rounded-[24px] bg-white/80 backdrop-blur-md border border-white/90 shadow-sm flex items-center gap-3.5 transform-gpu">
-          <div className="p-2.5 rounded-2xl bg-emerald-50 border border-emerald-200/60 text-emerald-600">
+        <div className="p-5 rounded-[24px] apple-liquid-card-light flex items-center gap-3.5 transform-gpu">
+          <div className="p-2.5 rounded-2xl apple-liquid-chip text-emerald-600 shadow-xs">
             <GraduationCap className="w-5 h-5" />
           </div>
           <div>
@@ -148,8 +144,8 @@ export const PrismTechMatrix: React.FC = () => {
         </div>
 
         {/* Languages */}
-        <div className="p-5 rounded-[24px] bg-white/80 backdrop-blur-md border border-white/90 shadow-sm flex items-center gap-3.5 transform-gpu">
-          <div className="p-2.5 rounded-2xl bg-blue-50 border border-blue-200/60 text-blue-600">
+        <div className="p-5 rounded-[24px] apple-liquid-card-light flex items-center gap-3.5 transform-gpu">
+          <div className="p-2.5 rounded-2xl apple-liquid-chip text-blue-600 shadow-xs">
             <Globe className="w-5 h-5" />
           </div>
           <div>

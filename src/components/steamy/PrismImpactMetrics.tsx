@@ -75,7 +75,7 @@ export const PrismImpactMetrics: React.FC = () => {
   ];
 
   return (
-    <section className="w-full pt-4 pb-16">
+    <section className="w-full pt-4 pb-16 glass-section-contain">
       {/* Section Header */}
       <div className="flex items-center gap-4 mb-6">
         <h2 className="text-xs sm:text-[13px] font-bold text-slate-400 uppercase tracking-widest shrink-0">
@@ -86,23 +86,19 @@ export const PrismImpactMetrics: React.FC = () => {
 
       {/* 5 Glass Pods Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
-        {metrics.map((m, idx) => (
+        {metrics.map((m) => (
           <motion.div
             key={m.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -5 }}
-            className="p-5 sm:p-6 rounded-[28px] bg-white/80 hover:bg-white/95 backdrop-blur-md border border-white/90 shadow-[0_16px_36px_rgba(20,30,45,0.04),inset_0_1.5px_2px_rgba(255,255,255,0.95)] hover:shadow-[0_24px_48px_rgba(20,30,45,0.08)] transition-all flex flex-col justify-between cursor-default group transform-gpu"
+            className="p-5 sm:p-6 rounded-[28px] apple-liquid-card-light transition-all flex flex-col justify-between cursor-default group transform-gpu"
           >
             <div>
               {/* Icon & Subtitle Badge */}
               <div className="flex items-center justify-between mb-4">
-                <div className="w-10 h-10 rounded-2xl bg-white border border-slate-200/60 shadow-xs flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-2xl apple-liquid-chip shadow-xs flex items-center justify-center group-hover:scale-110 transition-transform">
                   {m.icon}
                 </div>
-                <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                <span className="text-[10px] font-mono font-semibold px-2.5 py-0.5 rounded-full apple-liquid-chip text-slate-600 shadow-2xs">
                   {m.sub}
                 </span>
               </div>

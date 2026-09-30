@@ -131,7 +131,7 @@ export const PrismFeaturedProjects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="w-full pt-6 pb-20">
+    <section id="projects" className="w-full pt-6 pb-20 glass-section-contain">
       {/* Section Header (Exact from image: FEATURED PROJECTS ────) */}
       <div className="flex items-center gap-4 mb-8">
         <h2 className="text-xs sm:text-[13px] font-bold text-slate-400 uppercase tracking-widest shrink-0">
@@ -144,13 +144,9 @@ export const PrismFeaturedProjects: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
         {/* CARD 1: BanQi App */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           whileHover={{ y: -6 }}
           onClick={() => handleOpenModal('banqi')}
-          className="group relative rounded-[32px] bg-white/80 hover:bg-white/90 backdrop-blur-md border border-white/90 shadow-[0_20px_48px_rgba(20,30,45,0.05),inset_0_2px_4px_rgba(255,255,255,0.95)] hover:shadow-[0_28px_60px_rgba(20,30,45,0.1)] transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer min-h-[380px] transform-gpu"
+          className="group relative rounded-[32px] apple-liquid-card-light transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer min-h-[380px] transform-gpu"
         >
           {/* Top Info Area */}
           <div className="p-6 sm:p-7 relative z-10">
@@ -160,7 +156,7 @@ export const PrismFeaturedProjects: React.FC = () => {
                 <Smartphone className="w-5 h-5" />
               </div>
 
-              <div className="w-9 h-9 rounded-full bg-white/80 group-hover:bg-white border border-white/90 shadow-xs flex items-center justify-center text-slate-600 group-hover:text-indigo-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+              <div className="w-9 h-9 rounded-full apple-liquid-chip group-hover:bg-white flex items-center justify-center text-slate-600 group-hover:text-indigo-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shadow-xs">
                 <ArrowUpRight className="w-4 h-4" />
               </div>
             </div>
@@ -220,13 +216,9 @@ export const PrismFeaturedProjects: React.FC = () => {
 
         {/* CARD 2: Guepsi */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           whileHover={{ y: -6 }}
           onClick={() => handleOpenModal('guepsi')}
-          className="group relative rounded-[32px] bg-white/80 hover:bg-white/90 backdrop-blur-md border border-white/90 shadow-[0_20px_48px_rgba(20,30,45,0.05),inset_0_2px_4px_rgba(255,255,255,0.95)] hover:shadow-[0_28px_60px_rgba(20,30,45,0.1)] transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer min-h-[380px] transform-gpu"
+          className="group relative rounded-[32px] apple-liquid-card-light transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer min-h-[380px] transform-gpu"
         >
           {/* Top Info Area */}
           <div className="p-6 sm:p-7 relative z-10">
@@ -236,7 +228,7 @@ export const PrismFeaturedProjects: React.FC = () => {
                 <Brain className="w-5 h-5" />
               </div>
 
-              <div className="w-9 h-9 rounded-full bg-white/80 group-hover:bg-white border border-white/90 shadow-xs flex items-center justify-center text-slate-600 group-hover:text-indigo-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+              <div className="w-9 h-9 rounded-full apple-liquid-chip group-hover:bg-white flex items-center justify-center text-slate-600 group-hover:text-indigo-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shadow-xs">
                 <ArrowUpRight className="w-4 h-4" />
               </div>
             </div>
@@ -290,13 +282,9 @@ export const PrismFeaturedProjects: React.FC = () => {
 
         {/* CARD 3: Open Source */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           whileHover={{ y: -6 }}
           onClick={() => handleOpenModal('opensource')}
-          className="group relative rounded-[32px] bg-white/80 hover:bg-white/90 backdrop-blur-md border border-white/90 shadow-[0_20px_48px_rgba(20,30,45,0.05),inset_0_2px_4px_rgba(255,255,255,0.95)] hover:shadow-[0_28px_60px_rgba(20,30,45,0.1)] transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer min-h-[380px] transform-gpu"
+          className="group relative rounded-[32px] apple-liquid-card-light transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer min-h-[380px] transform-gpu"
         >
           {/* Top Info Area */}
           <div className="p-6 sm:p-7 relative z-10">
@@ -308,7 +296,7 @@ export const PrismFeaturedProjects: React.FC = () => {
                 </svg>
               </div>
 
-              <div className="w-9 h-9 rounded-full bg-white/80 group-hover:bg-white border border-white/90 shadow-xs flex items-center justify-center text-slate-600 group-hover:text-indigo-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+              <div className="w-9 h-9 rounded-full apple-liquid-chip group-hover:bg-white flex items-center justify-center text-slate-600 group-hover:text-indigo-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shadow-xs">
                 <ArrowUpRight className="w-4 h-4" />
               </div>
             </div>
@@ -365,19 +353,19 @@ export const PrismFeaturedProjects: React.FC = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 20 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-2xl rounded-[36px] bg-white/95 backdrop-blur-md border border-white p-6 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto transform-gpu"
+              className="relative w-full max-w-2xl rounded-[36px] apple-liquid-card-light p-6 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto transform-gpu"
             >
               {/* Close Button */}
               <button
                 type="button"
                 onClick={handleCloseModal}
-                className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-all cursor-pointer"
+                className="absolute top-6 right-6 p-2 rounded-full apple-liquid-pill-light hover:bg-white text-slate-600 transition-all cursor-pointer shadow-xs"
               >
                 <X className="w-4 h-4" />
               </button>
 
               {/* Tag */}
-              <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200/80 text-indigo-700 text-[11px] font-bold uppercase tracking-wider mb-3">
+              <span className="inline-block px-3.5 py-1 rounded-full apple-liquid-pill-light text-indigo-700 text-[11px] font-bold uppercase tracking-wider mb-3 shadow-xs">
                 {selectedProject.tag}
               </span>
 
@@ -391,7 +379,7 @@ export const PrismFeaturedProjects: React.FC = () => {
 
               {/* Challenge & Solution */}
               <div className="space-y-4 mb-6">
-                <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/60">
+                <div className="p-4 rounded-2xl bg-amber-50/75 border border-amber-200/60 shadow-xs">
                   <h4 className="text-xs font-bold text-amber-800 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                     <span>⚠️</span> {language === 'pt' ? 'Desafio Arquitetural' : 'Architectural Challenge'}
                   </h4>
@@ -400,7 +388,7 @@ export const PrismFeaturedProjects: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-sky-50/70 border border-sky-200/60">
+                <div className="p-4 rounded-2xl bg-sky-50/75 border border-sky-200/60 shadow-xs">
                   <h4 className="text-xs font-bold text-sky-800 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                     <Zap className="w-3.5 h-3.5 text-sky-600" /> {language === 'pt' ? 'Solução & Engenharia Aplicada' : 'Engineered Solution & Applied Architecture'}
                   </h4>
@@ -419,7 +407,7 @@ export const PrismFeaturedProjects: React.FC = () => {
                   {selectedProject.results.map((res, i) => (
                     <div
                       key={i}
-                      className="p-3 rounded-xl bg-slate-50 border border-slate-200/60 flex items-start gap-2.5"
+                      className="p-3 rounded-xl apple-liquid-chip flex items-start gap-2.5 shadow-xs"
                     >
                       <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                       <span className="text-xs font-medium text-slate-700">{res}</span>
@@ -437,7 +425,7 @@ export const PrismFeaturedProjects: React.FC = () => {
                   {selectedProject.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono font-medium"
+                      className="px-3 py-1 rounded-full apple-liquid-chip text-slate-700 text-xs font-mono font-medium shadow-2xs"
                     >
                       {tech}
                     </span>

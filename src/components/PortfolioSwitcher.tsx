@@ -148,7 +148,7 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 15, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute bottom-14 right-0 w-84 rounded-2xl bg-slate-950/95 border border-slate-800 backdrop-blur-2xl shadow-2xl shadow-black/80 p-2.5 mb-2 overflow-hidden"
+            className="absolute bottom-14 right-0 w-[calc(100vw-2.5rem)] max-w-[340px] sm:w-84 rounded-2xl bg-slate-950/95 border border-slate-800 backdrop-blur-2xl shadow-2xl shadow-black/80 p-2.5 mb-2 overflow-hidden"
           >
             <div className="px-3 py-2 border-b border-slate-800/80 mb-2 flex items-center justify-between">
               <span className="text-[11px] font-mono uppercase font-bold text-slate-300 flex items-center gap-1.5">

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ArrowUpRight, Download } from 'lucide-react';
 import { PrismHeroVisual } from './PrismHeroVisual';
 import { useLanguage } from '../../i18n/LanguageContext';
@@ -122,16 +121,11 @@ export const PrismHeroSection: React.FC = () => {
     <section id="about" className="relative w-full pt-2 pb-16 lg:pb-24">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
         {/* Left Column: Eyebrow, Headline, Description, Buttons, Tech Stack */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 flex flex-col items-start z-10"
-        >
-          {/* Eyebrow Badge (Exact from image) */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/75 backdrop-blur-md border border-white/90 shadow-[0_2px_8px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,0.9)] mb-6">
+        <div className="lg:col-span-5 flex flex-col items-start z-10">
+          {/* Eyebrow Badge (Apple Liquid Glass Pill) */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full apple-liquid-pill-light mb-6 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-            <span className="text-[11px] font-bold tracking-widest text-slate-500 uppercase">
+            <span className="text-[11px] font-bold tracking-widest text-slate-600 uppercase">
               {isPt ? 'Desenvolvedor Fullstack & Mobile' : 'Fullstack & Mobile Developer'}
             </span>
           </div>
@@ -178,11 +172,11 @@ export const PrismHeroSection: React.FC = () => {
               <ArrowUpRight className="w-4 h-4 text-white/70 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
 
-            {/* Secondary Frosted Glass Pill Button */}
+            {/* Secondary Frosted Glass Pill Button — Apple Liquid Glass */}
             <button
               type="button"
               onClick={handleDownloadCV}
-              className="px-6 sm:px-7 py-3.5 rounded-full bg-white/80 hover:bg-white text-slate-800 font-semibold text-sm border border-white/95 shadow-[0_4px_16px_rgba(0,0,0,0.03),inset_0_1.5px_2px_rgba(255,255,255,0.95)] hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2.5 cursor-pointer group"
+              className="px-6 sm:px-7 py-3.5 rounded-full apple-liquid-pill-light hover:bg-white text-slate-800 font-semibold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2.5 cursor-pointer group shadow-xs hover:shadow-md"
             >
               <span>{isPt ? 'Baixar CV' : 'Download CV'}</span>
               <Download className="w-4 h-4 text-slate-500 group-hover:text-slate-900 group-hover:translate-y-0.5 transition-transform" />
@@ -199,7 +193,7 @@ export const PrismHeroSection: React.FC = () => {
                 <div
                   key={tech.name}
                   title={`${tech.name} — ${tech.desc}`}
-                  className="w-11 h-11 rounded-2xl bg-white/80 hover:bg-white backdrop-blur-md border border-white/90 shadow-[0_4px_12px_rgba(0,0,0,0.03),inset_0_1.5px_2px_rgba(255,255,255,0.95)] hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all flex items-center justify-center cursor-pointer group transform-gpu"
+                  className="w-11 h-11 rounded-2xl apple-liquid-chip hover:bg-white flex items-center justify-center cursor-pointer group transform-gpu shadow-xs hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all"
                 >
                   <div className="transition-transform group-hover:scale-110">
                     {tech.icon}
@@ -208,17 +202,12 @@ export const PrismHeroSection: React.FC = () => {
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Right Column: 3D Glass Composition with 3D Physics Tilt Code Card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-7 relative flex items-center justify-center"
-        >
+        <div className="lg:col-span-7 relative flex items-center justify-center">
           <PrismHeroVisual onScrollToProjects={scrollToProjects} />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

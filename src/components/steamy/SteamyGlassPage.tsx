@@ -18,6 +18,11 @@ export const SteamyGlassPage: React.FC<SteamyGlassPageProps> = ({ onNavigateMode
   useEffect(() => {
     document.title = 'João Vinícius Guerber | Proposta 06 — Luminous Prism Glassmorphism';
     window.scrollTo({ top: 0, behavior: 'instant' });
+    const originalBodyBg = document.body.style.backgroundColor;
+    document.body.style.backgroundColor = '#EEF2F7';
+    return () => {
+      document.body.style.backgroundColor = originalBodyBg;
+    };
   }, []);
 
   const handleOpenContact = () => {
@@ -34,7 +39,7 @@ export const SteamyGlassPage: React.FC<SteamyGlassPageProps> = ({ onNavigateMode
   };
 
   return (
-    <div className="min-h-screen text-slate-900 relative overflow-x-hidden select-text font-sans antialiased bg-[#F4F6F9]">
+    <div className="min-h-screen text-slate-900 relative overflow-x-hidden select-text font-sans antialiased">
       {/* 1. Luminous Studio White & Prismatic Caustics Background */}
       <PrismBackground />
 

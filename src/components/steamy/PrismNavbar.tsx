@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Sparkles, ChevronDown } from 'lucide-react';
 import { portfolioRegistry, getCurrentPortfolio, navigateToPortfolio, type PortfolioItem } from '../../data/portfolioRegistry';
@@ -15,12 +15,35 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState(() => (typeof window !== 'undefined' ? window.location.hash : ''));
   const [activeSection, setActiveSection] = useState('about');
+  const hubRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleHash = () => setCurrentHash(window.location.hash);
     window.addEventListener('hashchange', handleHash);
     return () => window.removeEventListener('hashchange', handleHash);
   }, []);
+
+  // Close dropdown on outside click or Escape key
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (hubRef.current && !hubRef.current.contains(e.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+    if (isMenuOpen) {
+      document.addEventListener('pointerdown', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener('pointerdown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMenuOpen]);
 
   const current = getCurrentPortfolio(currentHash);
 
@@ -59,13 +82,16 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
   return (
     <header className="sticky top-4 z-50 w-full mb-8">
       <motion.div
-        initial={{ y: -24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-3 rounded-full bg-white/85 backdrop-blur-md border border-white/80 shadow-[0_16px_36px_rgba(20,30,45,0.04),inset_0_1.5px_2px_rgba(255,255,255,0.9)] flex items-center justify-between gap-4 transform-gpu will-change-transform"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.35, ease: 'easeOut' }}
+        className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-3 rounded-full apple-liquid-pill-light shadow-[0_20px_48px_rgba(20,30,55,0.06),inset_0_2px_3px_rgba(255,255,255,1)] flex items-center justify-between gap-2 sm:gap-4 transform-gpu will-change-transform relative"
       >
+        {/* Top Specular Glint Refraction Line */}
+        <div className="absolute inset-x-4 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none rounded-full" />
+
         {/* Left: JV Brand + Refractive Status Circle */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-3 shrink-0 relative z-10">
           <button
             type="button"
             onClick={() => scrollToSection('about')}
@@ -83,7 +109,7 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
         </div>
 
         {/* Center: Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 sm:gap-2">
+        <nav className="hidden md:flex items-center gap-1 sm:gap-2 relative z-10">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -93,8 +119,8 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
                 onClick={() => scrollToSection(item.id)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer ${
                   isActive
-                    ? 'text-slate-900 bg-white/90 shadow-[0_2px_8px_rgba(0,0,0,0.04),inset_0_1px_1px_rgba(255,255,255,0.9)]'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'
+                    ? 'text-slate-900 bg-white/95 shadow-[0_2px_10px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,1)]'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
                 }`}
               >
                 {item.label}
@@ -104,15 +130,15 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
         </nav>
 
         {/* Right Side: Language Toggle, Portfolio Switcher & Let's Talk CTA */}
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 relative z-10">
           {/* Frosted Glass Language Toggle */}
-          <div className="flex items-center bg-white/70 p-0.5 rounded-full border border-white/80 shadow-xs">
+          <div className="flex items-center apple-liquid-pill-light p-0.5 rounded-full shadow-xs shrink-0">
             <button
               type="button"
               onClick={() => {
                 setLanguage('en');
               }}
-              className={`px-2 py-0.5 rounded-full text-[11px] font-semibold transition-all cursor-pointer ${
+              className={`px-2.5 py-0.5 rounded-full text-[11px] font-semibold transition-all cursor-pointer ${
                 language === 'en'
                   ? 'bg-slate-900 text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
@@ -125,7 +151,7 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
               onClick={() => {
                 setLanguage('pt');
               }}
-              className={`px-2 py-0.5 rounded-full text-[11px] font-semibold transition-all cursor-pointer ${
+              className={`px-2.5 py-0.5 rounded-full text-[11px] font-semibold transition-all cursor-pointer ${
                 language === 'pt'
                   ? 'bg-slate-900 text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
@@ -136,21 +162,21 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
           </div>
 
           {/* Portfolio Hub Dropdown */}
-          <div className="relative">
+          <div ref={hubRef} className="relative">
             <button
               type="button"
               onClick={() => {
                 setIsMenuOpen(!isMenuOpen);
               }}
               title="Alternar entre temas do portfólio"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 hover:bg-white text-slate-700 text-xs font-semibold border border-white/80 shadow-xs transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full apple-liquid-pill-light hover:bg-white text-slate-700 text-xs font-semibold shadow-xs transition-all cursor-pointer shrink-0"
             >
-              <Sparkles className="w-3 h-3 text-indigo-500" />
+              <Sparkles className="w-3 h-3 text-indigo-500 shrink-0" />
               <span className="hidden sm:inline">Hub</span>
               <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} />
             </button>
 
-            {/* Dropdown Menu */}
+            {/* Dropdown Menu (Guaranteed not to break responsive viewports) */}
             <AnimatePresence>
               {isMenuOpen && (
                 <motion.div
@@ -158,9 +184,9 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.96 }}
                   transition={{ duration: 0.16 }}
-                  className="absolute right-0 mt-2 w-72 rounded-2xl bg-white/95 backdrop-blur-2xl border border-slate-200/80 shadow-2xl p-2 z-50 overflow-hidden text-left"
+                  className="absolute right-[-64px] xs:right-[-48px] sm:right-0 mt-2.5 w-[calc(100vw-2.5rem)] max-w-[320px] sm:w-80 rounded-2xl apple-liquid-glass-light border border-white/95 shadow-2xl p-2 z-50 text-left flex flex-col max-h-[min(480px,75vh)] overflow-hidden"
                 >
-                  <div className="px-3 py-2 border-b border-slate-100 flex items-center justify-between mb-1">
+                  <div className="px-3 py-2 border-b border-slate-100 flex items-center justify-between mb-1 shrink-0">
                     <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider">
                       {isPt ? 'Alternar Portfólio' : 'Switch Portfolio'}
                     </span>
@@ -169,7 +195,7 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
                     </span>
                   </div>
 
-                  <div className="space-y-1">
+                  <div className="space-y-1 overflow-y-auto pr-1">
                     {portfolioRegistry.map((item) => {
                       const isCurrent = current.id === item.id;
                       return (
@@ -183,7 +209,7 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
                               : 'hover:bg-slate-50 border border-transparent text-slate-700'
                           }`}
                         >
-                          <span className="text-base p-1.5 rounded-lg bg-white border border-slate-200/60 shadow-xs">
+                          <span className="text-base p-1.5 rounded-lg bg-white border border-slate-200/60 shadow-xs shrink-0">
                             {item.icon}
                           </span>
                           <div className="flex-1 min-w-0">
@@ -213,7 +239,7 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
                 scrollToSection('contact');
               }
             }}
-            className="flex items-center gap-1 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/80 hover:bg-white text-slate-900 hover:text-indigo-600 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03),inset_0_1.5px_2px_rgba(255,255,255,0.95)] hover:shadow-md text-xs sm:text-sm font-semibold transition-all cursor-pointer group"
+            className="flex items-center gap-1 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/80 hover:bg-white text-slate-900 hover:text-indigo-600 border border-white/90 shadow-[0_4px_14px_rgba(0,0,0,0.03),inset_0_1.5px_2px_rgba(255,255,255,0.95)] hover:shadow-md text-xs sm:text-sm font-semibold transition-all cursor-pointer group shrink-0 whitespace-nowrap"
           >
             <span>{isPt ? 'Conversar' : "Let's talk"}</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-indigo-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

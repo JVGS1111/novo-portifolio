@@ -117,7 +117,7 @@ export const PrismExperience: React.FC = () => {
   const experiences = language === 'pt' ? experiencesPt : experiencesEn;
 
   return (
-    <section id="experience" className="w-full pt-6 pb-16">
+    <section id="experience" className="w-full pt-6 pb-16 glass-section-contain">
       {/* Section Header */}
       <div className="flex items-center gap-4 mb-8">
         <h2 className="text-xs sm:text-[13px] font-bold text-slate-400 uppercase tracking-widest shrink-0">
@@ -128,15 +128,11 @@ export const PrismExperience: React.FC = () => {
 
       {/* Timeline List */}
       <div className="space-y-6">
-        {experiences.map((exp, idx) => (
+        {experiences.map((exp) => (
           <motion.div
             key={exp.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -4 }}
-            className="p-6 sm:p-8 rounded-[32px] bg-white/80 hover:bg-white/95 backdrop-blur-md border border-white/90 shadow-[0_16px_36px_rgba(20,30,45,0.04),inset_0_1.5px_2px_rgba(255,255,255,0.95)] hover:shadow-[0_24px_48px_rgba(20,30,45,0.08)] transition-all group transform-gpu"
+            className="p-6 sm:p-8 rounded-[32px] apple-liquid-card-light transition-all group transform-gpu"
           >
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
               <div>
@@ -152,11 +148,11 @@ export const PrismExperience: React.FC = () => {
 
               {/* Badges: Period & Location */}
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200/60 text-indigo-700 text-xs font-semibold">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full apple-liquid-chip text-indigo-700 text-xs font-semibold shadow-xs">
                   <Calendar className="w-3.5 h-3.5 text-indigo-600" />
                   {exp.period}
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200/60 text-slate-600 text-xs font-medium">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full apple-liquid-chip text-slate-600 text-xs font-medium shadow-xs">
                   <MapPin className="w-3.5 h-3.5 text-slate-400" />
                   {exp.location}
                 </span>
@@ -173,7 +169,7 @@ export const PrismExperience: React.FC = () => {
               {exp.highlights.map((h, i) => (
                 <div
                   key={i}
-                  className="p-3 rounded-2xl bg-slate-50/80 border border-slate-100 text-xs font-medium text-slate-700 flex items-center gap-2"
+                  className="p-3 rounded-2xl apple-liquid-chip text-xs font-medium text-slate-700 flex items-center gap-2 shadow-2xs"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
                   <span>{h}</span>
@@ -186,7 +182,7 @@ export const PrismExperience: React.FC = () => {
               {exp.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 rounded-full bg-white border border-slate-200/80 text-slate-700 text-[11px] font-mono font-medium shadow-2xs"
+                  className="px-3 py-1 rounded-full apple-liquid-chip text-slate-700 text-[11px] font-mono font-medium shadow-2xs"
                 >
                   {tech}
                 </span>

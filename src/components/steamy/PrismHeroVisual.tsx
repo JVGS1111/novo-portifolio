@@ -108,7 +108,7 @@ export const PrismHeroVisual: React.FC<PrismHeroVisualProps> = ({ onScrollToProj
         className="absolute inset-8 rounded-[36px] bg-slate-900/10 blur-2xl transform translate-y-10 scale-95 pointer-events-none"
       />
 
-      {/* CARD DE CÓDIGO MONUMENTAL EM VIDRO PRISMÁTICO COM FÍSICA 3D */}
+      {/* CARD DE CÓDIGO MONUMENTAL EM VIDRO PRISMÁTICO COM FÍSICA 3D & APPLE LIQUID GLASS */}
       <motion.div
         style={{
           rotateX,
@@ -117,23 +117,21 @@ export const PrismHeroVisual: React.FC<PrismHeroVisualProps> = ({ onScrollToProj
           y: translateY,
           transformStyle: 'preserve-3d',
         }}
-        className="relative w-full rounded-[36px] sm:rounded-[40px] bg-white/85 sm:bg-white/90 backdrop-blur-md border border-white/95 shadow-[0_30px_70px_rgba(20,30,55,0.08),0_10px_25px_rgba(20,30,55,0.04),inset_0_2px_4px_rgba(255,255,255,1),inset_0_-2px_4px_rgba(0,0,0,0.02)] p-6 sm:p-8 cursor-default overflow-hidden group transform-gpu"
+        className="relative w-full rounded-[36px] sm:rounded-[40px] apple-liquid-card-light p-6 sm:p-8 cursor-default overflow-hidden group transform-gpu"
       >
 
-        {/* Dynamic Specular Glass Glare Layer (Segue a Luz do Cursor) */}
+        {/* Dynamic Specular Glass Glare Layer (Pre-rendered GPU texture translated smoothly) */}
         <motion.div
-          className="absolute inset-0 rounded-[36px] sm:rounded-[40px] pointer-events-none"
+          className="absolute w-[360px] h-[360px] -translate-x-1/2 -translate-y-1/2 pointer-events-none rounded-full transform-gpu"
           style={{
-            background: useTransform(
-              [glareX, glareY],
-              ([gx, gy]) =>
-                `radial-gradient(circle 380px at ${gx}% ${gy}%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 40%, transparent 75%)`
-            ),
+            left: useTransform(glareX, (x) => `${x}%`),
+            top: useTransform(glareY, (y) => `${y}%`),
+            background: 'radial-gradient(circle, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.18) 45%, transparent 75%)',
           }}
         />
 
-        {/* Arco de Borda Prismática com Brilho Iridescente no Topo */}
-        <div className="absolute top-0 inset-x-8 h-[2px] bg-gradient-to-r from-transparent via-indigo-400/60 to-transparent pointer-events-none" />
+        {/* Arco de Borda Prismática com Brilho Iridescente e Refração no Topo */}
+        <div className="absolute top-0 inset-x-6 h-[2px] bg-gradient-to-r from-transparent via-sky-400/80 via-indigo-400/80 to-transparent pointer-events-none" />
 
         {/* 1. Card Header: Semáforo macOS + Tag Interativa + Botão Copiar */}
         <div
@@ -302,14 +300,14 @@ export const PrismHeroVisual: React.FC<PrismHeroVisualProps> = ({ onScrollToProj
         </div>
       </motion.div>
 
-      {/* BOTÃO CIRCULAR DE VIDRO COM SETA (Lateral direita) */}
+      {/* BOTÃO CIRCULAR DE VIDRO COM SETA (Lateral direita) — Apple Liquid Glass */}
       <div className="hidden sm:flex absolute -right-6 bottom-4 z-30">
         <button
           type="button"
           onClick={() => {
             if (onScrollToProjects) onScrollToProjects();
           }}
-          className="w-13 h-13 rounded-full bg-white/85 hover:bg-white backdrop-blur-md border border-white/95 shadow-[0_10px_26px_rgba(20,30,55,0.08),inset_0_2px_4px_rgba(255,255,255,0.95)] flex items-center justify-center text-slate-800 hover:text-indigo-600 transition-all hover:scale-110 active:scale-95 cursor-pointer group transform-gpu"
+          className="w-13 h-13 rounded-full apple-liquid-pill-light hover:bg-white flex items-center justify-center text-slate-800 hover:text-indigo-600 transition-all hover:scale-110 active:scale-95 cursor-pointer group transform-gpu shadow-xl"
           title="Ver projetos em destaque"
         >
           <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

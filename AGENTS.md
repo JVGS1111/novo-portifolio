@@ -83,28 +83,30 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
     - `RecycleBinApp.tsx`: Lixeira com itens descartados e easter eggs.
   - Menu Iniciar funcional com opção de Desligamento do sistema (`ShutdownScreen.tsx`) e seletor `Win98PortfolioSelector.tsx`.
 
-#### 3. Luminous Prism Glassmorphism Portfolio (Proposta 06)
+#### 3. Luminous Prism & Apple Liquid Glass Portfolio (Proposta 06)
 - **Acesso**: Hash `#/steamy-glass`, `#/glass` ou `#/proposta-6`
-- **Estilo Visual**: Luminous Studio White & Platinum (`#F4F6F9`), vidro prismático cristalino com refração física (`backdrop-filter: blur(24px)`), realce interno especular (`inset 0 2px 4px rgba(255,255,255,0.95)`), reflexos cáusticos arco-íris (dispersão cromática espectral) e sombras multicamadas suaves.
+- **Estilo Visual**: Luminous Studio White & Apple Liquid Glass (`#F4F6F9`), vidro líquido com refração física óptica profunda (`backdrop-filter: blur(28px) saturate(190%) contrast(104%)`), realce interno especular multicamadas (`inset 0 2px 3px rgba(255,255,255,1)` e `inset 0 0 24px rgba(255,255,255,0.4)`), friso superior com dispersão cromática iridescente, reflexos cáusticos arco-íris e sombras ambientais fluidas.
 - **Destaques de Motion Design e Interatividade**:
-  - `PrismBackground.tsx`: Iluminação de estúdio suave com gradientes radiais acelerados por GPU sem sobrecarga de filtros de blur, feixes de luz cáusticos e dispersão cromática com interpolação contínua (lerp) via `requestAnimationFrame` sem re-renderizações React.
-  - `PrismHeroVisual.tsx`: Card de código monumental em vidro prismático com física 3D interativa (Framer Motion tilt multi-eixo com amortecimento inercial, brilho especular dinâmico seguindo o cursor, valores interativos clicáveis, semáforo macOS e botão circular de ação). O stepper vertical redundante ("Design, Develop, etc.") foi removido conforme solicitação de design limpo.
+  - `PrismBackground.tsx`: Sistema de Aurora Líquida com orbes fluidos em deriva contínua (`liquid-drift-1`, `2`, `3` em ciano, violeta, rosa e pêssego), feixes de luz cáusticos cintilantes e **lente óptica de refração dinâmica seguindo o cursor do mouse** com amortecimento inercial contínuo (lerp via `requestAnimationFrame`) e dispersão prismática.
+  - `PrismHeroVisual.tsx`: Card de código monumental em Apple Liquid Glass (`apple-liquid-card-light`) com física 3D interativa (Framer Motion tilt multi-eixo com amortecimento inercial, brilho especular dinâmico seguindo o cursor, valores interativos clicáveis, semáforo macOS e botão circular de ação em pílula líquida). O stepper vertical redundante ("Design, Develop, etc.") foi removido conforme solicitação de design limpo.
+  - `PrismNavbar.tsx`: Cápsula de navegação e controles no padrão visionOS / Dynamic Island com pílulas líquidas (`apple-liquid-pill-light`), seletor bilíngue translúcido e dropdown líquido.
   - `PrismHeroSection.tsx`: Recriação fiel da referência conceitual:
-    - Badge `● FULLSTACK & MOBILE DEVELOPER` com pulso.
+    - Badge `● FULLSTACK & MOBILE DEVELOPER` em pílula de vidro líquido com pulso.
     - Título monumental `Turning ideas into real products.` com gradiente iridescente azul-púrpura na palavra "ideas".
-    - Botões de ação rápida `View my work ↗` (dark pill) e `Download CV ↓` (frosted pill).
-    - Faixa de ícones `TECH I WORK WITH`: chiclets de vidro translúcido para React Native, React, Next.js, Vite, TypeScript, Firebase e GitHub com tilt e feedback visual acelerado por GPU.
+    - Botões de ação rápida `View my work ↗` (dark pill) e `Download CV ↓` (frosted liquid pill).
+    - Faixa de ícones `TECH I WORK WITH`: chiclets de vidro líquido translúcido (`apple-liquid-pill-light`) para React Native, React, Next.js, Vite, TypeScript, Firebase e GitHub com tilt e feedback visual acelerado por GPU.
     - Card de código flutuante em vidro: semáforo macOS, botão de cópia de código, código interativo com valores clicáveis (`"great"`, `"fast"`, `"scalable"`, `"real"`), status `● Ready to build` e `Last commit 2h ago`.
-    - Botão circular de vidro com seta para scroll suave aos projetos.
-  - `PrismFeaturedProjects.tsx`: Trilha horizontal `FEATURED PROJECTS ────` com 3 cartões de destaque e mockups de produto:
+    - Botão circular de vidro líquido com seta para scroll suave aos projetos.
+  - `PrismFeaturedProjects.tsx`: Trilha horizontal `FEATURED PROJECTS ────` com 3 cartões de destaque e mockups de produto encapsulados em Apple Liquid Cards (`apple-liquid-card-light`) com modal de dossiê técnico com refração translúcida:
     - **BanQi App**: Mockup de smartphone dark titanium em ângulo com UI do BanQi, gráficos financeiros e modal de dossiê técnico.
     - **Guepsi**: Mockup de dashboard web SaaS com lista clínica de pacientes e modal de arquitetura.
     - **Open Source**: Mockup de terminal macOS dark glass com árvore de arquivos interativa e dossiê de ferramentas.
-  - `PrismImpactMetrics.tsx`: 5 pods de vidro com métricas auditadas (-98% crashes, -55% RAM, -75% splash, +$10k AWS, 0%→40% testes).
-  - `PrismExperience.tsx`: Trajetória profissional na Invillia/Casas Bahia/banQi e WiiD em cards translúcidos.
-  - `PrismTechMatrix.tsx`: Matriz completa de 32 competências em 4 categorias, certificação oficial GitHub Copilot, graduação superior e idiomas.
-  - `PrismContact.tsx`: Card de chamada "Let's talk" com cópia de e-mail com 1 clique, links sociais e download de currículo.
-  - Otimizações de Performance & Silêncio: Áudio completamente desativado/silencioso por preferência de usuário ("sem som só foco"), raio de desfoque otimizado com `backdrop-blur-md` e aceleração por GPU (`transform-gpu`, `translateZ(0)`), garantindo rolagem a 60-120 FPS sem lag.
+  - `PrismImpactMetrics.tsx`: 5 pods de engenharia em Apple Liquid Glass com métricas auditadas (-98% crashes, -55% RAM, -75% splash, +$10k AWS, 0%→40% testes).
+  - `PrismExperience.tsx`: Trajetória profissional na Invillia/Casas Bahia/banQi e WiiD em cards translúcidos líquidos com pílulas de metadados e caixas de destaque em vidro.
+  - `PrismTechMatrix.tsx`: Matriz completa de 32 competências em 4 categorias de cartões líquidos, chiclets em pílula translúcida, certificação oficial GitHub Copilot, graduação superior e idiomas.
+  - `PrismContact.tsx`: Card de chamada "Let's talk" em Apple Liquid Card com cópia de e-mail com 1 clique, botões sociais em pílulas líquidas e download de currículo.
+  - `PrismBottomBar.tsx`: Especificação óptica de design tokens de vidro líquido (transmissão 0.94, IOR 1.54, Abbe 58.6) em pílulas translúcidas.
+  - Otimizações de Performance & Estabilidade: Áudio desativado por preferência de usuário ("sem som só foco"), eliminação total de 'pop de componente' (cards e seções renderizados sólidos e estáveis imediatamente sem estados de tela em branco durante o scroll), header responsivo blindado contra quebras de layout ao abrir o select de portfólios (com fechamento por clique externo/Escape, limites de largura `calc(100vw-2.5rem)` e scroll vertical para até 9 temas), redução de raio de blur para 8px com aceleração por GPU (`transform-gpu`, `translateZ(0)`), eliminação de mais de 90 filtros de blur aninhados via `.apple-liquid-chip` e suspensão de loops RAF de fundo durante o scroll (`glass-section-contain`), garantindo rolagem a 60-120 FPS ultra-fluida.
 
 #### 4. Frutiger Aero & Aqua Ecotopia (Proposta 05)
 - **Acesso**: Hash `#/proposta5` ou `#/frutiger-aero`

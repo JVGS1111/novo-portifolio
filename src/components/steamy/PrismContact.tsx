@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Mail, Check, Download, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../../i18n';
 
@@ -22,20 +21,14 @@ export const PrismContact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="w-full pt-6 pb-16">
+    <section id="contact" className="w-full pt-6 pb-16 glass-section-contain">
       {/* Contact Glass Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full p-8 sm:p-12 rounded-[40px] bg-white/85 backdrop-blur-md border border-white/95 shadow-[0_24px_56px_rgba(20,30,45,0.06),inset_0_2px_4px_rgba(255,255,255,0.95)] transform-gpu"
-      >
+      <div className="apple-liquid-card-light w-full p-8 sm:p-12 rounded-[40px] transform-gpu">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
           {/* Left Text */}
           <div className="max-w-2xl">
             {/* Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full apple-liquid-chip text-emerald-700 text-xs font-semibold mb-4 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>
                 {language === 'pt'
@@ -83,7 +76,7 @@ export const PrismContact: React.FC = () => {
                 href="https://linkedin.com/in/joaoguebrer"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-4 py-3 rounded-full bg-white hover:bg-indigo-50/60 text-slate-800 hover:text-indigo-600 border border-slate-200/80 text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition-all group"
+                className="flex-1 px-4 py-3 rounded-full apple-liquid-chip hover:bg-white text-slate-800 hover:text-indigo-600 text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition-all group"
               >
                 <span>LinkedIn</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-600" />
@@ -93,7 +86,7 @@ export const PrismContact: React.FC = () => {
                 href="https://github.com/Guerber"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-4 py-3 rounded-full bg-white hover:bg-slate-100 text-slate-800 border border-slate-200/80 text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition-all group"
+                className="flex-1 px-4 py-3 rounded-full apple-liquid-chip hover:bg-white text-slate-800 text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition-all group"
               >
                 <span>GitHub</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-900" />
@@ -104,7 +97,7 @@ export const PrismContact: React.FC = () => {
             <button
               type="button"
               onClick={handleDownloadCV}
-              className="px-5 py-3 rounded-full bg-white/80 hover:bg-white text-slate-700 hover:text-slate-900 border border-slate-200/80 text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+              className="px-5 py-3 rounded-full apple-liquid-chip hover:bg-white text-slate-700 hover:text-slate-900 text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
             >
               <Download className="w-3.5 h-3.5 text-slate-500" />
               <span>
@@ -113,7 +106,7 @@ export const PrismContact: React.FC = () => {
             </button>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

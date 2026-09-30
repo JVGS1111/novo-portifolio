@@ -12,6 +12,9 @@ import {
   stopAtmosphericDrone
 } from './monolithAudio';
 import { PortfolioSwitcher } from '../PortfolioSwitcher';
+import thumbBanqi from '../../assets/monolith_thumb_banqi.jpg';
+import thumbAi from '../../assets/monolith_thumb_ai.jpg';
+import thumbDesign from '../../assets/monolith_thumb_design.jpg';
 
 interface MonolithCinematicHeroProps {
   onNavigateSection: (sectionId: string) => void;
@@ -32,7 +35,6 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
   onNavigateSection,
   activeSection
 }) => {
-  const [isExploreMode, setIsExploreMode] = useState(false);
   const [soundOn, setSoundOn] = useState(() => isSoundEnabled());
   const [selectedProject, setSelectedProject] = useState<ProjectPreviewModal | null>(null);
 
@@ -48,41 +50,36 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
     }
   };
 
-  const handleToggleExplore = () => {
-    playLaserHum();
-    setIsExploreMode((prev) => !prev);
-  };
-
   const featuredProjects = [
     {
       id: 'banqi',
       title: 'BANQI',
-      category: 'MOBILE APP',
-      thumbImg: '/assets/mobile_architecture.jpg',
+      category: 'MOBILE FINTECH',
+      thumbImg: thumbBanqi,
       description:
         'Engenharia mobile sênior no aplicativo do Grupo Casas Bahia com milhões de usuários ativos. Refatoração arquitetural, eliminação de 98% dos crashes e redução drástica do tempo de boot.',
       metrics: ['-98% Crashes em produção', '-55% Consumo de RAM', '-75% Splash Time', '$10k economia AWS'],
       stack: ['React Native', 'Kotlin Native', 'Swift', 'TypeScript', 'Fastlane', 'AppDome RASP']
     },
     {
-      id: 'guepsi',
-      title: 'GUEPSI',
-      category: 'SAAS PLATFORM',
-      thumbImg: '/assets/ai_workflow.jpg',
+      id: 'ai-agents',
+      title: 'AI AGENTS',
+      category: 'DEV WORKFLOW & IA',
+      thumbImg: thumbAi,
       description:
-        'Plataforma SaaS multi-tenant escalável com painel de inteligência operacional, microsserviços desacoplados e alta disponibilidade com monitoramento proativo.',
-      metrics: ['99.98% Uptime SLA', 'Sub-120ms Latência API', 'Multi-tenant seguro', 'Arquitetura Orientada a Eventos'],
-      stack: ['Next.js', 'React', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'Docker']
+        'Orquestração de agentes autônomos de IA e pipelines contínuos de análise estática para geração de suítes de testes, auditoria de regressões e aceleração de esteiras CI/CD.',
+      metrics: ['GitHub Copilot Certified', 'Suítes automatizadas Jest/Vitest', 'Homologação acelerada de PRs', 'Agentes autônomos de código'],
+      stack: ['GitHub Copilot', 'TypeScript', 'Custom AI Agents', 'Vitest', 'CI/CD Automation']
     },
     {
-      id: 'opensource',
-      title: 'OPEN SOURCE',
-      category: 'TOOLS & LIBS',
-      thumbImg: '/assets/design_system.jpg',
+      id: 'design-system',
+      title: 'DESIGN SYSTEM',
+      category: 'MULTI-OS TOKENS',
+      thumbImg: thumbDesign,
       description:
-        'Conjunto de bibliotecas open source, componentes agnósticos de design system, utilitários de animação física e automação com agentes inteligentes de IA para desenvolvedores.',
-      metrics: ['100% Cobertura de tipos', 'Zero Runtime Dependencies', 'Suporte Multi-SO Nativo'],
-      stack: ['TypeScript', 'Design Tokens', 'Jest / Vitest', 'Three.js', 'CI/CD Automation']
+        'Ecossistema unificado de design tokens e componentes desacoplados tipados em TypeScript, com pontes nativas e paridade absoluta entre Android, iOS e Web.',
+      metrics: ['Padronização Multi-SO', '2x Velocidade de entrega', '100% Cobertura de tipos', 'Testes automatizados Jest/Vitest'],
+      stack: ['Design Tokens', 'React Native', 'React', 'Next.js', 'TypeScript', 'Storybook']
     }
   ];
 
@@ -90,11 +87,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
     <section id="citadel-hero" className="relative w-full h-screen min-h-[720px] overflow-hidden select-none bg-[#0a0d12]">
       {/* 3D WebGL Monolithic Citadel Canvas (Always Active in Background) */}
       <div className="absolute inset-0 z-0">
-        <MonolithCinematicCanvas
-          isExploreMode={isExploreMode}
-          onToggleExplore={handleToggleExplore}
-          className="w-full h-full"
-        />
+        <MonolithCinematicCanvas className="w-full h-full" />
       </div>
 
       {/* Subtle edge gradients for typography contrast without darkening the 3D building */}
@@ -227,65 +220,65 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
         </div>
       </header>
 
-      {/* MAIN HERO CONTENT (Fades out when user enters 3D Explore Mode) */}
-      <AnimatePresence>
-        {!isExploreMode && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="relative z-20 w-full h-full flex flex-col justify-between px-6 sm:px-12 pt-28 pb-8 pointer-events-none"
-          >
-            {/* Top/Middle Left: Monumental Title Block */}
-            <div className="max-w-xl space-y-4 pt-4 sm:pt-10 pointer-events-auto">
-              {/* // 01 Tag */}
-              <div className="font-mono text-xs sm:text-sm font-semibold tracking-widest text-white/60">
-                // 01
-              </div>
+      {/* MAIN HERO CONTENT */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="relative z-20 w-full h-full flex flex-col justify-between px-6 sm:px-12 pt-28 pb-8 pointer-events-none"
+      >
+        {/* Top/Middle Left: Monumental Title Block */}
+        <div className="max-w-xl space-y-4 pt-4 sm:pt-10 pointer-events-auto">
+          {/* // 01 Tag */}
+          <div className="font-mono text-xs sm:text-sm font-semibold tracking-widest text-white/60">
+            // 01
+          </div>
 
-              {/* Massive Monumental Headline */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-black uppercase tracking-tight text-white font-['Space_Grotesk'] leading-[1.03]">
-                BUILDING<br />
-                SOFTWARE<br />
-                FOR A<br />
-                BIGGER<br />
-                TOMORROW
-              </h1>
+          {/* Massive Monumental Headline */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-black uppercase tracking-tight text-white font-['Space_Grotesk'] leading-[1.03]">
+            BUILDING<br />
+            SOFTWARE<br />
+            FOR A<br />
+            BIGGER<br />
+            TOMORROW
+          </h1>
 
-              {/* Subtext */}
-              <p className="font-mono text-xs sm:text-[13px] tracking-wider uppercase text-white/70 max-w-md leading-relaxed pt-2">
-                I TURN COMPLEX IDEAS INTO SCALABLE PRODUCTS, FOCUSED ON MOBILE, WEB AND REAL-WORLD IMPACT.
-              </p>
+          {/* Subtext */}
+          <p className="font-mono text-xs sm:text-[13px] tracking-wider uppercase text-white/70 max-w-md leading-relaxed pt-2">
+            I TURN COMPLEX IDEAS INTO SCALABLE PRODUCTS, FOCUSED ON MOBILE, WEB AND REAL-WORLD IMPACT.
+          </p>
 
-              {/* CTA Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-4">
-                {/* Primary Button: VIEW PROJECTS ↗ */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    playIndustrialClick();
-                    onNavigateSection('monolith-projects');
-                  }}
-                  onMouseEnter={playButtonHover}
-                  className="px-6 py-3.5 bg-white hover:bg-slate-200 text-black font-mono font-extrabold text-xs uppercase tracking-widest flex items-center gap-2.5 transition-all shadow-[0_8px_30px_rgba(255,255,255,0.2)] hover:shadow-[0_10px_35px_rgba(255,255,255,0.35)] cursor-pointer"
-                >
-                  <span>VIEW PROJECTS</span>
-                  <ArrowUpRight size={16} strokeWidth={2.5} />
-                </button>
+          {/* CTA Action Buttons */}
+          <div className="flex flex-wrap items-center gap-4 pt-4">
+            {/* Primary Button: VIEW PROJECTS ↗ */}
+            <button
+              type="button"
+              onClick={() => {
+                playIndustrialClick();
+                onNavigateSection('monolith-projects');
+              }}
+              onMouseEnter={playButtonHover}
+              className="px-6 py-3.5 bg-white hover:bg-slate-200 text-black font-mono font-extrabold text-xs uppercase tracking-widest flex items-center gap-2.5 transition-all shadow-[0_8px_30px_rgba(255,255,255,0.2)] hover:shadow-[0_10px_35px_rgba(255,255,255,0.35)] cursor-pointer"
+            >
+              <span>VIEW PROJECTS</span>
+              <ArrowUpRight size={16} strokeWidth={2.5} />
+            </button>
 
-                {/* Secondary Button: // EXPLORE (Triggers 3D Orbit Camera) */}
-                <button
-                  type="button"
-                  onClick={handleToggleExplore}
-                  onMouseEnter={playButtonHover}
-                  className="px-5 py-3.5 bg-transparent hover:bg-white/10 text-white/80 hover:text-white font-mono font-bold text-xs uppercase tracking-widest flex items-center gap-2 border border-transparent hover:border-white/20 transition-all cursor-pointer"
-                >
-                  <Sparkles size={14} className="text-[#ffaa00]" />
-                  <span>// EXPLORE 3D</span>
-                </button>
-              </div>
-            </div>
+            {/* Secondary Button: // EXPLORE (Smooth scroll to Case Studies) */}
+            <button
+              type="button"
+              onClick={() => {
+                playLaserHum();
+                onNavigateSection('monolith-projects');
+              }}
+              onMouseEnter={playButtonHover}
+              className="px-5 py-3.5 bg-transparent hover:bg-white/10 text-white/80 hover:text-white font-mono font-bold text-xs uppercase tracking-widest flex items-center gap-2 border border-transparent hover:border-white/20 transition-all cursor-pointer"
+            >
+              <Sparkles size={14} className="text-[#ffaa00]" />
+              <span>// EXPLORE</span>
+            </button>
+          </div>
+        </div>
 
             {/* Bottom Row: Featured Projects (Left) + Minimalist Slogan (Right) */}
             <div className="w-full flex flex-col md:flex-row items-end justify-between gap-6 pointer-events-auto">
@@ -305,26 +298,28 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
                         setSelectedProject(p);
                       }}
                       onMouseEnter={playButtonHover}
-                      className="group relative bg-[#0e1117]/80 hover:bg-[#151922]/95 border border-white/15 hover:border-[#ffaa00]/70 p-3.5 backdrop-blur-md transition-all cursor-pointer overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+                      className="group relative bg-[#0a0d12] border border-white/20 hover:border-[#ffaa00]/90 p-4 transition-all cursor-pointer overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.8)]"
                     >
-                      {/* Ambient Image Blur in Card Background */}
+                      {/* Dark Atmospheric Brutalist Thumbnail */}
                       <div
-                        className="absolute inset-0 opacity-20 group-hover:opacity-35 transition-opacity bg-cover bg-center pointer-events-none"
+                        className="absolute inset-0 bg-cover bg-center opacity-65 group-hover:opacity-85 scale-100 group-hover:scale-105 transition-all duration-400 ease-out pointer-events-none"
                         style={{ backgroundImage: `url(${p.thumbImg})` }}
                       />
+                      {/* Dark Contrast Veil */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/30 pointer-events-none" />
 
                       <div className="relative z-10 flex flex-col justify-between h-14">
                         <div className="flex items-center justify-between">
-                          <h3 className="font-mono font-bold text-xs sm:text-sm tracking-wider text-white group-hover:text-[#ffaa00] transition-colors">
+                          <h3 className="font-mono font-bold text-xs sm:text-sm tracking-wider text-white group-hover:text-[#ffaa00] transition-colors drop-shadow-md">
                             {p.title}
                           </h3>
                           <ArrowUpRight
                             size={14}
-                            className="text-white/40 group-hover:text-[#ffaa00] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                            className="text-white/60 group-hover:text-[#ffaa00] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
                           />
                         </div>
 
-                        <div className="font-mono text-[9px] sm:text-[10px] tracking-widest text-white/50 uppercase">
+                        <div className="font-mono text-[9px] sm:text-[10px] tracking-widest text-white/60 uppercase font-semibold">
                           {p.category}
                         </div>
                       </div>
@@ -344,8 +339,6 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
               </div>
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* RIGHT-SIDE VERTICAL PAGINATION TRACK (01, 02, 03, 04, 05) */}
       <div className="absolute right-6 sm:right-10 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col items-center gap-6 font-mono text-xs select-none">

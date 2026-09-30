@@ -7,7 +7,7 @@ import { MonolithExperience } from './MonolithExperience';
 import { MonolithTechMatrix } from './MonolithTechMatrix';
 import { MonolithContact } from './MonolithContact';
 import { PortfolioSwitcher } from '../PortfolioSwitcher';
-import { Terminal, Shield, Cpu, ArrowUp, Compass } from 'lucide-react';
+import { ArrowUp, Compass } from 'lucide-react';
 import { playIndustrialClick } from './monolithAudio';
 
 interface MonolithicBrutalismPageProps {
@@ -26,6 +26,7 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
 
       const sections = [
         { id: 'citadel-hero', el: document.getElementById('citadel-hero') },
+        { id: 'monolith-metrics', el: document.getElementById('monolith-metrics') },
         { id: 'monolith-projects', el: document.getElementById('monolith-projects') },
         { id: 'monolith-experience', el: document.getElementById('monolith-experience') },
         { id: 'monolith-tech', el: document.getElementById('monolith-tech') },
@@ -63,27 +64,20 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0d12] text-slate-100 flex flex-col font-sans selection:bg-[#ff9900]/30 selection:text-[#ffaa00] relative overflow-x-hidden">
-      {/* Background Architectural Grid & Subtle Noise */}
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-10">
+    <div className="min-h-screen bg-[#0a0d12] text-white flex flex-col font-sans selection:bg-[#ffaa00]/30 selection:text-[#ffaa00] relative overflow-x-hidden">
+      {/* Background Architectural Grid Lines */}
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.06]">
         <div
           className="w-full h-full"
           style={{
             backgroundImage: `
-              linear-gradient(to right, #383b44 1px, transparent 1px),
-              linear-gradient(to bottom, #383b44 1px, transparent 1px)
+              linear-gradient(to right, #484b54 1px, transparent 1px),
+              linear-gradient(to bottom, #484b54 1px, transparent 1px)
             `,
-            backgroundSize: '56px 56px'
+            backgroundSize: '64px 64px'
           }}
         />
       </div>
-
-      {/* Subtle Laser Scanning Beam Effect */}
-      <motion.div
-        animate={{ y: ['-100%', '1200%'] }}
-        transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-        className="fixed left-0 right-0 h-28 bg-gradient-to-b from-transparent via-[#ff9900]/[0.025] to-transparent pointer-events-none z-10"
-      />
 
       {/* STICKY COMPACT TOP HUD (Visible when user scrolls past Hero) */}
       <AnimatePresence>
@@ -92,61 +86,80 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
             initial={{ y: -60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -60, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed top-0 left-0 right-0 z-40 bg-[#0d1015]/90 border-b border-[#383b44] backdrop-blur-md px-6 py-2.5 flex items-center justify-between text-[11px] font-mono shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
+            transition={{ duration: 0.2 }}
+            className="fixed top-0 left-0 right-0 z-40 bg-[#0a0d12]/92 border-b border-white/10 backdrop-blur-md px-6 sm:px-12 py-3 flex items-center justify-between text-[11px] font-mono shadow-[0_8px_32px_rgba(0,0,0,0.8)]"
           >
             <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={scrollToTop}
-                className="font-black text-sm text-white tracking-wider font-['Space_Grotesk'] hover:text-[#ffaa00] transition-colors cursor-pointer"
+                className="font-black text-base text-white tracking-tight font-['Space_Grotesk'] hover:text-[#ffaa00] transition-colors cursor-pointer"
               >
-                JV // CITADEL
+                JV
               </button>
-              <span className="text-[#383b44]">|</span>
-              <span className="text-white/60 text-[10px] hidden sm:inline">
-                JOÃO VINÍCIUS · SENIOR SOFTWARE ENGINEER
+              <span className="text-white/20">|</span>
+              <span className="text-white/60 text-[10px] hidden sm:inline font-mono tracking-widest uppercase">
+                JOÃO VINÍCIUS · SOFTWARE DEVELOPER
               </span>
             </div>
 
             <div className="flex items-center gap-6">
-              <div className="hidden md:flex items-center gap-4 text-white/70">
+              <nav className="hidden md:flex items-center gap-5 text-[10px] tracking-widest uppercase text-white/60">
                 <button
                   type="button"
                   onClick={() => scrollToSection('citadel-hero')}
-                  className="hover:text-white transition-colors cursor-pointer"
+                  className={`hover:text-white transition-colors cursor-pointer ${
+                    activeSection === 'citadel-hero' ? 'text-white font-bold' : ''
+                  }`}
                 >
-                  01 CITADEL
+                  01 HOME
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection('monolith-metrics')}
+                  className={`hover:text-white transition-colors cursor-pointer ${
+                    activeSection === 'monolith-metrics' ? 'text-white font-bold' : ''
+                  }`}
+                >
+                  02 METRICS
                 </button>
                 <button
                   type="button"
                   onClick={() => scrollToSection('monolith-projects')}
-                  className="hover:text-white transition-colors cursor-pointer"
+                  className={`hover:text-white transition-colors cursor-pointer ${
+                    activeSection === 'monolith-projects' ? 'text-white font-bold' : ''
+                  }`}
                 >
-                  02 PROJETOS
+                  03 PROJECTS
                 </button>
                 <button
                   type="button"
                   onClick={() => scrollToSection('monolith-experience')}
-                  className="hover:text-white transition-colors cursor-pointer"
+                  className={`hover:text-white transition-colors cursor-pointer ${
+                    activeSection === 'monolith-experience' ? 'text-white font-bold' : ''
+                  }`}
                 >
-                  03 CARREIRA
+                  04 EXPERIENCE
                 </button>
                 <button
                   type="button"
                   onClick={() => scrollToSection('monolith-tech')}
-                  className="hover:text-white transition-colors cursor-pointer"
+                  className={`hover:text-white transition-colors cursor-pointer ${
+                    activeSection === 'monolith-tech' ? 'text-white font-bold' : ''
+                  }`}
                 >
-                  04 MATRIX
+                  05 MATRIX
                 </button>
                 <button
                   type="button"
                   onClick={() => scrollToSection('monolith-contact')}
-                  className="hover:text-white transition-colors cursor-pointer text-[#ffaa00]"
+                  className={`hover:text-white transition-colors cursor-pointer text-[#ffaa00] ${
+                    activeSection === 'monolith-contact' ? 'font-bold' : ''
+                  }`}
                 >
-                  05 CONTATO
+                  06 CONTACT
                 </button>
-              </div>
+              </nav>
 
               {onNavigateModern && (
                 <button
@@ -163,60 +176,53 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
         )}
       </AnimatePresence>
 
-      {/* SECTION 01: MONUMENTAL 3D CINEMATIC HERO (Exact 1:1 match to Reference Image) */}
+      {/* SECTION 01: MONUMENTAL 2.5D CINEMATIC HERO */}
       <MonolithCinematicHero
         onNavigateSection={scrollToSection}
         activeSection={activeSection}
       />
 
-      {/* SECTIONS 02 to 05: MONUMENTAL BRUTALIST DOSSIER CONTENT */}
-      <main className="flex-1 relative z-10 space-y-6 pt-4 pb-16">
-        {/* Telemetry Impact Metrics */}
+      {/* SECTIONS 02 to 06: SLEEK ARCHITECTURAL DOSSIER CONTENT */}
+      <main className="flex-1 relative z-10 space-y-4 pt-6 pb-20">
+        {/* Telemetry Impact Metrics (02) */}
         <MonolithImpactMetrics />
 
-        {/* Featured Case Studies (02) */}
+        {/* Featured Case Studies (03) */}
         <MonolithCaseStudies />
 
-        {/* Operations & Experience (03) */}
+        {/* Operations & Experience (04) */}
         <MonolithExperience />
 
-        {/* Technical Matrix, Certifications & Skills (04) */}
+        {/* Technical Matrix, Certifications & Skills (05) */}
         <MonolithTechMatrix />
 
-        {/* Encrypted Transmission Terminal & Contact (05) */}
+        {/* Encrypted Transmission Terminal & Contact (06) */}
         <MonolithContact />
       </main>
 
-      {/* Industrial Brutalist Footer */}
-      <footer className="relative border-t border-[#383b44] bg-[#0b0e13] py-8 px-6 font-mono text-[11px] text-[#8e95a5] z-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* Minimalist Architectural Sci-Fi Footer */}
+      <footer className="relative border-t border-white/10 bg-[#0a0d12] py-10 px-6 sm:px-12 font-mono text-[11px] text-white/60 z-10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <span className="w-2 h-2 bg-[#ffaa00] rounded-sm animate-pulse" />
-            <span className="text-white font-bold tracking-wider">
-              JOÃO VINÍCIUS GUERBER DE SOUZA
+            <span className="w-2 h-2 bg-[#ffaa00] rounded-none animate-pulse" />
+            <span className="text-white font-bold tracking-wider font-['Space_Grotesk'] text-sm">
+              JOÃO VINÍCIUS
             </span>
-            <span className="text-[#383b44]">|</span>
-            <span className="text-[10px] text-slate-400">
+            <span className="text-white/20">|</span>
+            <span className="text-[10px] text-white/50 tracking-widest uppercase">
               BUILDING SOFTWARE FOR A BIGGER TOMORROW
             </span>
           </div>
 
-          <div className="flex items-center gap-4 text-[10px]">
-            <div className="flex items-center gap-1.5 text-slate-300">
-              <Cpu size={12} className="text-[#ff9900]" />
-              <span>THREE.JS REALISTIC WEBGL</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-slate-300">
-              <Shield size={12} className="text-[#22c55e]" />
-              <span>PBR CONCRETE & VOLUMETRIC FOG</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-slate-300">
-              <Terminal size={12} className="text-[#00f0ff]" />
-              <span>REACT 19 + VITE</span>
-            </div>
+          <div className="flex items-center gap-4 text-[10px] tracking-widest uppercase text-white/50">
+            <span>IDEAS</span>
+            <span className="text-white/20">/</span>
+            <span>SYSTEMS</span>
+            <span className="text-white/20">/</span>
+            <span>PEOPLE</span>
           </div>
 
-          <div className="text-[10px] text-slate-500 text-center md:text-right">
+          <div className="text-[10px] text-white/40 text-center md:text-right tracking-widest uppercase">
             © {new Date().getFullYear()} · ARQUITETURA MOBILE & WEB DE ALTA CONVERSÃO
           </div>
         </div>
@@ -231,7 +237,7 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={scrollToTop}
-            className="fixed bottom-22 right-6 z-40 p-2.5 bg-[#14171d]/95 backdrop-blur-md border border-[#484b54] hover:border-[#ffaa00] text-slate-300 hover:text-[#ffaa00] shadow-[0_4px_16px_rgba(0,0,0,0.8)] transition-colors rounded-sm cursor-pointer"
+            className="fixed bottom-22 right-6 z-40 p-3 bg-[#0e1117]/95 backdrop-blur-md border border-white/20 hover:border-[#ffaa00] text-white/80 hover:text-[#ffaa00] shadow-[0_4px_20px_rgba(0,0,0,0.8)] transition-all cursor-pointer"
             title="Voltar ao topo"
           >
             <ArrowUp size={16} />

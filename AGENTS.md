@@ -114,20 +114,16 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
 - **Acesso**: Hash `#/monolith` ou `#/proposta-4`
 - **Estilo Visual**: Brutalismo monumental cinematográfico sci-fi ("BUILDING SOFTWARE FOR A BIGGER TOMORROW"), superfícies de concreto escuro texturizado (`#16181c` / `#0a0d12`), reflexos aquáticos molhados, fendas verticais iluminadas em ouro/âmbar (`#ffaa33`), névoa volumétrica e silhueta humana de escala épica, tipografia Space Grotesk com tracking largo e telemetria mono.
 - **Destaques**:
-  - `MonolithCinematicCanvas.tsx`: Experiência Three.js 3D realista:
-    - Cidadela monolítica colossal gerada proceduralmente com blocos de concreto escalonados, torres e passadiços.
-    - Textura procedural de concreto de alta resolução (1024x1024) com agregados minerais, juntas de fôrma arquitetônica e estrias verticais de escorrimento de chuva.
-    - Fendas de energia vertical com materiais emissivos âmbar/dourados pulsantes e PointLights que iluminam as paredes adjacentes e refletem na água.
-    - Superfície de água reflexiva líquida com perturbação de vértices em tempo real refletindo o céu e as luzes.
-    - Silhueta 3D do viajante/desenvolvedor sobre o penhasco rochoso em primeiro plano, conferindo escala monumental ao cenário.
-    - 55 puffs de névoa volumétrica procedural em órbita suave gerando atmosfera densa de tempestade.
-    - Modo de Exploração 3D Livre (`// EXPLORE 3D`): órbita interativa com amortecimento inercial, zoom por scroll, HUD de telemetria em tempo real (posição da câmera, altitude, densidade de névoa, altura da cidadela e FPS).
-    - Efeito de paralaxe de câmera no mouse durante a visualização normal.
+  - `MonolithCinematicCanvas.tsx`: Experiência WebGL 2.5D Depth-Map Parallax Shader + Volumetric Mist:
+    - Arte conceitual em resolução 2K nítida (`2048x1374`) combinada a mapa de profundidade Z-Depth com filtragem suave de 5 taps.
+    - Shader GLSL refinado com paralaxe tridimensional suave guiado pelo cursor ou giroscópio mobile, sem estourar as cores naturais da pintura original.
+    - Cores escuras e reflexos naturais preservados nas poças d'água e rochas molhadas.
+    - 32 puffs de névoa volumétrica procedural (sprites com gradiente suave) flutuando e deslizando com física de vento em diferentes profundidades Z.
   - `MonolithCinematicHero.tsx`: Recriação 1:1 da interface conceitual:
     - Cabeçalho minimalista `JV — JOÃO VINÍCIUS SOFTWARE DEVELOPER`, links `HOME`, `PROJECTS`, `EXPERIENCE`, `ABOUT` e botão bracketed `[ /// CONTACT /// ]`.
     - Tipografia display monumental `BUILDING SOFTWARE FOR A BIGGER TOMORROW`.
-    - Botões de ação rápida: `VIEW PROJECTS ↗` e `// EXPLORE 3D`.
-    - Trilha horizontal de projetos destacados (`// FEATURED PROJECTS`): cards interativos para `BANQI (MOBILE APP)`, `GUEPSI (SAAS PLATFORM)` e `OPEN SOURCE (TOOLS & LIBS)` com modal de dossiê técnico.
+    - Botões de ação rápida: `VIEW PROJECTS ↗` e `// EXPLORE` (navegação suave para a seção de projetos).
+    - Trilha horizontal de projetos destacados (`// FEATURED PROJECTS`): cards interativos para `BANQI (MOBILE FINTECH)`, `AI AGENTS (DEV WORKFLOW & IA)` e `DESIGN SYSTEM (MULTI-OS TOKENS)` com miniaturas brutais cinematográficas estilizadas e modal de dossiê técnico.
     - Paginação vertical `01` a `05` sincronizada com a rolagem suave das seções.
     - Slogan minimalista `IDEAS / SYSTEMS / PEOPLE` com régua vertical no canto inferior direito.
   - `MonolithImpactMetrics.tsx`: 5 métricas de impacto auditadas (-98% crashes, -55% RAM, -75% splash, +$10k AWS, 0%→40% testes).

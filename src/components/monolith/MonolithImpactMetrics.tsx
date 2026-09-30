@@ -1,158 +1,140 @@
 import React from 'react';
 import { MonolithPanel } from './MonolithPanel';
+import { ShieldCheck } from 'lucide-react';
 
 interface MetricItem {
+  id: string;
   value: string;
   label: string;
-  highlightColor: 'amber' | 'cyan' | 'green' | 'white';
-  barCount: number;
+  bars: number;
   highlightText: string;
   description: string;
 }
 
 const metricsData: MetricItem[] = [
   {
+    id: 'MTR-01',
     value: '-98%',
     label: 'CRASHES SEMANAIS',
-    highlightColor: 'amber',
-    barCount: 5,
-    highlightText: 'De 120.000 para 2.000 crashes/sem no app banQi / Casas Bahia.',
-    description: 'Auditoria bridge assíncrona React Native, Error Boundaries resilientes, monitoramento Dynatrace & Databricks.'
+    bars: 5,
+    highlightText: 'De 120.000 para 2.000 crashes/sem no app banQi.',
+    description: 'Auditoria bridge assíncrona React Native, Error Boundaries resilientes e telemetria Dynatrace/Databricks.'
   },
   {
+    id: 'MTR-02',
     value: '-55%',
     label: 'CONSUMO DE RAM',
-    highlightColor: 'cyan',
-    barCount: 4,
-    highlightText: 'De 900MB para 400MB de footprint de memória em produção.',
-    description: 'Virtualização de listas, desalocação de listeners nativos e bitmaps Android/iOS, profiling Xcode e Android Studio.'
+    bars: 4,
+    highlightText: 'De 900MB para 400MB de footprint de memória.',
+    description: 'Virtualização profunda de listas, desalocação de listeners nativos e bitmaps Android/iOS via Xcode e Profiler.'
   },
   {
+    id: 'MTR-03',
     value: '-75%',
     label: 'SPLASH TO HOME',
-    highlightColor: 'amber',
-    barCount: 4,
-    highlightText: 'De 60s para 15s de tempo de inicialização (cold boot).',
-    description: 'Code-splitting, lazy loading, otimização bundle Hermes, conexões de API paralelas e SDKs em background.'
+    bars: 4,
+    highlightText: 'De 60s para 15s de tempo de boot em produção.',
+    description: 'Code-splitting granular, lazy loading, otimização bundle Hermes e paralelização de requisições de inicialização.'
   },
   {
+    id: 'MTR-04',
     value: '+$10k',
-    label: 'ECONOMIA NUVEM/ANO',
-    highlightColor: 'green',
-    barCount: 5,
+    label: 'ECONOMIA ANUAL',
+    bars: 5,
     highlightText: 'Redução direta de custos de infraestrutura AWS.',
-    description: 'Agregação de chamadas de rede client-side, ajuste de esteiras CI/CD, corte drástico de egress de dados.'
+    description: 'Agregação inteligente de chamadas client-side, otimização de esteiras CI/CD e corte drástico de egress de dados.'
   },
   {
+    id: 'MTR-05',
     value: '0%→40%',
-    label: 'COBERTURA TESTES',
-    highlightColor: 'white',
-    barCount: 3,
-    highlightText: '100% de confiabilidade em fluxos críticos de produção.',
-    description: 'Suítes Jest e Vitest para fluxos críticos, quality gates no GitHub Actions e Azure DevOps, TDD e Clean Code.'
+    label: 'TESTES CRÍTICOS',
+    bars: 3,
+    highlightText: 'Cobertura em fluxos financeiros e autenticação.',
+    description: 'Suítes automatizadas Jest e Vitest, quality gates no GitHub Actions e Azure DevOps, TDD e Clean Architecture.'
   }
 ];
 
 export const MonolithImpactMetrics: React.FC = () => {
-  const getThemeClasses = (color: MetricItem['highlightColor']) => {
-    switch (color) {
-      case 'amber':
-        return {
-          text: 'text-[#ff9900]',
-          bar: 'bg-[#ff9900]',
-          topBar: 'bg-[#ff9900]'
-        };
-      case 'cyan':
-        return {
-          text: 'text-[#00f0ff]',
-          bar: 'bg-[#00f0ff]',
-          topBar: 'bg-[#00f0ff]'
-        };
-      case 'green':
-        return {
-          text: 'text-[#22c55e]',
-          bar: 'bg-[#22c55e]',
-          topBar: 'bg-[#22c55e]'
-        };
-      case 'white':
-        return {
-          text: 'text-slate-100',
-          bar: 'bg-slate-300',
-          topBar: 'bg-slate-300'
-        };
-    }
-  };
-
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 py-6">
-      {/* Section Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-l-4 border-[#ff9900] bg-[#14161a] p-3 mb-4 font-mono text-[11px] text-slate-300 border border-[#383b44]">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="font-bold text-[#ff9900]">/// 01 // TELEMETRIA DE IMPACTO</span>
-          <span className="text-[#8e95a5]">::</span>
-          <span className="text-slate-200 tracking-wider">
-            VERIFICADO EM ESCALA CRÍTICA (BANQI / CASAS BAHIA GROUP & NUVEM)
-          </span>
+    <section id="monolith-metrics" className="w-full max-w-7xl mx-auto px-6 sm:px-12 py-10 scroll-mt-24">
+      {/* Cinematic Section Header */}
+      <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 pb-6 border-b border-white/10 mb-8">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 font-mono text-[11px] font-semibold tracking-widest uppercase text-white/50">
+            <span className="text-[#ffaa00]">// 02</span>
+            <span>TELEMETRY & IMPACT</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-['Space_Grotesk'] text-white tracking-tight uppercase">
+            MÉTRICAS AUDITADAS EM PRODUÇÃO
+          </h2>
+          <p className="font-mono text-xs text-white/60 tracking-wider uppercase max-w-2xl leading-relaxed">
+            RESULTADOS QUANTIFICADOS EM AMBIENTES DE HIPERESCALA NO GRUPO CASAS BAHIA E SISTEMAS EM NUVEM.
+          </p>
         </div>
-        <span className="text-[#8e95a5] font-semibold text-[10px] shrink-0">
-          [ 5 MÉTRICAS AUDITADAS ]
-        </span>
+
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 font-mono text-[10px] text-white/70 tracking-widest uppercase">
+          <ShieldCheck size={14} className="text-[#ffaa00]" />
+          <span>5 METRICS VERIFIED</span>
+        </div>
       </div>
 
       {/* 5 Metrics Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
-        {metricsData.map((m, idx) => {
-          const theme = getThemeClasses(m.highlightColor);
-          return (
-            <MonolithPanel
-              key={idx}
-              interactive
-              withRivets
-              className="p-5 flex flex-col justify-between overflow-hidden"
-            >
-              {/* Top Accent Strip */}
-              <div className={`absolute top-0 left-0 right-0 h-1 ${theme.topBar}`} />
-
-              <div className="space-y-3 pt-1">
-                {/* Big Number & Level Bars */}
-                <div className="flex items-baseline justify-between">
-                  <div className={`text-3xl sm:text-4xl font-black font-['Space_Grotesk',sans-serif] tracking-tight ${theme.text}`}>
-                    {m.value}
-                  </div>
-                  {/* Digital Signal Bars */}
-                  <div className="flex items-center gap-1">
-                    {Array.from({ length: 5 }).map((_, barIdx) => (
-                      <div
-                        key={barIdx}
-                        className={`w-2.5 h-1 rounded-[1px] ${
-                          barIdx < m.barCount ? theme.bar : 'bg-[#2a2d34]'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Metric Label */}
-                <div className="text-[11px] font-mono font-bold tracking-wider text-white">
-                  {m.label}
-                </div>
-
-                <div className="h-[1px] w-full bg-[#383b44]" />
-
-                {/* Highlight Context */}
-                <div className="text-[11px] font-mono text-slate-300 leading-snug font-medium">
-                  {m.highlightText}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {metricsData.map((m) => (
+          <MonolithPanel
+            key={m.id}
+            interactive
+            withCorners
+            className="p-5 flex flex-col justify-between group hover:border-[#ffaa00]/60 transition-all"
+          >
+            <div className="space-y-3">
+              {/* Card Header: Tag & Signal Bars */}
+              <div className="flex items-center justify-between text-[10px] font-mono">
+                <span className="text-white/40 font-semibold group-hover:text-[#ffaa00] transition-colors">
+                  {m.id}
+                </span>
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: 5 }).map((_, barIdx) => (
+                    <div
+                      key={barIdx}
+                      className={`w-2 h-1 rounded-none transition-colors ${
+                        barIdx < m.bars
+                          ? 'bg-[#ffaa00] group-hover:bg-[#ffbb22]'
+                          : 'bg-white/10'
+                      }`}
+                    />
+                  ))}
                 </div>
               </div>
 
-              {/* Technical Description */}
-              <div className="text-[10px] font-sans text-slate-400 leading-relaxed pt-3 border-t border-[#262930] mt-3">
-                {m.description}
+              {/* Big Monumental Number */}
+              <div className="text-3xl sm:text-4xl font-black font-['Space_Grotesk'] tracking-tight text-white group-hover:text-[#ffaa00] transition-colors">
+                {m.value}
               </div>
-            </MonolithPanel>
-          );
-        })}
+
+              {/* Metric Label */}
+              <div className="text-[11px] font-mono font-bold tracking-widest uppercase text-white/90">
+                {m.label}
+              </div>
+
+              {/* Hairline Divider */}
+              <div className="w-full h-[1px] bg-white/10 group-hover:bg-[#ffaa00]/30 transition-colors" />
+
+              {/* Highlight Context */}
+              <div className="text-[11px] font-mono text-white/75 leading-relaxed">
+                {m.highlightText}
+              </div>
+            </div>
+
+            {/* Technical Implementation */}
+            <div className="text-[10px] font-sans text-white/50 leading-relaxed pt-3 border-t border-white/5 mt-4">
+              {m.description}
+            </div>
+          </MonolithPanel>
+        ))}
       </div>
     </section>
   );
 };
+
+export default MonolithImpactMetrics;

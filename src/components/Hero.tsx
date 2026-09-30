@@ -38,16 +38,16 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: -20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          whileHover={{ scale: 1.02 }}
-          className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md text-[11px] sm:text-xs font-mono text-cyan-300 mb-4 sm:mb-6 shadow-lg shadow-cyan-500/10 cursor-default max-w-full text-center"
+          whileHover={{ scale: 1.03 }}
+          className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full apple-liquid-pill text-[11px] sm:text-xs font-mono text-cyan-200 mb-4 sm:mb-6 shadow-xl shadow-cyan-950/30 cursor-default max-w-full text-center relative overflow-hidden"
         >
           <span className="relative flex h-2 w-2 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
           </span>
-          <span className="truncate">{t.hero.badgeRole}</span>
-          <span className="text-slate-600 hidden xs:inline">•</span>
-          <span className="text-slate-400 font-sans hidden xs:inline">{t.hero.badgeYears}</span>
+          <span className="truncate relative z-10">{t.hero.badgeRole}</span>
+          <span className="text-white/30 hidden xs:inline relative z-10">•</span>
+          <span className="text-slate-300 font-sans hidden xs:inline relative z-10">{t.hero.badgeYears}</span>
         </motion.div>
 
         {/* Main Headline with Staggered Entrance */}
@@ -78,17 +78,17 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3.5 w-full max-w-3xl mb-8 sm:mb-10 text-left"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 w-full max-w-3xl mb-8 sm:mb-10 text-left"
         >
           <TiltCard
             maxTilt={6}
-            spotlightColor="rgba(6, 182, 212, 0.16)"
-            className="rounded-xl h-full"
+            spotlightColor="rgba(6, 182, 212, 0.2)"
+            className="rounded-2xl h-full"
           >
-            <div className="bg-slate-900/80 border border-slate-800/90 rounded-xl p-2.5 sm:p-3.5 backdrop-blur-md hover:border-cyan-500/40 transition-all h-full flex flex-col justify-between min-w-0">
+            <div className="apple-liquid-card rounded-2xl p-3 sm:p-4 h-full flex flex-col justify-between min-w-0 shadow-lg">
               <div className="flex items-center gap-1.5 sm:gap-2 text-cyan-400 mb-1 min-w-0">
                 <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                <span className="text-[9px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+                <span className="text-[9px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-300 truncate">
                   {t.hero.statStabilityLabel}
                 </span>
               </div>
@@ -101,13 +101,13 @@ export const Hero: React.FC = () => {
 
           <TiltCard
             maxTilt={6}
-            spotlightColor="rgba(56, 189, 248, 0.16)"
-            className="rounded-xl h-full"
+            spotlightColor="rgba(56, 189, 248, 0.2)"
+            className="rounded-2xl h-full"
           >
-            <div className="bg-slate-900/80 border border-slate-800/90 rounded-xl p-2.5 sm:p-3.5 backdrop-blur-md hover:border-sky-500/40 transition-all h-full flex flex-col justify-between min-w-0">
+            <div className="apple-liquid-card rounded-2xl p-3 sm:p-4 h-full flex flex-col justify-between min-w-0 shadow-lg">
               <div className="flex items-center gap-1.5 sm:gap-2 text-sky-400 mb-1 min-w-0">
                 <Cpu className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                <span className="text-[9px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+                <span className="text-[9px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-300 truncate">
                   {t.hero.statMemoryLabel}
                 </span>
               </div>
@@ -120,13 +120,13 @@ export const Hero: React.FC = () => {
 
           <TiltCard
             maxTilt={6}
-            spotlightColor="rgba(129, 140, 248, 0.16)"
-            className="rounded-xl h-full"
+            spotlightColor="rgba(129, 140, 248, 0.2)"
+            className="rounded-2xl h-full"
           >
-            <div className="bg-slate-900/80 border border-slate-800/90 rounded-xl p-2.5 sm:p-3.5 backdrop-blur-md hover:border-indigo-500/40 transition-all h-full flex flex-col justify-between min-w-0">
+            <div className="apple-liquid-card rounded-2xl p-3 sm:p-4 h-full flex flex-col justify-between min-w-0 shadow-lg">
               <div className="flex items-center gap-1.5 sm:gap-2 text-indigo-400 mb-1 min-w-0">
                 <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                <span className="text-[9px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+                <span className="text-[9px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-300 truncate">
                   {t.hero.statStartupLabel}
                 </span>
               </div>
@@ -139,13 +139,13 @@ export const Hero: React.FC = () => {
 
           <TiltCard
             maxTilt={6}
-            spotlightColor="rgba(168, 85, 247, 0.16)"
-            className="rounded-xl h-full"
+            spotlightColor="rgba(168, 85, 247, 0.2)"
+            className="rounded-2xl h-full"
           >
-            <div className="bg-slate-900/80 border border-slate-800/90 rounded-xl p-2.5 sm:p-3.5 backdrop-blur-md hover:border-purple-500/40 transition-all h-full flex flex-col justify-between min-w-0">
+            <div className="apple-liquid-card rounded-2xl p-3 sm:p-4 h-full flex flex-col justify-between min-w-0 shadow-lg">
               <div className="flex items-center gap-1.5 sm:gap-2 text-purple-400 mb-1 min-w-0">
                 <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                <span className="text-[9px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-400 truncate">
+                <span className="text-[9px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-300 truncate">
                   {t.hero.statInnovationLabel}
                 </span>
               </div>

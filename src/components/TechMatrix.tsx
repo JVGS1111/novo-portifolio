@@ -53,20 +53,20 @@ export const TechMatrix: React.FC = () => {
         {/* Filter Controls Bar */}
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mb-10">
           {/* Category Pills with Sliding Layout Indicator */}
-          <div className="flex flex-wrap gap-1.5 sm:gap-2 w-full sm:w-auto">
+          <div className="flex flex-wrap gap-2 w-full sm:w-auto">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`relative px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-mono font-medium transition-colors cursor-pointer ${
+              className={`relative px-4 py-2 rounded-xl text-xs font-mono font-medium transition-colors cursor-pointer ${
                 selectedCategory === 'all'
                   ? 'text-slate-950 font-bold'
-                  : 'text-slate-300 hover:text-white apple-liquid-pill'
+                  : 'text-slate-400 hover:text-white bg-slate-900/60 border border-slate-800'
               }`}
             >
               {selectedCategory === 'all' && (
                 <motion.div
                   layoutId="activeCategoryPill"
                   transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  className="absolute inset-0 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/30"
+                  className="absolute inset-0 bg-cyan-500 rounded-xl shadow-lg shadow-cyan-500/25"
                 />
               )}
               <span className="relative z-10">{t.tech.allAreas}</span>
@@ -78,17 +78,17 @@ export const TechMatrix: React.FC = () => {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`relative px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-mono font-medium transition-colors cursor-pointer ${
+                  className={`relative px-4 py-2 rounded-xl text-xs font-mono font-medium transition-colors cursor-pointer ${
                     isSelected
                       ? 'text-slate-950 font-bold'
-                      : 'text-slate-300 hover:text-white apple-liquid-pill'
+                      : 'text-slate-400 hover:text-white bg-slate-900/60 border border-slate-800'
                   }`}
                 >
                   {isSelected && (
                     <motion.div
                       layoutId="activeCategoryPill"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                      className="absolute inset-0 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/30"
+                      className="absolute inset-0 bg-cyan-500 rounded-xl shadow-lg shadow-cyan-500/25"
                     />
                   )}
                   <span className="relative z-10">{cat.name.split('&')[0]}</span>
@@ -97,15 +97,15 @@ export const TechMatrix: React.FC = () => {
             })}
           </div>
 
-          {/* Search Input with Focus Ring — Apple Liquid Glass Pill */}
+          {/* Search Input with Focus Ring */}
           <div className="relative w-full sm:w-64">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder={t.tech.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-xs rounded-full apple-liquid-pill text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/30 transition-all shadow-inner"
+              className="w-full pl-9 pr-4 py-2 text-xs rounded-xl bg-slate-900/80 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-all"
             />
           </div>
         </div>
@@ -125,20 +125,17 @@ export const TechMatrix: React.FC = () => {
               >
                 <TiltCard
                   maxTilt={6}
-                  spotlightColor="rgba(56, 189, 248, 0.15)"
-                  className="rounded-3xl h-full"
+                  spotlightColor="rgba(56, 189, 248, 0.12)"
+                  className="rounded-2xl h-full"
                 >
-                  <div className="p-6 sm:p-8 rounded-3xl apple-liquid-glass border border-white/15 backdrop-blur-2xl shadow-2xl hover:border-cyan-400/40 transition-all flex flex-col justify-between h-full relative overflow-hidden">
-                    {/* Top specular reflection glint */}
-                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
-
+                  <div className="p-6 sm:p-8 rounded-2xl bg-slate-900/60 border border-slate-800/90 backdrop-blur-md hover:border-slate-700 transition-all flex flex-col justify-between h-full">
                     <div>
                       <div className="flex items-center justify-between mb-3">
                         <h3 className="text-lg font-bold text-white flex items-center gap-2.5">
                           <Code2 className="w-5 h-5 text-cyan-400" />
                           {cat.name}
                         </h3>
-                        <span className="text-[11px] font-mono text-slate-400">
+                        <span className="text-[11px] font-mono text-slate-500">
                           {cat.skills.length} {t.tech.toolsCountSuffix}
                         </span>
                       </div>
@@ -153,12 +150,12 @@ export const TechMatrix: React.FC = () => {
                             key={skill.name}
                             whileHover={{ scale: 1.08, y: -2 }}
                             whileTap={{ scale: 0.95 }}
-                            className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-full apple-liquid-pill border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.08] transition-all duration-200 cursor-default shadow-xs"
+                            className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-950/80 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-900 transition-all duration-200 cursor-default shadow-sm"
                           >
                             <span className="text-xs font-semibold text-slate-200 group-hover:text-cyan-300 transition-colors">
                               {skill.name}
                             </span>
-                            <span className="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded-full bg-white/10 text-slate-400 group-hover:bg-cyan-950 group-hover:text-cyan-400">
+                            <span className="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 group-hover:bg-cyan-950 group-hover:text-cyan-400">
                               {skill.tag}
                             </span>
                           </motion.div>

@@ -33,43 +33,41 @@ export const CaseStudies: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Case Studies Selector Tabs with Apple Liquid Glass Segmented Pill */}
-        <div className="flex justify-center mb-8 sm:mb-12 w-full max-w-full px-1">
-          <div className="apple-liquid-pill p-1.5 rounded-full flex flex-wrap items-center justify-center gap-1 sm:gap-2 shadow-xl shadow-black/30 border border-white/15">
-            {t.cases.studies.map((study) => {
-              const isActive = activeStudy.id === study.id;
-              return (
-                <button
-                  key={study.id}
-                  onClick={() => setActiveStudyId(study.id)}
-                  className={`relative px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-200 flex items-center gap-2 sm:gap-2.5 cursor-pointer ${
-                    isActive
-                      ? 'text-cyan-200 font-bold'
-                      : 'text-slate-300 hover:text-white hover:bg-white/[0.08]'
-                  }`}
-                >
-                  {/* Gliding Spring Background Indicator */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeStudyTabPill"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      className="absolute inset-0 apple-liquid-pill border border-cyan-400/50 rounded-full shadow-lg shadow-cyan-500/20"
-                    />
-                  )}
+        {/* Case Studies Selector Tabs with Gliding Spring Pill */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+          {t.cases.studies.map((study) => {
+            const isActive = activeStudy.id === study.id;
+            return (
+              <button
+                key={study.id}
+                onClick={() => setActiveStudyId(study.id)}
+                className={`relative px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition-colors duration-200 flex items-center gap-3 cursor-pointer ${
+                  isActive
+                    ? 'text-cyan-300'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                }`}
+              >
+                {/* Gliding Spring Background Indicator */}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeStudyTabPill"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 bg-slate-800 border border-cyan-500/50 rounded-2xl shadow-lg shadow-cyan-500/15"
+                  />
+                )}
 
-                  <span className="relative z-10">{study.title}</span>
-                  <span className={`relative z-10 text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full font-mono transition-colors ${
-                    isActive ? 'bg-cyan-500/25 text-cyan-200 border border-cyan-400/40' : 'bg-white/10 text-slate-400'
-                  }`}>
-                    {study.badge}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                <span className="relative z-10">{study.title}</span>
+                <span className={`relative z-10 text-[10px] px-2 py-0.5 rounded-full font-mono transition-colors ${
+                  isActive ? 'bg-cyan-500/20 text-cyan-200 border border-cyan-400/30' : 'bg-slate-800 text-slate-500'
+                }`}>
+                  {study.badge}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Active Case Study Presentation with AnimatePresence — Apple Liquid Glass */}
+        {/* Active Case Study Presentation with AnimatePresence */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeStudy.id}
@@ -77,15 +75,12 @@ export const CaseStudies: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.99 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="apple-liquid-glass rounded-3xl overflow-hidden shadow-2xl border border-white/15 relative"
+            className="bg-slate-900/70 border border-slate-800 rounded-3xl overflow-hidden backdrop-blur-xl shadow-2xl"
           >
-            {/* Top specular reflection glint */}
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent pointer-events-none z-20" />
-
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               
               {/* Left Column: Visual Asset Display with Smooth Hover Zoom */}
-              <div className="lg:col-span-6 relative min-h-[300px] sm:min-h-[360px] lg:min-h-[520px] bg-slate-950 overflow-hidden flex items-center justify-center group">
+              <div className="lg:col-span-6 relative min-h-[340px] lg:min-h-[520px] bg-slate-950 overflow-hidden flex items-center justify-center group">
                 <img
                   src={activeStudy.image}
                   alt={activeStudy.title}
@@ -99,13 +94,13 @@ export const CaseStudies: React.FC = () => {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 }}
-                  className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 p-3 sm:p-4 rounded-2xl apple-liquid-glass backdrop-blur-xl border border-white/20 flex items-center justify-between shadow-2xl"
+                  className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-slate-700/60 flex items-center justify-between shadow-xl"
                 >
-                  <div className="min-w-0 pr-2">
-                    <div className="text-xs font-mono text-cyan-400 font-semibold truncate">{activeStudy.clientOrProject}</div>
-                    <div className="text-xs sm:text-sm font-bold text-white truncate">{activeStudy.badge}</div>
+                  <div>
+                    <div className="text-xs font-mono text-cyan-400 font-semibold">{activeStudy.clientOrProject}</div>
+                    <div className="text-sm font-bold text-white">{activeStudy.badge}</div>
                   </div>
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-cyan-400/20 border border-cyan-400/40 text-cyan-300 flex items-center justify-center font-mono text-xs font-bold animate-pulse shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-cyan-400/20 border border-cyan-400/40 text-cyan-300 flex items-center justify-center font-mono text-xs font-bold animate-pulse">
                     ✓
                   </div>
                 </motion.div>

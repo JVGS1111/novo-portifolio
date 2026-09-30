@@ -55,18 +55,16 @@ export const ImpactMetrics: React.FC = () => {
         </motion.div>
 
         {/* Metrics Grid Cards with Tilt & Count-Up */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
           {t.impact.metrics.map((item, index) => {
             const isSelected = selectedMetric.id === item.id;
-            const isLastOdd = index === 4;
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className={isLastOdd ? 'sm:col-span-2 md:col-span-1' : ''}
               >
                 <TiltCard
                   maxTilt={10}
@@ -75,36 +73,36 @@ export const ImpactMetrics: React.FC = () => {
                 >
                   <button
                     onClick={() => setSelectedMetricId(item.id)}
-                    className={`text-left p-4 sm:p-5 rounded-2xl transition-all duration-300 relative group flex flex-col justify-between w-full h-full cursor-pointer ${
+                    className={`text-left p-5 rounded-2xl border transition-all duration-300 relative group flex flex-col justify-between w-full h-full cursor-pointer ${
                       isSelected
-                        ? 'apple-liquid-card border-cyan-400/60 shadow-2xl shadow-cyan-950/40 ring-1 ring-cyan-400/30'
-                        : 'apple-liquid-glass hover:border-white/25'
+                        ? 'bg-slate-800/95 border-cyan-400 shadow-xl shadow-cyan-500/20'
+                        : 'bg-slate-900/60 border-slate-800 hover:border-slate-700 hover:bg-slate-850'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full mb-3">
-                      <div className="p-2 rounded-xl bg-white/10 border border-white/15 group-hover:scale-110 transition-transform shadow-inner">
+                      <div className="p-2 rounded-xl bg-slate-800/80 border border-slate-700/60 group-hover:scale-110 transition-transform">
                         {getCategoryIcon(item.impactCategory)}
                       </div>
                       <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border transition-colors ${
-                        isSelected ? 'bg-cyan-400/20 text-cyan-300 border-cyan-400/40 font-bold' : 'bg-white/5 text-slate-400 border-white/10'
+                        isSelected ? 'bg-cyan-400/20 text-cyan-300 border-cyan-400/40 font-bold' : 'bg-slate-800 text-slate-400 border-slate-700'
                       }`}>
                         {item.impactCategory}
                       </span>
                     </div>
 
                     <div>
-                      <div className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white mb-1 group-hover:text-cyan-300 transition-colors">
+                      <div className="text-3xl sm:text-4xl font-black tracking-tight text-white mb-1 group-hover:text-cyan-300 transition-colors">
                         <AnimatedCounter value={item.metric} />
                       </div>
-                      <div className="text-xs font-semibold text-slate-200 line-clamp-2 leading-tight mb-1.5 sm:mb-2">
+                      <div className="text-xs font-semibold text-slate-200 line-clamp-2 leading-tight mb-2">
                         {item.label}
                       </div>
-                      <div className="text-[10.5px] sm:text-[11px] text-slate-400 line-clamp-2">
+                      <div className="text-[11px] text-slate-400 line-clamp-2">
                         {item.sublabel}
                       </div>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-cyan-400 w-full">
+                    <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-cyan-400 w-full">
                       <span className="group-hover:translate-x-1 transition-transform">{t.impact.viewDetails}</span>
                       <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform" />
                     </div>
@@ -115,10 +113,8 @@ export const ImpactMetrics: React.FC = () => {
           })}
         </div>
 
-        {/* Selected Metric Deep Dive with Smooth AnimatePresence Transition — Apple Liquid Glass Pod */}
-        <div className="apple-liquid-glass rounded-3xl p-5 sm:p-8 backdrop-blur-2xl shadow-2xl relative overflow-hidden max-w-full border border-white/15">
-          {/* Top specular reflection glint */}
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent pointer-events-none" />
+        {/* Selected Metric Deep Dive with Smooth AnimatePresence Transition */}
+        <div className="bg-slate-900/80 border border-slate-700/70 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedMetric.id}
@@ -129,29 +125,29 @@ export const ImpactMetrics: React.FC = () => {
               className="relative z-10"
             >
               {/* Giant Numeric Watermark Background */}
-              <div className="absolute top-0 right-0 p-4 sm:p-8 opacity-5 pointer-events-none font-mono text-7xl sm:text-9xl font-black text-cyan-400 select-none overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none font-mono text-9xl font-black text-cyan-400 select-none">
                 {selectedMetric.metric}
               </div>
 
-              <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 items-start">
+              <div className="flex flex-col lg:flex-row gap-8 items-start">
                 
                 {/* Left Column: Big Highlight */}
-                <div className="w-full lg:w-1/3 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-800 pb-6 lg:pb-0 lg:pr-8">
+                <div className="lg:w-1/3 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-800 pb-6 lg:pb-0 lg:pr-8">
                   <div>
                     <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono font-bold mb-2">
                       <Terminal className="w-4 h-4" />
                       <span>{t.impact.detailedCaseBadge}</span>
                     </div>
-                    <div className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-sky-200">
+                    <div className="text-5xl sm:text-6xl font-black text-white tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-sky-200">
                       {selectedMetric.metric}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-100 mb-2">
+                    <h3 className="text-xl font-bold text-slate-100 mb-2">
                       {selectedMetric.label}
                     </h3>
                     <p className="text-xs font-mono text-cyan-300/80 mb-4">
                       {selectedMetric.sublabel}
                     </p>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    <p className="text-sm text-slate-300 leading-relaxed">
                       {selectedMetric.description}
                     </p>
                   </div>
@@ -163,20 +159,20 @@ export const ImpactMetrics: React.FC = () => {
                 </div>
 
                 {/* Right Column: Technical How with Staggered Entrance */}
-                <div className="w-full lg:w-2/3">
-                  <h4 className="text-xs sm:text-sm font-mono uppercase tracking-wider text-slate-400 font-bold mb-4 flex items-center gap-2">
+                <div className="lg:w-2/3">
+                  <h4 className="text-sm font-mono uppercase tracking-wider text-slate-400 font-bold mb-4 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
                     {t.impact.engineeringStrategyTitle}
                   </h4>
 
-                  <div className="space-y-3">
+                  <div className="space-y-3.5">
                     {selectedMetric.technicalHow.map((how, index) => (
                       <motion.div
                         key={index}
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.05 }}
-                        className="flex items-start gap-3 p-3.5 sm:p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-cyan-500/40 hover:bg-slate-950/90 transition-all duration-200 group"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.35, delay: index * 0.07 }}
+                        className="flex items-start gap-3 p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-cyan-500/40 hover:bg-slate-950/90 transition-all duration-200 group"
                       >
                         <div className="w-6 h-6 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
                           0{index + 1}

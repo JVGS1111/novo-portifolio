@@ -36,7 +36,7 @@ export const ExperienceTimeline: React.FC = () => {
         </motion.div>
 
         {/* Timeline Container with Travelling Energy Beam */}
-        <div className="relative border-l-2 border-slate-800 ml-4 sm:ml-6 md:ml-36 space-y-12">
+        <div className="relative border-l-2 border-slate-800 ml-4 sm:ml-32 space-y-12">
           {/* Animated Glowing Light Beam travelling down the line */}
           <div className="timeline-beam" />
 
@@ -45,11 +45,11 @@ export const ExperienceTimeline: React.FC = () => {
             return (
               <motion.div
                 key={exp.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 25 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative group pl-6 sm:pl-8 md:pl-10"
+                className="relative group pl-6 sm:pl-10"
               >
                 {/* Timeline Node Icon / Dot with Pulse Ring */}
                 <div className={`absolute -left-[17px] top-1.5 w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${
@@ -60,19 +60,17 @@ export const ExperienceTimeline: React.FC = () => {
                   <span className={`w-2 h-2 rounded-full ${exp.current ? 'bg-cyan-400 animate-pulse' : 'bg-slate-500 group-hover:bg-cyan-400'}`} />
                 </div>
 
-                {/* Period on the left for desktop (md: and up) */}
-                <div className="hidden md:block absolute -left-36 top-2 text-right w-28 text-xs font-mono text-slate-400 font-medium group-hover:text-cyan-300 transition-colors">
+                {/* Period on the left for desktop */}
+                <div className="hidden sm:block absolute -left-36 top-2 text-right w-28 text-xs font-mono text-slate-400 font-medium group-hover:text-cyan-300 transition-colors">
                   {exp.period}
                 </div>
 
-                {/* Main Card with Smooth Hover Elevation & Apple Liquid Glass */}
-                <div className={`rounded-3xl transition-all duration-300 p-5 sm:p-6 relative overflow-hidden ${
+                {/* Main Card with Smooth Hover Elevation */}
+                <div className={`rounded-2xl border transition-all duration-300 p-6 ${
                   exp.current
-                    ? 'apple-liquid-card border-cyan-400/50 shadow-2xl shadow-cyan-950/40'
-                    : 'apple-liquid-glass hover:border-white/25'
+                    ? 'bg-slate-900/90 border-cyan-500/30 shadow-xl shadow-cyan-950/40'
+                    : 'bg-slate-900/50 border-slate-800/80 hover:border-slate-700 hover:bg-slate-900/70'
                 }`}>
-                  {/* Top specular reflection glint */}
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
                   
                   {/* Top Bar */}
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
@@ -99,7 +97,7 @@ export const ExperienceTimeline: React.FC = () => {
                             <span className="text-slate-300">{t.experience.clientPrefix} {exp.client}</span>
                           </>
                         )}
-                        <span className="md:hidden flex items-center gap-1 text-slate-500">
+                        <span className="sm:hidden flex items-center gap-1 text-slate-500">
                           • <Calendar className="w-3 h-3" /> {exp.period}
                         </span>
                       </div>

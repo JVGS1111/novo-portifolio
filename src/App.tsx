@@ -16,7 +16,6 @@ import { FrutigerAeroPage } from './components/frutiger/FrutigerAeroPage';
 import { MonolithicBrutalismPage } from './components/monolith/MonolithicBrutalismPage';
 import { EvaEpisodePage } from './components/eva/EvaEpisodePage';
 import { PortfolioSwitcher } from './components/PortfolioSwitcher';
-import { LiquidGlassBackground } from './components/LiquidGlassBackground';
 
 const AppContent: React.FC = () => {
   const [currentHash, setCurrentHash] = useState(() => {
@@ -98,9 +97,6 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden w-full max-w-full">
-      {/* Apple Liquid Glass Ambient Aurora & Optical Refraction Canvas */}
-      <LiquidGlassBackground />
-
       {/* Top Scroll Progress Indicator */}
       <ScrollProgress />
 

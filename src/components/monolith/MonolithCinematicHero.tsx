@@ -97,9 +97,9 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
         />
       </div>
 
-      {/* Atmospheric Vignette & Contrast Gradients */}
-      <div className="absolute inset-0 pointer-events-none z-10 bg-gradient-to-t from-[#0a0d12]/90 via-transparent to-[#0a0d12]/60" />
-      <div className="absolute inset-0 pointer-events-none z-10 bg-gradient-to-r from-[#0a0d12]/75 via-transparent to-[#0a0d12]/40" />
+      {/* Subtle edge gradients for typography contrast without darkening the 3D building */}
+      <div className="absolute bottom-0 left-0 right-0 h-44 pointer-events-none z-10 bg-gradient-to-t from-[#0a0d12]/80 via-[#0a0d12]/30 to-transparent" />
+      <div className="absolute top-0 bottom-0 left-0 w-full sm:w-[500px] pointer-events-none z-10 bg-gradient-to-r from-[#0a0d12]/60 via-[#0a0d12]/15 to-transparent" />
 
       {/* TOP BAR / NAVIGATION (Matches Image 1:1) */}
       <header className="absolute top-0 left-0 right-0 z-30 px-6 sm:px-12 py-7 flex items-center justify-between text-white font-sans transition-opacity duration-300">

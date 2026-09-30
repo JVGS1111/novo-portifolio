@@ -33,18 +33,17 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
     camZ: '52.00',
     altitude: '14.2m',
     structureHeight: '480m',
-    fogDensity: '94.2%',
-    lightCorePower: '3.8 GW',
+    fogDensity: '88.4%',
+    lightCorePower: '4.2 GW',
     fps: 60
   });
 
-  // Scene references for interaction
   const sceneStateRef = useRef<{
     isDragging: boolean;
     prevX: number;
     prevY: number;
-    orbitTheta: number; // horizontal angle
-    orbitPhi: number;   // vertical angle
+    orbitTheta: number;
+    orbitPhi: number;
     orbitRadius: number;
     targetLookAt: THREE.Vector3;
     currentLookAt: THREE.Vector3;
@@ -57,8 +56,8 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
     orbitTheta: -0.15,
     orbitPhi: 0.28,
     orbitRadius: 54,
-    targetLookAt: new THREE.Vector3(5, 32, 0),
-    currentLookAt: new THREE.Vector3(5, 32, 0),
+    targetLookAt: new THREE.Vector3(5, 36, 0),
+    currentLookAt: new THREE.Vector3(5, 36, 0),
     mouseParallax: { x: 0, y: 0 },
     resetToHero: () => {}
   });
@@ -70,8 +69,9 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
 
     // --- THREE.JS SCENE SETUP ---
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0e1116);
-    scene.fog = new THREE.FogExp2(0x0e1116, 0.0075);
+    scene.background = new THREE.Color(0x222832);
+    // Soft atmospheric distance fog (silvery slate storm tone, NOT black)
+    scene.fog = new THREE.FogExp2(0x28303c, 0.0048);
 
     const camera = new THREE.PerspectiveCamera(
       42,
@@ -81,9 +81,9 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
     );
 
     // Initial cinematic camera position
-    const heroCamPos = new THREE.Vector3(-8, 14, 52);
+    const heroCamPos = new THREE.Vector3(-8, 15, 52);
     camera.position.copy(heroCamPos);
-    camera.lookAt(5, 32, 0);
+    camera.lookAt(5, 36, 0);
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -93,11 +93,9 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.05;
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMappingExposure = 1.25; // Bright, punchy exposure
 
-    // --- PROCEDURAL CONCRETE TEXTURE GENERATOR ---
+    // --- PROCEDURAL ARCHITECTURAL CONCRETE TEXTURE GENERATOR ---
     const generateConcreteTexture = () => {
       const texCanvas = document.createElement('canvas');
       texCanvas.width = 1024;
@@ -105,45 +103,53 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       const ctx = texCanvas.getContext('2d');
       if (!ctx) return null;
 
-      // Base brutalist concrete tone
-      ctx.fillStyle = '#23262d';
+      // Base architectural concrete grey tone
+      const grad = ctx.createLinearGradient(0, 0, 0, 1024);
+      grad.addColorStop(0, '#757e8d');
+      grad.addColorStop(0.5, '#697280');
+      grad.addColorStop(1, '#5c6471');
+      ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 1024, 1024);
 
-      // Micro aggregate speckles (sand, cement aggregate, gravel)
+      // Micro aggregate speckles (mineral sands, quartz and cement aggregate)
       for (let i = 0; i < 90000; i++) {
         const x = Math.random() * 1024;
         const y = Math.random() * 1024;
         const size = Math.random() * 2.2;
-        const shade = Math.floor(18 + Math.random() * 45);
-        ctx.fillStyle = `rgb(${shade}, ${shade}, ${shade + 2})`;
+        const isLight = Math.random() > 0.45;
+        const shade = isLight
+          ? Math.floor(140 + Math.random() * 65)
+          : Math.floor(55 + Math.random() * 45);
+        ctx.fillStyle = `rgb(${shade}, ${shade + 2}, ${shade + 4})`;
         ctx.fillRect(x, y, size, size);
       }
 
-      // Horizontal modular brutalist formwork panel seams (every 128px)
+      // Horizontal brutalist formwork panel seams (every 128px)
       for (let y = 128; y < 1024; y += 128) {
-        ctx.strokeStyle = '#14161b';
+        // Dark recess seam
+        ctx.strokeStyle = '#383e47';
         ctx.lineWidth = 3;
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(1024, y);
         ctx.stroke();
 
-        // Highlight bevel
-        ctx.strokeStyle = '#32363f';
-        ctx.lineWidth = 1;
+        // Light bevel highlight edge
+        ctx.strokeStyle = '#9ca6b5';
+        ctx.lineWidth = 1.5;
         ctx.beginPath();
         ctx.moveTo(0, y + 2);
         ctx.lineTo(1024, y + 2);
         ctx.stroke();
 
-        // Tie-rod holes (architectural concrete anchor plugs)
+        // Architectural tie-rod anchor holes (cylindrical indentations)
         for (let x = 64; x < 1024; x += 128) {
-          ctx.fillStyle = '#0f1115';
+          ctx.fillStyle = '#2a2f37';
           ctx.beginPath();
-          ctx.arc(x, y - 12, 4, 0, Math.PI * 2);
+          ctx.arc(x, y - 12, 4.5, 0, Math.PI * 2);
           ctx.fill();
 
-          ctx.fillStyle = '#3a3e47';
+          ctx.fillStyle = '#adb8c7';
           ctx.beginPath();
           ctx.arc(x, y - 13, 2, 0, Math.PI * 2);
           ctx.fill();
@@ -151,18 +157,18 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       }
 
       // Vertical rain/weathering water-wash runoff streaks
-      for (let i = 0; i < 70; i++) {
+      for (let i = 0; i < 90; i++) {
         const x = Math.random() * 1024;
-        const yStart = Math.random() * 400;
-        const length = 120 + Math.random() * 450;
+        const yStart = Math.random() * 300;
+        const length = 150 + Math.random() * 500;
         const width = 1 + Math.random() * 3.5;
-        const alpha = 0.08 + Math.random() * 0.16;
+        const alpha = 0.08 + Math.random() * 0.18;
 
-        ctx.strokeStyle = `rgba(10, 12, 16, ${alpha})`;
+        ctx.strokeStyle = `rgba(30, 35, 42, ${alpha})`;
         ctx.lineWidth = width;
         ctx.beginPath();
         ctx.moveTo(x, yStart);
-        ctx.lineTo(x + (Math.random() - 0.5) * 4, yStart + length);
+        ctx.lineTo(x + (Math.random() - 0.5) * 3, yStart + length);
         ctx.stroke();
       }
 
@@ -175,7 +181,7 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
 
     const concreteTexture = generateConcreteTexture();
 
-    // Procedural Normal/Bump texture
+    // Procedural Bump Texture for tactile concrete relief
     const generateBumpTexture = () => {
       const texCanvas = document.createElement('canvas');
       texCanvas.width = 512;
@@ -186,11 +192,11 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       ctx.fillStyle = '#808080';
       ctx.fillRect(0, 0, 512, 512);
 
-      for (let i = 0; i < 40000; i++) {
+      for (let i = 0; i < 50000; i++) {
         const x = Math.random() * 512;
         const y = Math.random() * 512;
         const size = Math.random() * 2;
-        const val = Math.floor(100 + Math.random() * 55);
+        const val = Math.floor(100 + Math.random() * 70);
         ctx.fillStyle = `rgb(${val}, ${val}, ${val})`;
         ctx.fillRect(x, y, size, size);
       }
@@ -204,172 +210,183 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
 
     const bumpTexture = generateBumpTexture();
 
-    // --- SHARED PBR MATERIALS ---
+    // --- REALISTIC PBR MATERIALS ---
     const concreteMaterial = new THREE.MeshStandardMaterial({
-      color: 0x2b2e36,
-      roughness: 0.88,
+      color: 0x9aa2af, // Clear, beautifully visible stone concrete
+      roughness: 0.76,
       metalness: 0.12,
       map: concreteTexture || undefined,
       bumpMap: bumpTexture || undefined,
-      bumpScale: 0.08
+      bumpScale: 0.05
     });
 
     const darkTrimMaterial = new THREE.MeshStandardMaterial({
-      color: 0x181a1f,
-      roughness: 0.92,
-      metalness: 0.08
+      color: 0x3d434e,
+      roughness: 0.85,
+      metalness: 0.15
     });
 
-    // Glowing Amber Golden Slit Material (The signature sci-fi monolith light)
-    const amberGlowMaterial = new THREE.MeshStandardMaterial({
-      color: 0xffaa33,
-      emissive: 0xff8811,
-      emissiveIntensity: 3.6,
-      roughness: 0.2,
-      metalness: 0.1
+    // SIGNATURE AMBER GLOW MATERIALS (Bright, radiant, self-illuminated)
+    // 1. Core laser beam (pure unattenuated light)
+    const amberCoreMaterial = new THREE.MeshBasicMaterial({
+      color: 0xffec99 // bright radiant gold-white center
     });
 
-    // --- MONUMENTAL MONOLITH ARCHITECTURE (Hierarchical Group) ---
+    // 2. Outer emissive bloom aura
+    const amberAuraMaterial = new THREE.MeshBasicMaterial({
+      color: 0xff9900,
+      transparent: true,
+      opacity: 0.55
+    });
+
+    // --- MONUMENTAL MONOLITH ARCHITECTURE ---
     const monolithGroup = new THREE.Group();
     scene.add(monolithGroup);
 
-    // 1. Central Massive Megalith
+    // 1. Central Monumental Keep (Multiple Stepped Tiers)
     const centralPillars = [
       // Base Plinth / Foundation block
-      { w: 26, h: 22, d: 20, x: 5, y: 11, z: 0 },
-      // Tier 1 - Stepped Lower Core
-      { w: 22, h: 42, d: 18, x: 5, y: 28, z: -1 },
-      // Tier 2 - Stepped Middle Citadel
-      { w: 18, h: 58, d: 16, x: 5, y: 46, z: -2 },
-      // Tier 3 - Upper Monolith Keep
-      { w: 14, h: 80, d: 13, x: 5, y: 65, z: -3 },
+      { w: 24, h: 24, d: 16, x: 5, y: 12, z: 2 },
+      // Tier 1 - Stepped Lower Citadel
+      { w: 20, h: 46, d: 15, x: 5, y: 35, z: 1 },
+      // Tier 2 - Stepped Middle Monolith Keep
+      { w: 16, h: 64, d: 14, x: 5, y: 55, z: 0 },
+      // Tier 3 - Upper Monolith Tower
+      { w: 12, h: 84, d: 12, x: 5, y: 75, z: -1 },
       // Tier 4 - Summit Crown & Pylons
-      { w: 10, h: 105, d: 10, x: 5, y: 80, z: -4 },
-      // Front Cantilevered Bastion
-      { w: 16, h: 32, d: 12, x: 5, y: 20, z: 8 },
-      // Forward Pier Entrance Block
-      { w: 12, h: 18, d: 16, x: 5, y: 9, z: 16 }
+      { w: 8, h: 108, d: 10, x: 5, y: 92, z: -2 },
+      // Forward Terraced Entrance Pier
+      { w: 14, h: 16, d: 10, x: 5, y: 8, z: 8 },
+      // Front Cantilevered Bastion (Placed with clearance for light slits)
+      { w: 10, h: 28, d: 6, x: 5, y: 22, z: 7 }
     ];
 
     centralPillars.forEach((p) => {
       const geo = new THREE.BoxGeometry(p.w, p.h, p.d);
       const mesh = new THREE.Mesh(geo, concreteMaterial);
       mesh.position.set(p.x, p.y, p.z);
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
       monolithGroup.add(mesh);
     });
 
     // 2. Left Flanking Monolithic Towers (Staggered Heights)
     const leftWingBlocks = [
-      { w: 12, h: 72, d: 14, x: -12, y: 36, z: -1 },
-      { w: 10, h: 56, d: 12, x: -20, y: 28, z: 3 },
-      { w: 8, h: 40, d: 10, x: -27, y: 20, z: 6 },
-      { w: 6, h: 24, d: 8, x: -33, y: 12, z: 10 }
+      { w: 12, h: 76, d: 14, x: -12, y: 38, z: 1 },
+      { w: 10, h: 58, d: 12, x: -21, y: 29, z: 3 },
+      { w: 8, h: 42, d: 10, x: -28, y: 21, z: 5 },
+      { w: 6, h: 26, d: 8, x: -34, y: 13, z: 7 }
     ];
 
     leftWingBlocks.forEach((p) => {
       const geo = new THREE.BoxGeometry(p.w, p.h, p.d);
       const mesh = new THREE.Mesh(geo, concreteMaterial);
       mesh.position.set(p.x, p.y, p.z);
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
       monolithGroup.add(mesh);
     });
 
     // 3. Right Flanking Monolithic Towers (Staggered Heights)
     const rightWingBlocks = [
-      { w: 14, h: 85, d: 16, x: 21, y: 42, z: 2 },
-      { w: 12, h: 68, d: 14, x: 32, y: 34, z: 5 },
-      { w: 10, h: 48, d: 12, x: 42, y: 24, z: 8 },
-      { w: 8, h: 30, d: 10, x: 50, y: 15, z: 12 }
+      { w: 14, h: 88, d: 16, x: 22, y: 44, z: 3 },
+      { w: 12, h: 70, d: 14, x: 33, y: 35, z: 5 },
+      { w: 10, h: 50, d: 12, x: 43, y: 25, z: 7 },
+      { w: 8, h: 32, d: 10, x: 51, y: 16, z: 9 }
     ];
 
     rightWingBlocks.forEach((p) => {
       const geo = new THREE.BoxGeometry(p.w, p.h, p.d);
       const mesh = new THREE.Mesh(geo, concreteMaterial);
       mesh.position.set(p.x, p.y, p.z);
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
       monolithGroup.add(mesh);
     });
 
-    // 4. Connecting High-Altitude Skybridges / Architectural Buttresses
+    // 4. Connecting High-Altitude Skybridges / Structural Buttresses
     const skybridgeGeos = [
-      { w: 10, h: 4, d: 6, x: -5, y: 44, z: 1 },
-      { w: 8, h: 3.5, d: 5, x: 14, y: 52, z: 3 },
-      { w: 6, h: 3, d: 4, x: -16, y: 32, z: 4 },
-      { w: 12, h: 5, d: 8, x: 26, y: 38, z: 6 }
+      { w: 10, h: 4.5, d: 6, x: -5, y: 46, z: 2 },
+      { w: 8, h: 4, d: 5, x: 15, y: 54, z: 4 },
+      { w: 6, h: 3.5, d: 4, x: -16, y: 34, z: 4 },
+      { w: 12, h: 5.5, d: 8, x: 27, y: 40, z: 6 }
     ];
 
     skybridgeGeos.forEach((b) => {
       const geo = new THREE.BoxGeometry(b.w, b.h, b.d);
       const mesh = new THREE.Mesh(geo, darkTrimMaterial);
       mesh.position.set(b.x, b.y, b.z);
-      mesh.castShadow = true;
       monolithGroup.add(mesh);
     });
 
-    // 5. SIGNATURE AMBER VERTICAL LIGHT SLITS (High-intensity illuminated crevices)
-    const lightSlits: THREE.Mesh[] = [];
-
+    // 5. SIGNATURE AMBER VERTICAL LIGHT SLITS (POSITIONED ON FRONT SURFACE - 100% VISIBLE!)
     const slitSpecs = [
-      // Main Center Core Vertical Slit (Tallest)
-      { w: 0.45, h: 95, d: 0.6, x: 5, y: 56, z: 5.2 },
-      // Upper Crest Slit
-      { w: 0.35, h: 45, d: 0.5, x: 5, y: 88, z: 1.2 },
+      // Main Center Core Vertical Slit (Tallest - Runs right down the center face!)
+      { w: 0.6, h: 108, d: 0.4, x: 5, y: 64, z: 10.3 },
       // Left Bastion Vertical Slit
-      { w: 0.35, h: 58, d: 0.5, x: -6.8, y: 40, z: 6.5 },
+      { w: 0.45, h: 68, d: 0.35, x: -6.2, y: 44, z: 8.8 },
       // Right Bastion Vertical Slit
-      { w: 0.35, h: 68, d: 0.5, x: 13.8, y: 48, z: 7.5 },
-      // Lower Gateway Portal Slit (Vertical)
-      { w: 0.4, h: 18, d: 0.6, x: 5, y: 12, z: 14.2 },
+      { w: 0.45, h: 78, d: 0.35, x: 15.2, y: 50, z: 9.8 },
+      // Upper Crown Vertical Slit
+      { w: 0.4, h: 44, d: 0.3, x: 5, y: 98, z: 4.5 },
       // Secondary Left Trench Slit
-      { w: 0.28, h: 35, d: 0.4, x: -16, y: 30, z: 8.2 },
+      { w: 0.35, h: 40, d: 0.3, x: -16, y: 32, z: 8.5 },
       // Secondary Right Trench Slit
-      { w: 0.3, h: 42, d: 0.4, x: 26.5, y: 36, z: 9.2 }
+      { w: 0.35, h: 48, d: 0.3, x: 27.5, y: 38, z: 9.5 }
     ];
 
     slitSpecs.forEach((s) => {
-      const geo = new THREE.BoxGeometry(s.w, s.h, s.d);
-      const mesh = new THREE.Mesh(geo, amberGlowMaterial);
-      mesh.position.set(s.x, s.y, s.z);
-      monolithGroup.add(mesh);
-      lightSlits.push(mesh);
+      // Inner glowing core
+      const coreGeo = new THREE.BoxGeometry(s.w, s.h, s.d);
+      const coreMesh = new THREE.Mesh(coreGeo, amberCoreMaterial);
+      coreMesh.position.set(s.x, s.y, s.z);
+      monolithGroup.add(coreMesh);
+
+      // Outer glow aura layer for bloom effect
+      const auraGeo = new THREE.BoxGeometry(s.w * 2.8, s.h, s.d * 1.5);
+      const auraMesh = new THREE.Mesh(auraGeo, amberAuraMaterial);
+      auraMesh.position.set(s.x, s.y, s.z + 0.05);
+      monolithGroup.add(auraMesh);
     });
 
-    // Point lights placed directly in front of the primary light slits
-    const amberPointLight1 = new THREE.PointLight(0xffaa33, 4.5, 55, 1.2);
-    amberPointLight1.position.set(5, 42, 9);
+    // Glowing Entrance Gateway Portal at base
+    const portalGeo = new THREE.BoxGeometry(2.4, 7.5, 0.4);
+    const portalCore = new THREE.Mesh(portalGeo, amberCoreMaterial);
+    portalCore.position.set(5, 8.5, 13.2);
+    monolithGroup.add(portalCore);
+
+    const portalAura = new THREE.Mesh(
+      new THREE.BoxGeometry(4.2, 9.0, 0.5),
+      amberAuraMaterial
+    );
+    portalAura.position.set(5, 8.5, 13.25);
+    monolithGroup.add(portalAura);
+
+    // Warm Golden PointLights placed at the front of the light slits
+    // illuminating the surrounding concrete facade and casting reflections!
+    const amberPointLight1 = new THREE.PointLight(0xffaa33, 14.0, 70, 1.1);
+    amberPointLight1.position.set(5, 48, 14);
     monolithGroup.add(amberPointLight1);
 
-    const amberPointLight2 = new THREE.PointLight(0xff9422, 3.8, 45, 1.2);
-    amberPointLight2.position.set(14, 38, 11);
+    const amberPointLight2 = new THREE.PointLight(0xff9422, 12.0, 55, 1.1);
+    amberPointLight2.position.set(15, 45, 13);
     monolithGroup.add(amberPointLight2);
 
-    const amberPointLight3 = new THREE.PointLight(0xffaa22, 3.2, 35, 1.2);
-    amberPointLight3.position.set(-6, 30, 9);
+    const amberPointLight3 = new THREE.PointLight(0xffb844, 10.0, 50, 1.1);
+    amberPointLight3.position.set(-6, 38, 12);
     monolithGroup.add(amberPointLight3);
 
-    const amberPointLight4 = new THREE.PointLight(0xffb844, 4.0, 30, 1.2);
-    amberPointLight4.position.set(5, 10, 17);
+    const amberPointLight4 = new THREE.PointLight(0xffcc44, 14.0, 45, 1.1);
+    amberPointLight4.position.set(5, 10, 16); // Base entrance gate light
     monolithGroup.add(amberPointLight4);
 
-    // --- WET REFLECTIVE WATER PLANE & TIDAL SURFACE ---
-    const waterGeo = new THREE.PlaneGeometry(360, 360, 64, 64);
+    // --- WET REFLECTIVE WATER PLANE ---
+    const waterGeo = new THREE.PlaneGeometry(400, 400, 64, 64);
     const waterMat = new THREE.MeshStandardMaterial({
-      color: 0x090c10,
-      roughness: 0.12,
-      metalness: 0.68,
+      color: 0x12161e,
+      roughness: 0.1,
+      metalness: 0.78,
       flatShading: false
     });
     const waterMesh = new THREE.Mesh(waterGeo, waterMat);
     waterMesh.rotation.x = -Math.PI / 2;
     waterMesh.position.y = 0;
-    waterMesh.receiveShadow = true;
     scene.add(waterMesh);
 
-    // Store original vertices for subtle animated liquid ripples
     const waterPosAttr = waterGeo.attributes.position;
     const waterInitY = new Float32Array(waterPosAttr.count);
     for (let i = 0; i < waterPosAttr.count; i++) {
@@ -379,21 +396,21 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
     // --- ROCKY CRAGS & SHORELINE OUTCROPS ---
     const rockGeo = new THREE.DodecahedronGeometry(1, 1);
     const rockMat = new THREE.MeshStandardMaterial({
-      color: 0x1b1d22,
-      roughness: 0.94,
-      metalness: 0.1
+      color: 0x2e333d,
+      roughness: 0.88,
+      metalness: 0.15
     });
 
     const rocksGroup = new THREE.Group();
     scene.add(rocksGroup);
 
-    // Foreground Left Rocky Cliff (Where the silhouette traveler stands)
+    // Foreground Left Rocky Cliff
     const cliffRocks = [
       { x: -14, y: 1.5, z: 20, s: 6, ry: 0.4 },
       { x: -12, y: 2.8, z: 22, s: 5.5, ry: 1.1 },
       { x: -16, y: 2.2, z: 24, s: 6.5, ry: 2.3 },
       { x: -10, y: 3.6, z: 23, s: 4.8, ry: 0.7 },
-      { x: -11.5, y: 4.2, z: 21, s: 4.2, ry: 1.9 }, // Top plateau for traveler
+      { x: -11.5, y: 4.2, z: 21, s: 4.2, ry: 1.9 },
       { x: -8, y: 1.2, z: 24, s: 3.8, ry: 0.3 }
     ];
 
@@ -402,12 +419,10 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       rock.position.set(r.x, r.y, r.z);
       rock.scale.set(r.s * 1.3, r.s * 0.8, r.s);
       rock.rotation.set(0.2, r.ry, 0.1);
-      rock.castShadow = true;
-      rock.receiveShadow = true;
       rocksGroup.add(rock);
     });
 
-    // Scattered wet shoreline boulders in the water
+    // Shoreline wet rocks jutting out of the water
     const shorelineRocks = [
       { x: -2, y: 0.4, z: 32, s: 2.2 },
       { x: 3, y: 0.6, z: 35, s: 2.8 },
@@ -424,20 +439,16 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       rock.position.set(r.x, r.y, r.z);
       rock.scale.set(r.s * 1.4, r.s * 0.6, r.s * 1.1);
       rock.rotation.set(0.1, Math.random() * Math.PI, 0.1);
-      rock.castShadow = true;
-      rock.receiveShadow = true;
       rocksGroup.add(rock);
     });
 
     // --- SILHOUETTE OF THE LONE TRAVELER / DEVELOPER ---
-    // Positioned on the left rocky plateau looking at the colossal monolith
     const travelerGroup = new THREE.Group();
     travelerGroup.position.set(-11.5, 6.0, 21.2);
     scene.add(travelerGroup);
 
-    const silhouetteMat = new THREE.MeshBasicMaterial({ color: 0x050608 });
+    const silhouetteMat = new THREE.MeshBasicMaterial({ color: 0x090b0e });
 
-    // Legs
     const leftLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 1.2, 8), silhouetteMat);
     leftLeg.position.set(-0.18, 0.6, 0);
     travelerGroup.add(leftLeg);
@@ -446,27 +457,24 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
     rightLeg.position.set(0.18, 0.6, 0);
     travelerGroup.add(rightLeg);
 
-    // Torso & Long Coat
     const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 1.3, 8), silhouetteMat);
     torso.position.set(0, 1.7, 0);
     travelerGroup.add(torso);
 
     const coatTail = new THREE.Mesh(new THREE.ConeGeometry(0.48, 1.2, 8), silhouetteMat);
     coatTail.position.set(0, 1.2, -0.15);
-    coatTail.rotation.x = -0.25; // coat fluttering slightly in wind
+    coatTail.rotation.x = -0.25;
     travelerGroup.add(coatTail);
 
-    // Backpack
     const backpack = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.65, 0.3), silhouetteMat);
     backpack.position.set(0, 1.8, 0.25);
     travelerGroup.add(backpack);
 
-    // Head with Hood
     const head = new THREE.Mesh(new THREE.SphereGeometry(0.24, 8, 8), silhouetteMat);
     head.position.set(0, 2.5, 0);
     travelerGroup.add(head);
 
-    // --- PROCEDURAL VOLUMETRIC DRIFTING FOG PARTICLES ---
+    // --- VOLUMETRIC DRIFTING FOG PARTICLES ---
     const generatePuffTexture = () => {
       const pCanvas = document.createElement('canvas');
       pCanvas.width = 128;
@@ -475,10 +483,10 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       if (!pCtx) return null;
 
       const grad = pCtx.createRadialGradient(64, 64, 0, 64, 64, 64);
-      grad.addColorStop(0, 'rgba(215, 225, 235, 0.85)');
-      grad.addColorStop(0.3, 'rgba(180, 195, 210, 0.45)');
-      grad.addColorStop(0.7, 'rgba(140, 155, 170, 0.15)');
-      grad.addColorStop(1, 'rgba(100, 115, 130, 0)');
+      grad.addColorStop(0, 'rgba(235, 242, 250, 0.8)');
+      grad.addColorStop(0.3, 'rgba(195, 210, 225, 0.4)');
+      grad.addColorStop(0.7, 'rgba(150, 168, 185, 0.12)');
+      grad.addColorStop(1, 'rgba(120, 135, 150, 0)');
 
       pCtx.fillStyle = grad;
       pCtx.fillRect(0, 0, 128, 128);
@@ -487,7 +495,6 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
     };
 
     const puffTexture = generatePuffTexture();
-
     const fogPuffsGroup = new THREE.Group();
     scene.add(fogPuffsGroup);
 
@@ -500,20 +507,20 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
     }
 
     const fogPuffs: FogPuffData[] = [];
-    const puffCount = 55;
+    const puffCount = 50;
 
     for (let i = 0; i < puffCount; i++) {
       const pMat = new THREE.SpriteMaterial({
         map: puffTexture || undefined,
-        color: 0x3d434f,
+        color: 0x5a6575,
         transparent: true,
-        opacity: 0.12 + Math.random() * 0.18,
+        opacity: 0.14 + Math.random() * 0.18,
         depthWrite: false,
         blending: THREE.NormalBlending
       });
 
       const sprite = new THREE.Sprite(pMat);
-      const scale = 16 + Math.random() * 24;
+      const scale = 18 + Math.random() * 26;
       sprite.scale.set(scale, scale * 0.55, 1);
 
       const x = (Math.random() - 0.5) * 120 + 5;
@@ -532,19 +539,19 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       });
     }
 
-    // --- SKY BACKDROP & STORM LIGHTING ---
-    // Atmospheric backdrop plane (storm horizon)
-    const skyGeo = new THREE.PlaneGeometry(500, 260);
+    // --- SKY BACKDROP WITH LUMINOUS STORM LIGHTING ---
+    const skyGeo = new THREE.PlaneGeometry(550, 300);
     const skyCanvas = document.createElement('canvas');
     skyCanvas.width = 512;
     skyCanvas.height = 512;
     const skyCtx = skyCanvas.getContext('2d');
     if (skyCtx) {
       const grad = skyCtx.createLinearGradient(0, 0, 0, 512);
-      grad.addColorStop(0, '#1c2028');
-      grad.addColorStop(0.35, '#282d37');
-      grad.addColorStop(0.65, '#1e2229');
-      grad.addColorStop(1, '#0e1116');
+      grad.addColorStop(0, '#363e4b');     // Upper dark stormy charcoal
+      grad.addColorStop(0.3, '#5c697a');   // High stormy cloud light
+      grad.addColorStop(0.55, '#7b899c');  // Luminous storm light behind monolith crown!
+      grad.addColorStop(0.8, '#46505f');   // Middle horizon haze
+      grad.addColorStop(1, '#20252d');     // Lower water horizon
       skyCtx.fillStyle = grad;
       skyCtx.fillRect(0, 0, 512, 512);
     }
@@ -555,32 +562,34 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       fog: false
     });
     const skyMesh = new THREE.Mesh(skyGeo, skyMat);
-    skyMesh.position.set(5, 80, -90);
+    skyMesh.position.set(5, 90, -100);
     scene.add(skyMesh);
 
-    // Global Directional & Ambient Lighting
-    const ambientLight = new THREE.AmbientLight(0x232934, 1.4);
+    // --- RICH MULTI-POINT SCENE LIGHTING ---
+    // 1. Ambient Light (Strong cool bluish skylight fill so shadows are soft and detailed)
+    const ambientLight = new THREE.AmbientLight(0x627084, 2.4);
     scene.add(ambientLight);
 
-    // Main Storm Sunlight filtering through clouds from upper right
-    const dirLight = new THREE.DirectionalLight(0xdde4f0, 2.6);
-    dirLight.position.set(45, 85, 45);
-    dirLight.castShadow = true;
-    dirLight.shadow.mapSize.width = 2048;
-    dirLight.shadow.mapSize.height = 2048;
-    dirLight.shadow.camera.near = 10;
-    dirLight.shadow.camera.far = 250;
-    dirLight.shadow.camera.left = -60;
-    dirLight.shadow.camera.right = 60;
-    dirLight.shadow.camera.top = 80;
-    dirLight.shadow.camera.bottom = -20;
-    dirLight.shadow.bias = -0.0005;
+    // 2. Main Key Light (Storm sunlight filtering from upper right)
+    const dirLight = new THREE.DirectionalLight(0xe8f0f8, 3.8);
+    dirLight.position.set(40, 75, 50);
+    dirLight.target.position.set(5, 40, 0);
     scene.add(dirLight);
+    scene.add(dirLight.target);
 
-    // Secondary fill light from lower left
-    const fillLight = new THREE.DirectionalLight(0x28303f, 1.1);
-    fillLight.position.set(-50, 20, 20);
+    // 3. Rim Light (Back light highlighting the monolith edges against the sky)
+    const rimLight = new THREE.DirectionalLight(0xc2d4e8, 3.2);
+    rimLight.position.set(-20, 85, -40);
+    rimLight.target.position.set(5, 45, 0);
+    scene.add(rimLight);
+    scene.add(rimLight.target);
+
+    // 4. Soft Left Front Fill Light
+    const fillLight = new THREE.DirectionalLight(0x75869c, 2.0);
+    fillLight.position.set(-45, 30, 40);
+    fillLight.target.position.set(5, 35, 0);
     scene.add(fillLight);
+    scene.add(fillLight.target);
 
     // --- INTERACTION & ORBIT CONTROLS ---
     const sceneState = sceneStateRef.current;
@@ -589,7 +598,7 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       sceneState.orbitTheta = -0.15;
       sceneState.orbitPhi = 0.28;
       sceneState.orbitRadius = 54;
-      sceneState.targetLookAt.set(5, 32, 0);
+      sceneState.targetLookAt.set(5, 36, 0);
     };
 
     const handlePointerDown = (e: MouseEvent | TouchEvent) => {
@@ -614,7 +623,6 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
         sceneState.prevX = clientX;
         sceneState.prevY = clientY;
       } else {
-        // Mouse parallax during normal hero mode
         const rect = container.getBoundingClientRect();
         const normX = ((clientX - rect.left) / rect.width) * 2 - 1;
         const normY = -(((clientY - rect.top) / rect.height) * 2 - 1);
@@ -668,7 +676,7 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       animId = requestAnimationFrame(animate);
       const elapsed = clock.getElapsedTime();
 
-      // FPS Counter calculation
+      // FPS Counter
       frameCount++;
       const now = performance.now();
       if (now - fpsStart >= 1000) {
@@ -687,12 +695,12 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       }
       waterPosAttr.needsUpdate = true;
 
-      // 2. Amber Vertical Slits Breathing / Pulsing Glow
-      const pulse = 3.2 + Math.sin(elapsed * 1.8) * 0.7;
-      amberGlowMaterial.emissiveIntensity = pulse;
-      amberPointLight1.intensity = 4.2 + Math.sin(elapsed * 2.1) * 0.8;
-      amberPointLight2.intensity = 3.6 + Math.cos(elapsed * 1.7) * 0.6;
-      amberPointLight4.intensity = 3.8 + Math.sin(elapsed * 2.5) * 0.7;
+      // 2. Pulsing Glow for Amber Point Lights & Aura
+      const pulseLight = 12.0 + Math.sin(elapsed * 2.0) * 2.5;
+      amberPointLight1.intensity = pulseLight;
+      amberPointLight2.intensity = 11.0 + Math.cos(elapsed * 1.7) * 2.0;
+      amberPointLight4.intensity = 13.0 + Math.sin(elapsed * 2.4) * 2.2;
+      amberAuraMaterial.opacity = 0.5 + Math.sin(elapsed * 2.2) * 0.15;
 
       // 3. Volumetric Fog Drifting
       fogPuffs.forEach((puff) => {
@@ -700,7 +708,6 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
         puff.mesh.position.z += puff.speedZ;
         puff.mesh.material.rotation += puff.rotSpeed;
 
-        // Wrap around boundaries
         if (puff.mesh.position.x > 65) puff.mesh.position.x = -65;
         if (puff.mesh.position.x < -65) puff.mesh.position.x = 65;
         if (puff.mesh.position.z > 50) puff.mesh.position.z = -20;
@@ -711,7 +718,6 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
 
       // 4. Camera Dynamics (Explore Mode Orbit vs Cinematic Hero Parallax)
       if (isExploreMode) {
-        // Orbit Around Monolith Citadel
         const targetX = 5 + Math.sin(sceneState.orbitTheta) * Math.cos(sceneState.orbitPhi) * sceneState.orbitRadius;
         const targetY = Math.max(4, Math.sin(sceneState.orbitPhi) * sceneState.orbitRadius);
         const targetZ = Math.cos(sceneState.orbitTheta) * Math.cos(sceneState.orbitPhi) * sceneState.orbitRadius;
@@ -720,7 +726,6 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
         sceneState.currentLookAt.lerp(sceneState.targetLookAt, 0.08);
         camera.lookAt(sceneState.currentLookAt);
       } else {
-        // Cinematic Hero Framing with Mouse Parallax
         const parallaxTargetX = heroCamPos.x + sceneState.mouseParallax.x * 3.5;
         const parallaxTargetY = heroCamPos.y + sceneState.mouseParallax.y * 2.2;
         const parallaxTargetZ = heroCamPos.z;
@@ -729,14 +734,14 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
 
         const lookTarget = new THREE.Vector3(
           5 + sceneState.mouseParallax.x * 1.8,
-          32 + sceneState.mouseParallax.y * 1.5,
+          36 + sceneState.mouseParallax.y * 1.5,
           0
         );
         sceneState.currentLookAt.lerp(lookTarget, 0.05);
         camera.lookAt(sceneState.currentLookAt);
       }
 
-      // 5. Periodic Telemetry State Update (~10Hz)
+      // 5. Periodic Telemetry State Update
       if (elapsed - lastTelemetryUpdate > 0.1) {
         lastTelemetryUpdate = elapsed;
         setTelemetry({
@@ -745,8 +750,8 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
           camZ: camera.position.z.toFixed(2),
           altitude: `${camera.position.y.toFixed(1)}m`,
           structureHeight: '480m',
-          fogDensity: `${(92 + Math.sin(elapsed * 0.5) * 4).toFixed(1)}%`,
-          lightCorePower: `${(3.6 + Math.sin(elapsed * 1.8) * 0.4).toFixed(2)} GW`,
+          fogDensity: `${(86 + Math.sin(elapsed * 0.5) * 4).toFixed(1)}%`,
+          lightCorePower: `${(4.2 + Math.sin(elapsed * 1.8) * 0.5).toFixed(2)} GW`,
           fps: currentFps
         });
       }
@@ -768,7 +773,6 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       domElement.removeEventListener('wheel', handleWheel);
       window.removeEventListener('resize', handleResize);
 
-      // Dispose Geometries & Textures
       waterGeo.dispose();
       waterMat.dispose();
       rockGeo.dispose();
@@ -777,8 +781,10 @@ export const MonolithCinematicCanvas: React.FC<MonolithCinematicCanvasProps> = (
       skyMat.dispose();
       concreteMaterial.dispose();
       darkTrimMaterial.dispose();
-      amberGlowMaterial.dispose();
+      amberCoreMaterial.dispose();
+      amberAuraMaterial.dispose();
       silhouetteMat.dispose();
+      portalGeo.dispose();
       if (concreteTexture) concreteTexture.dispose();
       if (bumpTexture) bumpTexture.dispose();
       if (puffTexture) puffTexture.dispose();

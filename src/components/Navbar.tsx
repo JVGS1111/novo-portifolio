@@ -33,20 +33,24 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'py-3 bg-[#07090e]/85 backdrop-blur-md border-b border-slate-800/80 shadow-2xl shadow-cyan-950/20'
+          ? 'py-2.5 bg-[#07090e]/75 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl shadow-cyan-950/20'
           : 'py-5 bg-transparent'
       }`}
     >
+      {/* Specular Edge Refraction Line (Top Edge Glint) */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Monogram / Logo with Hover Spring */}
+        {/* Monogram / Logo with Liquid Glass Bevel */}
         <motion.a
           href="#"
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
           className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
         >
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 via-indigo-500/20 to-purple-500/20 border border-cyan-500/40 flex items-center justify-center font-mono font-bold text-xs sm:text-sm text-cyan-400 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 shadow-md shadow-cyan-500/10 shrink-0">
-            JG
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-white/15 via-cyan-500/20 to-purple-500/15 border border-white/20 backdrop-blur-xl flex items-center justify-center font-mono font-bold text-xs sm:text-sm text-cyan-300 group-hover:border-cyan-300 group-hover:shadow-[0_0_24px_rgba(6,182,212,0.45)] transition-all duration-300 shadow-lg shadow-black/40 shrink-0 relative overflow-hidden">
+            <span className="relative z-10">JG</span>
+            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/0 via-white/10 to-transparent pointer-events-none" />
           </div>
           <div className="flex flex-col text-left">
             <span className="text-xs sm:text-sm font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors whitespace-nowrap">
@@ -63,14 +67,14 @@ export const Navbar: React.FC = () => {
           </div>
         </motion.a>
 
-        {/* Desktop Navigation Links (Visible on large screens) */}
-        <nav className="hidden lg:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-full border border-slate-800/80 backdrop-blur-md shadow-inner">
+        {/* Desktop Navigation Links — Apple Liquid Glass Capsule */}
+        <nav className="hidden lg:flex items-center gap-1 apple-liquid-pill p-1.5 rounded-full shadow-lg shadow-black/25">
           {navLinks.map((link) => (
             <motion.a
               key={link.name}
               href={link.href}
               whileHover={{ y: -1 }}
-              className="px-3.5 py-1.5 text-xs font-medium text-slate-300 hover:text-cyan-300 hover:bg-slate-800/70 rounded-full transition-all duration-200 whitespace-nowrap"
+              className="px-3.5 py-1.5 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/[0.08] rounded-full transition-all duration-200 whitespace-nowrap"
             >
               {link.name}
             </motion.a>
@@ -79,14 +83,14 @@ export const Navbar: React.FC = () => {
 
         {/* Action, Flags & Social Icons (Desktop) */}
         <div className="hidden lg:flex items-center gap-2.5">
-          {/* Streamlined Language Toggle */}
-          <div className="flex items-center bg-slate-900/80 p-0.5 rounded-full border border-slate-800/90 shadow-inner">
+          {/* Streamlined Liquid Glass Language Toggle */}
+          <div className="flex items-center apple-liquid-pill p-0.5 rounded-full shadow-inner">
             <button
               type="button"
               onClick={() => setLanguage('en')}
               className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono transition-all cursor-pointer ${
                 language === 'en'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-xs font-bold'
+                  ? 'bg-cyan-500/25 text-cyan-200 border border-cyan-400/40 shadow-xs font-bold'
                   : 'text-slate-400 hover:text-slate-200 border border-transparent'
               }`}
               aria-label="Switch to English"
@@ -100,7 +104,7 @@ export const Navbar: React.FC = () => {
               onClick={() => setLanguage('pt')}
               className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono transition-all cursor-pointer ${
                 language === 'pt'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-xs font-bold'
+                  ? 'bg-cyan-500/25 text-cyan-200 border border-cyan-400/40 shadow-xs font-bold'
                   : 'text-slate-400 hover:text-slate-200 border border-transparent'
               }`}
               aria-label="Mudar para Português"
@@ -119,7 +123,7 @@ export const Navbar: React.FC = () => {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 text-slate-400 hover:text-cyan-400 hover:bg-slate-800/60 rounded-lg transition-colors border border-transparent hover:border-slate-700"
+              className="p-1.5 text-slate-400 hover:text-cyan-400 hover:bg-white/[0.08] rounded-lg transition-colors border border-transparent hover:border-white/10"
               title="LinkedIn Profile"
             >
               <LinkedinIcon className="w-4 h-4" />
@@ -130,7 +134,7 @@ export const Navbar: React.FC = () => {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 text-slate-400 hover:text-purple-400 hover:bg-slate-800/60 rounded-lg transition-colors border border-transparent hover:border-slate-700"
+              className="p-1.5 text-slate-400 hover:text-purple-400 hover:bg-white/[0.08] rounded-lg transition-colors border border-transparent hover:border-white/10"
               title="GitHub Profile"
             >
               <GithubIcon className="w-4 h-4" />
@@ -140,12 +144,12 @@ export const Navbar: React.FC = () => {
           {/* Dynamic Portfolio Hub Switcher Dropdown */}
           <PortfolioSwitcher variant="navbar" />
 
-          {/* Connect CTA Button */}
+          {/* Connect CTA Button with Liquid Sheen */}
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contato"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 rounded-full shadow-md shadow-cyan-500/20 transition-all duration-200 cursor-pointer whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-slate-950 bg-gradient-to-r from-cyan-300 via-sky-300 to-cyan-400 hover:from-white hover:to-cyan-300 rounded-full shadow-lg shadow-cyan-500/25 transition-all duration-200 cursor-pointer whitespace-nowrap border border-white/40"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t.nav.connectBtn}</span>
@@ -158,7 +162,7 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-[11px] font-mono text-cyan-300 hover:bg-slate-800 transition-colors cursor-pointer shadow-sm"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full apple-liquid-pill text-[11px] font-mono text-cyan-300 cursor-pointer shadow-sm"
             aria-label="Toggle language"
             title={language === 'en' ? 'Mudar para Português' : 'Switch to English'}
           >
@@ -178,7 +182,7 @@ export const Navbar: React.FC = () => {
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-300 hover:text-white rounded-lg bg-slate-900/80 border border-slate-800 hover:bg-slate-800/80 transition-colors cursor-pointer"
+            className="p-2 text-slate-300 hover:text-white rounded-xl apple-liquid-pill transition-colors cursor-pointer"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5" />}
@@ -194,7 +198,7 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden lg:hidden px-4 pt-4 pb-6 bg-[#0c0f18]/95 backdrop-blur-xl border-b border-slate-800 space-y-3"
+            className="overflow-hidden lg:hidden px-4 pt-4 pb-6 apple-liquid-glass border-b border-white/10 space-y-3 shadow-2xl"
           >
             <nav className="flex flex-col space-y-1">
               {navLinks.map((link, idx) => (

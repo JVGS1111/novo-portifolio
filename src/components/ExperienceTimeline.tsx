@@ -65,12 +65,14 @@ export const ExperienceTimeline: React.FC = () => {
                   {exp.period}
                 </div>
 
-                {/* Main Card with Smooth Hover Elevation */}
-                <div className={`rounded-2xl border transition-all duration-300 p-5 sm:p-6 ${
+                {/* Main Card with Smooth Hover Elevation & Apple Liquid Glass */}
+                <div className={`rounded-3xl transition-all duration-300 p-5 sm:p-6 relative overflow-hidden ${
                   exp.current
-                    ? 'bg-slate-900/90 border-cyan-500/30 shadow-xl shadow-cyan-950/40'
-                    : 'bg-slate-900/50 border-slate-800/80 hover:border-slate-700 hover:bg-slate-900/70'
+                    ? 'apple-liquid-card border-cyan-400/50 shadow-2xl shadow-cyan-950/40'
+                    : 'apple-liquid-glass hover:border-white/25'
                 }`}>
+                  {/* Top specular reflection glint */}
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
                   
                   {/* Top Bar */}
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-3">

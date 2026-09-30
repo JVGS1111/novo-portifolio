@@ -2,12 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Check, Sparkles } from 'lucide-react';
 import { portfolioRegistry, getCurrentPortfolio, navigateToPortfolio, type PortfolioItem } from '../data/portfolioRegistry';
+import { useLanguage } from '../i18n';
 
 interface PortfolioSwitcherProps {
   variant?: 'navbar' | 'floating';
 }
 
 export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 'floating' }) => {
+  const { language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState(() => (typeof window !== 'undefined' ? window.location.hash : ''));
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,7 +39,7 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
 
   const handleSelect = (item: PortfolioItem) => {
     setIsOpen(false);
-    navigateToPortfolio(item);
+    navigateToPortfolio(item, language);
   };
 
   if (variant === 'navbar') {
@@ -46,15 +48,15 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 hover:border-cyan-500/50 text-xs font-mono text-slate-200 hover:text-white transition-all shadow-sm cursor-pointer"
-          title="Alternar entre versões do portfólio"
+          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 text-xs font-mono text-slate-200 hover:text-white transition-all shadow-xs cursor-pointer"
+          title={language === 'pt' ? 'Alternar entre versões do portfólio' : 'Switch between portfolio versions'}
         >
-          <span className="text-sm">{current.icon}</span>
-          <span className="font-semibold hidden sm:inline">{current.shortName}</span>
-          <span className="text-[10px] px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-            {portfolioRegistry.filter((p) => p.status === 'active').length} versões
+          <span className="text-xs">{current.icon}</span>
+          <span className="font-semibold text-[11px] hidden xl:inline">{current.shortName}</span>
+          <span className="text-[9px] px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+            {portfolioRegistry.filter((p) => p.status === 'active').length} {language === 'pt' ? 'temas' : 'themes'}
           </span>
-          <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+          <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
         </button>
 
         {/* Dropdown Menu */}
@@ -65,20 +67,24 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.18, ease: 'easeOut' }}
-              className="absolute right-0 mt-2 w-80 rounded-2xl bg-slate-950/95 border border-slate-800 backdrop-blur-2xl shadow-2xl shadow-black/80 z-50 p-2 overflow-hidden"
+              className="absolute right-0 mt-2 w-72 sm:w-80 rounded-2xl bg-slate-950/95 border border-slate-800 backdrop-blur-2xl shadow-2xl shadow-black/80 z-50 p-2 overflow-hidden"
             >
               <div className="px-3 py-2 border-b border-slate-800/80 mb-1 flex items-center justify-between">
                 <span className="text-[11px] font-mono uppercase font-bold text-slate-400 flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                  Galeria de Portfólios
+                  {language === 'pt' ? 'Galeria de Portfólios' : 'Portfolio Gallery'}
                 </span>
-                <span className="text-[10px] font-mono text-cyan-400">Hub Interativo</span>
+                <span className="text-[10px] font-mono text-cyan-400">
+                  {language === 'pt' ? 'Hub Interativo' : 'Interactive Hub'}
+                </span>
               </div>
 
               <div className="space-y-1">
                 {portfolioRegistry.map((item) => {
                   const isCurrent = current.id === item.id;
                   const isComingSoon = item.status === 'coming_soon';
+                  const tagText = (language === 'en' && item.tagEn) ? item.tagEn : item.tag;
+                  const descText = (language === 'en' && item.descriptionEn) ? item.descriptionEn : item.description;
 
                   return (
                     <button
@@ -107,11 +113,11 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
                                 : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                             }`}
                           >
-                            {item.tag}
+                            {tagText}
                           </span>
                         </div>
                         <p className="text-[10.5px] text-slate-400 line-clamp-1 leading-snug">
-                          {item.description}
+                          {descText}
                         </p>
                       </div>
 
@@ -147,10 +153,10 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
             <div className="px-3 py-2 border-b border-slate-800/80 mb-2 flex items-center justify-between">
               <span className="text-[11px] font-mono uppercase font-bold text-slate-300 flex items-center gap-1.5">
                 <span>🎨</span>
-                Seletor de Portfólio
+                {language === 'pt' ? 'Seletor de Portfólio' : 'Portfolio Selector'}
               </span>
               <span className="text-[10px] font-mono text-cyan-400">
-                {portfolioRegistry.filter((p) => p.status === 'active').length} disponíveis
+                {portfolioRegistry.filter((p) => p.status === 'active').length} {language === 'pt' ? 'disponíveis' : 'available'}
               </span>
             </div>
 
@@ -158,6 +164,8 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
               {portfolioRegistry.map((item) => {
                 const isCurrent = current.id === item.id;
                 const isComingSoon = item.status === 'coming_soon';
+                const tagText = (language === 'en' && item.tagEn) ? item.tagEn : item.tag;
+                const descText = (language === 'en' && item.descriptionEn) ? item.descriptionEn : item.description;
 
                 return (
                   <button
@@ -186,11 +194,11 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
                               : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                           }`}
                         >
-                          {item.tag}
+                          {tagText}
                         </span>
                       </div>
                       <p className="text-[10.5px] text-slate-400 line-clamp-1 leading-snug">
-                        {item.description}
+                        {descText}
                       </p>
                     </div>
 
@@ -214,7 +222,7 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
         className="group flex items-center gap-2.5 px-4 py-2.5 bg-slate-900/90 hover:bg-slate-850 text-slate-100 font-mono text-xs font-semibold rounded-full border border-cyan-500/40 hover:border-cyan-400 shadow-xl shadow-cyan-950/40 backdrop-blur-md cursor-pointer transition-all duration-300"
-        title="Alternar entre versões e conceitos de portfólio"
+        title={language === 'pt' ? 'Alternar entre versões e conceitos de portfólio' : 'Switch between portfolio versions and concepts'}
       >
         <span className="flex h-2 w-2 relative">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
@@ -223,7 +231,7 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
         <span className="text-base group-hover:rotate-12 transition-transform">{current.icon}</span>
         <span className="tracking-tight">{current.shortName}</span>
         <span className="text-[10px] uppercase px-1.5 py-0.5 rounded bg-cyan-500/20 border border-cyan-500/30 text-cyan-300">
-          Galeria
+          {language === 'pt' ? 'Galeria' : 'Gallery'}
         </span>
         <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </motion.button>

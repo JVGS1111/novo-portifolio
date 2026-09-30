@@ -34,14 +34,14 @@ export const CaseStudies: React.FC = () => {
         </motion.div>
 
         {/* Case Studies Selector Tabs with Gliding Spring Pill */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 w-full max-w-full px-1">
           {t.cases.studies.map((study) => {
             const isActive = activeStudy.id === study.id;
             return (
               <button
                 key={study.id}
                 onClick={() => setActiveStudyId(study.id)}
-                className={`relative px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition-colors duration-200 flex items-center gap-3 cursor-pointer ${
+                className={`relative px-3.5 sm:px-5 py-2 sm:py-3 rounded-2xl text-xs sm:text-sm font-semibold transition-colors duration-200 flex items-center gap-2 sm:gap-3 cursor-pointer ${
                   isActive
                     ? 'text-cyan-300'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
@@ -57,7 +57,7 @@ export const CaseStudies: React.FC = () => {
                 )}
 
                 <span className="relative z-10">{study.title}</span>
-                <span className={`relative z-10 text-[10px] px-2 py-0.5 rounded-full font-mono transition-colors ${
+                <span className={`relative z-10 text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full font-mono transition-colors ${
                   isActive ? 'bg-cyan-500/20 text-cyan-200 border border-cyan-400/30' : 'bg-slate-800 text-slate-500'
                 }`}>
                   {study.badge}
@@ -80,7 +80,7 @@ export const CaseStudies: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               
               {/* Left Column: Visual Asset Display with Smooth Hover Zoom */}
-              <div className="lg:col-span-6 relative min-h-[340px] lg:min-h-[520px] bg-slate-950 overflow-hidden flex items-center justify-center group">
+              <div className="lg:col-span-6 relative min-h-[300px] sm:min-h-[360px] lg:min-h-[520px] bg-slate-950 overflow-hidden flex items-center justify-center group">
                 <img
                   src={activeStudy.image}
                   alt={activeStudy.title}
@@ -94,13 +94,13 @@ export const CaseStudies: React.FC = () => {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 }}
-                  className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-slate-700/60 flex items-center justify-between shadow-xl"
+                  className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 p-3 sm:p-4 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-slate-700/60 flex items-center justify-between shadow-xl"
                 >
-                  <div>
-                    <div className="text-xs font-mono text-cyan-400 font-semibold">{activeStudy.clientOrProject}</div>
-                    <div className="text-sm font-bold text-white">{activeStudy.badge}</div>
+                  <div className="min-w-0 pr-2">
+                    <div className="text-xs font-mono text-cyan-400 font-semibold truncate">{activeStudy.clientOrProject}</div>
+                    <div className="text-xs sm:text-sm font-bold text-white truncate">{activeStudy.badge}</div>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-cyan-400/20 border border-cyan-400/40 text-cyan-300 flex items-center justify-center font-mono text-xs font-bold animate-pulse">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-cyan-400/20 border border-cyan-400/40 text-cyan-300 flex items-center justify-center font-mono text-xs font-bold animate-pulse shrink-0">
                     ✓
                   </div>
                 </motion.div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { EvaEpisodeContent } from './evaTranslations';
-import { Award, GraduationCap } from 'lucide-react';
+import { Award, GraduationCap, Cloud } from 'lucide-react';
 
 interface EvaMagiBankProps {
   synapticBank: EvaEpisodeContent['synapticBank'];
@@ -61,39 +61,57 @@ export const EvaMagiBank: React.FC<EvaMagiBankProps> = ({ synapticBank, career }
           ))}
         </div>
 
-        {/* Credentials Bar (Copilot Certified & Degree) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-zinc-800">
+        {/* Credentials Bar (Copilot Certified, AWS Associate, & Degree) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-zinc-800">
           {/* GitHub Copilot Official */}
-          <div className="border border-amber-500/40 bg-amber-500/5 p-4 flex items-start gap-4">
-            <div className="p-2 border border-amber-500/60 bg-black text-amber-400">
-              <Award size={24} />
+          <div className="border border-amber-500/40 bg-amber-500/5 p-4 flex items-start gap-3">
+            <div className="p-2 border border-amber-500/60 bg-black text-amber-400 shrink-0">
+              <Award size={22} />
             </div>
             <div>
               <div className="text-[10px] font-eva-mono text-amber-500 font-bold tracking-widest uppercase">
                 {synapticBank.certIssuer}
               </div>
-              <h4 className="font-eva-title text-base font-bold text-white mt-0.5">
+              <h4 className="font-eva-title text-sm font-bold text-white mt-0.5 leading-snug">
                 {synapticBank.certTitle}
               </h4>
-              <p className="text-xs font-eva-mono text-zinc-400 mt-1">
+              <p className="text-[11px] font-eva-mono text-zinc-400 mt-1">
                 {synapticBank.certStatus}
               </p>
             </div>
           </div>
 
-          {/* Software Engineering Degree */}
-          <div className="border border-blue-500/40 bg-blue-500/5 p-4 flex items-start gap-4">
-            <div className="p-2 border border-blue-500/60 bg-black text-blue-400">
-              <GraduationCap size={24} />
+          {/* AWS Certified Solutions Architect */}
+          <div className="border border-orange-500/40 bg-orange-500/5 p-4 flex items-start gap-3">
+            <div className="p-2 border border-orange-500/60 bg-black text-orange-400 shrink-0">
+              <Cloud size={22} />
+            </div>
+            <div>
+              <div className="text-[10px] font-eva-mono text-orange-400 font-bold tracking-widest uppercase">
+                {synapticBank.awsIssuer}
+              </div>
+              <h4 className="font-eva-title text-sm font-bold text-white mt-0.5 leading-snug">
+                {synapticBank.awsTitle}
+              </h4>
+              <p className="text-[11px] font-eva-mono text-zinc-400 mt-1">
+                {synapticBank.awsStatus}
+              </p>
+            </div>
+          </div>
+
+          {/* Tecnólogo em ADS - Uninter */}
+          <div className="border border-blue-500/40 bg-blue-500/5 p-4 flex items-start gap-3">
+            <div className="p-2 border border-blue-500/60 bg-black text-blue-400 shrink-0">
+              <GraduationCap size={22} />
             </div>
             <div>
               <div className="text-[10px] font-eva-mono text-blue-400 font-bold tracking-widest uppercase">
                 {synapticBank.degreeInstitution}
               </div>
-              <h4 className="font-eva-title text-base font-bold text-white mt-0.5">
+              <h4 className="font-eva-title text-sm font-bold text-white mt-0.5 leading-snug">
                 {synapticBank.degreeTitle}
               </h4>
-              <p className="text-xs font-eva-mono text-zinc-400 mt-1">
+              <p className="text-[11px] font-eva-mono text-zinc-400 mt-1">
                 {synapticBank.degreeStatus}
               </p>
             </div>

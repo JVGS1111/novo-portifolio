@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, Layout, Layers, Bot, Award, GraduationCap, Globe } from 'lucide-react';
+import { Smartphone, Layout, Layers, Bot, Award, GraduationCap, Globe, Cloud } from 'lucide-react';
 import { useLanguage } from '../../i18n';
-
 
 export const PrismTechMatrix: React.FC = () => {
   const { language } = useLanguage();
@@ -13,55 +12,55 @@ export const PrismTechMatrix: React.FC = () => {
       icon: <Smartphone className="w-4 h-4 text-blue-600" />,
       skills: [
         'React Native',
-        'TypeScript',
         'Kotlin (Android)',
         'Swift (iOS)',
-        'TurboModules',
+        'Expo',
+        'Native Modules',
         'Hermes Engine',
         'Fastlane',
-        'AppDome RASP',
+        'AppDome (RASP)',
       ],
     },
     {
       title: language === 'pt' ? 'Web Moderna & UI' : 'Modern Web & UI',
       icon: <Layout className="w-4 h-4 text-indigo-600" />,
       skills: [
-        'React 19',
-        'Next.js 15',
-        'Vite',
-        'Tailwind CSS v4',
-        'Three.js / WebGL',
-        'Framer Motion',
+        'React',
+        'Next.js',
+        'TypeScript',
         'Design Systems',
-        'Redux / Zustand',
+        'Storybook',
+        'Tailwind CSS',
+        'Three.js / 3D Web',
+        'Vite',
       ],
     },
     {
-      title: language === 'pt' ? 'Arquitetura & Qualidade' : 'Architecture & Quality',
+      title: language === 'pt' ? 'DevOps, Nuvem & Qualidade' : 'DevOps, Cloud & Quality',
       icon: <Layers className="w-4 h-4 text-emerald-600" />,
       skills: [
+        'AWS Cloud',
+        'Azure DevOps',
+        'GitHub Actions',
+        'Docker',
+        'Dynatrace & Databricks',
         'Clean Architecture',
         'SOLID & TDD',
-        'Jest & Vitest',
-        'Dynatrace & Databricks',
-        'Azure DevOps CI/CD',
-        'Git & Monorepos',
-        'REST & GraphQL',
-        'Performance Profiling',
+        'CI/CD Pipelines',
       ],
     },
     {
-      title: language === 'pt' ? 'IA & Automação Dev' : 'AI & Developer Automation',
+      title: language === 'pt' ? 'IA & Automação de Engenharia' : 'AI & Engineering Automation',
       icon: <Bot className="w-4 h-4 text-purple-600" />,
       skills: [
         'GitHub Copilot (Cert.)',
         'AI Coding Agents',
         'Prompt Engineering',
         'Automated PR Audits',
-        'Scaffolding Tools',
-        'Docker',
-        'Shell Scripting',
+        'Jest & Vitest Testing',
+        'Blueprint Synthesis',
         'Developer Productivity',
+        'Scrum & Kanban',
       ],
     },
   ];
@@ -111,52 +110,70 @@ export const PrismTechMatrix: React.FC = () => {
         ))}
       </div>
 
-      {/* Certification, Degree & Languages Footer Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {/* Certification */}
+      {/* Certifications, Degree & Languages Footer Cards (4 Cards Grid) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {/* AWS Certification */}
         <div className="p-5 rounded-[24px] apple-liquid-card-light flex items-center gap-3.5 transform-gpu">
-          <div className="p-2.5 rounded-2xl apple-liquid-chip text-indigo-600 shadow-xs">
+          <div className="p-2.5 rounded-2xl apple-liquid-chip text-amber-600 shadow-xs shrink-0">
+            <Cloud className="w-5 h-5" />
+          </div>
+          <div className="min-w-0">
+            <span className="text-[10px] font-bold text-amber-600 uppercase tracking-wider block">
+              {language === 'pt' ? 'Certificação Oficial' : 'Official Certification'}
+            </span>
+            <span className="text-xs font-bold text-slate-900 block truncate" title="AWS Solutions Architect">
+              AWS Solutions Architect
+            </span>
+            <span className="text-[11px] text-slate-500 block truncate">
+              {language === 'pt' ? 'Em andamento (Previsão Q4 2026)' : 'In Progress (Est. Q4 2026)'}
+            </span>
+          </div>
+        </div>
+
+        {/* GitHub Copilot Certification */}
+        <div className="p-5 rounded-[24px] apple-liquid-card-light flex items-center gap-3.5 transform-gpu">
+          <div className="p-2.5 rounded-2xl apple-liquid-chip text-indigo-600 shadow-xs shrink-0">
             <Award className="w-5 h-5" />
           </div>
-          <div>
+          <div className="min-w-0">
             <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-wider block">
               {language === 'pt' ? 'Certificação Oficial' : 'Official Certification'}
             </span>
-            <span className="text-xs font-bold text-slate-900 block">GitHub Copilot Specialist</span>
-            <span className="text-[11px] text-slate-500">Microsoft / GitHub</span>
+            <span className="text-xs font-bold text-slate-900 block truncate">GitHub Copilot Certified</span>
+            <span className="text-[11px] text-slate-500 block">2025 — 2028 · GitHub</span>
           </div>
         </div>
 
         {/* Education */}
         <div className="p-5 rounded-[24px] apple-liquid-card-light flex items-center gap-3.5 transform-gpu">
-          <div className="p-2.5 rounded-2xl apple-liquid-chip text-emerald-600 shadow-xs">
+          <div className="p-2.5 rounded-2xl apple-liquid-chip text-emerald-600 shadow-xs shrink-0">
             <GraduationCap className="w-5 h-5" />
           </div>
-          <div>
+          <div className="min-w-0">
             <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider block">
-              {language === 'pt' ? 'Formação Superior' : 'Higher Education'}
+              {language === 'pt' ? 'Graduação Tecnológica' : 'Higher Education'}
             </span>
-            <span className="text-xs font-bold text-slate-900 block">
-              {language === 'pt' ? 'Análise e Desenv. de Sistemas' : 'B.S. Systems Analysis & Development'}
+            <span className="text-xs font-bold text-slate-900 block truncate">
+              {language === 'pt' ? 'Análise e Desenv. Sistemas' : 'Systems Analysis & Dev.'}
             </span>
-            <span className="text-[11px] text-slate-500">UNINTER (2021 — 2023)</span>
+            <span className="text-[11px] text-slate-500 block">Uninter (2019 — 2021)</span>
           </div>
         </div>
 
         {/* Languages */}
         <div className="p-5 rounded-[24px] apple-liquid-card-light flex items-center gap-3.5 transform-gpu">
-          <div className="p-2.5 rounded-2xl apple-liquid-chip text-blue-600 shadow-xs">
+          <div className="p-2.5 rounded-2xl apple-liquid-chip text-blue-600 shadow-xs shrink-0">
             <Globe className="w-5 h-5" />
           </div>
-          <div>
+          <div className="min-w-0">
             <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider block">
-              {language === 'pt' ? 'Idiomas & Comunicação' : 'Languages & Communication'}
+              {language === 'pt' ? 'Idiomas' : 'Languages'}
             </span>
-            <span className="text-xs font-bold text-slate-900 block">
-              {language === 'pt' ? 'Português (Nativo)' : 'English (Full Professional)'}
+            <span className="text-xs font-bold text-slate-900 block truncate">
+              {language === 'pt' ? 'Português (Nativo)' : 'English (B2 Prof.)'}
             </span>
-            <span className="text-[11px] text-slate-500">
-              {language === 'pt' ? 'Inglês (Avançado Profissional)' : 'Portuguese (Native)'}
+            <span className="text-[11px] text-slate-500 block truncate">
+              {language === 'pt' ? 'Inglês (B2 Intermediário Superior)' : 'Portuguese (Native)'}
             </span>
           </div>
         </div>

@@ -64,6 +64,10 @@ export interface EvaEpisodeContent {
     sectionTag: string;
     sectionTitle: string;
     sectionSubtitle: string;
+    dossierBtn: string;
+    modalCloseBtn: string;
+    modalClearance: string;
+    modalTabPrefix: string;
     list: {
       number: string;
       kanjiTitle: string;
@@ -73,10 +77,13 @@ export interface EvaEpisodeContent {
       company: string;
       threatTitle: string;
       threatDesc: string;
+      threatPoints?: string[];
       countermeasureTitle: string;
       countermeasureDesc: string;
+      countermeasurePoints?: string[];
       outcomeTitle: string;
       outcomeDesc: string;
+      outcomePoints?: string[];
       stack: string[];
     }[];
   };
@@ -99,6 +106,9 @@ export interface EvaEpisodeContent {
     certTitle: string;
     certIssuer: string;
     certStatus: string;
+    awsTitle: string;
+    awsIssuer: string;
+    awsStatus: string;
     degreeTitle: string;
     degreeInstitution: string;
     degreeStatus: string;
@@ -140,11 +150,11 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       episodeNumber: 'EPISODE:01 // 第壱話',
       japaneseTitle: '使徒、襲来',
       englishTitle: 'ANGEL ATTACK // HYPERSCALE SURVIVAL',
-      pilotClassification: 'PILOT CLASSIFICATION: S-CLASS CODE ARCHITECT // 特務機関員',
-      pilotName: 'JOÃO VINÍCIUS GUERBER',
-      pilotTitle: 'SENIOR SOFTWARE ENGINEER · MOBILE ARCHITECT · AI SYSTEMS SPECIALIST',
+      pilotClassification: 'PILOT CLASSIFICATION: JVGS-01 // S-CLASS CODE ARCHITECT // 特務機関員',
+      pilotName: 'JOÃO VINÍCIUS GUERBER DE SOUZA',
+      pilotTitle: 'SENIOR SOFTWARE ENGINEER · FRONT-END & MOBILE SPECIALIST',
       bioBrief:
-        'Commanding battle-hardened resilience across distributed React Native architectures, high-concurrency micro-frontends, and autonomous AI agents. Eradicating catastrophic crash spikes at banQi fintech, reclaiming hundreds of megabytes of leaked memory, and establishing unbreakable digital defense.',
+        'Senior Software Engineer with 6 years of experience specialized in modernizing high-impact, hyperscale mobile and web applications. Focus on clean architecture, native Kotlin/Swift modules, extreme stability, technical debt elimination, and intelligent AI automation.',
       btnExamineDossier: 'EXAMINE COMBAT RECORDS (CASES) ↓',
       btnMagiConsensus: 'INTERROGATE MAGI CONSENSUS ⚙',
       btnDirectComms: 'INITIATE DIRECT TRANSMISSION ✉',
@@ -160,36 +170,36 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
         {
           value: '-98%',
           label: 'CRASH MITIGATION',
-          sublabel: 'banQi Fintech Scale',
-          desc: 'Slashed critical production crash rate from 4.8% to 0.08% through native bridge overhaul and memory leak purge.',
+          sublabel: 'From 120,000 to 2,000 weekly',
+          desc: 'Deep architecture stabilization across banQi fintech (Casas Bahia Group), eradicating unhandled bridge exceptions and critical failure vectors.',
           kanji: '使徒迎撃率'
         },
         {
           value: '-55%',
-          label: 'RAM RECOVERY',
-          sublabel: 'Android & iOS Heap',
-          desc: 'Systematic elimination of cyclic closures, runaway bitmap listeners, and unmounted navigation trees.',
+          label: 'RAM OPTIMIZATION',
+          sublabel: '900MB to 400MB memory footprint',
+          desc: 'Systematic eradication of memory leaks, cyclic closures, unmounted navigation trees, and unreleased native bitmap listeners.',
           kanji: '記憶領域再生'
         },
         {
           value: '-75%',
-          label: 'COLD BOOT SPEED',
-          sublabel: '4.2s → Sub-1.1s',
-          desc: 'Aggressive Hermes V8 bytecode precompilation and deferred native dependency initialization.',
+          label: 'STARTUP VELOCITY',
+          sublabel: 'Splash to Home: 60s → 15s',
+          desc: 'Radical acceleration of app cold and hot boot via Hermes bytecode precompilation, bundle splitting, and deferred SDK initialization.',
           kanji: '初動加速'
         },
         {
-          value: '+$10K/mo',
-          label: 'CLOUD SAVINGS',
-          sublabel: 'AWS Egress Purge',
-          desc: 'Coordinated GraphQL request batching and aggressive edge-caching eliminating petabytes of redundant traffic.',
+          value: '+k',
+          label: 'ANNUAL CLOUD SAVINGS',
+          sublabel: ',000/yr in AWS Infrastructure',
+          desc: 'Refactored legacy app-backend network communication, aggregated requests, and purged redundant egress data transfers.',
           kanji: '雲網防衛'
         },
         {
           value: '0% → 40%',
           label: 'TEST SHIELD',
-          sublabel: 'Automated CI/CD Defense',
-          desc: 'Zero-test codebase fortified to 40% automated unit and end-to-end regression protection.',
+          sublabel: '100% CI/CD Build Reliability',
+          desc: 'Transformed zero-test codebase into a robust 40% automated unit and regression defense powered by Jest, Vitest, and CI/CD quality gates.',
           kanji: '防壁展開'
         }
       ]
@@ -243,13 +253,13 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
         },
         {
           id: 'q4',
-          title: '04 // ARCHITECT AGGRESSIVE EDGE-CACHING & PURGE AWS EGRESS OVERFLOW',
+          title: '04 // ARCHITECT AGGRESSIVE EDGE-CACHING & PURGE AWS INFRASTRUCTURE OVERFLOW',
           melchiorVerdict:
             'SCIENTIST VERDICT: Stale-While-Revalidate TTL algorithms paired with local SQLite replicas absorb 92% of read spikes before hitting origin servers.',
           balthasarVerdict:
             'MOTHER VERDICT: App remains responsive during underground subway cellular dead-zones, preventing user panic during financial transfers.',
           casperVerdict:
-            'WOMAN VERDICT: Instantaneous recovery of $10,000+ monthly cloud expenditure, redirecting capital directly into strategic feature innovation.'
+            'WOMAN VERDICT: Instantaneous recovery of ,000+ annual cloud expenditure, redirecting capital directly into strategic feature innovation.'
         }
       ]
     },
@@ -258,125 +268,204 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       sectionTitle: 'FOUR CRUCIAL ENGINEERING EPISODES',
       sectionSubtitle:
         'Archived combat records demonstrating catastrophic crisis containment and architectural mastery.',
+      dossierBtn: 'OPEN CLASSIFIED DOSSIER // 極秘作戦詳細 ↗',
+      modalCloseBtn: 'CLOSE DOSSIER [ESC] // 作戦書を閉じる',
+      modalClearance: 'CLEARANCE: S-CLASS CODE ARCHITECT // TOP SECRET',
+      modalTabPrefix: 'ACT',
       list: [
         {
           number: 'EPISODE:01 // 第壱話',
           kanjiTitle: '使徒、襲来',
           westernTitle: 'OPERATION BANQI: HYPERSCALE DEFENSE',
-          subtitle: 'The 4.8% Crash Rate Crisis & Memory Leak Catastrophe',
-          role: 'Senior Software Engineer · Core Mobile Architect',
-          company: 'Invillia / Casas Bahia / banQi (2022 - Present)',
+          subtitle: 'The 120k Weekly Crash Crisis & 900MB Memory Leak Catastrophe',
+          role: 'Senior Software Engineer · Front-end & Mobile Specialist',
+          company: 'Invillia / Casas Bahia Pay (antigo banQi)',
           threatTitle: 'THREAT ASSESSMENT (使徒の猛威):',
           threatDesc:
-            'Massive scale banking app under severe memory pressure. 4.8% crash rate, runaway bitmap buffers, cyclic closures, and 4.2-second splash screen latency triggering mass client uninstalls.',
+            'Massive scale retail banking app serving millions under critical load. Facing 120,000 crashes weekly (4.8% crash rate), prohibitive 900MB RAM consumption crashing entry-level devices, and sluggish 60-second splash-to-home load times.',
+          threatPoints: [
+            '120,000 crashes weekly across low-end and flagship Android/iOS devices (4.8% error rate)',
+            'Memory leaks inflating RAM usage up to 900MB, triggering aggressive OS process kills',
+            'Splash-to-home cold boot taking up to 60 seconds, leading to catastrophic app abandonment'
+          ],
           countermeasureTitle: 'COUNTERMEASURE (防衛作戦):',
           countermeasureDesc:
-            'Executed native bridge modernization, Hermes bytecode compilation, memory profiling through Android Studio Heap Dumps, and decoupled heavy background listeners.',
+            'Technical leadership in refactoring legacy bridge communication, re-architecting native modules in Kotlin (Android) and Swift (iOS), Hermes bytecode compilation, list virtualization, advanced profiling via Android Studio / Xcode Instruments, and mobile security (RASP via AppDome).',
+          countermeasurePoints: [
+            'Native bridge audit eradicating asynchronous race conditions and memory leaks',
+            'Migration to Hermes engine bytecode pre-compilation and aggressive code-splitting',
+            'Implementation of AppDome RASP mobile security and Fastlane CI/CD automation'
+          ],
           outcomeTitle: 'AUDITED OUTCOME (作戦戦果):',
           outcomeDesc:
-            'Production crash rate collapsed to 0.08% (-98% reduction). Cold start plunged to sub-1.1s (-75%). Reclaimed 55% of runtime RAM, sustaining millions of active users.',
-          stack: ['React Native', 'TypeScript', 'Android Native', 'iOS Native', 'Hermes Engine', 'Flipper Profiler']
+            'Weekly crashes plummeted by 98% (from 120k down to 2k). RAM consumption dropped by 55% to 400MB. Splash-to-home load time accelerated by 75% (from 60s down to 15s). Millions of active clients safeguarded.',
+          outcomePoints: [
+            'Weekly crash rate reduced by 98% (120,000 → 2,000 crashes/week)',
+            'RAM consumption curtailed by 55% (900MB → 400MB)',
+            'Startup latency slashed by 75% (60s → 15s)'
+          ],
+          stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest']
         },
         {
           number: 'EPISODE:02 // 第弐話',
           kanjiTitle: '見知らぬ、天井',
-          westernTitle: 'OPERATION CLOUD TITAN: AWS EGRESS MITIGATION',
-          subtitle: 'Multi-Tenant Infrastructure Cost & Latency Containment',
-          role: 'Fullstack & Mobile Architect',
-          company: 'Invillia Enterprise Architecture',
+          westernTitle: 'OPERATION CLOUD TITAN: AWS COST & EGRESS OPTIMIZATION',
+          subtitle: 'Annual Infrastructure Savings & Network Streamlining',
+          role: 'Senior Software Engineer · Architecture & Performance',
+          company: 'Invillia / Casas Bahia Pay (banQi)',
           threatTitle: 'THREAT ASSESSMENT (使徒の猛威):',
           threatDesc:
-            'Runaway cloud egress bills exceeding budget thresholds due to uncoordinated polling, uncompressed payload transfers, and redundant network roundtrips.',
+            'Runaway cloud infrastructure expenditures driven by uncoordinated client-side polling, redundant API roundtrips, uncompressed egress data payloads, and inefficient lambda invocation patterns.',
+          threatPoints: [
+            'Excessive AWS egress fees triggered by repetitive client polling',
+            'Redundant GraphQL roundtrips overloading database connection pools',
+            'Suboptimal instance provisioning and continuous idle resource consumption'
+          ],
           countermeasureTitle: 'COUNTERMEASURE (防衛作戦):',
           countermeasureDesc:
-            'Engineered stale-while-revalidate client caching, local SQLite offline data synchronization, and batched GraphQL query pipelines.',
+            'Refactored client-backend communication topologies, engineered intelligent request debouncing and aggregation, fine-tuned cloud resource allocation, and integrated real-time APM telemetry with Dynatrace and Databricks.',
+          countermeasurePoints: [
+            'Engineered client-side request aggregation and intelligent debouncing pipelines',
+            'Fine-tuned AWS instance provisioning, caching layers, and continuous delivery pipelines',
+            'Implemented real-time APM telemetry with Dynatrace and Databricks for anomaly detection'
+          ],
           outcomeTitle: 'AUDITED OUTCOME (作戦戦果):',
           outcomeDesc:
-            'Eliminated over $10,000 monthly in wasteful AWS data transfer costs while improving offline app availability from 30% to 99.8%.',
-          stack: ['GraphQL', 'AWS CloudFront', 'SQLite', 'Node.js', 'Redis', 'Docker']
+            'Achieved +,000/year direct annual savings in AWS cloud infrastructure while eliminating latency bottlenecks and enhancing API reliability.',
+          outcomePoints: [
+            '+,000/year direct reduction in AWS cloud infrastructure costs',
+            'Drastic reduction in data egress volume and redundant network roundtrips',
+            'Maximized API uptime and resilient offline client behavior'
+          ],
+          stack: ['AWS Cloud', 'GraphQL', 'Node.js', 'Docker', 'Redis', 'Databricks', 'Dynatrace', 'TypeScript']
         },
         {
           number: 'EPISODE:03 // 第参話',
           kanjiTitle: '鳴らない、電話',
-          westernTitle: 'OPERATION SYNAPSE: AUTONOMOUS AI & QA SHIELD',
-          subtitle: 'Propelling Zero-Test Fragility to 40% Resilient CI/CD',
-          role: 'Lead Automation Architect',
-          company: 'Fintech Mobile Core',
+          westernTitle: 'OPERATION SYNAPSE: AUTONOMOUS AI & TEST SHIELD',
+          subtitle: 'Zero-Test Codebase Fortified to 40% CI/CD Quality Gates',
+          role: 'Lead Automation & AI Workflow Engineer',
+          company: 'Invillia / AI Engineering Innovation',
           threatTitle: 'THREAT ASSESSMENT (使徒の猛威):',
           threatDesc:
-            'Critical payment and transfer modules operating with 0% automated test coverage. High regression anxiety and sluggish 3-week release cycles.',
+            'Mission-critical transaction and core flow modules operating with 0% automated test coverage. High regression anxiety, slow 3-week release cadences, and significant overhead in manual PR reviews and business documentation.',
+          threatPoints: [
+            'Core transactional flows running in production with 0% test coverage',
+            'Severe engineering friction and fear of regression during bi-weekly releases',
+            'Time-consuming manual PR reviews and tedious business documentation (KRs, Stories, Blueprints)'
+          ],
           countermeasureTitle: 'COUNTERMEASURE (防衛作戦):',
           countermeasureDesc:
-            'Constructed an automated test generation framework powered by GitHub Copilot Certified practices, Jest mocking harnesses, and Detox E2E device flows.',
+            'Constructed comprehensive automated testing suites with Jest and Vitest. Deployed automated CI/CD quality gates on GitHub Actions and Azure DevOps. Developed custom AI prompt pipelines and agents leveraging GitHub Copilot Certified practices for automated PR reviews, test scaffolding, and business documentation.',
+          countermeasurePoints: [
+            'Built resilient unit and integration test suites using Jest and Vitest',
+            'Automated CI/CD quality gates in GitHub Actions and Azure DevOps',
+            'Engineered custom AI prompts and autonomous workflows for PR reviews and specification drafting'
+          ],
           outcomeTitle: 'AUDITED OUTCOME (作戦戦果):',
           outcomeDesc:
-            'Propelled automated test defense from 0% to 40% across mission-critical flows, collapsing regression QA cycles from 3 weeks to 48 hours.',
-          stack: ['GitHub Copilot Certified', 'Jest', 'Detox E2E', 'GitHub Actions', 'AI AST Tooling']
+            'Propelled test coverage from 0% to 40% with 100% build reliability in production CI/CD. Substantially accelerated pull request approvals and eliminated engineering documentation bottlenecks.',
+          outcomePoints: [
+            'Test coverage propelled from 0% to 40% with 100% production build reliability',
+            'Significant reduction in technical and business documentation overhead',
+            'Accelerated multi-disciplinary PR reviews and faster time-to-market'
+          ],
+          stack: ['GitHub Copilot Certified', 'Jest', 'Vitest', 'GitHub Actions', 'Azure DevOps', 'AI Prompt Engineering', 'TypeScript']
         },
         {
           number: 'EPISODE:04 // 第四話',
           kanjiTitle: '瞬間、心、重ねて',
-          westernTitle: 'OPERATION HARMONY: UNIFIED MULTI-OS DESIGN TOKENS',
-          subtitle: 'Perfect Visual Synchronization Across Mobile & Web',
-          role: 'Design System & Frontend Lead',
-          company: 'Multi-Platform Engineering',
+          westernTitle: 'OPERATION HARMONY: UNIFIED MULTI-OS DESIGN SYSTEM',
+          subtitle: 'Cross-Platform Component Architecture (Mobile & Web)',
+          role: 'Design System & Front-end Specialist',
+          company: 'banQi (Casas Bahia) & WiiD',
           threatTitle: 'THREAT ASSESSMENT (使徒の猛威):',
           threatDesc:
-            'Fragmented UI implementations between iOS, Android, and Web squads. Drifting color palettes, broken accessibility, and tedious manual redesigns.',
+            'Visual and behavioral inconsistencies between Android, iOS, and Web platforms. Component duplication, visual bugs across disparate screen densities, and slow, friction-heavy design-to-code translation.',
+          threatPoints: [
+            'Inconsistent visual patterns across Android, iOS, and Web apps',
+            'Redundant component codebases maintained by disparate squads',
+            'Slow design handoff and frequent UI regression bugs on production'
+          ],
           countermeasureTitle: 'COUNTERMEASURE (防衛作戦):',
           countermeasureDesc:
-            'Established an automated token compiler connecting Figma Variables directly to TypeScript, Swift, and Kotlin AST generators via GitHub Actions.',
+            'Engineered an ultra-modular, decoupled component library typed with TypeScript. Implemented cross-platform design tokens and native bridges for proprietary OS capabilities, verified via Jest and Vitest.',
+          countermeasurePoints: [
+            'Constructed modular design system library shared between React, Next.js, and React Native',
+            'Automated design token compilation for strict multi-OS parity',
+            'Integrated native bridge components and verified testability with Jest/Vitest'
+          ],
           outcomeTitle: 'AUDITED OUTCOME (作戦戦果):',
           outcomeDesc:
-            '100% mathematical token fidelity achieved across all platforms. Designer-to-developer handoff time cut by 80%.',
-          stack: ['Figma API', 'Design Tokens', 'Tailwind CSS', 'Swift', 'Kotlin', 'Style Dictionary']
+            'Standardized hundreds of reusable components across platforms. Slashed prototyping and feature delivery time by 2x while guaranteeing mathematical design consistency.',
+          outcomePoints: [
+            'Standardized hundreds of cross-platform reusable components',
+            '2x acceleration in feature prototyping and production shipping speed',
+            'Zero visual regressions across differing device screen densities'
+          ],
+          stack: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Design Systems', 'Jest', 'Vitest']
         }
       ]
     },
     career: {
       sectionTag: 'SERVICE RECORD & LOG // 経歴記録',
-      sectionTitle: 'DEPLOYMENT CHRONICLE (2019 - 2026)',
+      sectionTitle: 'DEPLOYMENT CHRONICLE (6 YEARS OF EXPERIENCE)',
       sectionSubtitle: 'Continuous active service across high-stakes software engineering operations.',
       timeline: [
         {
-          period: '2022 - PRESENT // ACTIVE DUTY',
-          role: 'SENIOR SOFTWARE ENGINEER (MOBILE & FRONTEND)',
-          unit: 'INVILLIA / CASAS BAHIA / BANQI',
+          period: 'SEP 2025 – PRESENT // ACTIVE DUTY',
+          role: 'SENIOR SOFTWARE ENGINEER (FRONT-END & MOBILE)',
+          unit: 'INVILLIA (AI/R) · BANQI / CASAS BAHIA PAY',
           status: 'CODE: ACTIVE // DEPLOYED',
           missions: [
-            'Architecting core mobile capabilities for banQi fintech, serving millions of active Brazilian accounts.',
-            'Spearheading performance re-architecture (-98% crashes, -55% RAM, -75% cold boot latency).',
-            'Mentoring engineering squads on React Native internals, Hermes optimization, and clean architecture.'
+            'Technical reference in mobile & front-end engineering for Casas Bahia Pay (banQi), driving critical stability, performance, and architecture initiatives.',
+            'Hyperscale system stabilization: reduced weekly crashes by 98% (from 120,000 to 2,000) and slashed RAM memory consumption by 55% (from 900MB to 400MB).',
+            'Accelerated splash-to-home load time by 75% (from 60s to 15s) via React Native re-architecture and native Kotlin/Swift modules.',
+            'Automated test coverage elevated from 0% to 40% with 100% CI/CD production build reliability.',
+            'Strategic AI innovation: authored custom AI agents for PR review automation, automated test generation, and business specs (KRs, Stories, Blueprints).',
+            'Optimized AWS cloud infrastructure achieving ,000/year in direct savings, partnered with PMs/Staff Engineers on mobile security (RASP via AppDome) and CI/CD pipelines.'
           ]
         },
         {
-          period: '2021 - 2022 // MISSION COMPLETE',
-          role: 'FULLSTACK SOFTWARE DEVELOPER',
-          unit: 'WIID (HEALTH & ENTERPRISE SYSTEMS)',
+          period: 'SEP 2024 – SEP 2025 // MISSION COMPLETE',
+          role: 'MID-LEVEL SOFTWARE ENGINEER (FRONT-END & MOBILE)',
+          unit: 'INVILLIA · BANQI / CASAS BAHIA PAY',
           status: 'CODE: VERIFIED // ARCHIVED',
           missions: [
-            'Engineered fullstack health applications with React, React Native, Node.js, and HIPAA-compliant data pipelines.',
-            'Implemented real-time telemetry dashboards for medical clinics and patient management.'
+            'Engineered resilient mobile solutions and integrated native modules in Kotlin (Android) and Swift (iOS) for React Native.',
+            'Contributed to system design and construction of reusable cross-platform Design System shared across mobile and web.',
+            'Maintained technical excellence through Clean Code, SOLID principles, and comprehensive unit and integration testing suites.'
           ]
         },
         {
-          period: '2020 - 2021 // TRAINING PROTOCOL',
-          role: 'FRONTEND DEVELOPER INTERN',
-          unit: 'WIID ENGINEERING SQUAD',
-          status: 'CODE: PROMOTED // GRADUATED',
+          period: 'JAN 2024 – SEP 2024 // MISSION COMPLETE',
+          role: 'MID-LEVEL MOBILE & FRONT-END DEVELOPER',
+          unit: 'WIID – WORK IN IDEAS',
+          status: 'CODE: VERIFIED // ARCHIVED',
           missions: [
-            'Built accessible responsive interfaces in React and TypeScript with robust component hierarchies.',
-            'Collaborated with senior architects on REST API design, state management, and continuous integration.'
+            'Developed and maintained cross-platform digital products using React, Next.js, and React Native (Expo) with meticulous UI/UX fidelity.',
+            'Full end-to-end feature ownership from Figma design translation to production deployment.',
+            'Authored Jest and Vitest automated test suites and mentored junior developers and interns.'
           ]
         },
         {
-          period: '2019 - PRESENT // CONTINUOUS OPS',
-          role: 'OPEN SOURCE ARCHITECT & SPECIALIST',
-          unit: 'INDEPENDENT LABORATORY',
-          status: 'CODE: SYNAPSED // ONGOING',
+          period: 'DEC 2021 – JAN 2024 // PROMOTED',
+          role: 'JUNIOR FRONT-END DEVELOPER',
+          unit: 'WIID – WORK IN IDEAS',
+          status: 'CODE: GRADUATED // ADVANCED',
           missions: [
-            'Author of developer productivity tools, Three.js shaders, and custom AI automation workflows.',
-            'Certified GitHub Copilot specialist advising on agentic code generation and testing harnesses.'
+            'Developed and maintained scalable web and mobile applications within the TypeScript and React ecosystem.',
+            'Wrote Jest unit tests to ensure continuous stability and high code quality standards.'
+          ]
+        },
+        {
+          period: 'DEC 2020 – DEC 2021 // RECON OPS',
+          role: 'WEB DEVELOPER (AUTONOMOUS / FREELANCE)',
+          unit: 'FREELANCE DIGITAL CONSULTING',
+          status: 'CODE: COMPLETED // ARCHIVED',
+          missions: [
+            'Developed and maintained web applications, responsive landing pages, and custom WordPress websites optimized for high conversion.',
+            'Built full interfaces with PHP, JavaScript, CSS, and HTML with direct client lifecycle management and strict deadline delivery.'
           ]
         }
       ]
@@ -387,64 +476,67 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       sectionSubtitle: 'Direct neural interface with modern engineering stacks, rigorously tested in combat.',
       certTitle: 'GITHUB COPILOT CERTIFIED',
       certIssuer: 'OFFICIAL GITHUB / MICROSOFT CREDENTIAL',
-      certStatus: 'ACTIVE · HARMONIC RESONANCE 100%',
-      degreeTitle: 'BACHELOR OF SOFTWARE ENGINEERING',
-      degreeInstitution: 'HIGHER EDUCATION DEGREE IN SOFTWARE ENGINEERING',
-      degreeStatus: 'OFFICIALLY CONFERRED · EXCELLENCE',
+      certStatus: 'ACTIVE (2025 – 2028) · HARMONIC RESONANCE 100%',
+      awsTitle: 'AWS CERTIFIED SOLUTIONS ARCHITECT – ASSOCIATE',
+      awsIssuer: 'AMAZON WEB SERVICES (AWS)',
+      awsStatus: 'IN PROGRESS · TARGET Q4 2026',
+      degreeTitle: 'ANÁLISE E DESENVOLVIMENTO DE SISTEMAS',
+      degreeInstitution: 'UNINTER · HIGHER EDUCATION DEGREE (TECNÓLOGO)',
+      degreeStatus: 'OFFICIALLY CONFERRED (2019 – 2021) · EXCELLENCE',
       categories: [
         {
-          name: 'MOBILE CORE & NATIVE HARMONICS',
+          name: 'MOBILE & NATIVE MODULES',
           kanji: '機体操縦系',
           skills: [
             'React Native',
-            'TypeScript',
             'Kotlin (Android)',
             'Swift (iOS)',
             'Expo SDK',
+            'Native Modules (Bridge)',
             'Hermes V8 Engine',
-            'Turbomodules / JSI',
-            'Detox E2E Testing'
+            'AppDome (RASP)',
+            'Flipper Profiler'
           ]
         },
         {
-          name: 'FRONTEND & INTERFACE ARCHITECTURE',
+          name: 'FRONT-END & MODERN WEB',
           kanji: '視覚同調系',
           skills: [
             'React 19',
             'Next.js (App Router)',
+            'TypeScript',
+            'Design Systems',
             'Tailwind CSS v4',
-            'Three.js WebGL',
+            'Three.js / 3D Web',
             'Framer Motion',
-            'Zustand / Jotai',
-            'Design Tokens',
-            'Micro-frontends'
+            'Web Performance'
           ]
         },
         {
-          name: 'BACKEND & CLOUD DEFENSE',
+          name: 'DEVOPS, CLOUD & AUTOMATION',
           kanji: '動力管制系',
           skills: [
-            'Node.js / Express',
-            'AWS (EC2, S3, CloudFront)',
-            'Docker & Containers',
-            'GraphQL / Apollo',
-            'REST API Architecture',
-            'PostgreSQL & SQLite',
-            'Redis Edge Caching',
-            'CI/CD GitHub Actions'
+            'Fastlane Mobile CI',
+            'GitHub Actions',
+            'Azure DevOps',
+            'AWS Cloud Infrastructure',
+            'Docker Containers',
+            'Databricks APM',
+            'Dynatrace APM',
+            'AI Ops & Workflows'
           ]
         },
         {
-          name: 'AI, METHODOLOGY & PROTOCOLS',
+          name: 'QUALITY, ARCHITECTURE & METHODS',
           kanji: '自律思考系',
           skills: [
-            'GitHub Copilot Certified',
-            'Autonomous AI Agents',
-            'Performance Profiling',
             'Jest & Vitest Unit Tests',
             'Clean Architecture',
-            'Code Review Discipline',
-            'Memory Leak Eradication',
+            'SOLID Principles',
+            'Design Patterns',
+            'System Design',
+            'Code Review & Mentorship',
+            'Scrum & Kanban',
             'Bilingual Comms (EN/PT)'
           ]
         }
@@ -455,7 +547,7 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       sectionTitle: 'INITIATE ENCRYPTED DIRECT TRANSMISSION',
       sectionSubtitle:
         'Secure comlink open for senior engineering roles, architectural consultations, and mission briefings.',
-      channelStatus: 'CHANNEL: SECURE // FREQUENCY: 2026.09.30 TOKYO-3',
+      channelStatus: 'CHANNEL: SECURE // FREQUENCY: 2026.10 TOKYO-3 / BRAZIL REMOTE',
       directMailLabel: 'DIRECT PILOT COMLINK (1-CLICK COPY):',
       copySuccessToast: 'COMLINK ADDRESS COPIED TO CLIPBOARD // 通信先複製完了',
       clickToCopy: 'CLICK TO COPY EMAIL',
@@ -463,7 +555,7 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       btnGithub: 'GITHUB REPOSITORY ↗',
       btnDownloadCv: 'DOWNLOAD SERVICE RECORD (CV) ↓',
       operationalDirective:
-        'NERV SPECIAL DIRECTIVE: Available for high-impact Senior/Staff Software Engineer engagements across Mobile, Frontend, and AI Systems.'
+        'NERV SPECIAL DIRECTIVE: Available for high-impact Senior Software Engineer engagements across Mobile, Front-end, and AI Systems.'
     }
   },
   pt: {
@@ -482,11 +574,11 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       episodeNumber: 'EPISÓDIO:01 // 第壱話',
       japaneseTitle: '使徒、襲来',
       englishTitle: 'ATAQUE DO ANJO // SOBREVIVÊNCIA EM HIPERESCALA',
-      pilotClassification: 'CLASSIFICAÇÃO DO PILOTO: ARQUITETO DE CÓDIGO CLASSE-S // 特務機関員',
-      pilotName: 'JOÃO VINÍCIUS GUERBER',
-      pilotTitle: 'SENIOR SOFTWARE ENGINEER · ARQUITETO MOBILE · ESPECIALISTA EM IA',
+      pilotClassification: 'CLASSIFICAÇÃO DO PILOTO: JVGS-01 // ARQUITETO DE CÓDIGO CLASSE-S // 特務機関員',
+      pilotName: 'JOÃO VINÍCIUS GUERBER DE SOUZA',
+      pilotTitle: 'ENGENHEIRO DE SOFTWARE SÊNIOR (ESPECIALISTA EM FRONT-END & MOBILE)',
       bioBrief:
-        'Comandando resiliência comprovada em combate através de arquiteturas distribuídas React Native, micro-frontends de alta concorrência e agentes autônomos de IA. Erradicando picos catastróficos de crash na fintech banQi, recuperando centenas de megabytes de memória vazada e erguendo defesas digitais inquebráveis.',
+        'Engenheiro de Software Sênior com 6 anos de experiência especializado em modernização de aplicações móveis e web de alto impacto e escala. Foco em arquitetura limpa, módulos nativos (Kotlin/Swift), estabilidade extrema de sistemas, eliminação de débito técnico e automação inteligente com IA.',
       btnExamineDossier: 'EXAMINAR REGISTROS DE COMBATE (CASES) ↓',
       btnMagiConsensus: 'INTERROGAR CONSENSO MAGI ⚙',
       btnDirectComms: 'INICIAR TRANSMISSÃO DIRETA ✉',
@@ -501,37 +593,37 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       items: [
         {
           value: '-98%',
-          label: 'MITIGAÇÃO DE CRASH',
-          sublabel: 'Escala banQi Fintech',
-          desc: 'Taxa crítica de crash em produção despencou de 4.8% para 0.08% via reconstrução de bridge nativa e purga de memory leaks.',
+          label: 'REDUÇÃO DE CRASHES',
+          sublabel: 'De 120.000 para 2.000 semanais',
+          desc: 'Estabilização profunda de arquitetura no app banQi (Grupo Casas Bahia), eliminando exceções não tratadas e pontos críticos de falha.',
           kanji: '使徒迎撃率'
         },
         {
           value: '-55%',
-          label: 'RECUPERAÇÃO DE RAM',
-          sublabel: 'Heap Android e iOS',
-          desc: 'Eliminação sistemática de closures cíclicas, listeners de bitmap desgovernados e árvores não desmontadas.',
+          label: 'OTIMIZAÇÃO DE RAM',
+          sublabel: 'De 900MB para 400MB de footprint',
+          desc: 'Erradicação sistemática de memory leaks, closures cíclicas e desalocação de listeners nativos e bitmaps no Android e iOS.',
           kanji: '記憶領域再生'
         },
         {
           value: '-75%',
-          label: 'VELOCIDADE COLD BOOT',
-          sublabel: '4.2s → Sub-1.1s',
-          desc: 'Pré-compilação agressiva de bytecode Hermes V8 e inicialização postergada de dependências nativas.',
+          label: 'TEMPO DE INICIALIZAÇÃO',
+          sublabel: 'Splash to Home: de 60s para 15s',
+          desc: 'Aceleração brutal do Cold Start e Hot Start via code-splitting, otimização do bundle Hermes e inicialização diferida de SDKs.',
           kanji: '初動加速'
         },
         {
-          value: '+$10K/mês',
-          label: 'ECONOMIA EM CLOUD',
-          sublabel: 'Purga de Egress AWS',
-          desc: 'Batching coordenado de requisições GraphQL e edge-caching agressivo eliminando petabytes de tráfego redundante.',
+          value: '+k',
+          label: 'ECONOMIA ANUAL EM CLOUD',
+          sublabel: '+.000/ano em infraestrutura AWS',
+          desc: 'Refatoração de fluxos legados de comunicação app-backend, agregação de chamadas e redução drástica de egress de dados.',
           kanji: '雲網防衛'
         },
         {
           value: '0% → 40%',
           label: 'BLINDAGEM DE TESTES',
-          sublabel: 'Defesa CI/CD Automatizada',
-          desc: 'Base com zero testes fortificada para 40% de blindagem automatizada de testes unitários e regressão E2E.',
+          sublabel: '100% de confiabilidade em CI/CD',
+          desc: 'Transição cultural e técnica estabelecendo esteiras CI/CD rígidas, testes unitários com Jest e Vitest e proteção contra regressões.',
           kanji: '防壁展開'
         }
       ]
@@ -585,13 +677,13 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
         },
         {
           id: 'q4',
-          title: '04 // ARQUITETAR EDGE-CACHING AGRESSIVO E PURGAR EGRESS EXCESSIVO NA AWS',
+          title: '04 // ARQUITETAR EDGE-CACHING AGRESSIVO E PURGAR GASTOS NA INFRAESTRUTURA AWS',
           melchiorVerdict:
             'VEREDITO CIENTISTA: Algoritmos Stale-While-Revalidate pareados com réplicas SQLite locais absorvem 92% dos picos de leitura antes de atingir os servidores de origem.',
           balthasarVerdict:
             'VEREDITO MÃE: O aplicativo continua funcional durante zonas de sombra em metrôs, prevenindo pânico do usuário durante transferências financeiras.',
           casperVerdict:
-            'VEREDITO MULHER: Recuperação imediata de mais de US$ 10.000 mensais em gastos de cloud, redirecionando capital diretamente para inovação de produto.'
+            'VEREDITO MULHER: Recuperação imediata de mais de US$ 10.000 anuais em gastos de infraestrutura cloud, redirecionando capital diretamente para inovação de produto.'
         }
       ]
     },
@@ -600,125 +692,204 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       sectionTitle: 'QUATRO EPISÓDIOS CRUCIAIS DE ENGENHARIA',
       sectionSubtitle:
         'Registros arquivados de combate demonstrando contenção de crises catastróficas e maestria arquitetural.',
+      dossierBtn: 'ABRIR DOSSIÊ CONFIDENCIAL // 極秘作戦詳細 ↗',
+      modalCloseBtn: 'FECHAR DOSSIÊ [ESC] // 作戦書を閉じる',
+      modalClearance: 'AUTORIZAÇÃO: ARQUITETO DE CÓDIGO CLASSE-S //极秘',
+      modalTabPrefix: 'ATO',
       list: [
         {
           number: 'EPISÓDIO:01 // 第壱話',
           kanjiTitle: '使徒、襲来',
           westernTitle: 'OPERAÇÃO BANQI: DEFESA EM HIPERESCALA',
-          subtitle: 'A Crise de 4.8% de Crash Rate e Catástrofe de Vazamento de Memória',
-          role: 'Senior Software Engineer · Arquiteto Mobile Core',
-          company: 'Invillia / Casas Bahia / banQi (2022 - Presente)',
+          subtitle: 'A Crise de 120k Crashes Semanais e Catástrofe de Vazamento de Memória',
+          role: 'Engenheiro de Software Sênior · Especialista em Front-end & Mobile',
+          company: 'Invillia / Casas Bahia Pay (antigo banQi)',
           threatTitle: 'AVALIAÇÃO DA AMEAÇA (使徒の猛威):',
           threatDesc:
-            'Aplicativo bancário de massa sob extrema pressão de memória. Taxa de crash de 4.8%, buffers de bitmap sem controle, closures cíclicas e 4.2 segundos de splash screen gerando desinstalações em massa.',
+            'Aplicativo financeiro de massa atendendo a milhões sob carga crítica. Enfrentando 120.000 crashes semanais (taxa de 4.8%), consumo proibitivo de 900MB de RAM que travava aparelhos de entrada e lentidão de 60 segundos no splash-to-home.',
+          threatPoints: [
+            '120.000 crashes semanais em aparelhos Android e iOS modestos e topo de linha (4.8% de erro)',
+            'Vazamentos de memória inflando o consumo até 900MB e provocando encerramentos abruptos pelo SO',
+            'Tempo de carregamento splash-to-home atingindo até 60 segundos, gerando desinstalações em massa'
+          ],
           countermeasureTitle: 'CONTRAMEDIDA (防衛作戦):',
           countermeasureDesc:
-            'Executou modernização da bridge nativa, compilação de bytecode Hermes, profiling de memória via Heap Dumps no Android Studio e isolamento de listeners pesados em background.',
+            'Liderança técnica na refatoração de fluxos legados, reengenharia de módulos nativos em Kotlin (Android) e Swift (iOS), compilação Hermes, virtualização de listas, profiling avançado com Android Studio Profiler / Xcode Instruments e segurança móvel (RASP com AppDome).',
+          countermeasurePoints: [
+            'Auditoria profunda da bridge nativa erradicando exceções assíncronas e vazamentos de memória',
+            'Migração para pré-compilação de bytecode no motor Hermes e code-splitting agressivo',
+            'Implementação de segurança móvel avançada (RASP via AppDome) e esteiras Fastlane'
+          ],
           outcomeTitle: 'DESFECHO AUDITADO (作戦戦果):',
           outcomeDesc:
-            'Taxa de crash em produção desmoronou para 0.08% (-98% de redução). Cold start despencou para sub-1.1s (-75%). Recuperou 55% da memória RAM em runtime, sustentando milhões de usuários ativos.',
-          stack: ['React Native', 'TypeScript', 'Android Native', 'iOS Native', 'Hermes Engine', 'Flipper Profiler']
+            'Crashes semanais desmoronaram em 98% (de 120k para 2k). Consumo de memória RAM caiu 55% para 400MB. Tempo de carregamento splash-to-home acelerou 75% (de 60s para 15s). Milhões de usuários ativos protegidos.',
+          outcomePoints: [
+            'Queda de 98% no volume de crashes semanais (120.000 → 2.000)',
+            'Redução de 55% no consumo de memória RAM (900MB → 400MB)',
+            'Tempo de carregamento reduzido em 75% (60s → 15s)'
+          ],
+          stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest']
         },
         {
           number: 'EPISÓDIO:02 // 第弐話',
           kanjiTitle: '見知らぬ、天井',
-          westernTitle: 'OPERAÇÃO TITÃ CLOUD: MITIGAÇÃO DE EGRESS AWS',
-          subtitle: 'Contenção de Custo de Infraestrutura Multi-Tenant e Latência',
-          role: 'Arquiteto Fullstack e Mobile',
-          company: 'Invillia Enterprise Architecture',
+          westernTitle: 'OPERAÇÃO TITÃ CLOUD: OTIMIZAÇÃO DE CUSTOS E EGRESS AWS',
+          subtitle: 'Economia Anual de Infraestrutura e Agregação de Rede',
+          role: 'Engenheiro de Software Sênior · Arquitetura & Performance',
+          company: 'Invillia / Casas Bahia Pay (banQi)',
           threatTitle: 'AVALIAÇÃO DA AMEAÇA (使徒の猛威):',
           threatDesc:
-            'Faturas de tráfego em nuvem estourando orçamentos devido a polling desordenado, payloads não comprimidos e requisições repetitivas na rede.',
+            'Custos elevados de infraestrutura em nuvem causados por polling desordenado no client-side, requisições redundantes de rede, payloads pesados sem compressão e invocações ineficientes de lambdas.',
+          threatPoints: [
+            'Faturas elevadas de transferência de dados (egress) causadas por polling desordenado',
+            'Múltiplas chamadas GraphQL redundantes sobrecarregando conexões de banco de dados',
+            'Alocação ineficiente de instâncias em nuvem gerando gastos sem ganho de throughput'
+          ],
           countermeasureTitle: 'CONTRAMEDIDA (防衛作戦):',
           countermeasureDesc:
-            'Construiu cache client-side stale-while-revalidate, sincronização offline com SQLite local e pipelines de queries GraphQL agregadas em lotes.',
+            'Refatoração de fluxos de comunicação app-backend, agregação e debouncing de requisições de rede no client-side, ajuste fino de instâncias e esteiras, e monitoramento em tempo real com Dynatrace e Databricks.',
+          countermeasurePoints: [
+            'Agregação de requisições de rede e debouncing inteligente no client-side',
+            'Ajuste fino de instâncias AWS, camadas de cache e pipelines de entrega contínua',
+            'Implementação de telemetria APM em tempo real com Dynatrace e Databricks'
+          ],
           outcomeTitle: 'DESFECHO AUDITADO (作戦戦果):',
           outcomeDesc:
-            'Eliminou mais de US$ 10.000 mensais em custos de transferência de dados na AWS enquanto aumentou a disponibilidade offline do app de 30% para 99.8%.',
-          stack: ['GraphQL', 'AWS CloudFront', 'SQLite', 'Node.js', 'Redis', 'Docker']
+            'Conquistou mais de US$ 10.000/ano em economia direta na infraestrutura de nuvem AWS, eliminando gargalos de latência e fortalecendo a resiliência das APIs.',
+          outcomePoints: [
+            'Mais de US$ 10.000 anuais economizados diretamente em infraestrutura AWS',
+            'Queda drástica no volume de egress e requisições redundantes',
+            'Alta disponibilidade e estabilidade garantida em horários de pico comercial'
+          ],
+          stack: ['AWS Cloud', 'GraphQL', 'Node.js', 'Docker', 'Redis', 'Databricks', 'Dynatrace', 'TypeScript']
         },
         {
           number: 'EPISÓDIO:03 // 第参話',
           kanjiTitle: '鳴らない、電話',
-          westernTitle: 'OPERAÇÃO SINAPSE: IA AUTÔNOMA E ESCUDO DE QA',
-          subtitle: 'Elevando Fragilidade de Zero Testes para 40% de CI/CD Resiliente',
-          role: 'Arquiteto Líder de Automação',
-          company: 'Fintech Mobile Core',
+          westernTitle: 'OPERAÇÃO SINAPSE: IA AUTÔNOMA E BLINDAGEM DE TESTES',
+          subtitle: 'Base com Zero Testes Elevada para 40% com CI/CD Resiliente',
+          role: 'Engenheiro Líder de Automação & Workflows de IA',
+          company: 'Invillia / Inovação em Engenharia com IA',
           threatTitle: 'AVALIAÇÃO DA AMEAÇA (使徒の猛威):',
           threatDesc:
-            'Módulos vitais de pagamento e transferências operando com 0% de testes automatizados. Ansiedade crônica de regressão e ciclos lentos de 3 semanas.',
+            'Módulos críticos de transações e fluxos operando com 0% de testes automatizados. Ansiedade crônica de regressão, ciclos lentos de liberação e alto overhead em revisões manuais de PRs e confecção de documentação técnica e de negócio.',
+          threatPoints: [
+            'Módulos transacionais essenciais operando em produção sem cobertura de testes (0%)',
+            'Ciclos de homologação lentos com medo de regressões a cada nova versão',
+            'Gargalos crônicos na revisão manual de PRs repetitivos e documentação técnica'
+          ],
           countermeasureTitle: 'CONTRAMEDIDA (防衛作戦):',
           countermeasureDesc:
-            'Desenvolveu pipeline de geração de testes com práticas oficiais GitHub Copilot Certified, mocks inteligentes em Jest e fluxos E2E com Detox.',
+            'Construiu suítes de testes automatizados com Jest e Vitest. Estabeleceu quality gates automáticos de CI/CD no GitHub Actions e Azure DevOps. Desenvolveu ferramentas customizadas e pipelines de IA baseados em GitHub Copilot Certified para automação de PR reviews, geração de testes e elaboração de KRs, Stories e Blueprints.',
+          countermeasurePoints: [
+            'Criação de suítes de testes unitários e de integração com Jest e Vitest',
+            'Quality gates automatizados em pull requests no GitHub Actions e Azure DevOps',
+            'Workflows com agentes e prompts customizados com validação Copilot Certified'
+          ],
           outcomeTitle: 'DESFECHO AUDITADO (作戦戦果):',
           outcomeDesc:
-            'Propeliu a cobertura de testes de 0% para 40% nos fluxos de missão crítica, encurtando ciclos de QA de regressão de 3 semanas para 48 horas.',
-          stack: ['GitHub Copilot Certified', 'Jest', 'Detox E2E', 'GitHub Actions', 'Ferramentas de AST e IA']
+            'Elevou a cobertura de testes de 0% para 40% com 100% de confiabilidade em builds de produção de CI/CD. Aceleração substancial na homologação de pull requests e erradicação de gargalos de documentação.',
+          outcomePoints: [
+            'Cobertura de testes propulsada de 0% para 40% com 100% de confiabilidade nas builds',
+            'Redução substancial do overhead em redação de documentações e especificações',
+            'Aprovação acelerada de pull requests entre times multidisciplinares'
+          ],
+          stack: ['GitHub Copilot Certified', 'Jest', 'Vitest', 'GitHub Actions', 'Azure DevOps', 'Engenharia de Prompts', 'TypeScript']
         },
         {
           number: 'EPISÓDIO:04 // 第四話',
           kanjiTitle: '瞬間、心、重ねて',
-          westernTitle: 'OPERAÇÃO HARMONIA: TOKENS DE DESIGN MULTI-OS UNIFICADOS',
-          subtitle: 'Sincronização Visual Perfeita entre Mobile e Web',
-          role: 'Líder de Design System e Frontend',
-          company: 'Multi-Platform Engineering',
+          westernTitle: 'OPERAÇÃO HARMONIA: DESIGN SYSTEM MULTI-OS UNIFICADO',
+          subtitle: 'Arquitetura de Componentes Multiplataforma (Mobile e Web)',
+          role: 'Especialista em Design System & Front-end',
+          company: 'banQi (Casas Bahia) & WiiD',
           threatTitle: 'AVALIAÇÃO DA AMEAÇA (使徒の猛威):',
           threatDesc:
-            'Implementações fragmentadas de interface entre times de iOS, Android e Web. Paletas divergentes, falhas de acessibilidade e retrabalho manual constante.',
+            'Inconsistência visual e de comportamento entre Android, iOS e Web. Duplicação de código, bugs visuais em diferentes densidades de tela e lentidão no ciclo de design-to-code.',
+          threatPoints: [
+            'Interfaces despadronizadas entre Android, iOS e Web gerando retrabalho',
+            'Equipes duplicando componentes básicos em diferentes repositórios',
+            'Lentidão no ciclo de entrega de features a partir dos protótipos do Figma'
+          ],
           countermeasureTitle: 'CONTRAMEDIDA (防衛作戦):',
           countermeasureDesc:
-            'Estabeleceu compilador de tokens automatizado conectando Figma Variables diretamente aos geradores de AST em TypeScript, Swift e Kotlin via GitHub Actions.',
+            'Desenvolveu biblioteca de componentes altamente desacoplada e fortemente tipada em TypeScript, com suporte a design tokens multiplataforma e pontes nativas para recursos proprietários de cada SO.',
+          countermeasurePoints: [
+            'Arquitetura desacoplada compartilhada entre React, Next.js e React Native',
+            'Suporte a tokens de design garantindo paridade visual matemática',
+            'Cobertura de testes automatizados com Jest e Vitest para componentes de UI'
+          ],
           outcomeTitle: 'DESFECHO AUDITADO (作戦戦果):',
           outcomeDesc:
-            '100% de fidelidade matemática de tokens alcançada em todas as plataformas. Tempo de handoff de design para engenharia encurtado em 80%.',
-          stack: ['Figma API', 'Design Tokens', 'Tailwind CSS', 'Swift', 'Kotlin', 'Style Dictionary']
+            'Padronização de centenas de componentes reutilizáveis entre plataformas, aceleração de 2x na prototipação e entrega de novas features, com fidelidade visual impecável.',
+          outcomePoints: [
+            'Centenas de componentes unificados e reutilizáveis entre plataformas',
+            'Velocidade 2x maior na prototipação e entrega de novas features',
+            'Eliminação de bugs visuais em diferentes densidades e formatos de tela'
+          ],
+          stack: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Design Systems', 'Jest', 'Vitest']
         }
       ]
     },
     career: {
       sectionTag: 'REGISTRO DE SERVIÇO // 経歴記録',
-      sectionTitle: 'CRÔNICA DE DESLOCAMENTOS (2019 - 2026)',
+      sectionTitle: 'CRÔNICA DE DESLOCAMENTOS (6 ANOS DE EXPERIÊNCIA)',
       sectionSubtitle: 'Serviço ativo contínuo em operações de engenharia de software de alta responsabilidade.',
       timeline: [
         {
-          period: '2022 - PRESENTE // SERVIÇO ATIVO',
-          role: 'SENIOR SOFTWARE ENGINEER (MOBILE & FRONTEND)',
-          unit: 'INVILLIA / CASAS BAHIA / BANQI',
+          period: 'SET 2025 – PRESENTE // SERVIÇO ATIVO',
+          role: 'SENIOR SOFTWARE ENGINEER (FRONT-END & MOBILE)',
+          unit: 'INVILLIA (AI/R) · BANQI / CASAS BAHIA PAY',
           status: 'CÓDIGO: ATIVO // EM COMBATE',
           missions: [
-            'Arquitetura dos módulos centrais da fintech banQi, atendendo a milhões de contas bancárias ativas no Brasil.',
-            'Liderança na re-arquitetura de estabilidade (-98% crashes, -55% de consumo de RAM, -75% cold boot).',
-            'Mentoria técnica de equipes sobre internals de React Native, otimizações Hermes e arquitetura limpa.'
+            'Atuação como referência técnica em engenharia mobile e front-end para o banQi (Grupo Casas Bahia), liderando iniciativas críticas de performance, estabilidade e arquitetura.',
+            'Estabilização de sistemas em hiperescala: redução de 98% nos crashes semanais (de 120.000 para 2.000) e corte de 55% no consumo de memória RAM (de 900MB para 400MB).',
+            'Aceleração do tempo de carregamento de splash para home em 75% (de 60s para 15s) via reengenharia em React Native e módulos nativos Kotlin/Swift.',
+            'Cultura de qualidade: transição de 0% para 40% de cobertura de testes com 100% de confiabilidade em builds de CI/CD.',
+            'Inovação estratégica com IA: desenvolvimento de ferramentas customizadas para automação de PR reviews, criação de testes e documentações (KRs, User Stories, Blueprints).',
+            'Modernização de sistemas legados com otimização de recursos AWS gerando US$ 10.000/ano em economia, além de segurança móvel avançada (RASP via AppDome).'
           ]
         },
         {
-          period: '2021 - 2022 // MISSÃO CONCLUÍDA',
-          role: 'DESENVOLVEDOR DE SOFTWARE FULLSTACK',
-          unit: 'WIID (HEALTH & ENTERPRISE SYSTEMS)',
+          period: 'SET 2024 – SET 2025 // MISSÃO CONCLUÍDA',
+          role: 'MID-LEVEL SOFTWARE ENGINEER (FRONT-END & MOBILE)',
+          unit: 'INVILLIA · BANQI / CASAS BAHIA PAY',
           status: 'CÓDIGO: VERIFICADO // ARQUIVADO',
           missions: [
-            'Engenharia de sistemas completos de saúde com React, React Native, Node.js e conformidade com privacidade de dados.',
-            'Implementação de dashboards de telemetria em tempo real para clínicas e gestão de pacientes.'
+            'Desenvolvimento contínuo de aplicações móveis robustas, integração nativa profunda em Kotlin (Android) e Swift (iOS) e evolução de Design System compartilhado.',
+            'Contribuição ativa no system design e construção de componentes reutilizáveis entre plataformas mobile e web.',
+            'Garantia de entregas de excelência técnica seguindo princípios de Clean Code, SOLID e testes abrangentes unitários e de integração.'
           ]
         },
         {
-          period: '2020 - 2021 // PROTOCOLO DE FORMAÇÃO',
-          role: 'ESTAGIÁRIO EM DESENVOLVIMENTO FRONTEND',
-          unit: 'ESQUADRÃO DE ENGENHARIA WIID',
+          period: 'JAN 2024 – SET 2024 // MISSÃO CONCLUÍDA',
+          role: 'MID-LEVEL MOBILE & FRONT-END DEVELOPER',
+          unit: 'WIID – WORK IN IDEAS',
+          status: 'CÓDIGO: VERIFICADO // ARQUIVADO',
+          missions: [
+            'Desenvolvimento e sustentação de produtos digitais multiplataforma com React, Next.js e React Native (Expo), garantindo alta fidelidade UI/UX.',
+            'Ownership completo de features, desde a tradução do design no Figma até o deploy final em produção.',
+            'Criação de suítes de testes automatizados com Jest e Vitest, além de mentoria técnica para desenvolvedores juniores e estagiários.'
+          ]
+        },
+        {
+          period: 'DEZ 2021 – JAN 2024 // PROTOCOLO DE FORMAÇÃO',
+          role: 'JUNIOR FRONT-END DEVELOPER',
+          unit: 'WIID – WORK IN IDEAS',
           status: 'CÓDIGO: PROMOVIDO // GRADUADO',
           missions: [
-            'Desenvolvimento de interfaces acessíveis e responsivas em React e TypeScript com hierarquias sólidas de componentes.',
-            'Colaboração próxima com arquitetos seniores em design de APIs REST, gestão de estado e integração contínua.'
+            'Desenvolvimento e manutenção de produtos web e mobile utilizando React, React Native e ecossistema TypeScript.',
+            'Escrita de testes unitários com Jest para assegurar estabilidade contínua e padrões rigorosos de qualidade de código.'
           ]
         },
         {
-          period: '2019 - PRESENTE // OPERAÇÕES CONTÍNUAS',
-          role: 'ARQUITETO OPEN SOURCE & ESPECIALISTA',
-          unit: 'LABORATÓRIO INDEPENDENTE',
-          status: 'CÓDIGO: CONECTADO // EM ANDAMENTO',
+          period: 'DEZ 2020 – DEZ 2021 // OPERAÇÕES INICIAIS',
+          role: 'DESENVOLVEDOR WEB (AUTÔNOMO / FREELANCE)',
+          unit: 'CONSULTORIA DIGITAL FREELANCE',
+          status: 'CÓDIGO: CONCLUÍDO // ARQUIVADO',
           missions: [
-            'Autor de ferramentas de produtividade para desenvolvedores, shaders Three.js e fluxos de automação com IA.',
-            'Especialista certificado em GitHub Copilot assessorando em geração assistida por IA e infraestrutura de testes.'
+            'Desenvolvimento e manutenção de aplicações web, landing pages de alta conversão e websites customizados em WordPress.',
+            'Utilização de PHP, JavaScript, CSS e HTML com gestão direta de múltiplos clientes, prazos e entregas.'
           ]
         }
       ]
@@ -729,64 +900,67 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       sectionSubtitle: 'Interface neural direta com stacks de engenharia modernas, testadas rigorosamente em produção.',
       certTitle: 'GITHUB COPILOT CERTIFIED',
       certIssuer: 'CREDENCIAL OFICIAL GITHUB / MICROSOFT',
-      certStatus: 'ATIVO · RESSONÂNCIA HARMÔNICA 100%',
-      degreeTitle: 'BACHARELADO EM ENGENHARIA DE SOFTWARE',
-      degreeInstitution: 'FORMAÇÃO SUPERIOR EM ENGENHARIA DE SOFTWARE',
-      degreeStatus: 'DIPLOMA CONFERIDO · EXCELÊNCIA',
+      certStatus: 'ATIVO (2025 – 2028) · RESSONÂNCIA HARMÔNICA 100%',
+      awsTitle: 'AWS CERTIFIED SOLUTIONS ARCHITECT – ASSOCIATE',
+      awsIssuer: 'AMAZON WEB SERVICES (AWS)',
+      awsStatus: 'EM ANDAMENTO · PREVISÃO Q4 2026',
+      degreeTitle: 'ANÁLISE E DESENVOLVIMENTO DE SISTEMAS',
+      degreeInstitution: 'UNINTER · GRADUAÇÃO TECNOLÓGICA',
+      degreeStatus: 'DIPLOMA CONFERIDO (2019 – 2021) · EXCELÊNCIA',
       categories: [
         {
-          name: 'NÚCLEO MOBILE E HARMÔNICOS NATIVOS',
+          name: 'MOBILE & MÓDULOS NATIVOS',
           kanji: '機体操縦系',
           skills: [
             'React Native',
-            'TypeScript',
             'Kotlin (Android)',
             'Swift (iOS)',
             'Expo SDK',
+            'Native Modules (Bridge)',
             'Hermes V8 Engine',
-            'Turbomodules / JSI',
-            'Testes E2E com Detox'
+            'AppDome (RASP)',
+            'Flipper Profiler'
           ]
         },
         {
-          name: 'ARQUITETURA FRONTEND E INTERFACES',
+          name: 'FRONT-END & WEB MODERNO',
           kanji: '視覚同調系',
           skills: [
             'React 19',
             'Next.js (App Router)',
+            'TypeScript',
+            'Design Systems',
             'Tailwind CSS v4',
-            'Three.js WebGL',
+            'Three.js / 3D Web',
             'Framer Motion',
-            'Zustand / Jotai',
-            'Design Tokens',
-            'Micro-frontends'
+            'Performance Web'
           ]
         },
         {
-          name: 'BACKEND E DEFESA EM NUVEM',
+          name: 'DEVOPS, CLOUD & AUTOMAÇÃO',
           kanji: '動力管制系',
           skills: [
-            'Node.js / Express',
-            'AWS (EC2, S3, CloudFront)',
-            'Docker e Contêineres',
-            'GraphQL / Apollo',
-            'Arquitetura de APIs REST',
-            'PostgreSQL e SQLite',
-            'Edge Caching com Redis',
-            'CI/CD com GitHub Actions'
+            'Fastlane Mobile CI',
+            'GitHub Actions',
+            'Azure DevOps',
+            'Infraestrutura AWS Cloud',
+            'Docker Contêineres',
+            'Databricks APM',
+            'Dynatrace APM',
+            'AI Ops & Workflows'
           ]
         },
         {
-          name: 'IA, METODOLOGIA E PROTOCOLOS',
+          name: 'QUALIDADE, ARQUITETURA & MÉTODOS',
           kanji: '自律思考系',
           skills: [
-            'GitHub Copilot Certified',
-            'Agentes Autônomos de IA',
-            'Profiling de Performance',
-            'Testes Unitários com Jest & Vitest',
+            'Testes com Jest & Vitest',
             'Clean Architecture',
-            'Disciplina de Code Review',
-            'Eliminação de Memory Leaks',
+            'Princípios SOLID',
+            'Design Patterns',
+            'System Design',
+            'Code Review & Mentoria',
+            'Scrum & Kanban',
             'Comunicação Bilíngue (EN/PT)'
           ]
         }
@@ -797,7 +971,7 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       sectionTitle: 'INICIAR TRANSMISSÃO DIRETA CRIPTOGRAFADA',
       sectionSubtitle:
         'Linha de comunicação segura aberta para posições de engenharia sênior, consultorias arquiteturais e briefings de missão.',
-      channelStatus: 'CANAL: SEGURO // FREQUÊNCIA: 2026.09.30 TÓQUIO-3',
+      channelStatus: 'CANAL: SEGURO // FREQUÊNCIA: 2026.10 TÓQUIO-3 / BRASIL REMOTO',
       directMailLabel: 'CANAL DIRETO COM O PILOTO (COPIAR COM 1 CLIQUE):',
       copySuccessToast: 'ENDEREÇO DE TRANSMISSÃO COPIADO // 通信先複製完了',
       clickToCopy: 'CLIQUE PARA COPIAR E-MAIL',
@@ -805,7 +979,7 @@ export const evaTranslations: { en: EvaEpisodeContent; pt: EvaEpisodeContent } =
       btnGithub: 'REPOSITÓRIO GITHUB ↗',
       btnDownloadCv: 'BAIXAR REGISTRO DE SERVIÇO (CV) ↓',
       operationalDirective:
-        'DIRETIVA ESPECIAL NERV: Disponível para atuações de alto impacto como Senior/Staff Software Engineer em Mobile, Frontend e Sistemas com IA.'
+        'DIRETIVA ESPECIAL NERV: Disponível para atuações de alto impacto como Engenheiro de Software Sênior em Mobile, Front-end e Sistemas com IA.'
     }
   }
 };

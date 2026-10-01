@@ -30,6 +30,7 @@ export const NervTacticalHangarPage: React.FC<NervTacticalHangarPageProps> = () 
 
   const handleViewProjects = () => {
     // Automatically select first project or open project dossier
+    setActiveSection('projects');
     if (content.selectedProjects.items[0]) {
       setSelectedProject(content.selectedProjects.items[0]);
     }
@@ -72,7 +73,10 @@ export const NervTacticalHangarPage: React.FC<NervTacticalHangarPageProps> = () 
           {/* Bottom Selected Projects Horizontal Rail */}
           <NervSelectedProjects
             content={content}
-            onSelectProject={(project) => setSelectedProject(project)}
+            onSelectProject={(project) => {
+              setSelectedProject(project);
+              setActiveSection('projects');
+            }}
           />
         </main>
 
@@ -89,6 +93,10 @@ export const NervTacticalHangarPage: React.FC<NervTacticalHangarPageProps> = () 
       <NervDossierModal
         content={content}
         selectedProject={selectedProject}
+        onSelectProject={(project) => {
+          setSelectedProject(project);
+          setActiveSection('projects');
+        }}
         onCloseProject={() => setSelectedProject(null)}
         activeSection={activeSection}
         onCloseSection={() => setActiveSection('home')}

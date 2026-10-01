@@ -87,7 +87,7 @@ export const EvaCommsTerminal: React.FC<EvaCommsTerminalProps> = ({ content }) =
       {/* Action Links Arsenal */}
       <div className="flex flex-wrap gap-3 mb-8">
         <a
-          href="https://linkedin.com/in/joaovguerber"
+          href="https://www.linkedin.com/in/joaoguebrer/"
           target="_blank"
           rel="noopener noreferrer"
           className="px-4 py-2.5 border border-zinc-700 bg-zinc-950 text-xs font-eva-mono text-white hover:border-[#ff5500] hover:text-[#ff5500] transition-colors flex items-center gap-2"

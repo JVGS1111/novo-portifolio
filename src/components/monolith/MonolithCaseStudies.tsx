@@ -24,37 +24,37 @@ const casesDataEn: CaseItem[] = [
     id: 'banqi-scale',
     num: '01',
     tag: 'HYPERSCALE MOBILE ARCHITECTURE',
-    title: 'banQi Modernization & Stabilization',
-    company: 'BANQI — GRUPO CASAS BAHIA',
+    title: 'banQi Modernization & Hyperscale Stabilization',
+    company: 'BANQI — CASAS BAHIA GROUP',
     bgImg: thumbBanqi,
     challenge: '120,000 crashes/week, 900MB RAM footprint, and 60s cold start under millions of active financial transactions.',
-    solution: 'Decoupled React Native modular refactoring, Kotlin/Swift native bridges, AppDome RASP, Hermes compilation, and Fastlane/Azure DevOps pipelines.',
-    impact: '-98% production crashes, -55% RAM consumption, -75% splash boot time, and $10k/year in AWS infrastructure savings.',
-    stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Hermes', 'Fastlane', 'AppDome']
+    solution: 'Technical lead in modular React Native refactoring, native modules in Kotlin & Swift, AppDome RASP security, Hermes optimization, and Fastlane / Azure DevOps CI/CD pipelines.',
+    impact: '-98% weekly crashes (120k → 2k), -55% RAM footprint (400MB), -75% splash-to-home boot time (60s → 15s), and +$10k/yr AWS infrastructure savings.',
+    stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest']
   },
   {
     id: 'ai-devtools',
     num: '02',
     tag: 'AI DEV WORKFLOW & AGENTS',
     title: 'AI-Driven Engineering & Automation',
-    company: 'GUEPSI & DEV PRODUCTIVITY LABS',
+    company: 'STRATEGIC INNOVATION & PRODUCTIVITY',
     bgImg: thumbAi,
-    challenge: 'Bottlenecks in repetitive manual code reviews, high latency in architectural documentation, and low unit test coverage.',
-    solution: 'Orchestration of autonomous AI agents and continuous static analysis pipelines for test suite generation, regression auditing, and living docs.',
-    impact: 'Drastic reduction in PR lead time, accelerated review turnaround with high precision, and 100% CI/CD pipeline reliability.',
-    stack: ['GitHub Copilot Certified', 'Custom AI Agents', 'TypeScript', 'Node.js', 'Vitest', 'CI/CD']
+    challenge: 'High latency in repetitive manual PR reviews, slow drafting of technical/business specs (KRs, User Stories, Blueprints), and unit test coverage gaps.',
+    solution: 'Orchestration of custom AI dev tooling, prompt engineering, and automated pipelines for code review analysis, regression detection, and drafting Jest/Vitest test suites.',
+    impact: 'Substantial reduction in documentation overhead, accelerated PR review turnaround across multidisciplinary teams, and increased test generation coverage.',
+    stack: ['GitHub Copilot Certified', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript', 'Jest / Vitest']
   },
   {
     id: 'design-system',
     num: '03',
     tag: 'MULTI-OS DESIGN SYSTEM',
     title: 'Design System & Cross-Platform Modules',
-    company: 'BANQI & WIID ARCHITECTURE',
+    company: 'BANQI & WIID',
     bgImg: thumbDesign,
-    challenge: 'Visual and functional discrepancies between Android, iOS, and Web, duplicate components, and high friction in design-to-engineering handoff.',
-    solution: 'Decoupled ecosystem of platform-agnostic design tokens, strictly typed components, and universal native bridges.',
-    impact: 'Absolute visual and functional parity, 2x faster delivery velocity for new product features, and automated test suites.',
-    stack: ['Design Tokens', 'React', 'React Native', 'Next.js', 'TypeScript', 'Jest', 'Storybook']
+    challenge: 'Visual and functional discrepancies across Android, iOS, and Web, duplicate components, visual bugs across screen densities, and slow design-to-code velocity.',
+    solution: 'Highly decoupled component library strictly typed in TypeScript, platform-agnostic design tokens, and universal native bridges for OS proprietary capabilities.',
+    impact: 'Standardization of hundreds of reusable components across platforms, 2x faster velocity for new product features, and testability guaranteed with Jest and Vitest.',
+    stack: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Design Systems', 'Jest', 'Vitest']
   }
 ];
 
@@ -63,37 +63,37 @@ const casesDataPt: CaseItem[] = [
     id: 'banqi-scale',
     num: '01',
     tag: 'HYPERSCALE MOBILE ARCHITECTURE',
-    title: 'Modernização & Estabilização banQi',
+    title: 'Modernização & Estabilização em Hiperescala',
     company: 'BANQI — GRUPO CASAS BAHIA',
     bgImg: thumbBanqi,
-    challenge: '120.000 crashes/semana, footprint de 900MB de RAM e 60s de inicialização fria sob milhões de transações ativas.',
-    solution: 'Refatoração modular React Native desacoplada, pontes nativas Kotlin/Swift, RASP AppDome, compilação Hermes e pipelines Fastlane/Azure DevOps.',
-    impact: '-98% crashes em produção, -55% consumo de RAM, -75% splash boot time e $10k/ano de economia em infraestrutura AWS.',
-    stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Hermes', 'Fastlane', 'AppDome']
+    challenge: '120.000 crashes/semana, footprint de 900MB de RAM e 60s de carregamento sob milhões de transações ativas.',
+    solution: 'Liderança técnica na refatoração de fluxos legados, reengenharia de módulos nativos (Kotlin/Swift), segurança móvel com AppDome (RASP) e esteiras automatizadas de CI/CD com Fastlane.',
+    impact: 'Redução de 98% nos crashes semanais (120k → 2k), queda de 55% no consumo de RAM (400MB), splash-to-home de 60s para 15s (-75%) e +$10k/ano de economia em infraestrutura AWS.',
+    stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest']
   },
   {
     id: 'ai-devtools',
     num: '02',
     tag: 'AI DEV WORKFLOW & AGENTS',
-    title: 'Engenharia Orientada a IA & Automação',
-    company: 'GUEPSI & DEV PRODUCTIVITY LABS',
+    title: 'Automação de Engenharia Orientada a IA',
+    company: 'INOVAÇÃO ESTRATÉGICA & PRODUTIVIDADE',
     bgImg: thumbAi,
-    challenge: 'Gargalos em revisões manuais repetitivas, tempo elevado de documentação técnica de arquitetura e cobertura incipiente de testes unitários.',
-    solution: 'Orquestração de agentes autônomos de IA e pipelines contínuos de análise estática para geração de suítes de testes, auditoria de regressão e documentação viva.',
-    impact: 'Redução drástica do lead time de PRs, homologação acelerada com alta precisão e 100% de confiabilidade em esteiras CI/CD.',
-    stack: ['GitHub Copilot Certified', 'Custom AI Agents', 'TypeScript', 'Node.js', 'Vitest', 'CI/CD']
+    challenge: 'Altos gargalos em revisões manuais repetitivas de PRs, elaboração demorada de documentação de negócio (KRs, User Stories e Blueprints) e lacunas em testes unitários.',
+    solution: 'Criação de prompts técnicos e pipelines automatizados com IA para análise preliminar de código, identificação de potenciais regressões e geração de rascunhos de testes e especificações técnicas.',
+    impact: 'Redução substancial do overhead de documentação técnica e de negócio, aceleração na homologação de pull requests entre times e aumento na taxa de geração de cenários de teste Jest e Vitest.',
+    stack: ['GitHub Copilot Certified', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript', 'Jest / Vitest']
   },
   {
     id: 'design-system',
     num: '03',
     tag: 'MULTI-OS DESIGN SYSTEM',
     title: 'Design System & Módulos Multiplataforma',
-    company: 'BANQI & WIID ARCHITECTURE',
+    company: 'BANQI & WIID',
     bgImg: thumbDesign,
-    challenge: 'Inconsistência visual e funcional entre Android, iOS e Web, componentes duplicados e alto atrito no handoff entre design e engenharia.',
-    solution: 'Criação de ecossistema desacoplado de design tokens agnósticos, componentes com tipagem estrita e pontes nativas universais.',
-    impact: 'Padronização visual e funcional absoluta, ganho de 2x na velocidade de entrega de novas features e suítes completas de testes automatizados.',
-    stack: ['Design Tokens', 'React', 'React Native', 'Next.js', 'TypeScript', 'Jest', 'Storybook']
+    challenge: 'Inconsistência entre interfaces Android, iOS e Web, com duplicação de componentes, bugs visuais em diferentes densidades de tela e lentidão no design-to-code.',
+    solution: 'Desenvolvimento de biblioteca de componentes altamente desacoplada, tipada com TypeScript, com suporte a tokens de design e pontes nativas para funcionalidades dos sistemas operacionais.',
+    impact: 'Padronização de centenas de componentes reutilizáveis entre plataformas, velocidade 2x maior na prototipação e entrega de features e testabilidade garantida com Jest e Vitest.',
+    stack: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Design Systems', 'Jest', 'Vitest']
   }
 ];
 

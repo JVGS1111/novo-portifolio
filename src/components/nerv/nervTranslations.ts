@@ -27,6 +27,20 @@ export interface NervExperienceItem {
   highlights: string[];
 }
 
+export interface NervCertificationItem {
+  title: string;
+  issuer: string;
+  period: string;
+  badge: string;
+  description: string;
+}
+
+export interface NervLanguageItem {
+  name: string;
+  level: string;
+  desc: string;
+}
+
 export interface NervSkillCategory {
   category: string;
   kanji: string;
@@ -87,6 +101,8 @@ export interface NervContent {
     sectionTitle: string;
     sectionKanji: string;
     viewCaseAction: string;
+    catalogTitle: string;
+    catalogSubtitle: string;
     items: NervProjectItem[];
   };
   experience: {
@@ -97,15 +113,22 @@ export interface NervContent {
   skills: {
     sectionTitle: string;
     sectionKanji: string;
+    certificationsTitle: string;
+    certificationsKanji: string;
     categories: NervSkillCategory[];
+    certifications: NervCertificationItem[];
   };
   about: {
     sectionTitle: string;
     sectionKanji: string;
     pilotClassification: string;
     pilotId: string;
+    fullName: string;
+    yearsOfExperience: string;
     dossierText: string[];
     specializations: string[];
+    languagesTitle: string;
+    languages: NervLanguageItem[];
   };
   contact: {
     sectionTitle: string;
@@ -126,7 +149,7 @@ export interface NervContent {
 export const nervTranslations: { en: NervContent; pt: NervContent } = {
   en: {
     header: {
-      engineerName: 'JOÃO VINÍCIUS GUERBER',
+      engineerName: 'JOÃO VINÍCIUS GUERBER DE SOUZA',
       japaneseRole: 'ソフトウェアエンジニア',
       nav: {
         home: '01_HOME',
@@ -142,25 +165,25 @@ export const nervTranslations: { en: NervContent; pt: NervContent } = {
     },
     terminal: {
       personalTerminal: 'PERSONAL TERMINAL ——>',
-      userTag: 'USER: JVG',
+      userTag: 'USER: JVGS',
       softwareKatakana: 'ソフトウェア',
       engineerKatakana: 'エンジニア',
-      fullName: 'JOÃO VINÍCIUS GUERBER',
+      fullName: 'JOÃO VINÍCIUS GUERBER DE SOUZA',
       japaneseMotto: 'スケールするプロダクトと体験を構築する',
       englishMotto: 'BUILDING SCALABLE PRODUCTS AND EXPERIENCES',
       bioParagraph:
-        'I build large-scale applications with a relentless focus on high performance, robust architecture, and refined user experience. Currently specializing in React Native, React, TypeScript, and cloud-native solutions.',
+        'Senior Software Engineer with 6 years of experience specializing in high-impact mobile and web modernizations. Relentless focus on clean architecture, native Kotlin/Swift bridges, extreme system stability, technical debt eradication, and intelligent AI automation.',
       btnViewProjects: 'VIEW PROJECTS',
-      btnDownloadCv: 'DOWNLOAD CV',
+      btnDownloadCv: 'CONTACT / CV',
       coreSkillsTitle: 'CORE SKILLS',
       coreSkillsKanji: '主要スキル',
       coreSkills: [
-        'React / React Native',
-        'TypeScript',
-        'Kotlin / Swift',
-        'Node.js',
-        'AWS',
-        'System Design'
+        'React Native (Core)',
+        'Kotlin / Swift Bridges',
+        'TypeScript / React',
+        'Next.js / Architecture',
+        'AWS Cloud / CI/CD',
+        'AI Engineering / Automation'
       ]
     },
     rightHud: {
@@ -169,10 +192,10 @@ export const nervTranslations: { en: NervContent; pt: NervContent } = {
       standbyStatus: 'STANDBY',
       activeStatus: 'COMBAT ACTIVE',
       testType: 'TEST TYPE: EVA-01',
-      pilotLabel: 'PILOT: 03 (J.V. GUERBER)',
-      pilotValue: 'SYNC: 99.4%',
+      pilotLabel: 'PILOT: 01 (J.V.G. DE SOUZA)',
+      pilotValue: '01 (J.V.G.S.)',
       syncLabel: 'SYNC:',
-      syncValue: '99.4%',
+      syncValue: '99.42%',
       statusLabel: 'STATUS: STANDBY',
       monitoringSystem: 'NERV MAIN MONITORING SYSTEM',
       magiMelchior: 'MAGI-1: MELCHIOR [ONLINE]',
@@ -186,97 +209,105 @@ export const nervTranslations: { en: NervContent; pt: NervContent } = {
       sectionTitle: 'SELECTED PROJECTS',
       sectionKanji: '選択されたプロジェクト',
       viewCaseAction: 'OPEN TACTICAL DOSSIER',
+      catalogTitle: 'TACTICAL PROJECTS & COMBAT OPERATIONS CATALOG',
+      catalogSubtitle: 'CLASSIFIED SECTOR 02 ARCHIVES // DEPLOYED SYSTEMS AUDIT',
       items: [
         {
           id: 'banqi-app',
           number: '01',
-          title: 'BanQi App',
-          organization: 'Grupo Casas Bahia',
-          tagline: 'Super app financeiro com +300k usuários ativos semanais.',
+          title: 'Operation BanQi: Hyperscale Modernization',
+          organization: 'banQi — Grupo Casas Bahia',
+          tagline: 'Financial super app with +300k weekly active users and millions of transactions.',
           description:
-            'Financial super app with +300k weekly active users. Led architecture overhaul, cold-start acceleration, and native memory leak isolation.',
-          tags: ['React Native', 'TypeScript', 'GraphQL'],
-          threatLevel: 'CLASS-A CRITICAL INFRASTRUCTURE',
-          operationalStatus: 'DEPLOYED & OPERATIONAL',
+            'Deep systemic re-engineering of one of Brazil’s largest retail financial apps. Stabilized mission-critical payment workflows, eliminated crash spikes, and reduced memory footprints.',
+          tags: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest'],
+          threatLevel: 'CLASS-A CRITICAL FINANCIAL INFRASTRUCTURE',
+          operationalStatus: 'DEPLOYED & OPERATIONAL IN PRODUCTION',
           metrics: [
-            { label: 'Crash Rate', value: '4.8% → 0.05%' },
-            { label: 'Cold Boot', value: '6.2s → 1.5s' },
-            { label: 'Cloud Savings', value: '+$10k / month' }
+            { label: 'Weekly Crashes', value: '-98% (120k → 2k)' },
+            { label: 'RAM Footprint', value: '-55% (900MB → 400MB)' },
+            { label: 'Splash to Home', value: '-75% (60s → 15s)' },
+            { label: 'AWS Cloud Cost', value: '+$10,000/yr Saved' },
+            { label: 'Test Coverage', value: '0% → 40% Audited' }
           ],
           fullDetails: {
             challenge:
-              'Massive mobile fintech app suffering from severe Android low-end device crashes, high cold start latency (6.2s), and memory leaks under peak traffic.',
+              'Massive financial app suffering from 120,000 weekly crashes, prohibitive memory consumption (900MB) triggering OOM exceptions on entry-level Android devices, and cold startup latency of up to 60 seconds.',
             solution:
-              'Architected modular micro-frontends with Hermes bytecode engine, implemented Hermes profiler traces, optimized GraphQL caching, and designed resilient offline-first state synchronization.',
+              'Led technical re-engineering of legacy bridges, introduced native Kotlin/Swift modules, implemented proactive RASP mobile defense via AppDome, eliminated memory leaks through list virtualization, and streamlined CI/CD pipelines via Fastlane.',
             impact:
-              'Crash rate dropped by 98.9% (from 4.8% to <0.05%). Cold start dropped from 6.2s to 1.5s. App Store and Google Play rating surged from 3.2 to 4.7 stars.',
+              'Reduced weekly crashes by 98% (120,000 down to 2,000), compressed RAM footprint by 55% (900MB to 400MB), accelerated splash-to-home boot time by 75% (60s to 15s), and generated US$ 10,000 in direct annual cloud infrastructure savings.',
             architecture: [
-              'React Native 0.72+ with Hermes Engine',
-              'GraphQL Federation & Offline Apollo Client',
-              'Native Kotlin / Swift bridges for biometric encryption',
-              'Datadog Real User Monitoring (RUM) & Sentry telemetry'
+              'React Native with Optimized Hermes Engine & Native Bridge Isolation',
+              'Native Kotlin (Android) & Swift (iOS) Low-Level Modules',
+              'AppDome RASP Security & Defense Integration',
+              'Fastlane & Azure DevOps Continuous Deployment Automation',
+              'Dynatrace APM & Databricks Real-Time Telemetry Pipelines',
+              'Jest & Vitest Unit Test Suites with 40% Critical Path Coverage'
             ]
           }
         },
         {
-          id: 'guepsi-saas',
+          id: 'ai-dev-workflows',
           number: '02',
-          title: 'Guepsi',
-          organization: 'SaaS para psicólogos',
-          tagline: 'Plataforma de gestão de pacientes com foco em privacidade (LGPD).',
+          title: 'Operation Synapse: AI Dev Workflows & Automation',
+          organization: 'Strategic Innovation & Engineering Productivity',
+          tagline: 'Custom AI dev tooling, synthetic test generators, and autonomous PR review pipelines.',
           description:
-            'Clinical patient management platform with end-to-end HIPAA and LGPD cryptographic compliance, intelligent scheduling, and medical records.',
-          tags: ['Next.js', 'PostgreSQL', 'AWS'],
-          threatLevel: 'MAX SECRECY PROTOCOL // 極秘',
-          operationalStatus: 'ACTIVE IN PRODUCTION',
+            'Architecture of customized AI agents, specialized prompt protocols, and automated CI/CD workflows accelerating software development life-cycles and engineering quality.',
+          tags: ['GitHub Copilot', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript', 'Prompt Engineering', 'Jest'],
+          threatLevel: 'TACTICAL INTELLIGENCE PROTOCOL // 極秘',
+          operationalStatus: 'ACTIVE IN PRODUCTION WORKFLOWS',
           metrics: [
-            { label: 'Compliance', value: '100% LGPD/HIPAA' },
-            { label: 'Latency', value: '<85ms Global' },
-            { label: 'Uptime', value: '99.98%' }
+            { label: 'PR Review Speed', value: '2x Acceleration' },
+            { label: 'Spec Overhead', value: '-60% Documentation Lag' },
+            { label: 'Test Synthesis', value: '+80% Jest/Vitest Scenarios' }
           ],
           fullDetails: {
             challenge:
-              'Psychology clinics required an ultra-secure, zero-knowledge clinical records system adhering strictly to Brazilian LGPD and global medical privacy standards without compromising UX speed.',
+              'Engineering squads faced substantial delivery bottlenecks due to repetitive manual pull request triage, slow drafting of technical specifications (KRs, User Stories, Architecture Blueprints), and unit test coverage gaps.',
             solution:
-              'Engineered serverless Next.js App Router on AWS with row-level encryption in PostgreSQL, AES-256 encrypted session vaults, and automated calendar/financial telematics.',
+              'Engineered context-aware AI agents, structured prompt pipelines, and CI/CD automated review bots that conduct preliminary code analysis, flag potential regressions, and generate test boilerplate and technical specs.',
             impact:
-              'Zero data exposure incidents, full cryptographic audit approval, and adoption by hundreds of licensed psychology professionals across Latin America.',
+              'Cut technical documentation latency by 60%, halved PR approval turnaround times across cross-functional squads, and accelerated test case generation for complex edge conditions.',
             architecture: [
-              'Next.js 14 App Router with React Server Components',
-              'PostgreSQL with Row Level Security (RLS) & AES-256 Vault',
-              'AWS Lambda, S3 Encrypted Buckets & CloudFront CDN',
-              'Stripe & PIX automated financial settlement engine'
+              'GitHub Copilot Certified Context Engineering & Agent Protocols',
+              'Custom Autonomous AI Agents for Code Review & Regression Scanning',
+              'Automated Jest & Vitest Test Harness Synthesis',
+              'GitHub Actions Continuous Integration & Verification Webhooks',
+              'TypeScript Domain AST Parsing & Token Synchronization'
             ]
           }
         },
         {
-          id: 'tools-library',
+          id: 'multi-os-design-system',
           number: '03',
-          title: 'Biblioteca de Tools',
-          organization: 'Projetos e ferramentas',
-          tagline: 'Projetos pessoais para desenvolvimento e produtividade.',
+          title: 'Operation Harmony: Multi-OS Design System',
+          organization: 'banQi & WiiD',
+          tagline: 'Unified cross-platform component library & design token architecture across Web and Mobile.',
           description:
-            'Suite of open-source CLI tools, workflow automations, and developer utilities designed to streamline fullstack development cycles and testing.',
-          tags: ['TypeScript', 'Node.js', 'DevTools'],
-          threatLevel: 'RESEARCH DIVISION ARTIFACT',
-          operationalStatus: 'OPEN REPOSITORY',
+            'Construction and stewardship of decoupled, high-performance Design Systems spanning Android, iOS, and Web, accelerating feature releases with uncompromising visual consistency.',
+          tags: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Design Systems', 'Storybook', 'Jest', 'Vitest'],
+          threatLevel: 'MULTI-PLATFORM CORE STANDARD',
+          operationalStatus: 'DEPLOYED ACROSS MULTIPLE PRODUCTION SQUADS',
           metrics: [
-            { label: 'Dev Efficiency', value: '+45% Velocity' },
-            { label: 'Test Coverage', value: '95%+ Audited' },
-            { label: 'Dependencies', value: 'Zero Bloat' }
+            { label: 'Component Library', value: '100+ Shared Nodes' },
+            { label: 'Delivery Velocity', value: '2x Prototyping Speed' },
+            { label: 'Visual Parity', value: '100% Multi-OS Alignment' }
           ],
           fullDetails: {
             challenge:
-              'Repetitive boilerplate, manual token synchronization between Figma and codebases, and inconsistent mock generation slowed down engineering iteration cycles.',
+              'High visual drift and component duplication across Android, iOS, and Web teams, leading to styling bugs on varied screen pixel densities and extended design-to-code iteration cycles.',
             solution:
-              'Authored specialized TypeScript CLI utilities, automated AST parsers, design-token synchronizers, and synthetic test data generators for rapid local prototyping.',
+              'Architected a strongly-typed, modular component system powered by TypeScript and design tokens, backed by Storybook documentation, and bridged to native OS capabilities for fluid animations.',
             impact:
-              'Accelerated feature inception by 45%, eliminated design-to-code drift, and published reusable open-source modules across the developer ecosystem.',
+              'Standardized hundreds of reusable multi-platform UI components, doubled rapid prototyping speed for product teams, and achieved comprehensive testability with Jest and Vitest.',
             architecture: [
-              'TypeScript with Node.js & ESBuild runtime',
-              'Babel/SWC AST analysis for automated codemods',
-              'GitHub Actions CI/CD with automated NPM release pipelines',
-              'Jest & Vitest unit verification suites'
+              'Cross-Platform Token Engine (Spacing, Typography, Elevation, Colors)',
+              'React Native & React Web Shared Component Primitives',
+              'Storybook Interactive Component Catalog & Visual Regression Testing',
+              'Strict TypeScript Type Definitions & Interface Contracts',
+              'Distribution via Private GitHub Packages NPM Registry'
             ]
           }
         }
@@ -287,89 +318,191 @@ export const nervTranslations: { en: NervContent; pt: NervContent } = {
       sectionKanji: '作戦履歴と実務経歴',
       records: [
         {
-          period: '2022 — PRESENT',
-          role: 'SENIOR SOFTWARE ENGINEER · MOBILE & FULLSTACK',
-          company: 'INVILLIA / CASAS BAHIA / BANQI',
+          period: 'SEP 2025 — PRESENT',
+          role: 'SENIOR SOFTWARE ENGINEER (FRONT-END & MOBILE)',
+          company: 'INVILLIA · BANQI (GRUPO CASAS BAHIA)',
           location: 'REMOTE · SÃO PAULO, BR',
-          clearance: 'LEVEL-A SENIOR CLEARANCE',
+          clearance: 'CLEARANCE: 01-ALPHA // TACTICAL LEAD',
           description:
-            'Leading core mobile and frontend engineering initiatives for banQi digital bank within Grupo Casas Bahia. Spearheading architecture governance, performance auditing, and mission-critical payment workflows.',
+            'Acting as senior technical reference in mobile and front-end engineering for banQi, spearheading mission-critical performance, architecture, and stability initiatives.',
           highlights: [
-            'Eradicated 98.9% of memory leaks and native crashes on heterogeneous Android fleets.',
-            'Spearheaded transition to modular micro-frontends serving 300k+ weekly active transacting users.',
-            'Saved $10,000+ monthly in AWS cloud egress and lambda execution costs through aggressive caching.'
+            'Systemic stabilization at scale: reduced weekly crashes by 98% and cut RAM footprint by 55%.',
+            'Accelerated Splash-to-Home boot time by 75% via Hermes optimization and native bridge isolation.',
+            'Quality engineering culture: elevated automated test coverage from 0% to 40% with 100% CI/CD build reliability.',
+            'Strategic AI innovation: developed custom agents and automated workflows for PR reviews, test suite generation, and specification drafting (KRs, User Stories, Blueprints).',
+            'Legacy modernization and cloud egress optimization generating US$ 10,000/year in direct AWS cloud savings.',
+            'Strategic partner to PMs and Staff Engineers in product discovery, pipeline governance (Fastlane, GitHub Actions, Azure DevOps), and mobile defense (RASP via AppDome).'
           ]
         },
         {
-          period: '2021 — 2022',
-          role: 'SOFTWARE ENGINEER · FULLSTACK',
-          company: 'WIID SOFTWARE',
-          location: 'CURITIBA, BR',
-          clearance: 'LEVEL-B SYSTEM ARCHITECT',
+          period: 'SEP 2024 — SEP 2025',
+          role: 'MID-LEVEL SOFTWARE ENGINEER (FRONT-END & MOBILE)',
+          company: 'INVILLIA · BANQI - CASAS BAHIA PAY (GRUPO CASAS BAHIA)',
+          location: 'REMOTE · SÃO PAULO, BR',
+          clearance: 'CLEARANCE: LEVEL-A // CORE INFRASTRUCTURE',
           description:
-            'Engineered resilient web and mobile applications for international logistics and healthcare clients using React, React Native, Node.js, and serverless AWS microservices.',
+            'Continuous development of robust mobile financial applications, deep native platform integration, and multi-platform Design System evolution.',
           highlights: [
-            'Built real-time telemetry dashboards processing telemetry for 50,000+ IoT tracking nodes.',
-            'Implemented strict LGPD compliant authentication pipelines and automated CI/CD releases.',
-            'Mentored junior engineers and instituted rigorous code review standards across the squad.'
+            'Contributed to core system design and authored shared Design System components across mobile and web platforms.',
+            'Engineered and maintained native bridge modules for React Native in Kotlin (Android) and Swift (iOS).',
+            'Enforced engineering excellence through Clean Code, SOLID architecture, and rigorous automated unit and integration test suites.'
+          ]
+        },
+        {
+          period: 'JAN 2024 — SEP 2024',
+          role: 'MID-LEVEL MOBILE & FRONT-END DEVELOPER',
+          company: 'WIID – WORK IN IDEAS',
+          location: 'REMOTE · CURITIBA, BR',
+          clearance: 'CLEARANCE: LEVEL-B // DEPLOYMENT ARCHITECT',
+          description:
+            'Development of multi-platform digital products emphasizing superior user experience, fluid rendering performance, and comprehensive test coverage.',
+          highlights: [
+            'Engineered and sustained cross-platform web and mobile applications with React, Next.js, and React Native (Expo).',
+            'Full end-to-end feature ownership from Figma design translation to production deployment.',
+            'Authored unit test suites using Jest and Vitest, and provided technical mentorship to junior developers and engineering interns.'
+          ]
+        },
+        {
+          period: 'DEC 2021 — JAN 2024',
+          role: 'JUNIOR FRONT-END DEVELOPER',
+          company: 'WIID – WORK IN IDEAS',
+          location: 'CURITIBA, BR',
+          clearance: 'CLEARANCE: LEVEL-C // INTERFACE SPECIALIST',
+          description:
+            'Initial career track constructing scalable web and mobile interfaces within the TypeScript and React modern ecosystem.',
+          highlights: [
+            'Built and maintained responsive web and mobile digital products using React, React Native, and TypeScript.',
+            'Wrote comprehensive unit test suites with Jest to guarantee continuous release stability and maintain code quality standards.'
+          ]
+        },
+        {
+          period: 'DEC 2020 — DEC 2021',
+          role: 'WEB DEVELOPER',
+          company: 'FREELANCE – AUTÔNOMO',
+          location: 'BRAZIL · REMOTE',
+          clearance: 'CLEARANCE: LEVEL-D // INDEPENDENT OPERATOR',
+          description:
+            'Development and maintenance of fullstack web applications, high-converting landing pages, and customized digital platforms.',
+          highlights: [
+            'Engineered web applications utilizing PHP, JavaScript, CSS3, and HTML5.',
+            'Designed high-converting responsive landing pages and custom WordPress platforms optimized for performance.',
+            'Direct stakeholder management across multiple parallel client projects with strict deadlines and quality delivery.'
           ]
         }
       ]
     },
     skills: {
-      sectionTitle: 'SYNAPTIC SKILL MATRIX',
+      sectionTitle: 'SYNAPTIC SKILL MATRIX & AUDIT',
       sectionKanji: '技術シナプス行列',
+      certificationsTitle: 'OFFICIAL CLEARANCES & CERTIFICATIONS',
+      certificationsKanji: '公認資格と学歴',
       categories: [
         {
-          category: 'CORE & MOBILE RUNTIMES',
-          kanji: '主軸技術',
+          category: 'MOBILE & NATIVE MODULES',
+          kanji: '主軸技術 // モバイル',
           skills: [
-            { name: 'React Native', level: 98, tag: 'Native Bridges / Hermes' },
+            { name: 'React Native', level: 98, tag: 'Core / Hermes / Architecture' },
+            { name: 'Kotlin (Android)', level: 86, tag: 'Native Modules / JNI' },
+            { name: 'Swift (iOS)', level: 84, tag: 'UIKit / Native Bridges' },
+            { name: 'Expo', level: 92, tag: 'Ecosystem & EAS' },
+            { name: 'AppDome (RASP)', level: 90, tag: 'Mobile Defense / Security' }
+          ]
+        },
+        {
+          category: 'FRONT-END & MODERN WEB',
+          kanji: 'ウェブ基盤',
+          skills: [
+            { name: 'React', level: 98, tag: 'Hooks / Concurrent / State' },
+            { name: 'Next.js', level: 94, tag: 'App Router / SSR / RSC' },
             { name: 'TypeScript', level: 96, tag: 'Strict Typing / Generics' },
-            { name: 'React / Next.js', level: 95, tag: 'App Router / RSC' },
-            { name: 'Kotlin (Android)', level: 85, tag: 'JNI / Native Modules' },
-            { name: 'Swift (iOS)', level: 82, tag: 'UIKit / Objective-C Bridge' }
+            { name: 'Design Systems', level: 95, tag: 'Tokens / Multi-Platform' },
+            { name: 'Tailwind CSS', level: 96, tag: 'Utility-First / Responsive' },
+            { name: 'Three.js / WebGL', level: 82, tag: '3D Shaders & Canvas' }
           ]
         },
         {
-          category: 'BACKEND & CLOUD INFRASTRUCTURE',
-          kanji: '基盤インフラ',
+          category: 'DEVOPS, CLOUD & AUTOMATION',
+          kanji: '基盤インフラ // クラウド',
           skills: [
-            { name: 'Node.js / Express', level: 92, tag: 'Async I/O / REST' },
-            { name: 'GraphQL Federation', level: 90, tag: 'Schema Stitching' },
-            { name: 'PostgreSQL / SQL', level: 88, tag: 'Indexing / RLS' },
-            { name: 'AWS Cloud Services', level: 88, tag: 'S3 / Lambda / CloudFront' },
-            { name: 'Docker / CI/CD', level: 86, tag: 'GitHub Actions / Pipelines' }
+            { name: 'Fastlane', level: 94, tag: 'Mobile CI / Automation' },
+            { name: 'GitHub Actions', level: 92, tag: 'CI/CD Pipelines' },
+            { name: 'Azure DevOps', level: 90, tag: 'Enterprise Pipelines' },
+            { name: 'AWS Cloud', level: 88, tag: 'Solutions / S3 / Lambda' },
+            { name: 'AI Workflow Dev', level: 95, tag: 'Agents / LLM Ops' },
+            { name: 'Dynatrace & Databricks', level: 86, tag: 'APM & Telemetry' }
           ]
         },
         {
-          category: 'ARCHITECTURE & QUALITY',
-          kanji: '設計と品質',
+          category: 'QUALITY, ARCHITECTURE & METHODS',
+          kanji: '設計と品質保証',
           skills: [
-            { name: 'System Design', level: 94, tag: 'Distributed Resilience' },
-            { name: 'Design Systems', level: 95, tag: 'Token Architecture' },
-            { name: 'Unit / E2E Testing', level: 90, tag: 'Jest / Maestro / Detox' },
-            { name: 'Performance Profiling', level: 96, tag: 'Hermes / Memory Dumps' }
+            { name: 'Jest / Vitest', level: 94, tag: 'Unit & Integration' },
+            { name: 'Clean Code & SOLID', level: 96, tag: 'Architecture Principles' },
+            { name: 'System Design', level: 94, tag: 'Distributed & Resilient' },
+            { name: 'Scrum & Kanban', level: 92, tag: 'Agile Delivery' },
+            { name: 'Code Review & Mentorship', level: 95, tag: 'Technical Leadership' }
           ]
+        }
+      ],
+      certifications: [
+        {
+          title: 'AWS Certified Solutions Architect – Associate',
+          issuer: 'Amazon Web Services (AWS)',
+          period: 'In Progress (Target: Q4 2026)',
+          badge: 'OFFICIAL CERTIFICATION',
+          description:
+            'Architecting resilient cloud solutions, high availability, distributed computing, serverless architectures, and AWS infrastructure cost optimization.'
+        },
+        {
+          title: 'GitHub Copilot Certified',
+          issuer: 'GitHub',
+          period: '2025 — 2028',
+          badge: 'OFFICIAL CERTIFICATION',
+          description:
+            'Technical validation of mastery in AI-assisted software development, context engineering, automated code review workflows, and developer productivity tooling.'
+        },
+        {
+          title: 'Analysis and Systems Development (ADS)',
+          issuer: 'Uninter',
+          period: '2019 — 2021',
+          badge: 'HIGHER EDUCATION DEGREE',
+          description:
+            'Solid computer science foundation, database modeling, software engineering principles, algorithm design, and data structures.'
         }
       ]
     },
     about: {
-      sectionTitle: 'PERSONNEL DOSSIER: J.V. GUERBER',
+      sectionTitle: 'PERSONNEL DOSSIER: J.V.G. DE SOUZA',
       sectionKanji: '特務機関員個人記録',
-      pilotClassification: 'CHIEF CODE ARCHITECT // CODE DESIGNATION: 03-ALPHA',
-      pilotId: 'JVG-1996-DEV',
+      pilotClassification: 'CHIEF SOFTWARE ENGINEER // DESIGNATION: PILOT 01-ALPHA',
+      pilotId: 'JVGS-1996-DEV',
+      fullName: 'JOÃO VINÍCIUS GUERBER DE SOUZA',
+      yearsOfExperience: '6 Years of Professional Experience',
       dossierText: [
-        'João Vinícius Guerber is a Senior Software Engineer specializing in resilient mobile architectures, scalable web ecosystems, and autonomous AI-assisted workflows.',
-        'With battle-tested experience in high-volume fintech and digital healthcare, he operates at the boundary of raw low-level performance (Hermes bytecodes, native bridges, memory compaction) and polished, empathetic user experience.',
-        'Official GitHub Copilot Certified Architect, committed to clean code, deterministic state machines, and building software systems engineered to endure extreme traffic and scale.'
+        'João Vinícius Guerber de Souza is a Senior Software Engineer specializing in resilient mobile architectures, scalable web ecosystems, and autonomous AI-assisted workflows.',
+        'With 6 years of battle-tested engineering experience in high-volume retail fintech (banQi / Grupo Casas Bahia) and cross-platform software agencies, he operates at the boundary of low-level performance (Hermes bytecodes, native Kotlin/Swift bridges, memory compaction) and polished, empathetic user experience.',
+        'Official GitHub Copilot Certified Engineer and actively preparing for AWS Solutions Architect certification (Q4 2026). Committed to clean code, deterministic state machines, and building software systems engineered to endure extreme traffic and scale.'
       ],
       specializations: [
         'High-Scale Fintech & Mobile Super Apps',
-        'Offline-First Cryptographic State Engines',
-        'Cross-Platform Design System Tokens',
+        'Native Kotlin & Swift Modules for React Native',
+        'Cross-Platform Design System Token Architecture',
         'Hermes Runtime Profiling & Memory Diagnostics',
-        'Generative AI Agent Integration & Workflows'
+        'Generative AI Agent Integration & Workflows',
+        'Continuous Mobile CI/CD (Fastlane & GitHub Actions)'
+      ],
+      languagesTitle: 'COMMUNICATION PROTOCOLS // 言語',
+      languages: [
+        {
+          name: 'Português',
+          level: 'Native',
+          desc: 'Fluid communication for technical leadership, architecture alignment, and stakeholder discovery.'
+        },
+        {
+          name: 'English',
+          level: 'B2 – Upper Intermediate',
+          desc: 'Proven capability for global engineering squads, advanced technical documentation, and architectural specifications.'
+        }
       ]
     },
     contact: {
@@ -390,7 +523,7 @@ export const nervTranslations: { en: NervContent; pt: NervContent } = {
   },
   pt: {
     header: {
-      engineerName: 'JOÃO VINÍCIUS GUERBER',
+      engineerName: 'JOÃO VINÍCIUS GUERBER DE SOUZA',
       japaneseRole: 'ソフトウェアエンジニア',
       nav: {
         home: '01_HOME',
@@ -406,25 +539,25 @@ export const nervTranslations: { en: NervContent; pt: NervContent } = {
     },
     terminal: {
       personalTerminal: 'PERSONAL TERMINAL ——>',
-      userTag: 'USER: JVG',
+      userTag: 'USER: JVGS',
       softwareKatakana: 'ソフトウェア',
       engineerKatakana: 'エンジニア',
-      fullName: 'JOÃO VINÍCIUS GUERBER',
+      fullName: 'JOÃO VINÍCIUS GUERBER DE SOUZA',
       japaneseMotto: 'スケールするプロダクトと体験を構築する',
       englishMotto: 'BUILDING SCALABLE PRODUCTS AND EXPERIENCES',
       bioParagraph:
-        'Desenvolvo aplicações de grande escala com foco em performance, arquitetura sólida e experiência do usuário. Atualmente trabalho com React Native, React, TypeScript e soluções na nuvem.',
+        'Engenheiro de Software Sênior com 6 anos de experiência especializado em modernização de aplicações móveis e web de alto impacto e hiperescala. Foco rigoroso em arquitetura limpa, módulos nativos (Kotlin/Swift), estabilidade extrema de sistemas, eliminação de débito técnico e automação inteligente com IA.',
       btnViewProjects: 'VER PROJETOS',
-      btnDownloadCv: 'BAIXAR CV',
+      btnDownloadCv: 'CONTATO / CV',
       coreSkillsTitle: 'CORE SKILLS',
       coreSkillsKanji: '主要スキル',
       coreSkills: [
-        'React / React Native',
-        'TypeScript',
-        'Kotlin / Swift',
-        'Node.js',
-        'AWS',
-        'System Design'
+        'React Native (Core)',
+        'Pontes Kotlin / Swift',
+        'TypeScript / React',
+        'Next.js / Arquitetura',
+        'AWS Cloud / CI/CD',
+        'Engenharia de IA / Automação'
       ]
     },
     rightHud: {
@@ -433,10 +566,10 @@ export const nervTranslations: { en: NervContent; pt: NervContent } = {
       standbyStatus: 'STANDBY',
       activeStatus: 'COMBATE ATIVO',
       testType: 'TEST TYPE: EVA-01',
-      pilotLabel: 'PILOT: 03 (J.V. GUERBER)',
-      pilotValue: 'SYNC: 99.4%',
+      pilotLabel: 'PILOT: 01 (J.V.G. DE SOUZA)',
+      pilotValue: '01 (J.V.G.S.)',
       syncLabel: 'SYNC:',
-      syncValue: '99.4%',
+      syncValue: '99.42%',
       statusLabel: 'STATUS: STANDBY',
       monitoringSystem: 'NERV MAIN MONITORING SYSTEM',
       magiMelchior: 'MAGI-1: MELCHIOR [ONLINE]',
@@ -450,97 +583,105 @@ export const nervTranslations: { en: NervContent; pt: NervContent } = {
       sectionTitle: 'SELECTED PROJECTS',
       sectionKanji: '選択されたプロジェクト',
       viewCaseAction: 'ABRIR DOSSIÊ TÁTICO',
+      catalogTitle: 'CATÁLOGO DE PROJETOS TÁTICOS E OPERAÇÕES DE COMBATE',
+      catalogSubtitle: 'ARQUIVOS CLASSIFICADOS DO SETOR 02 // AUDITORIA DE SISTEMAS',
       items: [
         {
           id: 'banqi-app',
           number: '01',
-          title: 'BanQi App',
-          organization: 'Grupo Casas Bahia',
-          tagline: 'Super app financeiro com +300k usuários ativos semanais.',
+          title: 'Operação BanQi: Modernização em Hiperescala',
+          organization: 'banQi — Grupo Casas Bahia',
+          tagline: 'Super app financeiro com +300k usuários ativos semanais e milhões de transações.',
           description:
-            'Super app financeiro com +300k usuários ativos semanais. Liderança em engenharia mobile, aceleração de inicialização e contenção de vazamentos de memória nativa.',
-          tags: ['React Native', 'TypeScript', 'GraphQL'],
-          threatLevel: 'INFRAESTRUTURA CRÍTICA CLASSE-A',
+            'Reengenharia sistêmica de um dos maiores apps de serviços financeiros do varejo brasileiro. Estabilização de fluxos críticos de pagamento, contenção de vazamentos de memória e mitigação massiva de falhas.',
+          tags: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest'],
+          threatLevel: 'INFRAESTRUTURA FINANCEIRA CRÍTICA CLASSE-A',
           operationalStatus: 'EM PRODUÇÃO & OPERACIONAL',
           metrics: [
-            { label: 'Crash Rate', value: '4.8% → 0.05%' },
-            { label: 'Cold Boot', value: '6.2s → 1.5s' },
-            { label: 'Economia Nuvem', value: '+$10k / mês' }
+            { label: 'Crashes Semanais', value: '-98% (120k → 2k)' },
+            { label: 'Consumo de RAM', value: '-55% (900MB → 400MB)' },
+            { label: 'Splash to Home', value: '-75% (60s → 15s)' },
+            { label: 'Economia Nuvem', value: '+$10.000/ano em AWS' },
+            { label: 'Cobertura Testes', value: '0% → 40% Auditada' }
           ],
           fullDetails: {
             challenge:
-              'Super app financeiro de grande escala sofrendo com fechamentos repentinos em dispositivos Android básicos, tempo de inicialização excessivo (6.2s) e gargalos de memória sob picos de transações.',
+              'Aplicativo sofria com volume massivo de crashes semanais (120k/semana), consumo proibitivo de memória RAM (900MB) que derrubava aparelhos modestos e lentidão de até 60s no carregamento inicial.',
             solution:
-              'Estruturação de micro-frontends modulares com motor Hermes pré-compilado, rastreamento contínuo de heap, cache granular em GraphQL e sincronização offline resiliente.',
+              'Liderança técnica na refatoração de fluxos legados, reengenharia de módulos nativos (Kotlin/Swift), introdução de segurança móvel avançada (RASP com AppDome) e esteiras automatizadas de CI/CD com Fastlane.',
             impact:
-              'Queda de 98.9% no crash rate (de 4.8% para <0.05%). Inicialização a frio reduzida de 6.2s para 1.5s. Nota do app nas lojas saltou de 3.2 para 4.7 estrelas.',
+              'Redução de 98% nos crashes semanais (120k para 2k), queda de 55% no consumo de RAM (900MB para 400MB), inicialização Splash-to-Home reduzida de 60s para 15s (-75%) e economia de US$ 10.000 anuais em infraestrutura AWS.',
             architecture: [
-              'React Native 0.72+ com Hermes Engine otimizado',
-              'GraphQL Federation & Apollo Client com cache offline',
-              'Pontes nativas Kotlin / Swift para criptografia biométrica',
-              'Telemetria em tempo real com Datadog RUM e Sentry'
+              'React Native com Hermes Engine Otimizado e Isolamento de Pontes',
+              'Módulos Nativos de Baixo Nível em Kotlin (Android) e Swift (iOS)',
+              'Defesa Móvel Avançada RASP Integrada via AppDome',
+              'Automação de Esteiras Contínuas com Fastlane e Azure DevOps',
+              'Telemetria e Monitoramento em Tempo Real com Dynatrace e Databricks',
+              'Suíte de Testes Unitários Jest e Vitest cobrindo 40% dos Fluxos Críticos'
             ]
           }
         },
         {
-          id: 'guepsi-saas',
+          id: 'ai-dev-workflows',
           number: '02',
-          title: 'Guepsi',
-          organization: 'SaaS para psicólogos',
-          tagline: 'Plataforma de gestão de pacientes com foco em privacidade (LGPD).',
+          title: 'Operação Synapse: Workflows de IA & Automação',
+          organization: 'Inovação Estratégica & Produtividade de Engenharia',
+          tagline: 'Ferramentas de IA customizadas, geradores sintéticos de testes e automação de PR reviews.',
           description:
-            'Plataforma de prontuários clínicos e gestão para psicólogos com conformidade criptográfica integral à LGPD/HIPAA, telemetria financeira e agenda inteligente.',
-          tags: ['Next.js', 'PostgreSQL', 'AWS'],
-          threatLevel: 'PROTOCOLO DE SIGILO ABSOLUTO // 極秘',
-          operationalStatus: 'ATIVO EM PRODUÇÃO',
+            'Desenvolvimento de agentes de IA customizados, protocolos de prompts técnicos e pipelines automatizados para aceleração do ciclo de desenvolvimento de software e qualidade de código.',
+          tags: ['GitHub Copilot', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript', 'Prompt Engineering', 'Jest'],
+          threatLevel: 'PROTOCOLO DE INTELIGÊNCIA TÁTICA // 極秘',
+          operationalStatus: 'ATIVO EM FLUXOS DE PRODUÇÃO',
           metrics: [
-            { label: 'Conformidade', value: '100% LGPD/HIPAA' },
-            { label: 'Latência', value: '<85ms Global' },
-            { label: 'Disponibilidade', value: '99.98%' }
+            { label: 'Velocidade Review', value: '2x Mais Rápido' },
+            { label: 'Overhead de Specs', value: '-60% Tempo em Documentação' },
+            { label: 'Síntese de Testes', value: '+80% Cenários Jest/Vitest' }
           ],
           fullDetails: {
             challenge:
-              'Clínicas e psicólogos necessitavam de uma ferramenta confiável de anotações clínicas com isolamento total de dados de saúde mental conforme exigências legais da LGPD.',
+              'Altos gargalos de tempo em revisões manuais de PRs repetitivos, elaboração demorada de documentação de negócios (KRs, User Stories e Blueprints) e lacunas em testes unitários.',
             solution:
-              'Desenvolvimento de arquitetura serverless em Next.js App Router na AWS com criptografia em nível de linha (RLS) no PostgreSQL e cofre criptográfico AES-256.',
+              'Criação de prompts técnicos e pipelines automatizados com IA que realizam análise preliminar de código, identificam potenciais regressões e geram rascunhos de testes e especificações técnicas.',
             impact:
-              'Zero incidentes de vazamento, total aderência aos órgãos regulatórios e adoção contínua por centenas de psicólogos em todo o Brasil.',
+              'Redução substancial do overhead de documentação técnica e de negócio, aceleração na homologação de pull requests entre times multidisciplinares e aumento na geração de cenários de teste Jest e Vitest.',
             architecture: [
-              'Next.js 14 App Router com React Server Components',
-              'PostgreSQL com Row Level Security (RLS) e AES-256',
-              'Infraestrutura AWS (Lambda, S3 Encrypted, CloudFront)',
-              'Conciliação automatizada de pagamentos PIX e cartões'
+              'Engenharia de Contexto e Agentes Certificados GitHub Copilot',
+              'Agentes Autônomos Customizados para Análise de Regressões e Code Review',
+              'Síntese Automatizada de Baterias de Testes Jest e Vitest',
+              'Webhooks de Verificação Contínua Integrados ao GitHub Actions',
+              'Transformação e Análise de AST em TypeScript'
             ]
           }
         },
         {
-          id: 'tools-library',
+          id: 'multi-os-design-system',
           number: '03',
-          title: 'Biblioteca de Tools',
-          organization: 'Projetos e ferramentas',
-          tagline: 'Projetos pessoais para desenvolvimento e produtividade.',
+          title: 'Operação Harmony: Design System Multiplataforma',
+          organization: 'banQi & WiiD',
+          tagline: 'Design System unificado e arquitetura de tokens multiplataforma para Web e Mobile.',
           description:
-            'Conjunto de ferramentas CLI, utilitários open-source e automações criadas para acelerar o fluxo diário de desenvolvimento e testes.',
-          tags: ['TypeScript', 'Node.js', 'DevTools'],
-          threatLevel: 'ARTEFATO DA DIVISÃO DE PESQUISA',
-          operationalStatus: 'REPOSITÓRIO PÚBLICO',
+            'Construção e sustentação de sistemas de design unificados entre Mobile e Web, acelerando o lançamento de novas features com consistência visual rigorosa e alta testabilidade.',
+          tags: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Design Systems', 'Storybook', 'Jest', 'Vitest'],
+          threatLevel: 'PADRÃO CORE MULTIPLATAFORMA',
+          operationalStatus: 'EM PRODUÇÃO EM MÚLTIPLOS SQUADS',
           metrics: [
-            { label: 'Velocidade Dev', value: '+45% Ganho' },
-            { label: 'Cobertura Testes', value: '95%+ Auditada' },
-            { label: 'Dependências', value: 'Zero Bloat' }
+            { label: 'Componentes', value: '100+ Componentes Compartilhados' },
+            { label: 'Velocidade', value: '2x Mais Rápido na Prototipação' },
+            { label: 'Alinhamento', value: '100% Paridade Mobile & Web' }
           ],
           fullDetails: {
             challenge:
-              'Tarefas repetitivas de configuração de boilerplate, sincronização manual de tokens entre Figma e código, e geração lenta de mocks atrasavam a entrega de features.',
+              'Inconsistência entre interfaces Android, iOS e Web, com duplicação de componentes, bugs visuais em diferentes densidades de tela e lentidão no design-to-code.',
             solution:
-              'Criação de CLIs modulares em TypeScript, analisadores automáticos de AST, exportadores de design tokens e geradores sintéticos de dados locais.',
+              'Desenvolvimento de uma biblioteca de componentes altamente desacoplada, tipada com TypeScript, com suporte a tokens de design, documentada com Storybook e pontes nativas.',
             impact:
-              'Ganho de 45% de agilidade em kick-off de novas funcionalidades, eliminação de discrepâncias de design e código, e publicação em repositórios abertos.',
+              'Padronização de centenas de componentes reutilizáveis entre plataformas, velocidade 2x maior na prototipação e entrega de novas features e testabilidade garantida com Jest e Vitest.',
             architecture: [
-              'TypeScript com Node.js e runtime ESBuild',
-              'Análise e transformação de código via AST Babel/SWC',
-              'Pipelines automatizados de CI/CD com GitHub Actions',
-              'Baterias de validação com Jest e Vitest'
+              'Motor de Tokens Multiplataforma (Espaçamento, Tipografia, Elevação, Cores)',
+              'Primitivas Compartilhadas para React Native e React Web',
+              'Catálogo Interativo Storybook com Testes de Regressão Visual',
+              'Contratos de Interface Rígidos e Tipagem Estrita em TypeScript',
+              'Distribuição via Registro NPM Privado no GitHub Packages'
             ]
           }
         }
@@ -551,31 +692,75 @@ export const nervTranslations: { en: NervContent; pt: NervContent } = {
       sectionKanji: '作戦履歴と実務経歴',
       records: [
         {
-          period: '2022 — PRESENTE',
-          role: 'SENIOR SOFTWARE ENGINEER · MOBILE & FULLSTACK',
-          company: 'INVILLIA / CASAS BAHIA / BANQI',
+          period: 'SET 2025 — PRESENTE',
+          role: 'SENIOR SOFTWARE ENGINEER (FRONT-END & MOBILE)',
+          company: 'INVILLIA · BANQI (GRUPO CASAS BAHIA)',
           location: 'REMOTO · SÃO PAULO, BR',
-          clearance: 'CREDENCIAL NÍVEL-A',
+          clearance: 'CREDENCIAL: 01-ALPHA // LIDERANÇA TÁTICA',
           description:
-            'Liderança técnica em engenharia mobile e frontend do banco digital banQi no Grupo Casas Bahia. Governança arquitetural, otimização de performance e fluxos críticos de pagamento.',
+            'Atuação como referência técnica em engenharia mobile e front-end para o cliente banQi, liderando iniciativas críticas de performance, estabilidade e arquitetura.',
           highlights: [
-            'Erradicação de 98.9% de crashes e memory leaks em dispositivos móveis Android heterogêneos.',
-            'Condução da migração para micro-frontends atendendo mais de 300 mil usuários ativos semanais.',
-            'Economia superior a $10.000 mensais em custos de infraestrutura AWS através de caching avançado.'
+            'Estabilização de sistemas em escala: redução de crashes em 98% e corte de 55% de memória RAM.',
+            'Aceleração do tempo de carregamento de splash para home em 75% via reengenharia em React Native e módulos nativos.',
+            'Cultura de qualidade: transição de 0% para 40% de cobertura de testes com 100% de confiabilidade em builds de CI/CD.',
+            'Inovação estratégica com IA: desenvolvimento de ferramentas customizadas para automação de PR reviews, criação de testes e documentações (KRs, User Stories, Blueprints).',
+            'Modernização de sistemas legados com otimização de recursos AWS gerando US$ 10.000/ano em economia.',
+            'Parceiro estratégico de PMs e Staff Engineers em discovery de produto, gerenciamento de pipelines (Fastlane, GitHub Actions, Azure DevOps) e segurança móvel (RASP via AppDome).'
           ]
         },
         {
-          period: '2021 — 2022',
-          role: 'SOFTWARE ENGINEER · FULLSTACK',
-          company: 'WIID SOFTWARE',
-          location: 'CURITIBA, BR',
-          clearance: 'CREDENCIAL NÍVEL-B',
+          period: 'SET 2024 — SET 2025',
+          role: 'MID-LEVEL SOFTWARE ENGINEER (FRONT-END & MOBILE)',
+          company: 'INVILLIA · BANQI - CASAS BAHIA PAY (GRUPO CASAS BAHIA)',
+          location: 'REMOTO · SÃO PAULO, BR',
+          clearance: 'CREDENCIAL: NÍVEL-A // INFRAESTRUTURA CORE',
           description:
-            'Desenvolvimento de aplicações web e mobile de alta disponibilidade para logística e telemedicina, utilizando React, React Native, Node.js e microsserviços na nuvem AWS.',
+            'Desenvolvimento contínuo de aplicações móveis robustas, integração nativa profunda e evolução do Design System compartilhado.',
           highlights: [
-            'Painéis de telemetria em tempo real consumindo eventos de mais de 50.000 nós de rastreamento IoT.',
-            'Implementação de fluxos de autenticação seguros em conformidade com a LGPD e deploys contínuos.',
-            'Mentoria técnica de engenheiros juniores e instituição de práticas consistentes de code review.'
+            'Contribuição no system design e construção de Design System reutilizável entre plataformas mobile e web.',
+            'Criação e manutenção de módulos nativos para React Native em Kotlin (Android) e Swift (iOS).',
+            'Garantia de entregas de excelência técnica seguindo princípios de Clean Code, SOLID e testes abrangentes unitários e de integração.'
+          ]
+        },
+        {
+          period: 'JAN 2024 — SET 2024',
+          role: 'MID-LEVEL MOBILE & FRONT-END DEVELOPER',
+          company: 'WIID – WORK IN IDEAS',
+          location: 'REMOTO · CURITIBA, BR',
+          clearance: 'CREDENCIAL: NÍVEL-B // ARQUITETO DE DEPLOY',
+          description:
+            'Desenvolvimento de produtos digitais multiplataforma com foco em alta experiência de usuário, performance e cobertura de testes.',
+          highlights: [
+            'Desenvolvimento e sustentação de aplicações cross-platform com React, Next.js e React Native (Expo), garantindo alta fidelidade UI/UX.',
+            'Ownership completo de features, desde a tradução do design no Figma até o deploy final em produção.',
+            'Criação de suítes de testes unitários com Jest e Vitest, além de mentoria técnica para desenvolvedores juniores e estagiários.'
+          ]
+        },
+        {
+          period: 'DEZ 2021 — JAN 2024',
+          role: 'JUNIOR FRONT-END DEVELOPER',
+          company: 'WIID – WORK IN IDEAS',
+          location: 'CURITIBA, BR',
+          clearance: 'CREDENCIAL: NÍVEL-C // ESPECIALISTA DE INTERFACE',
+          description:
+            'Início da trajetória profissional na construção de interfaces web e mobile escaláveis em ecossistema TypeScript e React.',
+          highlights: [
+            'Desenvolvimento e manutenção de produtos web e mobile utilizando React, React Native e TypeScript.',
+            'Escrita de testes unitários com Jest para assegurar estabilidade contínua e padrões de qualidade de código.'
+          ]
+        },
+        {
+          period: 'DEZ 2020 — DEZ 2021',
+          role: 'DESENVOLVEDOR WEB',
+          company: 'FREELANCE – AUTÔNOMO',
+          location: 'BRASIL · REMOTO',
+          clearance: 'CREDENCIAL: NÍVEL-D // OPERADOR AUTÔNOMO',
+          description:
+            'Desenvolvimento e manutenção de aplicações web, landing pages de alta conversão e websites customizados.',
+          highlights: [
+            'Desenvolvimento e manutenção de aplicações web utilizando PHP, JavaScript, CSS e HTML.',
+            'Criação de landing pages responsivas e websites customizados em WordPress otimizados para conversão.',
+            'Gestão direta de múltiplos clientes com forte foco em prazos e qualidade de entrega.'
           ]
         }
       ]
@@ -583,57 +768,115 @@ export const nervTranslations: { en: NervContent; pt: NervContent } = {
     skills: {
       sectionTitle: 'MATRIZ DE COMPETÊNCIAS SINÁPTICAS',
       sectionKanji: '技術シナプス行列',
+      certificationsTitle: 'CERTIFICAÇÕES OFICIAIS & FORMAÇÃO',
+      certificationsKanji: '公認資格と学歴',
       categories: [
         {
-          category: 'CORE & MOBILE RUNTIMES',
-          kanji: '主軸技術',
+          category: 'MOBILE & MÓDULOS NATIVOS',
+          kanji: '主軸技術 // モバイル',
           skills: [
-            { name: 'React Native', level: 98, tag: 'Native Bridges / Hermes' },
+            { name: 'React Native', level: 98, tag: 'Core / Hermes / Arquitetura' },
+            { name: 'Kotlin (Android)', level: 86, tag: 'Módulos Nativos / JNI' },
+            { name: 'Swift (iOS)', level: 84, tag: 'UIKit / Pontes Nativas' },
+            { name: 'Expo', level: 92, tag: 'Ecosystem & EAS' },
+            { name: 'AppDome (RASP)', level: 90, tag: 'Segurança Móvel / RASP' }
+          ]
+        },
+        {
+          category: 'FRONT-END & WEB MODERNO',
+          kanji: 'ウェブ基盤',
+          skills: [
+            { name: 'React', level: 98, tag: 'Hooks / Concorrência / Estado' },
+            { name: 'Next.js', level: 94, tag: 'App Router / SSR / RSC' },
             { name: 'TypeScript', level: 96, tag: 'Tipagem Estrita / Generics' },
-            { name: 'React / Next.js', level: 95, tag: 'App Router / RSC' },
-            { name: 'Kotlin (Android)', level: 85, tag: 'JNI / Módulos Nativos' },
-            { name: 'Swift (iOS)', level: 82, tag: 'UIKit / Objective-C Bridge' }
+            { name: 'Design Systems', level: 95, tag: 'Tokens Multiplataforma' },
+            { name: 'Tailwind CSS', level: 96, tag: 'Utility-First / Responsivo' },
+            { name: 'Three.js / WebGL', level: 82, tag: 'Shaders 3D & Canvas' }
           ]
         },
         {
-          category: 'BACKEND & INFRAESTRUTURA CLOUD',
-          kanji: '基盤インフラ',
+          category: 'DEVOPS, NUVEM & AUTOMAÇÃO',
+          kanji: '基盤インフラ // クラウド',
           skills: [
-            { name: 'Node.js / Express', level: 92, tag: 'I/O Assíncrono / REST' },
-            { name: 'GraphQL Federation', level: 90, tag: 'Schema Stitching' },
-            { name: 'PostgreSQL / SQL', level: 88, tag: 'Indexação / RLS' },
-            { name: 'Serviços de Nuvem AWS', level: 88, tag: 'S3 / Lambda / CloudFront' },
-            { name: 'Docker / CI/CD', level: 86, tag: 'GitHub Actions / Pipelines' }
+            { name: 'Fastlane', level: 94, tag: 'Mobile CI / Automação' },
+            { name: 'GitHub Actions', level: 92, tag: 'Pipelines CI/CD' },
+            { name: 'Azure DevOps', level: 90, tag: 'Pipelines Corporativos' },
+            { name: 'AWS Cloud', level: 88, tag: 'Soluções / S3 / Lambda' },
+            { name: 'AI Workflow Dev', level: 95, tag: 'Agentes / Ops com IA' },
+            { name: 'Dynatrace & Databricks', level: 86, tag: 'APM & Telemetria' }
           ]
         },
         {
-          category: 'ARQUITETURA & QUALIDADE',
-          kanji: '設計と品質',
+          category: 'QUALIDADE, ARQUITETURA & MÉTODOS',
+          kanji: '設計と品質保証',
           skills: [
+            { name: 'Jest / Vitest', level: 94, tag: 'Testes Unitários e Integração' },
+            { name: 'Clean Code & SOLID', level: 96, tag: 'Princípios de Arquitetura' },
             { name: 'System Design', level: 94, tag: 'Resiliência Distribuída' },
-            { name: 'Design Systems', level: 95, tag: 'Tokens e Consistência' },
-            { name: 'Testes Unitários & E2E', level: 90, tag: 'Jest / Maestro / Detox' },
-            { name: 'Otimização de Performance', level: 96, tag: 'Hermes / Heap Profiling' }
+            { name: 'Scrum & Kanban', level: 92, tag: 'Entregas Ágeis' },
+            { name: 'Code Review & Mentoria', level: 95, tag: 'Liderança Técnica' }
           ]
+        }
+      ],
+      certifications: [
+        {
+          title: 'AWS Certified Solutions Architect – Associate',
+          issuer: 'Amazon Web Services (AWS)',
+          period: 'Em andamento (Previsão Q4 2026)',
+          badge: 'CERTIFICAÇÃO OFICIAL',
+          description:
+            'Arquitetura de soluções resilientes em nuvem, alta disponibilidade, computação distribuída, arquitetura serverless e otimização de custos de infraestrutura AWS.'
+        },
+        {
+          title: 'GitHub Copilot Certified',
+          issuer: 'GitHub',
+          period: '2025 — 2028',
+          badge: 'CERTIFICAÇÃO OFICIAL',
+          description:
+            'Validação de maestria técnica em desenvolvimento assistido por inteligência artificial, engenharia de contexto e automações em engenharia de software.'
+        },
+        {
+          title: 'Análise e Desenvolvimento de Sistemas (ADS)',
+          issuer: 'Uninter',
+          period: '2019 — 2021',
+          badge: 'GRADUAÇÃO TECNOLÓGICA',
+          description:
+            'Fundamentos sólidos de computação, engenharia de software, modelagem de banco de dados e estruturas algorítmicas.'
         }
       ]
     },
     about: {
-      sectionTitle: 'DOSSIÊ DE PESSOAL: J.V. GUERBER',
+      sectionTitle: 'DOSSIÊ DE PESSOAL: J.V.G. DE SOUZA',
       sectionKanji: '特務機関員個人記録',
-      pilotClassification: 'ARQUITETO DE SOFTWARE SÊNIOR // DESIGNATIVO: 03-ALPHA',
-      pilotId: 'JVG-1996-DEV',
+      pilotClassification: 'ENGENHEIRO DE SOFTWARE SÊNIOR // DESIGNATIVO: PILOT 01-ALPHA',
+      pilotId: 'JVGS-1996-DEV',
+      fullName: 'JOÃO VINÍCIUS GUERBER DE SOUZA',
+      yearsOfExperience: '6 Anos de Experiência Profissional',
       dossierText: [
-        'João Vinícius Guerber é Engenheiro de Software Sênior especializado em arquiteturas mobile resilientes, ecossistemas web escaláveis e fluxos de trabalho assistidos por inteligência artificial.',
-        'Com atuação em fintechs de grande porte e saúde digital, atua na convergência entre performance extrema de baixo nível (Hermes bytecodes, pontes nativas, compactação de memória) e refinamento na experiência do usuário.',
-        'Certificado oficialmente como GitHub Copilot Certified, comprometido com código limpo, máquinas de estado determinísticas e engenharia de software preparada para tráfego em hiperescala.'
+        'João Vinícius Guerber de Souza é Engenheiro de Software Sênior especializado em arquiteturas mobile resilientes, ecossistemas web escaláveis e fluxos de trabalho assistidos por inteligência artificial.',
+        'Com 6 anos de experiência consolidada em fintechs de grande porte (banQi / Grupo Casas Bahia) e produtos digitais multiplataforma, atua na convergência entre performance extrema de baixo nível (Hermes bytecodes, pontes nativas Kotlin/Swift, contenção de memória) e refinamento na experiência do usuário.',
+        'Certificado oficialmente como GitHub Copilot Certified e em preparação ativa para certificação AWS Solutions Architect (Q4 2026). Comprometido com código limpo, máquinas de estado determinísticas e engenharia de software preparada para tráfego em hiperescala.'
       ],
       specializations: [
         'Fintechs de Alta Escala & Super Apps Mobile',
-        'Motores de Estado Offline-First Criptografados',
+        'Módulos Nativos Kotlin e Swift para React Native',
         'Design Systems Multiplataforma Orientados a Tokens',
         'Diagnósticos de Memória e Profiling Hermes',
-        'Integração e Automação com Agentes de IA'
+        'Integração e Automação com Agentes de IA',
+        'Pipelines de CI/CD Mobile (Fastlane & GitHub Actions)'
+      ],
+      languagesTitle: 'PROTOCOLOS DE COMUNICAÇÃO // 言語',
+      languages: [
+        {
+          name: 'Português',
+          level: 'Nativo',
+          desc: 'Comunicação fluida para liderança técnica, alinhamento arquitetural e discovery com stakeholders.'
+        },
+        {
+          name: 'Inglês',
+          level: 'B2 – Intermediário Superior',
+          desc: 'Capacidade comprovada para atuar em times globais, leitura técnica avançada e escrita arquitetural.'
+        }
       ]
     },
     contact: {

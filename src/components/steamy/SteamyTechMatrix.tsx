@@ -137,6 +137,17 @@ export const SteamyTechMatrix: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* AWS Certified Solutions Architect */}
+          <div className="p-3 rounded-2xl bg-amber-50/70 border border-amber-200/60 flex items-center gap-2.5">
+            <span className="text-lg">☁️</span>
+            <div>
+              <div className="text-xs font-bold text-slate-900 leading-tight">
+                AWS Solutions Architect – Associate
+              </div>
+              <div className="text-[11px] font-mono text-amber-700">Em andamento (Previsão Q4 2026)</div>
+            </div>
+          </div>
+
           {/* GitHub Copilot Certified */}
           <div className="p-3 rounded-2xl bg-sky-50/70 border border-sky-200/60 flex items-center gap-2.5">
             <Award className="w-5 h-5 text-sky-600 shrink-0" />

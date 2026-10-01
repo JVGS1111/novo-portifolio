@@ -35,6 +35,9 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
             • <span className="font-bold text-white">metrics</span> : {isPt ? 'Métricas reais de impacto de produção' : 'Audited production impact metrics'}
           </div>
           <div className="text-emerald-400">
+            • <span className="font-bold text-white">cases</span> : {isPt ? 'Cases de engenharia de hiperescala' : 'Hyper-scale engineering cases'}
+          </div>
+          <div className="text-emerald-400">
             • <span className="font-bold text-white">skills</span> : {isPt ? 'Matriz completa de tecnologias' : 'Comprehensive skills matrix'}
           </div>
           <div className="text-emerald-400">
@@ -86,14 +89,22 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
       case 'bio':
         resultNode = (
           <div className="text-slate-200 space-y-1">
-            <div className="font-bold text-emerald-400">{personalInfo.fullName}</div>
+            <div className="font-bold text-emerald-400">{personalInfo.fullName} (JVGS)</div>
             <div>{personalInfo.title} — {personalInfo.subtitle}</div>
-            <div className="text-slate-400">
+            <div className="text-slate-400 text-xs">
+              {isPt ? 'Experiência:' : 'Experience:'} <span className="text-white font-bold">{isPt ? '6 anos' : '6 Years'}</span> | {isPt ? 'Localização: Brasil (Remoto)' : 'Location: Brazil (Remote)'}
+            </div>
+            <div className="text-slate-400 text-[10.5px]">
               {isPt
                 ? personalInfo.bio
-                : 'Senior Software Engineer specializing in modernizing hyper-scale mobile/web applications, clean architecture, native Kotlin/Swift modules and automated AI dev workflows.'}
+                : 'Senior Software Engineer specializing in modernizing hyper-scale mobile/web applications, clean architecture, native Kotlin/Swift modules, extreme runtime stability, and automated AI dev workflows.'}
             </div>
-            <div className="text-amber-300 font-bold">
+            <div className="text-emerald-300 text-xs space-y-0.5 pt-1">
+              <div>☁️ AWS Certified Solutions Architect – Associate ({isPt ? 'Em andamento – Previsão Q4 2026' : 'In progress – Expected Q4 2026'})</div>
+              <div>🛡️ GitHub Copilot Certified (2025–2028)</div>
+              <div>🎓 {isPt ? 'Tecnólogo em Análise e Desenvolvimento de Sistemas (Uninter, 2019–2021)' : 'Systems Analysis and Development Degree (Uninter, 2019–2021)'}</div>
+            </div>
+            <div className="text-amber-300 font-bold pt-1">
               Status: {isPt ? personalInfo.status : 'Available for high-impact opportunities'}
             </div>
           </div>
@@ -109,6 +120,29 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
             {t.impact.metrics.map((m) => (
               <div key={m.id} className="text-xs">
                 <span className="font-bold text-emerald-400">{m.metric}</span> {m.label} ({m.sublabel})
+              </div>
+            ))}
+          </div>
+        );
+        break;
+
+      case 'cases':
+        resultNode = (
+          <div className="space-y-2 text-slate-200">
+            <div className="text-amber-300 font-bold">
+              {isPt ? 'CASES DE ENGENHARIA DE HIPERESCALA:' : 'HYPER-SCALE ENGINEERING CASE STUDIES:'}
+            </div>
+            {t.cases.studies.map((c) => (
+              <div key={c.id} className="text-xs space-y-0.5 border-b border-[#0e3a16] pb-1.5">
+                <div className="font-bold text-emerald-400">
+                  ► {c.title} <span className="text-slate-400 font-normal">[{c.clientOrProject}]</span>
+                </div>
+                <div className="text-slate-300 text-[10px]">{c.summary}</div>
+                <div className="text-emerald-300 text-[9.5px]">
+                  {c.results.slice(0, 2).map((r, i) => (
+                    <div key={i}>✔ {r}</div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -159,7 +193,7 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
  | | |_ | |  | |  __| |  _  /|  _ <|  __| |  _  / 
  | |__| | |__| | |____| | \\ \\| |_) | |____| | \\ \\ 
   \\_____|\\____/|______|_|  \\_\\____/|______|_|  \\_\\
-  Senior Front-end & Mobile Specialist | 5 Years
+  Senior Front-end & Mobile Specialist | 6 Years
 `}
           </pre>
         );
@@ -207,7 +241,7 @@ export const DosPromptApp: React.FC<{ onNavigateModern?: () => void }> = ({ onNa
       {/* Suggested Quick Command Badges */}
       <div className="flex flex-wrap items-center gap-1 py-1.5 border-t border-[#0e3a16] text-[10px]">
         <span className="text-slate-500">{isPt ? 'Atalhos rápidos:' : 'Quick shortcuts:'}</span>
-        {['bio', 'metrics', 'skills', 'contact', 'modern', 'cls'].map((cmd) => (
+        {['bio', 'metrics', 'cases', 'skills', 'contact', 'modern', 'cls'].map((cmd) => (
           <button
             key={cmd}
             type="button"

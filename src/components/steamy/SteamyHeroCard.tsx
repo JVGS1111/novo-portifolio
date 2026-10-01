@@ -27,7 +27,12 @@ export const SteamyHeroCard: React.FC = () => {
           {/* Left Column: Roles, Name, Subtitle, Bio */}
           <div className="flex-1 max-w-3xl">
             {/* Top Tactical Badges */}
+            {/* Top Tactical Badges */}
             <div className="flex flex-wrap items-center gap-2 mb-4">
+              <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-700 font-bold text-xs tracking-wide shadow-xs">
+                JVGS
+              </span>
+
               <span className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/25 text-sky-700 font-bold text-xs tracking-wide shadow-xs flex items-center gap-1.5">
                 <Briefcase className="w-3.5 h-3.5 text-sky-600" />
                 ENGENHEIRO DE SOFTWARE SÊNIOR
@@ -35,7 +40,7 @@ export const SteamyHeroCard: React.FC = () => {
 
               <span className="px-3 py-1 rounded-full bg-slate-200/60 border border-slate-300/60 text-slate-700 font-bold text-xs tracking-wide shadow-xs flex items-center gap-1.5">
                 <Award className="w-3.5 h-3.5 text-slate-600" />
-                5 ANOS DE EXPERIÊNCIA
+                6 ANOS DE EXPERIÊNCIA
               </span>
 
               <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-700 font-bold text-xs tracking-wide shadow-xs flex items-center gap-1.5">
@@ -87,7 +92,7 @@ export const SteamyHeroCard: React.FC = () => {
 
             {/* LinkedIn Pill */}
             <a
-              href="https://linkedin.com/in/joaoguebrer"
+              href="https://www.linkedin.com/in/joaoguebrer/"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => playDropletSound()}
@@ -121,7 +126,7 @@ export const SteamyHeroCard: React.FC = () => {
               onClick={(e) => {
                 e.preventDefault();
                 playDropletSound();
-                alert('Currículo executivo em PDF de João Vinícius Guerber pronto para envio sob demanda via email ou LinkedIn!');
+                alert('Currículo executivo em PDF de João Vinícius Guerber de Souza pronto para envio sob demanda via email ou LinkedIn!');
               }}
               className="w-full sm:w-auto px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
             >

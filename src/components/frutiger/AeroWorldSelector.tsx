@@ -48,7 +48,7 @@ export const AeroWorldSelector: React.FC = () => {
   const activeCount = portfolioRegistry.filter((p) => p.status === 'active').length;
 
   return (
-    <div ref={containerRef} className="fixed bottom-6 right-6 z-40 select-none">
+    <div ref={containerRef} className="fixed bottom-16 right-4 sm:right-6 z-[60] select-none">
       {/* Vista Aero Glass Popup Window */}
       <AnimatePresence>
         {isOpen && (
@@ -57,7 +57,7 @@ export const AeroWorldSelector: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.94 }}
             transition={{ type: 'spring', damping: 20, stiffness: 280 }}
-            className="absolute bottom-16 right-0 w-[calc(100vw-2.5rem)] max-w-[340px] sm:w-84 rounded-2xl bg-gradient-to-b from-sky-50/95 via-white/90 to-sky-100/95 backdrop-blur-xl border-2 border-white/90 shadow-[0_20px_50px_rgba(13,139,242,0.35),inset_0_2px_4px_rgba(255,255,255,0.9)] overflow-hidden text-left p-1"
+            className="absolute bottom-full mb-3 right-0 w-[calc(100vw-2.5rem)] max-w-[340px] sm:w-84 rounded-2xl bg-gradient-to-b from-sky-50/95 via-white/90 to-sky-100/95 backdrop-blur-xl border-2 border-white/90 shadow-[0_20px_50px_rgba(13,139,242,0.35),inset_0_2px_4px_rgba(255,255,255,0.9)] overflow-hidden text-left p-1"
           >
             {/* Vista Aero Glass Titlebar */}
             <div className="rounded-xl bg-gradient-to-r from-sky-700 via-cyan-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between shadow-sm relative overflow-hidden">
@@ -88,7 +88,7 @@ export const AeroWorldSelector: React.FC = () => {
             </div>
 
             {/* List of Worlds */}
-            <div className="space-y-1.5 p-2 max-h-84 overflow-y-auto pr-1">
+            <div className="space-y-1.5 p-2 max-h-[min(21rem,calc(100vh-14rem))] overflow-y-auto pr-1">
               {portfolioRegistry.map((item) => {
                 const isCurrent = current.id === item.id;
                 const isComingSoon = item.status === 'coming_soon';

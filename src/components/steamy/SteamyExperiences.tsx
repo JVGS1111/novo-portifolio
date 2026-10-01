@@ -46,6 +46,14 @@ const experiences: ExperienceItem[] = [
     description:
       'Construção de telas, manutenção de interfaces web e mobile, testes unitários com Jest e consumo de APIs GraphQL/REST.',
   },
+  {
+    id: 'exp-4',
+    company: 'Freelance – Autônomo',
+    role: 'Desenvolvedor Web',
+    period: 'Dez 2020 – Dez 2021',
+    description:
+      'Desenvolvimento de aplicações web, landing pages de alta conversão e websites customizados utilizando PHP, JavaScript, CSS, HTML e WordPress.',
+  },
 ];
 
 export const SteamyExperiences: React.FC = () => {

@@ -28,14 +28,18 @@ export const PrismContact: React.FC = () => {
           {/* Left Text */}
           <div className="max-w-2xl">
             {/* Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full apple-liquid-chip text-emerald-700 text-xs font-semibold mb-4 shadow-xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full apple-liquid-chip text-emerald-700 text-xs font-semibold mb-3 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>
                 {language === 'pt'
-                  ? 'Disponível para Projetos Críticos & Posições Sênior'
-                  : 'Available for Critical Projects & Senior Roles'}
+                  ? 'Disponível para Projetos Críticos & Posições Sênior · 6 Anos de Experiência'
+                  : 'Available for Critical Projects & Senior Roles · 6 Years Experience'}
               </span>
             </div>
+
+            <span className="text-[11px] font-bold tracking-wider uppercase text-indigo-600 block mb-2 font-mono">
+              JVGS · João Vinícius Guerber de Souza
+            </span>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
               {language === 'pt' ? 'Vamos conversar sobre o seu próximo projeto.' : "Let's talk about your next project."}
@@ -73,7 +77,7 @@ export const PrismContact: React.FC = () => {
             {/* LinkedIn & GitHub Row */}
             <div className="flex items-center gap-3">
               <a
-                href="https://linkedin.com/in/joaoguebrer"
+                href="https://www.linkedin.com/in/joaoguebrer/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 px-4 py-3 rounded-full apple-liquid-chip hover:bg-white text-slate-800 hover:text-indigo-600 text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition-all group"

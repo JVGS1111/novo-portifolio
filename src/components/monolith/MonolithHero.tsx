@@ -15,7 +15,7 @@ export const MonolithHero: React.FC = () => {
             {/* Classification Header */}
             <div className="flex items-center gap-2 text-[11px] font-mono text-[#ff9900] tracking-wider font-semibold">
               <span className="w-1.5 h-1.5 bg-[#ff9900] rounded-sm" />
-              <span>/// CLASSIFICAÇÃO: ENGENHEIRO DE SOFTWARE SÊNIOR · 5 ANOS EXP · BRASIL (REMOTO/HÍBRIDO)</span>
+              <span>/// CLASSIFICAÇÃO: ENGENHEIRO DE SOFTWARE SÊNIOR · 6 ANOS DE EXPERIÊNCIA · BRASIL (REMOTO)</span>
             </div>
 
             {/* Monumental Name */}
@@ -62,7 +62,7 @@ export const MonolithHero: React.FC = () => {
 
               {/* LinkedIn */}
               <a
-                href="https://www.linkedin.com/in/joaoguebrer"
+                href="https://www.linkedin.com/in/joaoguebrer/"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={playIndustrialClick}

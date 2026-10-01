@@ -54,7 +54,7 @@ export const SteamyGlassPage: React.FC<SteamyGlassPageProps> = ({ onNavigateMode
         {/* Hero Section: Typography, 3D WebGL Crystal Glass & Code Card Centerpiece */}
         <PrismHeroSection />
 
-        {/* Featured Projects: BanQi App (Phone), Guepsi (SaaS Dashboard), Open Source (Terminal) */}
+        {/* Featured Projects: banQi (Phone), AI Engineering (Agent), Design System (Tokens) */}
         <PrismFeaturedProjects />
 
         {/* Quantified Engineering Impact (5 Glass Pods) */}

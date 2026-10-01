@@ -33,8 +33,8 @@ const TITLE_CARDS: TitleCardItem[] = [
     kanji: '見知らぬ、天井',
     english: 'A HUMAN WORK // RESILIENT CACHING',
     portuguese: 'OBRA HUMANA // CACHE DISTRIBUÍDO',
-    directiveEn: 'ELIMINATION OF $10,000+ MONTHLY AWS CLOUD EGRESS DRAIN',
-    directivePt: 'ELIMINAÇÃO DE MAIS DE US$ 10.000 MENSAIS DE EGRESS NA AWS',
+    directiveEn: 'ANNUAL INFRASTRUCTURE SAVINGS OF $10,000+ IN AWS CLOUD',
+    directivePt: 'ECONOMIA ANUAL DE MAIS DE US$ 10.000 EM INFRAESTRUTURA AWS',
     stamp: '作戦承認 · APPROVED'
   },
   {
@@ -60,8 +60,8 @@ const TITLE_CARDS: TitleCardItem[] = [
     kanji: '世界の中心でアイを叫んだけもの',
     english: 'THE BEAST THAT SHOUTED "I" AT THE HEART OF THE WORLD',
     portuguese: 'A FERA QUE GRITOU "EU" NO CORAÇÃO DO MUNDO',
-    directiveEn: 'PILOT JOÃO VINÍCIUS GUERBER // READY TO DEPLOY FOR IMPACT',
-    directivePt: 'PILOTO JOÃO VINÍCIUS GUERBER // PRONTO PARA ENTRAR EM COMBATE',
+    directiveEn: 'PILOT JOÃO VINÍCIUS GUERBER DE SOUZA (JVGS-01) // READY TO DEPLOY FOR IMPACT',
+    directivePt: 'PILOTO JOÃO VINÍCIUS GUERBER DE SOUZA (JVGS-01) // PRONTO PARA ENTRAR EM COMBATE',
     stamp: '任務完了 · DEPLOYED'
   }
 ];
@@ -171,10 +171,10 @@ export const EvaTitleCard: React.FC<EvaTitleCardProps> = ({ isOpen, onClose, lan
           </p>
 
           {/* Pilot Identification */}
-          <div className="mt-8 flex items-center gap-4 text-[10px] sm:text-xs font-eva-mono text-zinc-500 tracking-widest uppercase">
+          <div className="mt-8 flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-[10px] sm:text-xs font-eva-mono text-zinc-500 tracking-widest uppercase">
             <span>NERV TOKYO-3</span>
             <span>·</span>
-            <span>PILOT: JOÃO VINÍCIUS</span>
+            <span className="text-zinc-300 font-bold">PILOT: JOÃO VINÍCIUS GUERBER DE SOUZA (JVGS-01)</span>
             <span>·</span>
             <span className="text-[#ff5500]">SYNCHRONIZED</span>
           </div>

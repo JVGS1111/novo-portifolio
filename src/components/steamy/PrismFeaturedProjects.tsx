@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Smartphone, Brain, X, Check, ExternalLink, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowUpRight, Smartphone, X, Check, ExternalLink, ShieldCheck, Zap, Layers, Bot } from 'lucide-react';
 import { useLanguage } from '../../i18n';
 
 interface ProjectModalData {
-
   title: string;
   subtitle: string;
   tag: string;
@@ -21,11 +20,11 @@ export const PrismFeaturedProjects: React.FC = () => {
 
   const projectsDataEn: Record<string, ProjectModalData> = {
     banqi: {
-      title: 'BanQi App (Casas Bahia Group)',
+      title: 'banQi / Casas Bahia Pay',
       subtitle: 'Mobile fintech app with 300k+ weekly active users.',
       tag: 'FINTECH & MOBILE ARCHITECTURE',
       challenge:
-        'Severe instability with 120k weekly crashes in production, 900MB RAM consumption and 60s startup time (Splash to Home) degrading the banQi app.',
+        'Severe instability with 120k weekly crashes in production, 900MB RAM consumption causing OOM on budget devices, and 60s startup time (Splash to Home) degrading the banQi app.',
       solution:
         'Deep modular refactoring in React Native + native Kotlin & Swift TurboModules, decoupling asynchronous bridge listeners, AppDome RASP hardening, and CI/CD automation with Fastlane and Azure DevOps.',
       results: [
@@ -34,48 +33,50 @@ export const PrismFeaturedProjects: React.FC = () => {
         '-75% startup time Splash to Home (60s → 15s)',
         '+$10k annual cloud savings on AWS infrastructure',
       ],
-      techStack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome', 'Azure DevOps', 'Jest'],
+      techStack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest'],
     },
-    guepsi: {
-      title: 'Guepsi SaaS',
-      subtitle: 'SaaS for mental health professionals.',
-      tag: 'HEALTH TECH & SAAS ARCHITECTURE',
+    aiWorkflow: {
+      title: 'Strategic AI Innovation & Engineering Workflows',
+      subtitle: 'Custom AI agents, automated PR reviews & test synthesis.',
+      tag: 'AI DEV TOOLS & AUTOMATION WORKFLOWS',
       challenge:
-        'Complexity in securely managing sensitive electronic medical records, sluggish rendering of patient histories, and lack of a seamless experience for psychologists and therapists.',
+        'Heavy time bottlenecks in repetitive manual PR reviews, time-consuming business and engineering documentation drafting (KRs, User Stories, Blueprints), and low automated test coverage across agile squads.',
       solution:
-        'End-to-end SaaS ecosystem development with Next.js, React and TypeScript, clean architecture with end-to-end encryption, real-time scheduling, and an ultra-fast responsive clinical dashboard.',
+        'Engineered technical prompts and automated pipelines with GitHub Copilot and custom AI agents for preliminary code reviews, regression identification, Jest/Vitest unit test synthesis, and architecture blueprint generation.',
       results: [
-        'Adopted by clinics and psychotherapists with 99% positive feedback',
-        'Clinical record loading latency cut to <120ms',
-        'Full compliance with strict medical data privacy standards (LGPD/HIPAA)',
+        'Substantial reduction in technical and business documentation overhead',
+        'Accelerated pull request approval cycles across multidisciplinary teams',
+        'Drastic increase in automated unit test suite generation rate (Jest/Vitest)',
+        'Standardized prompt engineering frameworks adopted across squads',
       ],
-      techStack: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Node.js', 'Vitest'],
+      techStack: ['GitHub Copilot', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript', 'Prompt Eng', 'Jest', 'Vitest'],
     },
-    opensource: {
-      title: 'Open Source & Dev Productivity',
-      subtitle: 'Tools and experiments to improve developer productivity.',
-      tag: 'DEVELOPER EXPERIENCE & AI AGENTS',
+    designSystem: {
+      title: 'Corporate Design System & Multiplatform Modules',
+      subtitle: 'Unified multi-OS token architecture and native modules for banQi & WiiD.',
+      tag: 'DESIGN SYSTEM & CROSS-PLATFORM ARCHITECTURE',
       challenge:
-        'Slow manual code review bottlenecks, low automated test coverage across agile squads, and lack of component standardization across platforms.',
+        'Inconsistencies across Android, iOS and Web interfaces, severe component duplication, UI glitches across differing screen densities, and sluggish design-to-code velocity.',
       solution:
-        'Engineered intelligent CLI tools and pipelines, custom AI agents integrated with GitHub Copilot for automated PR reviews, and reusable component libraries for React and React Native.',
+        'Built and maintained an enterprise-grade decoupled component library distributed via GitHub Packages (npm), documented in Storybook, with multi-OS design tokens and native Kotlin/Swift bridges.',
       results: [
-        '2x acceleration in design-to-code delivery cycle',
-        'Increased automated test coverage from 0% to 40%+',
-        'Publicly maintained open source repositories and tools on GitHub',
+        'Standardization of hundreds of reusable components across platforms',
+        '2x acceleration in design-to-code prototyping and feature delivery',
+        '100% test reliability guaranteed with Jest & Vitest suites',
+        'Rigorous visual and behavioral parity across iOS, Android, and Web',
       ],
-      techStack: ['TypeScript', 'GitHub Copilot', 'CLI Tools', 'React Native', 'Design Systems', 'Vitest', 'Jest'],
+      techStack: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Storybook', 'GitHub Packages', 'Kotlin', 'Swift', 'Jest', 'Vitest'],
       demoUrl: 'https://github.com/Guerber',
     },
   };
 
   const projectsDataPt: Record<string, ProjectModalData> = {
     banqi: {
-      title: 'BanQi App (Grupo Casas Bahia)',
+      title: 'banQi / Casas Bahia Pay',
       subtitle: 'App fintech mobile com mais de 300k usuários ativos semanais.',
       tag: 'FINTECH & ARQUITETURA MOBILE',
       challenge:
-        'Severa instabilidade com 120k crashes semanais em produção, 900MB de consumo de memória RAM e 60s de inicialização (Splash to Home) degradando o app banQi.',
+        'Severa instabilidade com 120k crashes semanais em produção, 900MB de consumo de memória RAM provocando OOM em aparelhos modestos e 60s de inicialização (Splash to Home) degradando o app banQi.',
       solution:
         'Refatoração modular profunda em React Native + TurboModules Kotlin e Swift nativos, desacoplamento de listeners assíncronos da bridge, blindagem RASP AppDome e automação CI/CD com Fastlane e Azure DevOps.',
       results: [
@@ -84,37 +85,39 @@ export const PrismFeaturedProjects: React.FC = () => {
         '-75% no tempo de inicialização Splash to Home (60s → 15s)',
         '+$10.000 de economia anual direta em infraestrutura de nuvem AWS',
       ],
-      techStack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome', 'Azure DevOps', 'Jest'],
+      techStack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest'],
     },
-    guepsi: {
-      title: 'Guepsi SaaS',
-      subtitle: 'SaaS para profissionais de saúde mental.',
-      tag: 'HEALTH TECH & ARQUITETURA SAAS',
+    aiWorkflow: {
+      title: 'Inovação Estratégica com IA',
+      subtitle: 'Automação de engenharia, agentes customizados e workflows de produtividade.',
+      tag: 'IA DEV TOOLS & AUTOMAÇÃO DE WORKFLOWS',
       challenge:
-        'Complexidade no gerenciamento seguro de prontuários médicos sensíveis, lentidão na renderização de históricos clínicos e ausência de uma experiência fluida para psicólogos e terapeutas.',
+        'Altos gargalos de tempo em revisões manuais de PRs repetitivos, elaboração demorada de documentação técnica/negócios (KRs, User Stories e Blueprints) e lacunas em testes unitários entre squads.',
       solution:
-        'Desenvolvimento de ecossistema SaaS completo com Next.js, React e TypeScript, arquitetura limpa com criptografia ponta a ponta, agendamento em tempo real e dashboard clínico reativo ultrarrápido.',
+        'Criação de prompts técnicos e pipelines automatizados com IA e GitHub Copilot para análise preliminar de código, identificação de regressões, geração autônoma de testes unitários (Jest/Vitest) e especificações técnicas.',
       results: [
-        'Adoção por clínicas e psicoterapeutas com feedback 99% positivo',
-        'Tempo de carregamento de prontuários clínicos reduzido para <120ms',
-        'Total conformidade com normas rígidas de privacidade de dados médicos (LGPD/HIPAA)',
+        'Redução substancial do overhead em documentações técnicas e KRs',
+        'Aceleração na homologação de pull requests entre times multidisciplinares',
+        'Aumento expressivo na taxa de geração de cenários de teste Jest e Vitest',
+        'Padronização de frameworks de prompts de IA para engenharia de software',
       ],
-      techStack: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Node.js', 'Vitest'],
+      techStack: ['GitHub Copilot', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript', 'Prompt Eng', 'Jest', 'Vitest'],
     },
-    opensource: {
-      title: 'Open Source & Produtividade Dev',
-      subtitle: 'Ferramentas e experimentos para produtividade de desenvolvedores.',
-      tag: 'EXPERIÊNCIA DEV & AGENTES IA',
+    designSystem: {
+      title: 'Design System Corporativo & Módulos Multiplataforma',
+      subtitle: 'Arquitetura unificada de tokens multi-SO e pontes nativas para banQi & WiiD.',
+      tag: 'DESIGN SYSTEM & ARQUITETURA MULTIPLATAFORMA',
       challenge:
-        'Processos manuais lentos de revisão de código, testes unitários escassos em equipes ágeis e falta de padronização de componentes entre diferentes plataformas.',
+        'Inconsistência crônica entre interfaces Android, iOS e Web, duplicação de componentes, bugs visuais em diferentes densidades de tela e lentidão extrema na transição design-to-code.',
       solution:
-        'Criação de esteiras e CLI tools inteligentes, agentes customizados integrados ao GitHub Copilot para auditoria contínua de código, e componentes reutilizáveis para React e React Native.',
+        'Construção e sustentação de biblioteca corporativa desacoplada distribuída via GitHub Packages (npm), documentada no Storybook, com suporte a tokens multi-SO e módulos nativos Kotlin/Swift.',
       results: [
-        'Aceleração de 2x no ciclo de entrega design-to-code',
-        'Elevação de cobertura de testes automatizados de 0% para 40%+',
-        'Repositórios e utilitários open source mantidos publicamente no GitHub',
+        'Padronização de centenas de componentes reutilizáveis entre plataformas',
+        'Velocidade 2x maior na prototipação e entrega de novas features',
+        'Testabilidade garantida com 100% de confiabilidade em Jest e Vitest',
+        'Paridade visual e comportamental rigorosa entre iOS, Android e Web',
       ],
-      techStack: ['TypeScript', 'GitHub Copilot', 'CLI Tools', 'React Native', 'Design Systems', 'Vitest', 'Jest'],
+      techStack: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Storybook', 'GitHub Packages', 'Kotlin', 'Swift', 'Jest', 'Vitest'],
       demoUrl: 'https://github.com/Guerber',
     },
   };
@@ -163,10 +166,10 @@ export const PrismFeaturedProjects: React.FC = () => {
 
             {/* Title & Subtitle */}
             <h3 className="text-xl font-extrabold text-slate-900 tracking-tight mb-1.5 group-hover:text-indigo-600 transition-colors">
-              BanQi App
+              banQi / Casas Bahia Pay
             </h3>
             <p className="text-xs text-slate-500 leading-relaxed font-normal">
-              Mobile app with 300k+ weekly active users.
+              {language === 'pt' ? 'App fintech mobile com 300k+ usuários ativos semanais.' : 'Mobile fintech app with 300k+ weekly active users.'}
             </p>
           </div>
 
@@ -214,18 +217,18 @@ export const PrismFeaturedProjects: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* CARD 2: Guepsi */}
+        {/* CARD 2: AI Engineering & Automation */}
         <motion.div
           whileHover={{ y: -6 }}
-          onClick={() => handleOpenModal('guepsi')}
+          onClick={() => handleOpenModal('aiWorkflow')}
           className="group relative rounded-[32px] apple-liquid-card-light transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer min-h-[380px] transform-gpu"
         >
           {/* Top Info Area */}
           <div className="p-6 sm:p-7 relative z-10">
             {/* Header: Icon + Arrow */}
             <div className="flex items-center justify-between mb-5">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 shadow-md shadow-purple-500/20 flex items-center justify-center text-white">
-                <Brain className="w-5 h-5" />
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-md shadow-indigo-500/20 flex items-center justify-center text-white">
+                <Bot className="w-5 h-5" />
               </div>
 
               <div className="w-9 h-9 rounded-full apple-liquid-chip group-hover:bg-white flex items-center justify-center text-slate-600 group-hover:text-indigo-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shadow-xs">
@@ -235,65 +238,63 @@ export const PrismFeaturedProjects: React.FC = () => {
 
             {/* Title & Subtitle */}
             <h3 className="text-xl font-extrabold text-slate-900 tracking-tight mb-1.5 group-hover:text-indigo-600 transition-colors">
-              Guepsi
+              {language === 'pt' ? 'Inovação com IA' : 'AI Engineering'}
             </h3>
             <p className="text-xs text-slate-500 leading-relaxed font-normal">
-              {language === 'pt' ? 'SaaS para profissionais de saúde mental.' : 'SaaS for mental health professionals.'}
+              {language === 'pt' ? 'Agentes customizados & workflows de engenharia.' : 'Custom AI agents & automated engineering workflows.'}
             </p>
           </div>
 
-          {/* Bottom Angled Dashboard Mockup (Exact layout from image) */}
+          {/* Bottom Angled AI Inspector Mockup */}
           <div className="relative w-full h-[200px] mt-auto overflow-hidden">
-            {/* Angled SaaS Web Window */}
-            <div className="absolute -bottom-8 left-6 right-[-20px] rounded-tl-[24px] bg-white border border-slate-200/90 shadow-2xl p-4 rotate-[-3deg] group-hover:rotate-0 group-hover:translate-y-[-8px] transition-all duration-500 flex">
-              {/* Sidebar */}
-              <div className="w-20 bg-slate-900 rounded-xl p-2.5 mr-3 shrink-0 text-white">
-                <span className="text-[10px] font-extrabold tracking-tight block mb-3 text-indigo-400">Guepsi</span>
-                <div className="space-y-2">
-                  <div className="w-full h-1.5 rounded-full bg-indigo-500/60" />
-                  <div className="w-3/4 h-1.5 rounded-full bg-slate-700" />
-                  <div className="w-1/2 h-1.5 rounded-full bg-slate-700" />
+            {/* Angled Glass Window */}
+            <div className="absolute -bottom-8 left-6 right-[-20px] rounded-tl-[24px] bg-[#0c1017] border border-indigo-500/30 shadow-2xl p-4 rotate-[-2deg] group-hover:rotate-0 group-hover:translate-y-[-8px] transition-all duration-500 flex flex-col font-mono text-[11px] leading-relaxed text-slate-300">
+              {/* Window Header */}
+              <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-800">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                  <span className="text-[10px] text-indigo-400 ml-2 font-sans font-semibold">copilot · ai-agent.ts</span>
                 </div>
+                <span className="text-[9px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  LIVE AGENT
+                </span>
               </div>
 
-              {/* Main Content */}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
-                  <span className="text-xs font-bold text-slate-900">
-                    {language === 'pt' ? 'Pacientes' : 'Patients'}
-                  </span>
-                  <div className="w-16 h-3 rounded-full bg-slate-100" />
+              {/* Agent Activities */}
+              <div className="space-y-1.5 text-[10px]">
+                <div className="flex items-center gap-1.5 text-emerald-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Synthesizing Vitest unit tests...</span>
                 </div>
-
-                {/* Patient Card */}
-                <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-purple-400 to-indigo-500 shrink-0" />
-                  <div className="min-w-0">
-                    <span className="text-[11px] font-bold text-slate-800 block truncate">Roberta Silva</span>
-                    <span className="text-[9px] text-slate-400 block truncate">
-                      {language === 'pt' ? 'Psicoterapia · Ativo' : 'Psychotherapy · Active'}
-                    </span>
-                  </div>
+                <div className="text-slate-400 pl-3">
+                  &gt; PR #142: Architecture review complete
+                </div>
+                <div className="text-sky-300 pl-3">
+                  &gt; Generated: User Stories & Blueprints
+                </div>
+                <div className="mt-1 p-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 flex items-center justify-between">
+                  <span>Quality Gates: 100% Passed</span>
+                  <span className="text-[9px] font-sans font-bold">Jest & Vitest</span>
                 </div>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* CARD 3: Open Source */}
+        {/* CARD 3: Corporate Design System */}
         <motion.div
           whileHover={{ y: -6 }}
-          onClick={() => handleOpenModal('opensource')}
+          onClick={() => handleOpenModal('designSystem')}
           className="group relative rounded-[32px] apple-liquid-card-light transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer min-h-[380px] transform-gpu"
         >
           {/* Top Info Area */}
           <div className="p-6 sm:p-7 relative z-10">
             {/* Header: Icon + Arrow */}
             <div className="flex items-center justify-between mb-5">
-              <div className="w-11 h-11 rounded-2xl bg-slate-900 shadow-md shadow-slate-900/20 flex items-center justify-center text-white">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                </svg>
+              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 shadow-md shadow-sky-500/20 flex items-center justify-center text-white">
+                <Layers className="w-5 h-5" />
               </div>
 
               <div className="w-9 h-9 rounded-full apple-liquid-chip group-hover:bg-white flex items-center justify-center text-slate-600 group-hover:text-indigo-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shadow-xs">
@@ -303,31 +304,47 @@ export const PrismFeaturedProjects: React.FC = () => {
 
             {/* Title & Subtitle */}
             <h3 className="text-xl font-extrabold text-slate-900 tracking-tight mb-1.5 group-hover:text-indigo-600 transition-colors">
-              Open Source
+              Design System
             </h3>
             <p className="text-xs text-slate-500 leading-relaxed font-normal">
-              Tools and experiments to improve developer productivity.
+              {language === 'pt' ? 'Tokens multi-SO, Storybook & pontes nativas.' : 'Multi-OS tokens, Storybook & native bridge modules.'}
             </p>
           </div>
 
-          {/* Bottom Angled Terminal Mockup (Exact layout from image) */}
+          {/* Bottom Angled Design System Palette Mockup */}
           <div className="relative w-full h-[200px] mt-auto overflow-hidden">
-            {/* Angled Dark Terminal Window */}
-            <div className="absolute -bottom-8 left-6 right-[-20px] rounded-tl-[24px] bg-[#0d1117] border border-slate-700/80 shadow-2xl p-4 rotate-[2deg] group-hover:rotate-0 group-hover:translate-y-[-8px] transition-all duration-500 font-mono text-[11px] leading-relaxed text-slate-300">
-              <div className="flex items-center gap-1.5 mb-2.5 pb-2 border-b border-slate-800">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                <span className="text-[10px] text-slate-500 ml-2 font-sans">terminal · zsh</span>
+            {/* Angled Clean Component Showcase Window */}
+            <div className="absolute -bottom-8 left-6 right-[-20px] rounded-tl-[24px] bg-white border border-slate-200/90 shadow-2xl p-4 rotate-[2deg] group-hover:rotate-0 group-hover:translate-y-[-8px] transition-all duration-500 flex flex-col">
+              {/* Window Header */}
+              <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-100">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                  <span className="text-[10px] text-slate-600 ml-2 font-mono font-semibold">storybook · tokens</span>
+                </div>
+                <span className="text-[9px] px-2 py-0.5 rounded-full bg-sky-50 text-sky-700 font-semibold border border-sky-100">
+                  npm / GitHub Packages
+                </span>
               </div>
 
-              {/* Terminal Tree (Exact from image) */}
-              <div className="space-y-1">
-                <div className="text-sky-400 font-semibold">&gt; &gt; projects</div>
-                <div className="pl-3 text-slate-400">&gt; 📁 cli-tool</div>
-                <div className="pl-3 text-slate-400">&gt; 📁 rn-components</div>
-                <div className="pl-3 text-slate-400">&gt; 📁 ai-prompts</div>
-                <div className="pl-3 text-emerald-400">&gt; 📁 dev-setup</div>
+              {/* UI Component Showcase */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <div className="px-2.5 py-1 rounded-lg bg-indigo-600 text-white text-[10px] font-bold shadow-xs">
+                    Button Primary
+                  </div>
+                  <div className="px-2 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-semibold border border-slate-200">
+                    Outline
+                  </div>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 ml-auto" />
+                </div>
+
+                {/* Token Chips */}
+                <div className="p-2 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-[9px] font-mono text-slate-500">
+                  <span>--radius-lg: 24px</span>
+                  <span className="text-indigo-600 font-semibold">iOS · Android · Web</span>
+                </div>
               </div>
             </div>
           </div>

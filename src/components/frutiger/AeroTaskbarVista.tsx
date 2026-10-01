@@ -88,11 +88,11 @@ export const AeroTaskbarVista: React.FC<AeroTaskbarVistaProps> = ({
               >
                 {/* Start Menu Header */}
                 <div className="p-3 bg-gradient-to-r from-sky-600 via-blue-600 to-sky-700 rounded-xl text-white mb-2 shadow-inner flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-white text-sky-700 font-black text-sm flex items-center justify-center shadow-md">
-                    JV
+                  <div className="w-10 h-10 rounded-full bg-white text-sky-700 font-black text-xs flex items-center justify-center shadow-md tracking-tight">
+                    JVGS
                   </div>
-                  <div>
-                    <h4 className="text-xs font-bold leading-tight">João Vinícius</h4>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-xs font-bold leading-tight truncate">João Vinícius Guerber</h4>
                     <p className="text-[10px] text-sky-100">Senior Software Engineer</p>
                   </div>
                 </div>

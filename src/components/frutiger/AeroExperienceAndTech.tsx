@@ -8,71 +8,87 @@ export const AeroExperienceAndTech: React.FC = () => {
 
   const experiencesEn = [
     {
-      role: 'Senior Mobile & Front-end Engineer',
-      company: 'Invillia / Casas Bahia (banQi)',
-      period: '2022 – Present',
+      role: 'Senior Software Engineer (Front-end & Mobile)',
+      company: 'Invillia / Casas Bahia Pay (banQi)',
+      period: 'Sep 2025 – Present',
       isCurrent: true,
       description:
-        'Technical leadership in mobile modernization, modular architecture, and native bridges (Kotlin/Swift). Record -98% reduction in weekly crashes, developer mentoring, and CI/CD automation.'
+        'Technical reference for mobile and front-end engineering for Casas Bahia Pay (formerly banQi). Drove a record -98% reduction in weekly crashes (120k to 2k), -55% RAM footprint, and -75% splash-to-home latency. Implemented AI-driven automation for PR reviews and test generation, AppDome RASP security, and saved $10,000/yr on AWS infrastructure.'
     },
     {
-      role: 'Mid-Level Mobile Engineer',
-      company: 'Invillia / banQi',
-      period: '2021 – 2022',
+      role: 'Mid-Level Software Engineer (Front-end & Mobile)',
+      company: 'Invillia / Casas Bahia Pay (banQi)',
+      period: 'Sep 2024 – Sep 2025',
       isCurrent: false,
       description:
-        'Critical rendering and re-render optimizations in React Native, global state redesign, and integration with Pix and credit card payment gateways at scale.'
+        'Continuous engineering of high-scale mobile applications, building and maintaining native modules for React Native in Kotlin (Android) and Swift (iOS), and evolving cross-platform design systems with Clean Code and SOLID principles.'
     },
     {
-      role: 'Mid-Level Full Stack & Mobile Developer',
-      company: 'WiiD Studio',
-      period: '2020 – 2021',
+      role: 'Mid-Level Mobile & Front-end Developer',
+      company: 'WiiD – Work in Ideas',
+      period: 'Jan 2024 – Sep 2024',
       isCurrent: false,
       description:
-        'High-performance React Native and React/Next.js application engineering, RESTful and GraphQL API integrations, and shared component libraries.'
+        'Cross-platform digital product engineering with React, Next.js, and React Native (Expo). Complete feature ownership from Figma design to production release, automated test suites with Jest/Vitest, and technical mentoring for juniors and interns.'
     },
     {
-      role: 'Junior Frontend Developer',
-      company: 'WiiD Studio',
-      period: '2019 – 2020',
+      role: 'Junior Front-end Developer',
+      company: 'WiiD – Work in Ideas',
+      period: 'Dec 2021 – Jan 2024',
       isCurrent: false,
       description:
-        'Responsive high-fidelity user interface development, interactive web animations, and automated unit testing with Jest.'
+        'Development and maintenance of responsive web and mobile interfaces using React, React Native, and TypeScript. Automated unit test suite implementation with Jest ensuring high code stability.'
+    },
+    {
+      role: 'Web Developer',
+      company: 'Freelance – Self-Employed',
+      period: 'Dec 2020 – Dec 2021',
+      isCurrent: false,
+      description:
+        'Development and maintenance of high-converting web applications, custom WordPress websites, and responsive landing pages utilizing PHP, JavaScript, CSS, and HTML.'
     }
   ];
 
   const experiencesPt = [
     {
-      role: 'Senior Mobile & Front-end Engineer',
-      company: 'Invillia / Casas Bahia (banQi)',
-      period: '2022 – Presente',
+      role: 'Engenheiro de Software Sênior (Front-end & Mobile)',
+      company: 'Invillia / Casas Bahia Pay (banQi)',
+      period: 'Set 2025 – Presente',
       isCurrent: true,
       description:
-        'Liderança técnica em modernização mobile, arquitetura modular e pontes nativas (Kotlin/Swift). Redução recorde de -98% dos crashes semanais, mentoria de desenvolvedores e automação de pipelines CI/CD.'
+        'Referência técnica em engenharia mobile e front-end para o cliente banQi (Casas Bahia Pay). Redução de 98% em crashes (de 120 mil para 2 mil semanais), corte de 55% de RAM e aceleração de 75% no splash-to-home. Automações com agentes de IA para PRs e testes, segurança móvel RASP AppDome e economia de US$ 10.000/ano em AWS.'
     },
     {
-      role: 'Mid-Level Mobile Engineer',
-      company: 'Invillia / banQi',
-      period: '2021 – 2022',
+      role: 'Engenheiro de Software Pleno (Front-end & Mobile)',
+      company: 'Invillia / Casas Bahia Pay (banQi)',
+      period: 'Set 2024 – Set 2025',
       isCurrent: false,
       description:
-        'Otimização de renderização e re-renders críticos no React Native, reestruturação de estado global, integração com gateways de pagamento Pix e cartões de crédito em alta escala.'
+        'Desenvolvimento contínuo de aplicações móveis robustas, criação e manutenção de módulos nativos para React Native em Kotlin (Android) e Swift (iOS), e evolução do Design System compartilhado com Clean Code e SOLID.'
     },
     {
-      role: 'Mid-Level Full Stack & Mobile Developer',
-      company: 'WiiD Studio',
-      period: '2020 – 2021',
+      role: 'Desenvolvedor Mobile & Front-end Pleno',
+      company: 'WiiD – Work in Ideas',
+      period: 'Jan 2024 – Set 2024',
       isCurrent: false,
       description:
-        'Desenvolvimento de aplicações React Native e React/Next.js de alta performance, integração com APIs RESTful e GraphQL, e bibliotecas compartilhadas de componentes reutilizáveis.'
+        'Desenvolvimento de produtos digitais multiplataforma com React, Next.js e React Native (Expo). Ownership completo de features do Figma ao deploy em produção, suítes de testes automatizados com Jest e Vitest, e mentoria técnica para juniores e estagiários.'
     },
     {
-      role: 'Junior Frontend Developer',
-      company: 'WiiD Studio',
-      period: '2019 – 2020',
+      role: 'Desenvolvedor Front-end Júnior',
+      company: 'WiiD – Work in Ideas',
+      period: 'Dez 2021 – Jan 2024',
       isCurrent: false,
       description:
-        'Construção de interfaces responsivas de alta fidelidade visual, animações web interativas e testes unitários automatizados com Jest.'
+        'Construção e manutenção de interfaces responsivas web e mobile com React, React Native e TypeScript. Escrita de testes unitários com Jest para assegurar estabilidade contínua e padrões de qualidade.'
+    },
+    {
+      role: 'Desenvolvedor Web',
+      company: 'Freelance – Autônomo',
+      period: 'Dez 2020 – Dez 2021',
+      isCurrent: false,
+      description:
+        'Desenvolvimento e manutenção de aplicações web, landing pages de alta conversão e websites customizados em WordPress utilizando PHP, JavaScript, CSS e HTML.'
     }
   ];
 
@@ -110,7 +126,7 @@ export const AeroExperienceAndTech: React.FC = () => {
           </span>
           <span className="text-sky-300">•</span>
           <span className="text-sky-600 font-mono text-[11px] font-semibold">
-            {language === 'pt' ? 'Invillia • WiiD • Casas Bahia / banQi' : 'Invillia • WiiD • Casas Bahia / banQi'}
+            {language === 'pt' ? 'Invillia • WiiD • Casas Bahia / banQi • Freelance' : 'Invillia • WiiD • Casas Bahia / banQi • Freelance'}
           </span>
         </div>
       </div>
@@ -130,8 +146,8 @@ export const AeroExperienceAndTech: React.FC = () => {
               <span className="text-sm shrink-0 drop-shadow-sm">💼</span>
               <span className="aero-titlebar-text text-xs tracking-tight truncate">
                 {language === 'pt'
-                  ? 'Trajetória Profissional — 4 Posições de Sucesso & Alto Impacto'
-                  : 'Professional Trajectory — 4 High-Impact Positions'}
+                  ? 'Trajetória Profissional — 5 Posições & Histórico de Sucesso'
+                  : 'Professional Trajectory — 5 High-Impact Positions'}
               </span>
             </div>
             <div className="flex items-center gap-1 shrink-0 ml-2">
@@ -218,16 +234,19 @@ export const AeroExperienceAndTech: React.FC = () => {
 
             {/* Certifications and Languages Footer Bar */}
             <div className="pt-3 border-t border-sky-200/80 flex flex-wrap gap-2 text-xs">
+              <span className="px-2.5 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-bold text-[10.5px] shadow-sm">
+                ☁️ AWS Certified Solutions Architect – Associate ({language === 'pt' ? 'Em andamento Q4 2026' : 'In Progress Q4 2026'})
+              </span>
               <span className="px-2.5 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 font-bold text-[10.5px] shadow-sm">
                 🎓 GitHub Copilot Certified (2025–2028)
               </span>
-              <span className="px-2 py-1 rounded-full bg-sky-100 border border-sky-300 text-sky-900 font-medium text-[10.5px]">
-                🏛️ Uninter ADS
+              <span className="px-2.5 py-1 rounded-full bg-sky-100 border border-sky-300 text-sky-900 font-medium text-[10.5px]">
+                🏛️ Uninter ADS (2019–2021)
               </span>
-              <span className="px-2 py-1 rounded-full bg-white border border-sky-200 text-slate-800 font-medium text-[10.5px]">
-                {language === 'pt' ? '🇧🇷 Português Nativo' : '🇺🇸 English (Full Professional)'}
+              <span className="px-2.5 py-1 rounded-full bg-white border border-sky-200 text-slate-800 font-medium text-[10.5px]">
+                {language === 'pt' ? '🇧🇷 Português Nativo' : '🇺🇸 English (B2 Upper-Intermediate)'}
               </span>
-              <span className="px-2 py-1 rounded-full bg-white border border-sky-200 text-slate-800 font-medium text-[10.5px]">
+              <span className="px-2.5 py-1 rounded-full bg-white border border-sky-200 text-slate-800 font-medium text-[10.5px]">
                 {language === 'pt' ? '🇺🇸 Inglês B2' : '🇧🇷 Portuguese (Native)'}
               </span>
             </div>

@@ -16,7 +16,7 @@ export const translations: Record<'en' | 'pt', Translations> = {
     },
     hero: {
       badgeRole: 'Senior Software Engineer • Front-end & Mobile Specialist',
-      badgeYears: '5 Years of Experience',
+      badgeYears: '6 Years of Experience',
       headlinePrefix: 'Mobile engineering built for ',
       headlineHighlight: 'rock-solid stability',
       headlineSuffix: ' and extreme performance.',
@@ -246,6 +246,20 @@ export const translations: Record<'en' | 'pt', Translations> = {
             'Authored unit tests using Jest to maintain software stability and clean coding standards.'
           ],
           technologies: ['React', 'React Native', 'TypeScript', 'Jest', 'JavaScript', 'HTML5/CSS3']
+        },
+        {
+          id: 'freelance-web',
+          company: 'Freelance – Self-employed',
+          role: 'Web Developer',
+          period: 'Dec 2020 – Dec 2021',
+          current: false,
+          summary: 'Developed and maintained responsive web applications, high-converting landing pages, and customized websites for diverse digital clients.',
+          responsibilities: [
+            'Built and maintained responsive web applications utilizing PHP, JavaScript, CSS, and HTML.',
+            'Created high-conversion landing pages and custom WordPress websites tailored to client requirements.',
+            'Direct client relationship management ensuring strict milestone predictability and delivery quality.'
+          ],
+          technologies: ['PHP', 'JavaScript', 'CSS', 'HTML', 'WordPress']
         }
       ]
     },
@@ -333,6 +347,13 @@ export const translations: Record<'en' | 'pt', Translations> = {
       mobileSecurityText: 'Practical experience with RASP (Runtime Application Self-Protection) using AppDome in highly regulated banking environments.',
       educationItems: [
         {
+          institution: 'Amazon Web Services (AWS)',
+          title: 'AWS Certified Solutions Architect – Associate',
+          period: 'In progress (Expected Q4 2026)',
+          badge: 'Official Certification',
+          description: 'Architecting resilient, highly available, cost-optimized cloud solutions, distributed compute, and secure VPC architectures.'
+        },
+        {
           institution: 'GitHub',
           title: 'GitHub Copilot Certified',
           period: '2025 – 2028',
@@ -385,7 +406,7 @@ export const translations: Record<'en' | 'pt', Translations> = {
     },
     hero: {
       badgeRole: 'Senior Software Engineer • Front-end & Mobile Specialist',
-      badgeYears: '5 Anos de Experiência',
+      badgeYears: '6 Anos de Experiência',
       headlinePrefix: 'Engenharia mobile de ',
       headlineHighlight: 'alta estabilidade',
       headlineSuffix: ' e performance extrema.',
@@ -615,6 +636,20 @@ export const translations: Record<'en' | 'pt', Translations> = {
             'Escrita de testes unitários com Jest para assegurar estabilidade contínua e padrões de qualidade de código.'
           ],
           technologies: ['React', 'React Native', 'TypeScript', 'Jest', 'JavaScript', 'HTML5/CSS3']
+        },
+        {
+          id: 'freelance-web',
+          company: 'Freelance – Autônomo',
+          role: 'Desenvolvedor Web',
+          period: 'Dez 2020 – Dez 2021',
+          current: false,
+          summary: 'Desenvolvimento e manutenção de aplicações web, landing pages de alta conversão e websites customizados.',
+          responsibilities: [
+            'Desenvolvimento e manutenção de aplicações web utilizando PHP, JavaScript, CSS e HTML.',
+            'Criação de landing pages responsivas e websites customizados em WordPress otimizados para conversão.',
+            'Gestão direta de múltiplos clientes com forte foco em prazos e qualidade de entrega.'
+          ],
+          technologies: ['PHP', 'JavaScript', 'CSS', 'HTML', 'WordPress']
         }
       ]
     },
@@ -701,6 +736,13 @@ export const translations: Record<'en' | 'pt', Translations> = {
       mobileSecurityTitle: 'Segurança Móvel',
       mobileSecurityText: 'Experiência prática em proteção RASP (Runtime Application Self-Protection) via AppDome em apps bancários regulados.',
       educationItems: [
+        {
+          institution: 'Amazon Web Services (AWS)',
+          title: 'AWS Certified Solutions Architect – Associate',
+          period: 'Em andamento (Previsão Q4 2026)',
+          badge: 'Certificação Oficial',
+          description: 'Arquitetura de soluções resilientes em nuvem, alta disponibilidade, computação distribuída e otimização de custos.'
+        },
         {
           institution: 'GitHub',
           title: 'GitHub Copilot Certified',

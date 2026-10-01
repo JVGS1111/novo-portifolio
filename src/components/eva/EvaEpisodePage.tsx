@@ -305,7 +305,7 @@ export const EvaEpisodePage: React.FC<EvaEpisodePageProps> = ({ onNavigateModern
         <div className="h-2 w-full eva-hazard-stripes" />
         <div className="bg-black py-4 px-4 text-center text-xs font-eva-mono text-zinc-600">
           <p>
-            NERV // CENTRAL DOGMA // TACTICAL COMMAND POST // PILOT: JOÃO VINÍCIUS GUERBER
+            NERV // CENTRAL DOGMA // TACTICAL COMMAND POST // PILOT: JOÃO VINÍCIUS GUERBER DE SOUZA (JVGS-01)
           </p>
           <p className="text-[10px] text-zinc-700 mt-1">
             EST. 2026 // ALL SYSTEM PARAMETERS NOMINAL // PATTERN: BLUE

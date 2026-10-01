@@ -193,22 +193,22 @@ Cada mundo possui seu próprio seletor com identidade visual exclusiva:
 - **Estilo Visual e Conceito**: Experiência imersiva inspirada na estética cinematográfica, tipografia visceral de episódios e interface tática da Gainax / Hideaki Anno em *Neon Genesis Evangelion*. Sem elementos genéricos: layout escuro de alto contraste (`#020204`), tipografia Matisse (Shippori Mincho com kanjis monumentais e subtítulos em Cinzel/Space Grotesk), faixas zebradas de perigo (hazard stripes), selos militares de carimbo (`極秘 · TOP SECRET`, `非常事態 · EMERGENCY`, `任務完了 · VERIFIED`), telemetria monospaçada e sem áudio ("sem som só coda").
   - `EvaWorldSelector.tsx`: Terminal de coordenadas MAGI com selos militares, faixas de perigo zebradas e indicador [承認].
   - `EvaHoneycombBackground.tsx`: Malha de fundo animada em Canvas 2D de alta performance com tesselação de colmeia hexagonal e pentagonal intercalada, onda de radar contínua, ativações sinápticas aleatórias de células MAGI e iluminação interativa sob o cursor do mouse. Inclui botão de alternância `[ ⬡ COLMEIA / ⬠ PENTÁGONO ]` no cabeçalho.
-  - `EvaTitleCard.tsx`: Modal cinematográfico de cartões de título de episódios (EYECATCH) navegável com controles de navegação, kanjis colossais (`使徒、襲来`, `見知らぬ、天井`, `鳴らない、電話`, `瞬間、心、重ねて`, `世界の中心でアイを叫んだけもの`), diretivas táticas e identificação do piloto João Vinícius Guerber.
+  - `EvaTitleCard.tsx`: Modal cinematográfico de cartões de título de episódios (EYECATCH) navegável com controles de navegação, kanjis colossais (`使徒、襲来`, `見知らぬ、天井`, `鳴らない、電話`, `瞬間、心、重ねて`, `世界の中心でアイを叫んだけもの`), diretivas táticas e identificação do piloto João Vinícius Guerber de Souza (JVGS-01).
   - `EvaAtFieldCanvas.tsx`: Campo de Força de Terror Absoluto (A.T. Field) interativo em Canvas com octógonos concêntricos luminosos em laranja/âmbar, mira em retícula e distorções harmônicas reagindo à posição do cursor em tempo real (`PATTERN: BLUE / パターン青`).
   - `EvaSyncHarmonics.tsx`: Painel duplo tático contendo:
     - Contagem regressiva digital ao vivo da **Bateria Interna** (`04:59:xx`) com barra de 12 segmentos de energia e botão interativo para reconectar o **Cabo Umbilical** e restaurar energia 100%.
     - Osciloscópio SVG com onda senoidal em tempo real monitorando a **Ressonância Sináptica do Nervo A10** (Taxa de Sincronia de 99.42%).
   - `MagiConsensusTerminal.tsx`: Câmara de deliberação tripartite do supercomputador MAGI:
     - Núcleos orgânicos lógicos: `MAGI-1 MELCHIOR` (Cientista), `MAGI-2 BALTHASAR` (Mãe) e `MAGI-3 CASPER` (Mulher).
-    - Módulo de teste interativo com 4 consultas arquiteturais de alta complexidade (migração Turbomodules/Fabric, agentes autônomos de IA em CI/CD, Design System multi-OS e mitigação de egress AWS), demonstrando o processo de votação até o consenso unânime (`UNANIMOUS MAGI VERDICT [3/3 AGREE]`).
-  - `EvaEpisodeActs.tsx`: 4 dossiês de combate confidenciais estruturados como episódios do anime:
-    - *EPISODE:01 // 使徒、襲来*: Operação banQi Hyperscale Defense (crise de 4.8% crash, vazamento de memória e redução de 75% em cold boot).
-    - *EPISODE:02 // 見知らぬ、天井*: Operação Titã Cloud (mitigação de egress AWS e economia de US$ 10.000/mês).
+    - Módulo de teste interativo com 4 consultas arquiteturais de alta complexidade (migração Turbomodules/Fabric, agentes autônomos de IA em CI/CD, Design System multi-OS e mitigação de custos de infraestrutura AWS com economia de US$ 10.000/ano), demonstrando o processo de votação até o consenso unânime (`UNANIMOUS MAGI VERDICT [3/3 AGREE]`).
+  - `EvaEpisodeActs.tsx`: 4 dossiês de combate confidenciais estruturados como episódios do anime, com modal expansível tático em tela cheia (Classified Tactical Dossier Modal):
+    - *EPISODE:01 // 使徒、襲来*: Operação banQi Hyperscale Defense (crise de 120k crashes semanais reduzida em 98%, corte de 55% de RAM e aceleração de 75% no splash-to-home).
+    - *EPISODE:02 // 見知らぬ、天井*: Operação Titã Cloud (otimização de custos e egress AWS com economia de US$ 10.000/ano).
     - *EPISODE:03 // 鳴らない、電話*: Operação Sinapse (agentes autônomos de IA, credencial GitHub Copilot Certified e blindagem de 0% para 40% de testes).
-    - *EPISODE:04 // 瞬間、心、重ねて*: Operação Harmonia (Design Tokens multi-OS unificados entre Swift, Kotlin e React).
-    - Cada dossiê possui análise em 3 blocos: Avaliação da Ameaça, Contramedida e Desfecho Auditado com selo carmesim `VERIFIED / 任務完了`.
-  - `EvaMagiBank.tsx`: Matriz sináptica com 32 competências de engenharia categorizadas em 4 bancos neurais, credencial oficial GitHub Copilot Certified, diploma de Bacharelado em Engenharia de Software e a Crônica de Deslocamento de Carreira (2019-2026) formatada como registro de voo de piloto.
-  - `EvaCommsTerminal.tsx`: Terminal de transmissão direta criptografada com cópia de e-mail com 1 clique e feedback instantâneo, comlinks do LinkedIn e GitHub e download do currículo executivo.
+    - *EPISODE:04 // 瞬間、心、重ねて*: Operação Harmonia (Design System e Tokens multi-OS unificados entre Swift, Kotlin e React).
+    - Cada dossiê possui análise em 3 blocos: Avaliação da Ameaça, Contramedida e Desfecho Auditado com selo carmesim `VERIFIED / 任務完了`, além do botão para abrir o dossiê detalhado em modal.
+  - `EvaMagiBank.tsx`: Matriz sináptica com 32 competências de engenharia categorizadas em 4 bancos neurais, credencial oficial GitHub Copilot Certified (2025–2028), certificação AWS Certified Solutions Architect Associate (em andamento), diploma de Tecnólogo em Análise e Desenvolvimento de Sistemas (Uninter) e a Crônica de Deslocamento de Carreira real de 6 anos (Invillia / Casas Bahia Pay / banQi, WiiD, Freelance) formatada como registro tático de voo.
+  - `EvaCommsTerminal.tsx`: Terminal de transmissão direta criptografada com cópia de e-mail com 1 clique e feedback instantâneo, comlinks oficiais do LinkedIn (`joaoguebrer`) e GitHub (`JVGS1111`) e download do currículo executivo.
   - **Internacionalização**: Suporte bilíngue nativo e completo com seletor `EN | PT` (Inglês como padrão / default), conforme as regras de ouro.
 
 #### 6. Evangelion Tactical NERV HUD & Hangar Terminal (Mundo 7)

@@ -93,7 +93,7 @@ export const XboxCommDock: React.FC<XboxCommDockProps> = ({ t }) => {
 
                 {/* (Y) LinkedIn */}
                 <a
-                  href="https://linkedin.com/in/joaovinicius"
+                  href="https://www.linkedin.com/in/joaoguebrer/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-3 rounded-xl bg-[#01220c] border border-[#ffaa00]/50 text-[#ffaa00] hover:bg-[#ffaa00]/20 hover:border-[#ffaa00] font-bold text-xs transition-all flex items-center gap-2 cursor-pointer shadow-md active:scale-95"

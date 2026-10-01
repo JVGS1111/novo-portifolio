@@ -17,12 +17,12 @@ const initialMessagesEn: Message[] = [
     sender: 'recruiter',
     senderName: 'Recruiter / Tech Lead',
     time: '10:14',
-    text: 'Hello João! We saw your banQi case study with 120k weekly crashes. How did you achieve a -98% reduction?'
+    text: 'Hello João Vinícius! We saw your banQi case study with 120k weekly crashes. How did you achieve a -98% reduction?'
   },
   {
     id: 'm2',
     sender: 'joao',
-    senderName: 'João Vinícius',
+    senderName: 'João Vinícius Guerber',
     time: '10:15',
     text: 'We refactored React Native’s async bridge, engineered native Kotlin/Swift modules, integrated Error Boundaries and AppDome RASP. Crashes plunged from 120k to 2k weekly, and cold boot dropped from 60s to 15s!'
   },
@@ -43,7 +43,7 @@ const initialMessagesEn: Message[] = [
   {
     id: 'm5',
     sender: 'joao',
-    senderName: 'João Vinícius',
+    senderName: 'João Vinícius Guerber',
     time: '10:17',
     text: 'I engineered custom AI agents for PR triage and regression checks, plus automated Jest/Vitest test suite generation integrated directly into Azure DevOps and GitHub Actions!'
   }
@@ -55,12 +55,12 @@ const initialMessagesPt: Message[] = [
     sender: 'recruiter',
     senderName: 'Recruiter / Tech Lead',
     time: '10:14',
-    text: 'Olá João! Vimos o caso do banQi com 120k crashes/semana. Como você atingiu -98% de redução?'
+    text: 'Olá João Vinícius! Vimos o caso do banQi com 120k crashes/semana. Como você atingiu -98% de redução?'
   },
   {
     id: 'm2',
     sender: 'joao',
-    senderName: 'João Vinícius',
+    senderName: 'João Vinícius Guerber',
     time: '10:15',
     text: 'Refatoramos a bridge assíncrona do React Native, criamos módulos nativos Kotlin/Swift, adicionamos Error Boundaries e RASP AppDome. Fomos de 120k para 2k crashes semanais e boot de 60s para 15s!'
   },
@@ -81,7 +81,7 @@ const initialMessagesPt: Message[] = [
   {
     id: 'm5',
     sender: 'joao',
-    senderName: 'João Vinícius',
+    senderName: 'João Vinícius Guerber',
     time: '10:17',
     text: 'Desenvolvi agentes de IA customizados para triagem de PRs e regressões, além de geração automatizada de testes Jest/Vitest integrados ao Azure DevOps e GitHub Actions!'
   }
@@ -215,7 +215,7 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
         {
           id: `joao-${Date.now()}`,
           sender: 'joao',
-          senderName: 'João Vinícius',
+          senderName: 'João Vinícius Guerber',
           time: timeStr,
           text: reply
         }
@@ -243,7 +243,7 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
             <div className="w-3.5 h-3.5 rounded-full bg-cyan-400 border border-white/80 shadow-sm" />
           </div>
           <span className="aero-titlebar-text text-xs tracking-tight truncate">
-            💬 Windows Live Messenger — João Vinícius ({language === 'pt' ? 'Online' : 'Online'})
+            💬 Windows Live Messenger — João Vinícius Guerber ({language === 'pt' ? 'Online' : 'Online'})
           </span>
         </div>
 
@@ -275,8 +275,8 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
         {/* Avatar Disc */}
         <div className="relative">
           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 p-0.5 shadow-md shadow-sky-500/20">
-            <div className="w-full h-full rounded-full bg-white flex items-center justify-center font-extrabold text-sky-600 text-sm tracking-wider shadow-inner">
-              JV
+            <div className="w-full h-full rounded-full bg-white flex items-center justify-center font-extrabold text-sky-600 text-xs tracking-tight shadow-inner">
+              JVGS
             </div>
           </div>
           {/* Online green jelly status badge */}
@@ -285,7 +285,7 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h4 className="text-sm font-bold text-slate-800 tracking-tight">João Vinícius</h4>
+            <h4 className="text-sm font-bold text-slate-800 tracking-tight">João Vinícius Guerber</h4>
             <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100 border border-emerald-300 px-1.5 py-0.2 rounded-full">
               [{language === 'pt' ? 'Disponível' : 'Available'}]
             </span>
@@ -400,8 +400,8 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
               <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-ping" />
               <span>
                 {language === 'pt'
-                  ? 'João Vinícius está digitando uma mensagem...'
-                  : 'João Vinícius is typing a message...'}
+                  ? 'João Vinícius Guerber está digitando uma mensagem...'
+                  : 'João Vinícius Guerber is typing a message...'}
               </span>
             </motion.div>
           )}
@@ -419,8 +419,8 @@ export const MsnMessengerWindow: React.FC<MsnMessengerWindowProps> = ({
           onChange={(e) => setInputText(e.target.value)}
           placeholder={
             language === 'pt'
-              ? 'Digite uma mensagem para João Vinícius...'
-              : 'Type a message to João Vinícius...'
+              ? 'Digite uma mensagem para João Vinícius Guerber...'
+              : 'Type a message to João Vinícius Guerber...'
           }
           className="flex-1 px-3 py-1.5 rounded-full bg-white border border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent text-xs text-slate-800 placeholder-slate-400 shadow-inner"
         />

@@ -23,8 +23,8 @@ export const PrismHeroSection: React.FC = () => {
   const handleDownloadCV = () => {
     alert(
       isPt
-        ? 'Currículo Executivo de João Vinícius Guerber pronto para envio! Você também pode entrar em contato direto por e-mail ou LinkedIn.'
-        : "João Vinícius Guerber's Executive Resume is ready to download! You can also connect directly via Email or LinkedIn."
+        ? 'Currículo Executivo de João Vinícius Guerber de Souza pronto para envio! Você também pode entrar em contato direto por e-mail ou LinkedIn.'
+        : "Executive Resume of João Vinícius Guerber de Souza is ready to download! You can also connect directly via Email or LinkedIn."
     );
   };
 
@@ -126,7 +126,9 @@ export const PrismHeroSection: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full apple-liquid-pill-light mb-6 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
             <span className="text-[11px] font-bold tracking-widest text-slate-600 uppercase">
-              {isPt ? 'Desenvolvedor Fullstack & Mobile' : 'Fullstack & Mobile Developer'}
+              {isPt
+                ? 'JVGS · Senior Software Engineer · 6 Anos de Experiência'
+                : 'JVGS · Senior Software Engineer · 6 Years Experience'}
             </span>
           </div>
 
@@ -156,8 +158,8 @@ export const PrismHeroSection: React.FC = () => {
           {/* Subtitle */}
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl mb-8 font-normal">
             {isPt
-              ? 'Construo aplicações web e mobile escaláveis com foco em alta performance, experiência de usuário impecável e arquitetura limpa.'
-              : 'I build scalable web and mobile applications with a focus on performance, great user experience and clean architecture.'}
+              ? 'João Vinícius Guerber de Souza — Engenheiro de Software Sênior (Front-end & Mobile Specialist) com 6 anos de experiência. Foco em arquitetura limpa, módulos nativos (Kotlin/Swift), estabilidade em hiperescala e automação inteligente com IA.'
+              : 'João Vinícius Guerber de Souza — Senior Software Engineer (Front-end & Mobile Specialist) with 6 years of experience. Focused on clean architecture, native modules (Kotlin/Swift), hyperscale stability, and AI engineering workflows.'}
           </p>
 
           {/* Action Buttons (Exact style from image) */}

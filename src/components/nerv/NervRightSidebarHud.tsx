@@ -56,7 +56,7 @@ export const NervRightSidebarHud: React.FC<NervRightSidebarHudProps> = ({
           </div>
           <div className="flex justify-between text-zinc-300">
             <span>PILOT:</span>
-            <span className="text-white font-bold">{isCombatActive ? '03 (J.V.G.)' : '--'}</span>
+            <span className="text-white font-bold">{isCombatActive ? rightHud.pilotValue : '--'}</span>
           </div>
           <div className="flex justify-between text-zinc-300">
             <span>SYNC:</span>
@@ -67,7 +67,7 @@ export const NervRightSidebarHud: React.FC<NervRightSidebarHudProps> = ({
           <div className="flex justify-between text-zinc-300">
             <span>STATUS:</span>
             <span className={isCombatActive ? 'text-red-400 font-bold' : 'text-amber-400'}>
-              {isCombatActive ? 'COMBAT ENGAGED' : 'STANDBY'}
+              {isCombatActive ? rightHud.activeStatus : rightHud.standbyStatus}
             </span>
           </div>
 

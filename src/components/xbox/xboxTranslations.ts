@@ -161,8 +161,8 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
     },
     hero: {
       badge: '[ ● S-CLASS ARCHITECT // TITAN CHASSIS VERDE CRISTAL ]',
-      name: 'JOÃO VINÍCIUS',
-      role: 'CHIEF CODE ARCHITECT // FULLSTACK & MOBILE EXPERT',
+      name: 'JOÃO VINÍCIUS GUERBER DE SOUZA',
+      role: 'CHIEF CODE ARCHITECT // SENIOR SOFTWARE ENGINEER (FRONT-END & MOBILE SPECIALIST)',
       summary:
         'Engineering resilient mobile fintech, distributed cloud infrastructures, and avant-garde interactive interfaces with bio-mechanical precision, low-latency execution, and rock-solid system stability.',
       core01Title: 'CORE 01 // RUNTIME KERNEL',
@@ -203,7 +203,7 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           code: 'BLOCK 01 // SECTOR_FINTECH',
           metric: '-98%',
           label: 'FATAL CRASHES',
-          detail: '14% → 0.08% crash rate across multi-million user bases',
+          detail: '120,000 → 2,000 weekly crashes (-98%) across banQi fintech engine',
           source: 'Src: banQi Fintech Engine',
           fillPct: 98
         },
@@ -212,7 +212,7 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           code: 'BLOCK 02 // SECTOR_MEMORY',
           metric: '-55%',
           label: 'RAM FOOTPRINT',
-          detail: '480MB → 215MB leak purge and bridge garbage collection',
+          detail: '900MB → 400MB memory footprint (-55%) & leak eradication',
           source: 'Src: Reanimated & Native Bridge',
           fillPct: 85
         },
@@ -221,7 +221,7 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           code: 'BLOCK 03 // SECTOR_BYTECODE',
           metric: '-75%',
           label: 'BOOT VELOCITY',
-          detail: '4.8s → 1.2s cold start via precompiled Hermes bytecode',
+          detail: '60s → 15s (-75%) splash-to-home cold start acceleration via Hermes',
           source: 'Src: Hermes Bytecode Engine',
           fillPct: 92
         },
@@ -229,18 +229,18 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           id: 'cloud-savings',
           code: 'BLOCK 04 // SECTOR_CLOUD_AWS',
           metric: '+$10K',
-          label: 'MONTHLY SAVED',
-          detail: 'Serverless infra cost cut through Redis caching & Lambda tuning',
-          source: 'Src: AWS Lambda & Caching',
+          label: 'ANNUAL SAVED',
+          detail: '+$10,000/yr AWS infrastructure cost savings via network & lambda refactoring',
+          source: 'Src: AWS Cloud Optimization',
           fillPct: 80
         },
         {
           id: 'test-coverage',
           code: 'BLOCK 05 // SECTOR_QUALITY',
-          metric: '40%',
+          metric: '0% → 40%',
           label: 'TEST COVERAGE',
-          detail: 'Engineered from 0% baseline with Jest, Vitest & Detox E2E',
-          source: 'Src: Jest, Vitest & Detox E2E',
+          detail: '0% → 40% automated test coverage with 100% CI/CD build reliability',
+          source: 'Src: Jest, Vitest & CI/CD Pipelines',
           fillPct: 88
         }
       ]
@@ -262,48 +262,48 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           category: 'FINANCIAL ARCHITECTURE // HIGH-THROUGHPUT RUNTIME',
           blocks: '24,500 BLOCKS',
           saveState: 'SAVE STATE: ACTIVE',
-          tagline: 'High-scale digital banking with millions of active users.',
+          tagline: 'Hyperscale digital banking with millions of active users (Grupo Casas Bahia).',
           synopsis:
-            'Mobile digital bank for Grupo Casas Bahia with millions of active daily users. Native bridge optimizations, biometric authentication, instant PIX & cash-in/out pipelines.',
-          impact: 'Impact: -98% fatal crashes, cold boot slashed to 1.2s, 99.98% financial pipeline availability.',
-          stack: ['React Native', 'TypeScript', 'Redux Toolkit', 'AWS Cloud', 'WebSockets', 'Hermes Engine'],
+            "Systemic re-engineering of one of Brazil's largest retail banking apps. Native bridge optimizations (Kotlin/Swift), RASP security (AppDome), and automated Fastlane CI/CD delivery pipelines.",
+          impact: 'Impact: -98% weekly crashes (120k → 2k), RAM cut by -55% (900MB → 400MB), splash-to-home down to 15s (-75%).',
+          stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest'],
           fullDossier: {
             challenge:
-              'Massive mobile application suffering from 14% peak crash rates, memory leaks accumulating across long user sessions, and 4.8s sluggish cold startup times on low-end Android hardware.',
+              'Massive mobile application suffering from 120,000 weekly crashes, memory leaks peaking at 900MB crashing entry-level Android devices, and sluggish 60-second splash-to-home boot times.',
             architecture:
-              'Refactored core state machines with Redux Toolkit and lightweight Zustand stores; replaced bridge serialization bottlenecks with TurboModule bindings; optimized Hermes bytecode compilation; implemented automated Sentry & Datadog telemetry tracking.',
+              'Technical leadership in refactoring legacy flows, re-engineering native bridge modules in Kotlin and Swift, introducing mobile application security (RASP via AppDome), and orchestrating automated CI/CD pipelines with Fastlane and Azure DevOps.',
             impactMetrics: [
-              'Crash rate plummeted from 14% to 0.08% within 90 days of release',
-              'Cold startup time slashed by 75% (4.8s down to 1.2s on mid-tier Android)',
-              'RAM footprint cut by 55% (480MB down to 215MB) across transaction flows',
-              'Sustained over 5 million concurrent transaction events during Black Friday'
+              'Weekly crashes plunged 98% (from 120,000 to 2,000)',
+              'RAM footprint slashed by 55% (from 900MB down to 400MB)',
+              'Splash-to-home load time reduced by 75% (from 60s down to 15s)',
+              '$10,000 annual cloud savings in AWS infrastructure optimization'
             ],
-            technologies: ['React Native 0.74', 'TypeScript 5', 'Redux', 'Hermes Bytecode', 'AWS Lambda', 'Datadog']
+            technologies: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest', 'AWS']
           }
         },
         {
-          id: 'guepsi',
-          title: 'GUEPSI CLINICAL SAAS ENGINE',
-          category: 'FULLSTACK PLATFORM // CLINICAL AUTOMATION',
+          id: 'design-system',
+          title: 'CROSS-PLATFORM DESIGN SYSTEM & NATIVE MODULES',
+          category: 'SYSTEM DESIGN // MULTI-PLATFORM TOKENS & BRIDGES',
           blocks: '18,200 BLOCKS',
           saveState: 'SAVE STATE: ACTIVE',
-          tagline: 'SaaS ecosystem for clinical workflow automation and medical telemetry.',
+          tagline: 'Unified multi-platform component ecosystem and native bridge architecture.',
           synopsis:
-            'Fullstack SaaS platform for healthcare professionals: automated appointment scheduling, HIPAA-grade end-to-end encryption, and real-time medical patient dashboards.',
-          impact: 'Impact: 60% reduction in clinic admin time, zero data breaches, real-time doctor-patient sync.',
-          stack: ['React 19', 'Next.js 15', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Docker'],
+            'Enterprise Design System engineered for banQi and WiiD using Storybook, distributed via private GitHub Packages npm registry, synchronized design tokens, and Kotlin/Swift native modules.',
+          impact: 'Impact: 2x faster feature delivery velocity, 100% unified token consistency across Mobile and Web, zero cross-platform drift.',
+          stack: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Storybook', 'Kotlin', 'Swift', 'Jest', 'Vitest'],
           fullDossier: {
             challenge:
-              'Complex multi-tenant clinical scheduling system with high concurrency collisions, legacy paper workflow friction, and strict HIPAA compliance security requirements.',
+              'Discrepant interfaces across Android, iOS, and Web platforms, duplicating component implementations, visual bugs on varied screen pixel densities, and sluggish design-to-code turnaround.',
             architecture:
-              'Architected fullstack Next.js and Node.js microservices with PostgreSQL row-level security; created optimistic concurrency algorithms for calendar locks; implemented WebSocket pipelines for instant doctor notification broadcasts.',
+              'Architected a highly modular, decoupled component library typed strictly in TypeScript with Storybook documentation; integrated design tokens synchronized from Figma via CI/CD, published via GitHub Packages npm registry; built low-level Kotlin and Swift native bridges for proprietary OS capabilities.',
             impactMetrics: [
-              '60% reduction in average administrative clinic operating hours',
-              '100% HIPAA and LGPD compliance audit clearance with zero vulnerabilities',
-              'Under 80ms p99 latency for real-time calendar synchronization',
-              'Multi-tenant database isolation supporting hundreds of medical practices'
+              'Standardized hundreds of battle-tested reusable components across Mobile and Web',
+              '2x acceleration in UI prototyping, engineering velocity, and production feature delivery',
+              'Deterministic test coverage and visual regression validation with Jest, Vitest and Storybook',
+              'Zero UI drift between Android and iOS production releases'
             ],
-            technologies: ['Next.js 15', 'React 19', 'Node.js', 'PostgreSQL', 'Prisma', 'Docker', 'WebSockets']
+            technologies: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Storybook', 'Kotlin', 'Swift', 'GitHub Packages', 'Jest', 'Vitest']
           }
         },
         {
@@ -312,23 +312,23 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           category: 'AI ORCHESTRATION // DEVELOPER ACCELERATION',
           blocks: '12,300 BLOCKS',
           saveState: 'SAVE STATE: COPILOT CERTIFIED',
-          tagline: 'Multi-agent orchestration and synthetic test generation pipelines.',
+          tagline: 'AI tools, automated PR reviews, test suite generation, and technical blueprints.',
           synopsis:
-            'Autonomous developer agent workflows utilizing LLM orchestration, synthetic test suite generation, GitHub Copilot certification standards, and automated CI/CD code verification.',
-          impact: 'Impact: 4x acceleration in boilerplate delivery, 100% verified test generation, GitHub Copilot certified.',
-          stack: ['Python', 'LangChain', 'FastAPI', 'Docker', 'GitHub Actions', 'Copilot CLI'],
+            'Engineering custom developer tools and autonomous AI agents to accelerate the software development lifecycle, automate code reviews, generate synthetic test suites, and author technical specifications.',
+          impact: 'Impact: 4x acceleration in boilerplate & documentation, automated PR review triage, 0% → 40% test coverage boost, official GitHub Copilot Certified.',
+          stack: ['GitHub Copilot', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript', 'Prompt Engineering', 'Jest', 'Vitest'],
           fullDossier: {
             challenge:
-              'Developer velocity bottlenecks caused by manual boilerplate authoring, low unit test coverage across legacy modules, and slow PR review triage cycles.',
+              'Heavy time overhead spent on manual repetitive PR reviews, slow drafting of business documentation (KRs, User Stories, and Blueprints), and critical coverage gaps in legacy unit test suites.',
             architecture:
-              'Built autonomous multi-agent pipeline using Python and LangChain to parse ASTs, generate comprehensive Jest/Vitest suites with boundary fuzzing, and enforce GitHub Copilot architectural best practices.',
+              'Crafted specialized technical prompt pipelines and automated AI agents integrated with GitHub Actions and Azure DevOps to perform preliminary code reviews, identify potential regression hazards, generate Jest/Vitest unit test scaffolding, and synthesize technical documentation.',
             impactMetrics: [
-              'Achieved official GitHub Copilot Certification credential',
-              'Boosted test coverage from 0% to 40% across legacy repositories automatically',
-              '4x reduction in boilerplate coding time for standard REST and GraphQL endpoints',
-              'Automated PR review agent triages 85% of standard lint and style inconsistencies'
+              'Substantial reduction in technical and business documentation overhead (KRs, Stories, Blueprints)',
+              'Accelerated pull request approval cycles across cross-functional engineering teams',
+              'Elevated automated unit test coverage from 0% to 40% across legacy repositories',
+              'Official GitHub Copilot Certified validation (2025–2028)'
             ],
-            technologies: ['Python 3.12', 'LangChain', 'FastAPI', 'GitHub Copilot API', 'Docker', 'Vitest']
+            technologies: ['GitHub Copilot', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript', 'Prompt Engineering', 'Jest', 'Vitest']
           }
         }
       ]
@@ -405,39 +405,39 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
       sectors: [
         {
           id: 'invillia',
-          period: '2022 — PRESENT [ACTIVE]',
-          company: 'INVILLIA / CASAS BAHIA / BANQI',
-          role: 'Senior Mobile & Fullstack Engineer',
+          period: 'SEP 2024 — PRESENT [ACTIVE]',
+          company: 'INVILLIA (AN AI/R COMPANY)',
+          role: 'Senior & Mid-Level Software Engineer (Front-end & Mobile)',
           description:
-            'High-throughput fintech engineering, native bridge tuning, Hermes V8 optimization, CI/CD pipeline automation, and multi-tenant payment systems.',
-          clock: 'CLK: 1.2s BOOT // 0.08% CRASH'
+            'Senior (Sep 2025 – Present) & Mid-Level (Sep 2024 – Sep 2025). Technical reference for banQi (Grupo Casas Bahia): -98% crashes, -55% RAM, -75% splash boot, 0%→40% test coverage, and AI dev workflows.',
+          clock: 'CLK: 15s BOOT // -98% CRASH'
         },
         {
           id: 'wiid',
-          period: '2021 — 2022',
-          company: 'WIID SOFTWARE LABS',
-          role: 'Fullstack Software Engineer',
+          period: 'DEC 2021 — SEP 2024',
+          company: 'WIID – WORK IN IDEAS',
+          role: 'Mid-Level & Junior Mobile & Front-end Developer',
           description:
-            'High-velocity web SaaS engineering, microservices in Node.js, reactive dashboard UIs in React, and relational database schema modeling.',
-          clock: 'CLK: 99.9% UPTIME'
+            'Mid-Level (Jan 2024 – Sep 2024) & Junior (Dec 2021 – Jan 2024). Cross-platform web and mobile products with React, Next.js, and React Native (Expo). End-to-end feature ownership, Jest/Vitest suites, and mentoring.',
+          clock: 'CLK: CROSS-PLATFORM'
         },
         {
           id: 'freelance',
-          period: '2020 — 2021',
-          company: 'FREELANCE & CONSULTING',
-          role: 'Systems Architect & Developer',
+          period: 'DEC 2020 — DEC 2021',
+          company: 'FREELANCE – AUTÔNOMO',
+          role: 'Web Developer',
           description:
-            'Architectural performance audits, enterprise web applications, mobile product MVPs, and third-party API integration pipelines.',
-          clock: 'CLK: MULTI-CLIENT'
+            'Fullstack web engineering and maintenance using PHP, JavaScript, CSS, HTML, and WordPress. High-conversion responsive landing pages and direct client delivery management.',
+          clock: 'CLK: WEB DEV STACK'
         },
         {
-          id: 'academia',
-          period: '2018 — 2020',
-          company: 'ACADEMIA & SYSTEMS LABS',
-          role: 'BS in Computer Science / Systems',
+          id: 'education-certs',
+          period: '2019 — 2028',
+          company: 'UNINTER & OFFICIAL CERTS',
+          role: 'ADS Degree // AWS & GitHub Copilot Certified',
           description:
-            'In-depth study of distributed systems, computational complexity, hardware architectures, operating system design, and algorithmic optimization.',
-          clock: 'CLK: CS DEGREE'
+            'Higher Education in Systems Analysis and Development (Uninter 2019–2021). Official GitHub Copilot Certified (2025–2028) & AWS Certified Solutions Architect Associate (In progress, forecast Q4 2026).',
+          clock: 'CLK: COPILOT 🎖 + AWS'
         }
       ]
     },
@@ -484,8 +484,8 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
     },
     hero: {
       badge: '[ ● ARQUITETO CLASSE-S // CHASSI TITAN VERDE CRISTAL ]',
-      name: 'JOÃO VINÍCIUS',
-      role: 'CHIEF CODE ARCHITECT // FULLSTACK & MOBILE EXPERT',
+      name: 'JOÃO VINÍCIUS GUERBER DE SOUZA',
+      role: 'CHIEF CODE ARCHITECT // SENIOR SOFTWARE ENGINEER (FRONT-END & MOBILE SPECIALIST)',
       summary:
         'Engenharia de fintechs mobile resilientes, infraestruturas cloud distribuídas e interfaces interativas de vanguarda com precisão bio-mecânica, baixa latência e estabilidade absoluta de sistema.',
       core01Title: 'NÚCLEO 01 // KERNEL RUNTIME',
@@ -525,8 +525,8 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           id: 'crash-reduction',
           code: 'BLOCO 01 // SETOR_FINTECH',
           metric: '-98%',
-          label: 'CRASHES FATAIS',
-          detail: '14% → 0.08% taxa de crash em base de milhões de usuários',
+          label: 'CRASHES SEMANAIS',
+          detail: '120.000 → 2.000 crashes semanais (-98%) no app banQi',
           source: 'Fonte: banQi Fintech Engine',
           fillPct: 98
         },
@@ -535,7 +535,7 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           code: 'BLOCO 02 // SETOR_MEMORIA',
           metric: '-55%',
           label: 'CONSUMO DE RAM',
-          detail: '480MB → 215MB eliminação de leaks e otimização de garbage collector',
+          detail: '900MB → 400MB de footprint de memória (-55%) e erradicação de leaks',
           source: 'Fonte: Reanimated & Bridge Nativa',
           fillPct: 85
         },
@@ -544,7 +544,7 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           code: 'BLOCO 03 // SETOR_BYTECODE',
           metric: '-75%',
           label: 'VELOCIDADE DE BOOT',
-          detail: '4.8s → 1.2s cold start via bytecode Hermes pré-compilado',
+          detail: '60s → 15s (-75%) na inicialização splash-to-home via Hermes',
           source: 'Fonte: Hermes Bytecode Engine',
           fillPct: 92
         },
@@ -552,18 +552,18 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           id: 'cloud-savings',
           code: 'BLOCO 04 // SETOR_NUVEM_AWS',
           metric: '+$10K',
-          label: 'ECONOMIA MENSAL',
-          detail: 'Redução de custos de nuvem via cache Redis e ajuste de Lambda',
-          source: 'Fonte: AWS Lambda & Caching',
+          label: 'ECONOMIA ANUAL',
+          detail: '+$10.000/ano em economia direta na infraestrutura AWS',
+          source: 'Fonte: Otimização AWS Cloud',
           fillPct: 80
         },
         {
           id: 'test-coverage',
           code: 'BLOCO 05 // SETOR_QUALIDADE',
-          metric: '40%',
+          metric: '0% → 40%',
           label: 'COBERTURA TESTES',
-          detail: 'Construída a partir de 0% de base com Jest, Vitest e Detox E2E',
-          source: 'Fonte: Jest, Vitest & Detox E2E',
+          detail: '0% → 40% de cobertura com 100% de confiabilidade em builds CI/CD',
+          source: 'Fonte: Jest, Vitest & Pipelines CI/CD',
           fillPct: 88
         }
       ]
@@ -585,48 +585,48 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           category: 'ARQUITETURA FINANCEIRA // RUNTIME DE ALTO THROUGHPUT',
           blocks: '24.500 BLOCOS',
           saveState: 'ESTADO: ATIVO',
-          tagline: 'Banco digital de alta escala com milhões de usuários ativos.',
+          tagline: 'Modernização e estabilização em hiperescala para milhões de usuários (Grupo Casas Bahia).',
           synopsis:
-            'Banco digital mobile para o Grupo Casas Bahia com milhões de usuários diários. Otimizações de bridge nativa, biometria e pipelines de PIX e depósitos instantâneos.',
-          impact: 'Impacto: -98% crashes fatais, boot reduzido para 1.2s, 99.98% de disponibilidade.',
-          stack: ['React Native', 'TypeScript', 'Redux Toolkit', 'AWS Cloud', 'WebSockets', 'Hermes Engine'],
+            'Reengenharia sistêmica de um dos maiores apps bancários do varejo brasileiro. Otimizações de bridge nativa (Kotlin/Swift), segurança RASP (AppDome) e esteiras automatizadas de CI/CD com Fastlane.',
+          impact: 'Impacto: -98% crashes semanais (120k → 2k), RAM reduzida em -55% (900MB → 400MB), splash-to-home de 60s para 15s (-75%).',
+          stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest'],
           fullDossier: {
             challenge:
-              'Aplicativo mobile massivo com taxa de crash de pico de 14%, vazamentos de memória acumulados ao longo de sessões longas e inicialização fria lenta de 4.8s em aparelhos Android de entrada.',
+              'Aplicativo mobile massivo com volume de 120.000 crashes semanais, consumo proibitivo de 900MB de RAM derrubando aparelhos de entrada e lentidão de até 60 segundos na inicialização splash-to-home.',
             architecture:
-              'Refatoração das máquinas de estado centrais com Redux Toolkit e stores leves em Zustand; substituição de gargalos de serialização na bridge por bindings TurboModule; otimização da compilação de bytecode Hermes; implementação de telemetria automatizada Sentry & Datadog.',
+              'Liderança técnica na refatoração de fluxos legados, reengenharia de módulos nativos em Kotlin (Android) e Swift (iOS), introdução de segurança móvel avançada (RASP via AppDome) e esteiras automatizadas de CI/CD com Fastlane e Azure DevOps.',
             impactMetrics: [
-              'Taxa de crashes despencou de 14% para 0.08% em menos de 90 dias após o lançamento',
-              'Tempo de boot a frio reduzido em 75% (de 4.8s para 1.2s em aparelhos Android intermediários)',
-              'Consumo de memória RAM reduzido em 55% (de 480MB para 215MB) nos fluxos transacionais',
-              'Sustentação de mais de 5 milhões de eventos transacionais simultâneos durante a Black Friday'
+              'Redução de 98% nos crashes semanais (120k → 2k)',
+              'Queda de 55% no consumo de RAM (de 900MB para 400MB)',
+              'Tempo de splash-to-home reduzido de 60s para 15s (-75%)',
+              'Economia de $10.000 anuais em infraestrutura de nuvem AWS'
             ],
-            technologies: ['React Native 0.74', 'TypeScript 5', 'Redux', 'Hermes Bytecode', 'AWS Lambda', 'Datadog']
+            technologies: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome (RASP)', 'Azure DevOps', 'Jest', 'AWS']
           }
         },
         {
-          id: 'guepsi',
-          title: 'GUEPSI CLINICAL SAAS ENGINE',
-          category: 'PLATAFORMA FULLSTACK // AUTOMAÇÃO CLÍNICA',
+          id: 'design-system',
+          title: 'CROSS-PLATFORM DESIGN SYSTEM & NATIVE MODULES',
+          category: 'SYSTEM DESIGN // DESIGN TOKENS MULTIPLATAFORMA & BRIDGES',
           blocks: '18.200 BLOCOS',
           saveState: 'ESTADO: ATIVO',
-          tagline: 'Ecossistema SaaS para automação de fluxos clínicos e telemetria médica.',
+          tagline: 'Ecossistema unificado de componentes e arquitetura de módulos nativos multiplataforma.',
           synopsis:
-            'Plataforma SaaS fullstack para profissionais de saúde: agendamento automatizado de consultas, criptografia ponta a ponta padrão HIPAA e dashboards clínicos em tempo real.',
-          impact: 'Impacto: redução de 60% no tempo administrativo, conformidade total de dados e sincronia em tempo real.',
-          stack: ['React 19', 'Next.js 15', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Docker'],
+            'Design System corporativo desenvolvido para banQi e WiiD com Storybook, distribuído via registro npm privado no GitHub Packages, tokens de design sincronizados e bridges nativas em Kotlin e Swift.',
+          impact: 'Impacto: velocidade de entrega 2x maior, padronização visual rigorosa entre Mobile e Web, testabilidade total.',
+          stack: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Storybook', 'Kotlin', 'Swift', 'Jest', 'Vitest'],
           fullDossier: {
             challenge:
-              'Sistema clínico multi-inquilino complexo com colisões de concorrência em agendamentos, atrito em fluxos legados de papel e requisitos estritos de conformidade HIPAA e LGPD.',
+              'Inconsistências visuais entre Android, iOS e Web, duplicação contínua de código de componentes, quebras de layout em diferentes densidades de tela e lentidão no ciclo de design-to-code.',
             architecture:
-              'Arquitetura de microsserviços fullstack em Next.js e Node.js com segurança a nível de linha (RLS) no PostgreSQL; criação de algoritmos de concorrência otimista para bloqueio de agenda; pipelines WebSockets para notificações instantâneas.',
+              'Desenvolvimento de biblioteca de componentes altamente desacoplada e tipada com TypeScript, documentada no Storybook e distribuída via GitHub Packages; sincronização automatizada de tokens de design e criação de bridges nativas proprietárias em Kotlin e Swift.',
             impactMetrics: [
-              '60% de redução nas horas administrativas de operação das clínicas',
-              '100% de aprovação em auditorias de conformidade HIPAA e LGPD com zero vulnerabilidades',
-              'Latência p99 abaixo de 80ms para sincronização de calendário em tempo real',
-              'Isolamento multi-inquilino em banco de dados suportando centenas de consultórios médicos'
+              'Padronização de centenas de componentes reutilizáveis entre Mobile e Web',
+              'Velocidade 2x maior na prototipação e entrega de novas features',
+              'Garantia de estabilidade visual com suites de testes unitários Jest, Vitest e Storybook',
+              'Eliminação completa de discrepâncias visuais entre Android e iOS'
             ],
-            technologies: ['Next.js 15', 'React 19', 'Node.js', 'PostgreSQL', 'Prisma', 'Docker', 'WebSockets']
+            technologies: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Storybook', 'Kotlin', 'Swift', 'GitHub Packages', 'Jest', 'Vitest']
           }
         },
         {
@@ -635,23 +635,23 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
           category: 'ORQUESTRAÇÃO DE IA // ACELERAÇÃO DE DESENVOLVIMENTO',
           blocks: '12.300 BLOCOS',
           saveState: 'ESTADO: CERTIFICADO COPILOT',
-          tagline: 'Orquestração multi-agente e geração sintética de baterias de testes.',
+          tagline: 'Ferramentas de IA, automação de PR reviews, geração de testes e blueprints técnicos.',
           synopsis:
-            'Fluxos autônomos de agentes para desenvolvedores utilizando orquestração de LLMs, geração sintética de suites de testes, padrões da certificação GitHub Copilot e verificação CI/CD automatizada.',
-          impact: 'Impacto: aceleração 4x na entrega de boilerplate, 100% de testes verificados, certificação GitHub Copilot.',
-          stack: ['Python', 'LangChain', 'FastAPI', 'Docker', 'GitHub Actions', 'Copilot CLI'],
+            'Desenvolvimento de ferramentas customizadas e agentes de IA para aceleração do ciclo de desenvolvimento de software, automação de revisões de código, geração de testes unitários e documentações técnicas.',
+          impact: 'Impacto: aceleração substancial no ciclo de entrega, triagem de PRs com IA, elevação de 0% para 40% em cobertura de testes, certificação GitHub Copilot.',
+          stack: ['GitHub Copilot', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript', 'Prompt Engineering', 'Jest', 'Vitest'],
           fullDossier: {
             challenge:
-              'Gargalos na velocidade de desenvolvimento causados por escrita manual repetitiva de boilerplate, baixa cobertura de testes unitários em módulos legados e ciclos lentos de revisão de PRs.',
+              'Altos gargalos de tempo em revisões manuais de PRs repetitivos, elaboração demorada de documentação técnica e de negócios (KRs, User Stories e Blueprints) e lacunas em testes unitários legados.',
             architecture:
-              'Construção de pipeline autônomo multi-agente utilizando Python e LangChain para analisar ASTs, gerar baterias completas de testes Jest/Vitest com fuzzing de borda e aplicar as melhores práticas arquiteturais do GitHub Copilot.',
+              'Criação de prompts técnicos e pipelines automatizados com IA integrados a GitHub Actions e Azure DevOps para realizar análise preliminar de código, identificar regressões e gerar suítes de testes Jest/Vitest e especificações técnicas.',
             impactMetrics: [
-              'Conquista da credencial oficial GitHub Copilot Certified',
-              'Elevação da cobertura de testes de 0% para 40% em repositórios legados de forma automatizada',
-              'Redução de 4x no tempo de criação de boilerplate para endpoints REST e GraphQL padrão',
-              'Agente de revisão automatizada de PRs faz a triagem de 85% das inconsistências de estilo'
+              'Redução substancial do overhead de documentação técnica e de negócio',
+              'Aceleração expressiva na homologação de pull requests entre times multidisciplinares',
+              'Elevação na cobertura de testes unitários de 0% para 40% com Jest e Vitest',
+              'Validação oficial com credencial GitHub Copilot Certified (2025–2028)'
             ],
-            technologies: ['Python 3.12', 'LangChain', 'FastAPI', 'GitHub Copilot API', 'Docker', 'Vitest']
+            technologies: ['GitHub Copilot', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript', 'Prompt Engineering', 'Jest', 'Vitest']
           }
         }
       ]
@@ -728,39 +728,39 @@ export const xboxTranslations: { en: XboxTranslationType; pt: XboxTranslationTyp
       sectors: [
         {
           id: 'invillia',
-          period: '2022 — PRESENTE [ATIVO]',
-          company: 'INVILLIA / CASAS BAHIA / BANQI',
-          role: 'Engenheiro Mobile & Fullstack Sênior',
+          period: 'SET 2024 — PRESENTE [ATIVO]',
+          company: 'INVILLIA (AN AI/R COMPANY)',
+          role: 'Engenheiro de Software Sênior & Pleno (Front-end & Mobile)',
           description:
-            'Engenharia de fintechs com alto throughput, otimização da bridge nativa, tuning Hermes V8, automação de CI/CD e sistemas de pagamento multi-tenant.',
-          clock: 'CLK: 1.2s BOOT // 0.08% CRASH'
+            'Sênior (Set 2025 – Presente) & Pleno (Set 2024 – Set 2025). Referência técnica para banQi (Grupo Casas Bahia): redução de 98% nos crashes, -55% de RAM, boot de 15s (-75%), 0%→40% em testes e automação com IA.',
+          clock: 'CLK: 15s BOOT // -98% CRASH'
         },
         {
           id: 'wiid',
-          period: '2021 — 2022',
-          company: 'WIID SOFTWARE LABS',
-          role: 'Engenheiro de Software Fullstack',
+          period: 'DEZ 2021 — SET 2024',
+          company: 'WIID – WORK IN IDEAS',
+          role: 'Desenvolvedor Mobile & Front-end Pleno & Júnior',
           description:
-            'Desenvolvimento de SaaS web de alta velocidade, microsserviços em Node.js, interfaces de dashboards reativos em React e modelagem relacional de banco de dados.',
-          clock: 'CLK: 99.9% UPTIME'
+            'Pleno (Jan 2024 – Set 2024) & Júnior (Dez 2021 – Jan 2024). Construção de produtos digitais multiplataforma com React, Next.js e React Native (Expo). Ownership de ponta a ponta, testes unitários com Jest e mentoria técnica.',
+          clock: 'CLK: MULTIPLATAFORMA'
         },
         {
           id: 'freelance',
-          period: '2020 — 2021',
-          company: 'FREELANCE & CONSULTING',
-          role: 'Arquiteto de Sistemas & Desenvolvedor',
+          period: 'DEZ 2020 — DEZ 2021',
+          company: 'FREELANCE – AUTÔNOMO',
+          role: 'Desenvolvedor Web',
           description:
-            'Auditorias de performance arquitetural, aplicações web corporativas, MVPs de produtos mobile e pipelines de integração com APIs de terceiros.',
-          clock: 'CLK: MULTI-CLIENTES'
+            'Desenvolvimento e manutenção de aplicações web utilizando PHP, JavaScript, CSS, HTML e WordPress. Criação de landing pages responsivas de alta conversão e gestão direta de entregas com clientes.',
+          clock: 'CLK: STACK WEB'
         },
         {
-          id: 'academia',
-          period: '2018 — 2020',
-          company: 'ACADEMIA & LABORATÓRIOS',
-          role: 'Bacharel em Ciência da Computação / Sistemas',
+          id: 'education-certs',
+          period: '2019 — 2028',
+          company: 'UNINTER & CERTIFICAÇÕES OFICIAIS',
+          role: 'Graduação Tecnológica ADS // Certificado AWS & GitHub Copilot',
           description:
-            'Estudo aprofundado de sistemas distribuídos, complexidade computacional, arquitetura de computadores, design de sistemas operacionais e otimização algorítmica.',
-          clock: 'CLK: DIPLOMA CS'
+            'Graduação Tecnológica em Análise e Desenvolvimento de Sistemas (Uninter 2019–2021). Credencial oficial GitHub Copilot Certified (2025–2028) e AWS Certified Solutions Architect Associate (Em andamento, previsão Q4 2026).',
+          clock: 'CLK: COPILOT 🎖 + AWS'
         }
       ]
     },

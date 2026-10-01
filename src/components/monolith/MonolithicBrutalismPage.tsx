@@ -97,11 +97,11 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
                 onClick={scrollToTop}
                 className="font-black text-base text-white tracking-tight font-['Space_Grotesk'] hover:text-[#ffaa00] transition-colors cursor-pointer"
               >
-                JV
+                JVGS
               </button>
               <span className="text-white/20">|</span>
               <span className="text-white/60 text-[10px] hidden sm:inline font-mono tracking-widest uppercase">
-                JOÃO VINÍCIUS · SOFTWARE DEVELOPER
+                JOÃO VINÍCIUS GUERBER DE SOUZA · SENIOR SOFTWARE ENGINEER (FRONT-END & MOBILE)
               </span>
             </div>
 
@@ -221,7 +221,7 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 bg-[#ffaa00] rounded-none animate-pulse" />
             <span className="text-white font-bold tracking-wider font-['Space_Grotesk'] text-sm">
-              JOÃO VINÍCIUS
+              JOÃO VINÍCIUS GUERBER DE SOUZA
             </span>
             <span className="text-white/20">|</span>
             <span className="text-[10px] text-white/50 tracking-widest uppercase">

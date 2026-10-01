@@ -1,6 +1,6 @@
 import React from 'react';
 import { MonolithPanel } from './MonolithPanel';
-import { Award, GraduationCap, Globe, Cpu } from 'lucide-react';
+import { Award, GraduationCap, Globe, Cpu, Cloud } from 'lucide-react';
 import { useLanguage } from '../../i18n';
 
 interface TechDomain {
@@ -145,8 +145,8 @@ export const MonolithTechMatrix: React.FC = () => {
           </h2>
           <p className="font-mono text-xs text-white/60 tracking-wider uppercase max-w-2xl leading-relaxed">
             {language === 'pt'
-              ? '32 COMPETÊNCIAS MAPEADAS, CERTIFICAÇÃO OFICIAL MICROSOFT/GITHUB, GRADUAÇÃO E IDIOMAS.'
-              : '32 MAPPED CORE SKILLS, OFFICIAL MICROSOFT/GITHUB CERTIFICATION, DEGREE, AND LANGUAGES.'}
+              ? '32 COMPETÊNCIAS MAPEADAS, CERTIFICAÇÕES OFICIAIS AWS E MICROSOFT/GITHUB, GRADUAÇÃO E IDIOMAS.'
+              : '32 MAPPED CORE SKILLS, OFFICIAL AWS AND MICROSOFT/GITHUB CERTIFICATIONS, DEGREE, AND LANGUAGES.'}
           </p>
         </div>
 
@@ -198,7 +198,28 @@ export const MonolithTechMatrix: React.FC = () => {
 
         {/* Right Container: Certifications, Education & Languages (lg:col-span-4) */}
         <div className="lg:col-span-4 flex flex-col gap-4">
-          {/* Card 1: Official Certification */}
+          {/* Card 1: AWS Official Certification */}
+          <MonolithPanel interactive withCorners className="p-5 flex-1 group hover:border-[#ffaa00]/70 transition-all">
+            <div className="space-y-2">
+              <div className="text-[10px] font-mono font-bold text-[#ffaa00] tracking-widest uppercase flex items-center gap-2">
+                <Cloud size={14} className="text-[#ffaa00]" />
+                <span>{language === 'pt' ? 'CERTIFICAÇÃO OFICIAL // CLOUD' : 'OFFICIAL CERTIFICATION // CLOUD'}</span>
+              </div>
+              <h4 className="text-base font-black font-['Space_Grotesk'] text-white group-hover:text-[#ffaa00] transition-colors">
+                AWS Certified Solutions Architect – Associate
+              </h4>
+              <div className="text-[10px] font-mono text-white/50 uppercase">
+                {language === 'pt' ? 'EMISSOR: AMAZON WEB SERVICES (AWS) · PREVISÃO Q4 2026' : 'ISSUER: AMAZON WEB SERVICES (AWS) · EXPECTED Q4 2026'}
+              </div>
+              <p className="text-xs font-sans text-white/70 leading-relaxed pt-1">
+                {language === 'pt'
+                  ? 'Arquitetura de soluções resilientes em nuvem, alta disponibilidade, computação distribuída e otimização de custos.'
+                  : 'Resilient cloud solutions architecture, high availability, distributed computing, and cost optimization.'}
+              </p>
+            </div>
+          </MonolithPanel>
+
+          {/* Card 2: GitHub Copilot Official Certification */}
           <MonolithPanel interactive withCorners className="p-5 flex-1 group hover:border-[#ffaa00]/70 transition-all">
             <div className="space-y-2">
               <div className="text-[10px] font-mono font-bold text-[#ffaa00] tracking-widest uppercase flex items-center gap-2">

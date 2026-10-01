@@ -19,7 +19,7 @@ export const FrutigerHeroWindow: React.FC<FrutigerHeroWindowProps> = ({ classNam
         <div className="flex items-center gap-2 min-w-0">
           <span className="text-sm shrink-0 drop-shadow-sm">🌐</span>
           <span className="aero-titlebar-text text-xs tracking-tight truncate">
-            João Vinícius — Senior Software Engineer | Portfolio Explorer v8.5
+            João Vinícius Guerber de Souza — Senior Software Engineer | Portfolio Explorer v8.5
           </span>
         </div>
 
@@ -51,8 +51,8 @@ export const FrutigerHeroWindow: React.FC<FrutigerHeroWindowProps> = ({ classNam
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3.5 mb-3">
           {/* Avatar Disc */}
           <div className="w-14 h-14 rounded-full bg-gradient-to-br from-cyan-400 via-sky-500 to-blue-600 p-0.5 shadow-lg shadow-sky-500/25 shrink-0">
-            <div className="w-full h-full rounded-full bg-white flex items-center justify-center font-black text-sky-600 text-lg shadow-inner">
-              JV
+            <div className="w-full h-full rounded-full bg-white flex items-center justify-center font-black text-sky-600 text-base shadow-inner tracking-tight">
+              JVGS
             </div>
           </div>
 
@@ -63,8 +63,8 @@ export const FrutigerHeroWindow: React.FC<FrutigerHeroWindowProps> = ({ classNam
             <p className="text-xs font-semibold text-sky-800">
               {personalInfo.title} ({personalInfo.subtitle}) •{' '}
               {language === 'pt'
-                ? `${personalInfo.yearsOfExperience} de Experiência`
-                : `${personalInfo.yearsOfExperience} of Experience`}
+                ? '6 anos de Experiência'
+                : '6 Years of Experience'}
             </p>
           </div>
         </div>
@@ -86,7 +86,7 @@ export const FrutigerHeroWindow: React.FC<FrutigerHeroWindowProps> = ({ classNam
         <p className="text-xs text-slate-700 leading-relaxed font-normal mb-3.5">
           {language === 'pt'
             ? personalInfo.bio
-            : 'Senior Software Engineer specializing in mobile architecture, high-performance React Native ecosystems, native Kotlin/Swift bridges, and AI-accelerated developer velocity.'}
+            : 'Senior Software Engineer with 6 years of experience specializing in high-impact mobile and web applications. Focus on clean architecture, native Kotlin/Swift modules, extreme system stability, technical debt eradication, and intelligent AI automation.'}
         </p>
 
         {/* Quick Social / Contact Jelly Buttons */}

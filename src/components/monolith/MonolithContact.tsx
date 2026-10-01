@@ -44,8 +44,8 @@ export const MonolithContact: React.FC = () => {
           </h2>
           <p className="font-mono text-xs text-white/60 tracking-wider uppercase max-w-2xl leading-relaxed">
             {language === 'pt'
-              ? 'CANAL CRIPTOGRAFADO DIRETO COM JOÃO VINÍCIUS · RESPOSTA ÁGIL EM MENOS DE 24 HORAS.'
-              : 'ENCRYPTED DIRECT CHANNEL WITH JOÃO VINÍCIUS · FAST RESPONSE IN LESS THAN 24 HOURS.'}
+              ? 'CANAL CRIPTOGRAFADO DIRETO COM JOÃO VINÍCIUS GUERBER DE SOUZA · RESPOSTA ÁGIL EM MENOS DE 24 HORAS.'
+              : 'ENCRYPTED DIRECT CHANNEL WITH JOÃO VINÍCIUS GUERBER DE SOUZA · FAST RESPONSE IN LESS THAN 24 HOURS.'}
           </p>
         </div>
 
@@ -100,7 +100,7 @@ export const MonolithContact: React.FC = () => {
             {/* Social Channels */}
             <div className="grid grid-cols-2 gap-3 pt-2">
               <a
-                href="https://www.linkedin.com/in/joaoguebrer"
+                href="https://www.linkedin.com/in/joaoguebrer/"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={playIndustrialClick}
@@ -135,8 +135,8 @@ export const MonolithContact: React.FC = () => {
 
           <div className="text-[10px] font-mono text-white/40 border-t border-white/10 pt-4 tracking-widest uppercase">
             {language === 'pt'
-              ? 'LOCALIZAÇÃO: BRASIL (DISPONÍVEL REMOTO GLOBAL OU HÍBRIDO)'
-              : 'LOCATION: BRAZIL (AVAILABLE FOR GLOBAL REMOTE OR HYBRID)'}
+              ? 'LOCALIZAÇÃO: BRASIL (REMOTO)'
+              : 'LOCATION: BRAZIL (REMOTE)'}
           </div>
         </MonolithPanel>
 

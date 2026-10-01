@@ -90,7 +90,7 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
         {/* Top Specular Glint Refraction Line */}
         <div className="absolute inset-x-4 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none rounded-full" />
 
-        {/* Left: JV Brand + Refractive Status Circle */}
+        {/* Left: JVGS Brand + Refractive Status Circle */}
         <div className="flex items-center gap-3 shrink-0 relative z-10">
           <button
             type="button"
@@ -98,7 +98,7 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
             className="flex items-center gap-2.5 group cursor-pointer focus:outline-hidden"
           >
             <span className="font-extrabold text-xl tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
-              JV
+              JVGS
             </span>
             {/* Subtle glass circle status dot from design */}
             <span className="relative flex h-3 w-3 items-center justify-center">

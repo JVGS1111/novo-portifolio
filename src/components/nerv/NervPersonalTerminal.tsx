@@ -41,7 +41,7 @@ export const NervPersonalTerminal: React.FC<NervPersonalTerminalProps> = ({
         </h1>
       </div>
 
-      {/* Subtitle in Red: João Vinícius Guerber */}
+      {/* Subtitle in Red: João Vinícius Guerber de Souza */}
       <div className="mb-3">
         <h2 className="text-base sm:text-lg font-black tracking-widest text-[#FF1801] uppercase font-mono">
           {terminal.fullName}

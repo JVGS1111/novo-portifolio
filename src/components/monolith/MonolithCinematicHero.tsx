@@ -39,9 +39,9 @@ const featuredProjectsEn = [
     category: 'MOBILE FINTECH',
     thumbImg: thumbBanqi,
     description:
-      'Senior mobile engineering for Grupo Casas Bahia app serving millions of active users. Architectural refactoring, 98% crash elimination, and drastic boot time reduction.',
-    metrics: ['-98% Production crashes', '-55% RAM consumption', '-75% Splash Time', '$10k AWS monthly savings'],
-    stack: ['React Native', 'Kotlin Native', 'Swift', 'TypeScript', 'Fastlane', 'AppDome RASP']
+      'Senior mobile engineering for Grupo Casas Bahia app serving millions of active users. Architectural refactoring, 98% crash elimination, -55% RAM reduction, and boot time accelerated by 75%.',
+    metrics: ['-98% Weekly crashes (120k → 2k)', '-55% RAM consumption (400MB)', '-75% Splash to home (15s)', '+$10k/yr AWS infrastructure savings'],
+    stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome RASP']
   },
   {
     id: 'ai-agents',
@@ -49,9 +49,9 @@ const featuredProjectsEn = [
     category: 'DEV WORKFLOW & AI',
     thumbImg: thumbAi,
     description:
-      'Orchestration of autonomous AI agents and continuous static analysis pipelines for test suite generation, regression auditing, and accelerated CI/CD pipelines.',
-    metrics: ['GitHub Copilot Certified', 'Automated Jest/Vitest suites', 'Accelerated PR review & signoff', 'Autonomous code agents'],
-    stack: ['GitHub Copilot', 'TypeScript', 'Custom AI Agents', 'Vitest', 'CI/CD Automation']
+      'Custom developer tools and AI workflows for automated PR reviews, test suite generation (Jest/Vitest), KRs, User Stories, and architecture blueprints.',
+    metrics: ['GitHub Copilot Certified', 'Automated Jest/Vitest suites', 'Accelerated PR review & signoff', 'Autonomous code agents & KRs'],
+    stack: ['GitHub Copilot', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript']
   },
   {
     id: 'design-system',
@@ -59,9 +59,9 @@ const featuredProjectsEn = [
     category: 'MULTI-OS TOKENS',
     thumbImg: thumbDesign,
     description:
-      'Unified ecosystem of design tokens and decoupled TypeScript components, with native bridges and absolute parity across Android, iOS, and Web.',
+      'Cross-platform Design System (banQi & WiiD) with decoupled TypeScript components, design tokens, and native bridges across Android, iOS, and Web.',
     metrics: ['Multi-OS Standardization', '2x Delivery speed', '100% Type coverage', 'Automated Jest/Vitest tests'],
-    stack: ['Design Tokens', 'React Native', 'React', 'Next.js', 'TypeScript', 'Storybook']
+    stack: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Design Systems']
   }
 ];
 
@@ -72,9 +72,9 @@ const featuredProjectsPt = [
     category: 'MOBILE FINTECH',
     thumbImg: thumbBanqi,
     description:
-      'Engenharia mobile sênior no aplicativo do Grupo Casas Bahia com milhões de usuários ativos. Refatoração arquitetural, eliminação de 98% dos crashes e redução drástica do tempo de boot.',
-    metrics: ['-98% Crashes em produção', '-55% Consumo de RAM', '-75% Splash Time', '$10k economia AWS'],
-    stack: ['React Native', 'Kotlin Native', 'Swift', 'TypeScript', 'Fastlane', 'AppDome RASP']
+      'Engenharia mobile sênior no aplicativo do Grupo Casas Bahia com milhões de usuários ativos. Refatoração arquitetural, eliminação de 98% dos crashes, corte de 55% de RAM e aceleração de 75% no carregamento.',
+    metrics: ['-98% Crashes semanais (120k → 2k)', '-55% Consumo de RAM (400MB)', '-75% Splash to home (15s)', '+$10k/ano economia AWS'],
+    stack: ['React Native', 'Kotlin', 'Swift', 'TypeScript', 'Fastlane', 'AppDome RASP']
   },
   {
     id: 'ai-agents',
@@ -82,9 +82,9 @@ const featuredProjectsPt = [
     category: 'DEV WORKFLOW & IA',
     thumbImg: thumbAi,
     description:
-      'Orquestração de agentes autônomos de IA e pipelines contínuos de análise estática para geração de suítes de testes, auditoria de regressões e aceleração de esteiras CI/CD.',
-    metrics: ['GitHub Copilot Certified', 'Suítes automatizadas Jest/Vitest', 'Homologação acelerada de PRs', 'Agentes autônomos de código'],
-    stack: ['GitHub Copilot', 'TypeScript', 'Custom AI Agents', 'Vitest', 'CI/CD Automation']
+      'Ferramentas customizadas e agentes de IA para aceleração do ciclo de desenvolvimento, revisão de PRs, geração de testes Jest/Vitest, KRs, User Stories e blueprints.',
+    metrics: ['GitHub Copilot Certified', 'Suítes automatizadas Jest/Vitest', 'Homologação acelerada de PRs', 'Agentes autônomos de código & KRs'],
+    stack: ['GitHub Copilot', 'Generative AI', 'Custom Agents', 'CI/CD Automation', 'TypeScript']
   },
   {
     id: 'design-system',
@@ -92,9 +92,9 @@ const featuredProjectsPt = [
     category: 'TOKENS MULTI-SO',
     thumbImg: thumbDesign,
     description:
-      'Ecossistema unificado de design tokens e componentes desacoplados tipados em TypeScript, com pontes nativas e paridade absoluta entre Android, iOS e Web.',
+      'Design System corporativo multiplataforma (banQi & WiiD) com tokens de design, componentes desacoplados tipados em TypeScript e pontes nativas Android/iOS.',
     metrics: ['Padronização Multi-SO', '2x Velocidade de entrega', '100% Cobertura de tipos', 'Testes automatizados Jest/Vitest'],
-    stack: ['Design Tokens', 'React Native', 'React', 'Next.js', 'TypeScript', 'Storybook']
+    stack: ['React Native', 'React', 'Next.js', 'Expo', 'TypeScript', 'Design Systems']
   }
 ];
 
@@ -133,7 +133,7 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
 
       {/* TOP BAR / NAVIGATION (Matches Image 1:1) */}
       <header className="absolute top-0 left-0 right-0 z-30 px-6 sm:px-12 py-7 flex items-center justify-between text-white font-sans transition-opacity duration-300">
-        {/* Left: JV — JOÃO VINÍCIUS SOFTWARE DEVELOPER */}
+        {/* Left: JVGS — JOÃO VINÍCIUS GUERBER DE SOUZA SENIOR SOFTWARE ENGINEER */}
         <div className="flex items-center gap-3.5">
           <button
             type="button"
@@ -143,14 +143,14 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
             }}
             className="text-xl sm:text-2xl font-black tracking-tight text-white font-['Space_Grotesk'] hover:opacity-80 transition-opacity cursor-pointer"
           >
-            JV
+            JVGS
           </button>
 
           <span className="w-5 h-[1.5px] bg-white/40 block" />
 
           <div className="flex flex-col text-[10px] sm:text-[11px] font-mono tracking-widest uppercase leading-tight text-white/90">
-            <span className="font-semibold">JOÃO VINÍCIUS</span>
-            <span className="text-white/50 text-[9px]">SOFTWARE DEVELOPER</span>
+            <span className="font-semibold">JOÃO VINÍCIUS GUERBER DE SOUZA</span>
+            <span className="text-white/50 text-[9px]">SENIOR SOFTWARE ENGINEER (FRONT-END & MOBILE)</span>
           </div>
         </div>
 

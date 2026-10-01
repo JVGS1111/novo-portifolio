@@ -57,8 +57,8 @@ export const ProfileApp: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-start gap-4 pb-3 border-b border-slate-200">
               {/* Retro Pixel Avatar Box */}
               <div className="w-20 h-20 shrink-0 bg-[#008080] border-2 border-t-white border-l-white border-r-black border-b-black flex flex-col items-center justify-center text-white shadow">
-                <span className="text-2xl font-bold font-mono">JG</span>
-                <span className="text-[9px] uppercase tracking-wider font-mono">v5.0</span>
+                <span className="text-xl font-bold font-mono tracking-tight">JVGS</span>
+                <span className="text-[9px] uppercase tracking-wider font-mono">v6.0</span>
               </div>
 
               <div className="flex-1 space-y-1">
@@ -74,7 +74,7 @@ export const ProfileApp: React.FC = () => {
                   {personalInfo.title} — <span className="text-blue-800">{personalInfo.subtitle}</span>
                 </div>
                 <div className="text-[10px] text-slate-600">
-                  {isPt ? 'Experiência:' : 'Experience:'} <span className="font-bold text-black">{isPt ? '5 anos' : '5 Years'}</span> | {isPt ? 'Localização:' : 'Location:'} <span className="font-bold text-black">{isPt ? 'Brasil (Remoto)' : 'Brazil (Remote)'}</span>
+                  {isPt ? 'Experiência:' : 'Experience:'} <span className="font-bold text-black">{isPt ? '6 anos' : '6 Years'}</span> | {isPt ? 'Localização:' : 'Location:'} <span className="font-bold text-black">{isPt ? 'Brasil (Remoto)' : 'Brazil (Remote)'}</span>
                 </div>
               </div>
             </div>
@@ -92,12 +92,12 @@ export const ProfileApp: React.FC = () => {
             {/* Communication & Social Contacts (Sunken Table) */}
             <div className="border border-[#808080] rounded-xs overflow-hidden">
               <div className="bg-[#C0C0C0] px-2 py-1 font-bold text-[10px] border-b border-[#808080]">
-                {isPt ? 'CANAIS DE CONTATO & REFERÊNCIAS' : 'CONTACT CHANNELS & REFERENCES'}
+                {isPt ? 'CANAIS DE CONTATO, CERTIFICAÇÕES & FORMAÇÃO' : 'CONTACT CHANNELS, CERTIFICATIONS & EDUCATION'}
               </div>
               <table className="w-full text-left border-collapse">
                 <tbody>
                   <tr className="border-b border-slate-200 hover:bg-blue-50">
-                    <td className="px-2 py-1 font-bold text-slate-700 w-28">📧 E-mail:</td>
+                    <td className="px-2 py-1 font-bold text-slate-700 w-32">📧 E-mail:</td>
                     <td className="px-2 py-1">
                       <a href={`mailto:${personalInfo.email}`} className="text-blue-700 underline font-mono">
                         {personalInfo.email}
@@ -120,10 +120,22 @@ export const ProfileApp: React.FC = () => {
                       </a>
                     </td>
                   </tr>
-                  <tr className="hover:bg-blue-50">
-                    <td className="px-2 py-1 font-bold text-slate-700">🛡️ {isPt ? 'Certificação:' : 'Certification:'}</td>
+                  <tr className="border-b border-slate-200 hover:bg-blue-50">
+                    <td className="px-2 py-1 font-bold text-slate-700">☁️ {isPt ? 'Certificação AWS:' : 'AWS Certification:'}</td>
+                    <td className="px-2 py-1 text-amber-900 font-bold">
+                      AWS Certified Solutions Architect – Associate ({isPt ? 'Em andamento – Previsão Q4 2026' : 'In progress – Expected Q4 2026'})
+                    </td>
+                  </tr>
+                  <tr className="border-b border-slate-200 hover:bg-blue-50">
+                    <td className="px-2 py-1 font-bold text-slate-700">🛡️ {isPt ? 'Certificação GitHub:' : 'GitHub Certification:'}</td>
                     <td className="px-2 py-1 text-purple-900 font-bold">
                       GitHub Copilot Certified (Official 2025–2028)
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="px-2 py-1 font-bold text-slate-700">🎓 {isPt ? 'Formação Acadêmica:' : 'Higher Education:'}</td>
+                    <td className="px-2 py-1 text-slate-900 font-semibold">
+                      {isPt ? 'Tecnólogo em Análise e Desenvolvimento de Sistemas (Uninter, 2019–2021)' : 'Systems Analysis and Development Degree (Uninter, 2019–2021)'}
                     </td>
                   </tr>
                 </tbody>
@@ -136,7 +148,7 @@ export const ProfileApp: React.FC = () => {
         {activeTab === 'exp' && (
           <div className="space-y-3">
             <div className="font-bold text-[#000080] text-xs pb-1 border-b border-slate-300">
-              {isPt ? 'HISTÓRICO PROFISSIONAL EM PRODUÇÃO (2021 – PRESENTE)' : 'PRODUCTION CAREER TIMELINE (2021 – PRESENT)'}
+              {isPt ? 'HISTÓRICO PROFISSIONAL EM PRODUÇÃO (2020 – PRESENTE)' : 'PRODUCTION CAREER TIMELINE (2020 – PRESENT)'}
             </div>
             {t.experience.items.map((exp) => (
               <div key={exp.id} className="p-2.5 bg-[#FAFAFA] border border-[#808080] rounded-xs space-y-1.5">

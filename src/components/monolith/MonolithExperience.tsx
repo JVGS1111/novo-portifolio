@@ -18,30 +18,31 @@ const experiencesDataEn: ExperienceItem[] = [
   {
     id: 'OP-01',
     role: 'Senior Software Engineer (Front-end & Mobile)',
-    company: 'Invillia',
+    company: 'Invillia (an AI/R company)',
     period: 'SEP 2025 – PRESENT [CURRENT]',
-    scope: 'banQi (Grupo Casas Bahia)',
+    scope: 'banQi / Casas Bahia Pay (Grupo Casas Bahia)',
     description:
-      'Technical leadership in mobile and front-end architecture at critical scale. Native bridges architecture in Kotlin/Swift, crash mitigation, production stabilization, and quality governance with automated test suites.',
+      'Technical leadership in mobile and front-end architecture for banQi, driving critical initiatives in performance, stability, and system architecture.',
     highlights: [
-      'Technical leadership in native bridge architecture and Hermes engine migration',
-      'Proactive crash mitigation and observability via Dynatrace and Databricks',
-      'Technical mentorship and automation adoption with intelligent AI agents'
+      'Technical leadership: 98% crash reduction and 55% RAM cut',
+      '75% faster splash-to-home boot time via React Native and native module reengineering',
+      'Transition from 0% to 40% test coverage with 100% CI/CD reliability',
+      'Strategic AI innovation: custom tools for PR reviews, tests, KRs, and blueprints'
     ],
     isCurrent: true
   },
   {
     id: 'OP-02',
     role: 'Mid-Level Software Engineer (Front-end & Mobile)',
-    company: 'Invillia',
+    company: 'Invillia (an AI/R company)',
     period: 'SEP 2024 – SEP 2025',
-    scope: 'banQi - Casas Bahia Pay',
+    scope: 'banQi - Casas Bahia Pay (Grupo Casas Bahia)',
     description:
-      'Refactoring high-volume financial transaction flows, modernizing reusable core React Native components, and integrating native security SDKs with RASP.',
+      'Continuous development of resilient mobile apps, deep native integrations, and shared Design System evolution.',
     highlights: [
-      'Elimination of render bottlenecks and deep list virtualization',
-      'Integration of banking security modules and payload encryption',
-      'Implementation of automated test suites with Jest'
+      'System design and reusable Design System across mobile and web',
+      'Creation and maintenance of React Native native modules in Kotlin (Android) and Swift (iOS)',
+      'High technical standards with Clean Code, SOLID, and comprehensive unit tests'
     ],
     isCurrent: false
   },
@@ -50,13 +51,13 @@ const experiencesDataEn: ExperienceItem[] = [
     role: 'Mid-Level Mobile & Front-end Developer',
     company: 'WiiD – Work in Ideas',
     period: 'JAN 2024 – SEP 2024',
-    scope: 'High-Performance Cross-Platform Applications',
+    scope: 'Cross-Platform Digital Products',
     description:
-      'Development of high-performance cross-platform applications, integration with distributed APIs, render cycle optimization, and decoupled architecture.',
+      'Development of cross-platform digital products focused on high UX fidelity, performance, and test coverage.',
     highlights: [
-      'Development of universal apps with React Native and Next.js',
-      'Configuration of continuous integration and delivery pipelines (CI/CD)',
-      'Animation performance optimization with Framer Motion and Reanimated'
+      'Cross-platform applications with React, Next.js, and React Native (Expo) with high UI/UX fidelity',
+      'Complete feature ownership from Figma design to production deployment',
+      'Unit test suites with Jest and Vitest, plus technical mentorship for junior engineers'
     ],
     isCurrent: false
   },
@@ -67,11 +68,26 @@ const experiencesDataEn: ExperienceItem[] = [
     period: 'DEC 2021 – JAN 2024',
     scope: 'Scalable Web & Mobile Interfaces',
     description:
-      'Building responsive web and mobile interfaces, unit and integration automated testing, standardizing reusable components, and consuming REST APIs.',
+      'Early engineering trajectory building scalable web and mobile interfaces in the TypeScript and React ecosystem.',
     highlights: [
-      'Implementation of design systems based on design tokens',
-      'Development of scalable SPAs and enterprise dashboards',
-      'Creation of unit test suites and regression test coverage'
+      'Development and maintenance of web and mobile products with React, React Native, and TypeScript',
+      'Writing unit tests with Jest to ensure continuous stability',
+      'Standardization of reusable components and clean code best practices'
+    ],
+    isCurrent: false
+  },
+  {
+    id: 'OP-05',
+    role: 'Web Developer',
+    company: 'Freelance – Autônomo',
+    period: 'DEC 2020 – DEC 2021',
+    scope: 'Web Applications & Landing Pages',
+    description:
+      'Development and maintenance of web applications, high-conversion landing pages, and custom websites.',
+    highlights: [
+      'Web application development using PHP, JavaScript, CSS, and HTML',
+      'Responsive landing pages and custom websites with WordPress',
+      'Direct client management with strong focus on delivery timelines and quality'
     ],
     isCurrent: false
   }
@@ -81,30 +97,31 @@ const experiencesDataPt: ExperienceItem[] = [
   {
     id: 'OP-01',
     role: 'Senior Software Engineer (Front-end & Mobile)',
-    company: 'Invillia',
+    company: 'Invillia (an AI/R company)',
     period: 'SET 2025 – PRESENTE [ATUAL]',
-    scope: 'banQi (Grupo Casas Bahia)',
+    scope: 'banQi / Casas Bahia Pay (Grupo Casas Bahia)',
     description:
-      'Liderança técnica de arquitetura mobile e front-end em escala crítica. Arquitetura de pontes nativas Kotlin/Swift, mitigação de crashes, estabilização de produção e governança de qualidade com suítes de testes.',
+      'Atuação como referência técnica em engenharia mobile e front-end para o cliente banQi, liderando iniciativas críticas de performance, estabilidade e arquitetura.',
     highlights: [
-      'Liderança técnica na arquitetura de pontes nativas e migração para Hermes',
-      'Mitigação e monitoramento proativo de crashes via Dynatrace e Databricks',
-      'Mentoria técnica e adoção de automação com agentes inteligentes de IA'
+      'Liderança técnica: redução de 98% em crashes e corte de 55% de memória RAM',
+      'Aceleração de 75% no carregamento de splash to home via reengenharia em React Native e módulos nativos',
+      'Transição de 0% para 40% de testes automatizados com 100% confiabilidade em CI/CD',
+      'Inovação estratégica com IA: ferramentas customizadas para PR reviews, testes, KRs e blueprints'
     ],
     isCurrent: true
   },
   {
     id: 'OP-02',
     role: 'Mid-Level Software Engineer (Front-end & Mobile)',
-    company: 'Invillia',
+    company: 'Invillia (an AI/R company)',
     period: 'SET 2024 – SET 2025',
-    scope: 'banQi - Casas Bahia Pay',
+    scope: 'banQi - Casas Bahia Pay (Grupo Casas Bahia)',
     description:
-      'Refatoração de fluxos financeiros de alto volume, modernização de core components reutilizáveis React Native e integração de SDKs nativos de segurança com RASP.',
+      'Desenvolvimento contínuo de aplicações móveis robustas, integração nativa profunda e evolução do Design System compartilhado.',
     highlights: [
-      'Eliminação de gargalos de render e virtualização profunda de listas',
-      'Integração de módulos de segurança bancária e criptografia de payloads',
-      'Implementação de suítes de testes automatizados com Jest'
+      'System design e construção de Design System reutilizável entre mobile e web',
+      'Criação e manutenção de módulos nativos para React Native em Kotlin (Android) e Swift (iOS)',
+      'Entregas de excelência técnica com Clean Code, SOLID e testes abrangentes unitários'
     ],
     isCurrent: false
   },
@@ -113,13 +130,13 @@ const experiencesDataPt: ExperienceItem[] = [
     role: 'Mid-Level Mobile & Front-end Developer',
     company: 'WiiD – Work in Ideas',
     period: 'JAN 2024 – SET 2024',
-    scope: 'Aplicações Cross-Platform de Alta Performance',
+    scope: 'Produtos Digitais Multiplataforma',
     description:
-      'Desenvolvimento de aplicações cross-platform de alta performance, integração com APIs distribuídas, otimização de ciclos de render e arquitetura desacoplada.',
+      'Desenvolvimento de produtos digitais multiplataforma com foco em alta experiência de usuário, performance e cobertura de testes.',
     highlights: [
-      'Desenvolvimento de apps universais com React Native e Next.js',
-      'Configuração de pipelines de integração contínua (CI/CD)',
-      'Otimização de performance de animações com Framer Motion e Reanimated'
+      'Aplicações cross-platform com React, Next.js e React Native (Expo) de alta fidelidade UI/UX',
+      'Ownership completo de features, desde design no Figma até deploy final em produção',
+      'Suítes de testes unitários com Jest e Vitest, além de mentoria técnica para desenvolvedores juniores'
     ],
     isCurrent: false
   },
@@ -130,11 +147,26 @@ const experiencesDataPt: ExperienceItem[] = [
     period: 'DEZ 2021 – JAN 2024',
     scope: 'Interfaces Web & Mobile Escaláveis',
     description:
-      'Construção de interfaces web e mobile responsivas, testes automatizados unitários/integração, padronização de componentes reutilizáveis e consumo de APIs REST.',
+      'Início da trajetória profissional na construção de interfaces web e mobile escaláveis no ecossistema TypeScript e React.',
     highlights: [
-      'Implementação de design systems baseados em design tokens',
-      'Desenvolvimento de SPAs escaláveis e dashboards corporativos',
-      'Criação de testes unitários e cobertura de regressão'
+      'Desenvolvimento e manutenção de produtos web e mobile com React, React Native e TypeScript',
+      'Escrita de testes unitários com Jest para assegurar estabilidade contínua',
+      'Padronização de componentes reutilizáveis e boas práticas de código limpo'
+    ],
+    isCurrent: false
+  },
+  {
+    id: 'OP-05',
+    role: 'Desenvolvedor Web',
+    company: 'Freelance – Autônomo',
+    period: 'DEZ 2020 – DEZ 2021',
+    scope: 'Aplicações Web & Landing Pages',
+    description:
+      'Desenvolvimento e manutenção de aplicações web, landing pages de alta conversão e websites customizados.',
+    highlights: [
+      'Desenvolvimento de aplicações web utilizando PHP, JavaScript, CSS e HTML',
+      'Criação de landing pages responsivas e websites customizados em WordPress',
+      'Gestão direta de clientes com forte foco em prazos e qualidade de entrega'
     ],
     isCurrent: false
   }
@@ -165,7 +197,7 @@ export const MonolithExperience: React.FC = () => {
 
         <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 font-mono text-[10px] text-white/70 tracking-widest uppercase">
           <Briefcase size={14} className="text-[#ffaa00]" />
-          <span>{language === 'pt' ? '4 POSIÇÕES OPERACIONAIS' : '4 OPERATIONAL POSITIONS'}</span>
+          <span>{language === 'pt' ? '5 POSIÇÕES OPERACIONAIS' : '5 OPERATIONAL POSITIONS'}</span>
         </div>
       </div>
 

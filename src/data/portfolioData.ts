@@ -8,7 +8,7 @@ export const personalInfo = {
   fullName: 'João Vinícius Guerber de Souza',
   title: 'Senior Software Engineer',
   subtitle: 'Front-end & Mobile Specialist',
-  yearsOfExperience: '5 anos',
+  yearsOfExperience: '6 anos',
   bio: 'Engenheiro de Software Sênior especializado em modernização de aplicações móveis e web de alto impacto e escala. Foco em arquitetura limpa, módulos nativos (Kotlin/Swift), estabilidade extrema de sistemas, eliminação de débito técnico e automação inteligente com IA.',
   location: 'Brasil',
   email: 'joaoviniciusgs@gmail.com',
@@ -197,6 +197,20 @@ export const experiences: ExperienceItem[] = [
       'Escrita de testes unitários com Jest para assegurar estabilidade contínua e padrões de qualidade de código.'
     ],
     technologies: ['React', 'React Native', 'TypeScript', 'Jest', 'JavaScript', 'HTML5/CSS3']
+  },
+  {
+    id: 'freelance-web',
+    company: 'Freelance – Autônomo',
+    role: 'Desenvolvedor Web',
+    period: 'Dez 2020 – Dez 2021',
+    current: false,
+    summary: 'Desenvolvimento e manutenção de aplicações web, landing pages de alta conversão e websites customizados.',
+    responsibilities: [
+      'Desenvolvimento e manutenção de aplicações web utilizando PHP, JavaScript, CSS e HTML.',
+      'Criação de landing pages responsivas e websites customizados em WordPress otimizados para conversão.',
+      'Gestão direta de múltiplos clientes com forte foco em prazos e qualidade de entrega.'
+    ],
+    technologies: ['PHP', 'JavaScript', 'CSS', 'HTML', 'WordPress']
   }
 ];
 
@@ -264,6 +278,13 @@ export const skillCategories: SkillCategory[] = [
 ];
 
 export const education: EducationItem[] = [
+  {
+    institution: 'Amazon Web Services (AWS)',
+    title: 'AWS Certified Solutions Architect – Associate',
+    period: 'Em andamento (Previsão Q4 2026)',
+    badge: 'Certificação Oficial',
+    description: 'Arquitetura de soluções resilientes em nuvem, alta disponibilidade, computação distribuída e otimização de custos.'
+  },
   {
     institution: 'GitHub',
     title: 'GitHub Copilot Certified',

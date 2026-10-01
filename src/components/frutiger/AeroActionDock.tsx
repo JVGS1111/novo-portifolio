@@ -62,7 +62,7 @@ export const AeroActionDock: React.FC<AeroActionDockProps> = ({ onScrollToMsn })
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="mailto:joaoviniciusgs@gmail.com?subject=Contato%20via%20Portfolio%20Frutiger%20Aero&body=Olá%20João,%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade!"
+            href="mailto:joaoviniciusgs@gmail.com?subject=Contato%20via%20Portfolio%20Frutiger%20Aero&body=Olá%20João%20Vinícius,%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade!"
             onClick={playAeroClick}
             className="btn-jelly-blue px-4 py-2.5 rounded-full text-xs font-bold flex items-center gap-2 cursor-pointer shadow-lg"
           >

@@ -99,7 +99,7 @@ export const AeroTaskbarVista: React.FC<AeroTaskbarVistaProps> = ({
 
                 {/* Portfolio Selector in Start Menu */}
                 <div className="text-[11px] font-bold text-sky-950 px-2 py-1 uppercase tracking-wider font-mono">
-                  {language === 'pt' ? 'Alternar Portfólio / Temas' : 'Switch Portfolio / Themes'}
+                  {language === 'pt' ? 'Alternar Mundos / Landing Pages' : 'Switch Worlds / Landing Pages'}
                 </div>
 
                 <div className="space-y-1 my-1">

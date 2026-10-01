@@ -11,7 +11,7 @@ import {
   startAtmosphericDrone,
   stopAtmosphericDrone
 } from './monolithAudio';
-import { PortfolioSwitcher } from '../PortfolioSwitcher';
+import { MonolithWorldSelector } from './MonolithWorldSelector';
 import { useLanguage } from '../../i18n';
 import thumbBanqi from '../../assets/monolith_thumb_banqi.jpg';
 import thumbAi from '../../assets/monolith_thumb_ai.jpg';
@@ -250,9 +250,9 @@ export const MonolithCinematicHero: React.FC<MonolithCinematicHeroProps> = ({
             [{language === 'en' ? 'EN' : 'PT'}]
           </button>
 
-          {/* Quick Portfolio Theme Switcher */}
+          {/* Quick World Switcher */}
           <div className="hidden lg:block">
-            <PortfolioSwitcher variant="navbar" />
+            <MonolithWorldSelector variant="navbar" />
           </div>
 
           {/* [ /// CONTACT /// ] Bracketed Button */}

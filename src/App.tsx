@@ -1,21 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { LanguageProvider } from './i18n';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { ImpactMetrics } from './components/ImpactMetrics';
-import { CaseStudies } from './components/CaseStudies';
-import { ExperienceTimeline } from './components/ExperienceTimeline';
-import { TechMatrix } from './components/TechMatrix';
-import { CertificationsEducation } from './components/CertificationsEducation';
-import { ContactFooter } from './components/ContactFooter';
-import { MotionCursor } from './components/motion/MotionCursor';
-import { ScrollProgress } from './components/motion/ScrollProgress';
-import { Windows98Page } from './components/win98/Windows98Page';
-import { SteamyGlassPage } from './components/steamy/SteamyGlassPage';
-import { FrutigerAeroPage } from './components/frutiger/FrutigerAeroPage';
-import { MonolithicBrutalismPage } from './components/monolith/MonolithicBrutalismPage';
-import { EvaEpisodePage } from './components/eva/EvaEpisodePage';
-import { PortfolioSwitcher } from './components/PortfolioSwitcher';
+
+// Code-split Worlds using React.lazy for instant initial loads & zero memory leaks across worlds
+const ModernExecutivePage = lazy(() =>
+  import('./components/modern/ModernExecutivePage').then(m => ({ default: m.ModernExecutivePage }))
+);
+const Windows98Page = lazy(() =>
+  import('./components/win98/Windows98Page').then(m => ({ default: m.Windows98Page }))
+);
+const SteamyGlassPage = lazy(() =>
+  import('./components/steamy/SteamyGlassPage').then(m => ({ default: m.SteamyGlassPage }))
+);
+const FrutigerAeroPage = lazy(() =>
+  import('./components/frutiger/FrutigerAeroPage').then(m => ({ default: m.FrutigerAeroPage }))
+);
+const MonolithicBrutalismPage = lazy(() =>
+  import('./components/monolith/MonolithicBrutalismPage').then(m => ({ default: m.MonolithicBrutalismPage }))
+);
+const EvaEpisodePage = lazy(() =>
+  import('./components/eva/EvaEpisodePage').then(m => ({ default: m.EvaEpisodePage }))
+);
+const NervTacticalHangarPage = lazy(() =>
+  import('./components/nerv/NervTacticalHangarPage').then(m => ({ default: m.NervTacticalHangarPage }))
+);
+const XboxOriginalPage = lazy(() =>
+  import('./components/xbox/XboxOriginalPage').then(m => ({ default: m.XboxOriginalPage }))
+);
+
+const WorldLoadingFallback: React.FC = () => (
+  <div className="min-h-screen w-full bg-[#07090e] flex flex-col items-center justify-center text-slate-400 gap-3 select-none">
+    <div className="w-8 h-8 rounded-full border-2 border-cyan-500/20 border-t-cyan-400 animate-spin" />
+    <span className="text-xs uppercase tracking-widest font-mono text-slate-400">Loading World...</span>
+  </div>
+);
 
 const AppContent: React.FC = () => {
   const [currentHash, setCurrentHash] = useState(() => {
@@ -42,23 +59,39 @@ const AppContent: React.FC = () => {
     currentHash.includes('brutalism') ||
     currentHash.includes('proposta-4') ||
     currentHash.includes('proposal-4') ||
-    currentHash.includes('proposta4');
+    currentHash.includes('proposta4') ||
+    currentHash.includes('mundo-4') ||
+    currentHash.includes('mundo4') ||
+    currentHash.includes('world-4') ||
+    currentHash.includes('world4');
 
   if (isMonolith) {
-    return <MonolithicBrutalismPage onNavigateModern={navigateToModern} />;
+    return (
+      <Suspense fallback={<WorldLoadingFallback />}>
+        <MonolithicBrutalismPage onNavigateModern={navigateToModern} />
+      </Suspense>
+    );
   }
 
   const isSteamy =
     currentHash.includes('steamy') ||
     currentHash.includes('proposta-6') ||
     currentHash.includes('proposal-6') ||
+    currentHash.includes('mundo-6') ||
+    currentHash.includes('mundo6') ||
+    currentHash.includes('world-6') ||
+    currentHash.includes('world6') ||
     currentHash.includes('glass') ||
     currentHash.includes('glassmorphism') ||
     currentHash.includes('fog') ||
     currentHash.includes('frosted');
 
   if (isSteamy) {
-    return <SteamyGlassPage onNavigateModern={navigateToModern} />;
+    return (
+      <Suspense fallback={<WorldLoadingFallback />}>
+        <SteamyGlassPage onNavigateModern={navigateToModern} />
+      </Suspense>
+    );
   }
 
   const isAero =
@@ -67,61 +100,100 @@ const AppContent: React.FC = () => {
     currentHash.includes('proposta5') ||
     currentHash.includes('proposta-5') ||
     currentHash.includes('proposal-5') ||
+    currentHash.includes('mundo5') ||
+    currentHash.includes('mundo-5') ||
+    currentHash.includes('world-5') ||
+    currentHash.includes('world5') ||
     currentHash.includes('msn');
 
   if (isAero) {
-    return <FrutigerAeroPage onNavigateModern={navigateToModern} />;
+    return (
+      <Suspense fallback={<WorldLoadingFallback />}>
+        <FrutigerAeroPage onNavigateModern={navigateToModern} />
+      </Suspense>
+    );
   }
 
-  const isWin98 = currentHash.includes('win98');
+  const isWin98 =
+    currentHash.includes('win98') ||
+    currentHash.includes('mundo-2') ||
+    currentHash.includes('mundo2') ||
+    currentHash.includes('world-2') ||
+    currentHash.includes('world2');
 
   if (isWin98) {
-    return <Windows98Page onNavigateModern={navigateToModern} />;
+    return (
+      <Suspense fallback={<WorldLoadingFallback />}>
+        <Windows98Page onNavigateModern={navigateToModern} />
+      </Suspense>
+    );
   }
 
-  const isEva =
-    currentHash.includes('eva') ||
-    currentHash.includes('nerv') ||
-    currentHash.includes('dogma') ||
+  const isEvaCentralDogma =
     currentHash.includes('central-dogma') ||
+    currentHash.includes('dogma') ||
     currentHash.includes('proposta-8') ||
     currentHash.includes('proposta8') ||
     currentHash.includes('proposal-8') ||
+    currentHash.includes('mundo-8') ||
+    currentHash.includes('mundo8') ||
+    currentHash.includes('world-8') ||
+    currentHash.includes('world8') ||
+    currentHash.includes('episode');
+
+  if (isEvaCentralDogma) {
+    return (
+      <Suspense fallback={<WorldLoadingFallback />}>
+        <EvaEpisodePage onNavigateModern={navigateToModern} />
+      </Suspense>
+    );
+  }
+
+  const isNervTactical =
+    currentHash.includes('nerv') ||
+    currentHash.includes('hangar') ||
+    currentHash.includes('tactical') ||
     currentHash.includes('proposta-7') ||
     currentHash.includes('proposta7') ||
+    currentHash.includes('mundo-7') ||
+    currentHash.includes('mundo7') ||
+    currentHash.includes('world-7') ||
+    currentHash.includes('world7') ||
+    currentHash.includes('eva') ||
     currentHash.includes('evangelion');
 
-  if (isEva) {
-    return <EvaEpisodePage onNavigateModern={navigateToModern} />;
+  if (isNervTactical) {
+    return (
+      <Suspense fallback={<WorldLoadingFallback />}>
+        <NervTacticalHangarPage onNavigateModern={navigateToModern} />
+      </Suspense>
+    );
+  }
+
+  const isXbox =
+    currentHash.includes('xbox') ||
+    currentHash.includes('verde-cristal') ||
+    currentHash.includes('cristal') ||
+    currentHash.includes('proposta-9') ||
+    currentHash.includes('proposta9') ||
+    currentHash.includes('proposal-9') ||
+    currentHash.includes('mundo-9') ||
+    currentHash.includes('mundo9') ||
+    currentHash.includes('world-9') ||
+    currentHash.includes('world9');
+
+  if (isXbox) {
+    return (
+      <Suspense fallback={<WorldLoadingFallback />}>
+        <XboxOriginalPage onNavigateModern={navigateToModern} />
+      </Suspense>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-x-hidden w-full max-w-full">
-      {/* Top Scroll Progress Indicator */}
-      <ScrollProgress />
-
-      {/* Ambient Interactive Motion Cursor */}
-      <MotionCursor />
-
-      {/* Navigation */}
-      <Navbar />
-
-      {/* Main Content */}
-      <main className="flex-1 w-full max-w-full overflow-x-hidden">
-        <Hero />
-        <ImpactMetrics />
-        <CaseStudies />
-        <ExperienceTimeline />
-        <TechMatrix />
-        <CertificationsEducation />
-      </main>
-
-      {/* Floating Portfolio Gallery Switcher */}
-      <PortfolioSwitcher variant="floating" />
-
-      {/* Footer & Contact */}
-      <ContactFooter />
-    </div>
+    <Suspense fallback={<WorldLoadingFallback />}>
+      <ModernExecutivePage />
+    </Suspense>
   );
 };
 

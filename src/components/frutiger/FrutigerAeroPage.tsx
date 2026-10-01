@@ -8,7 +8,7 @@ import { AeroCaseStudies } from './AeroCaseStudies';
 import { AeroExperienceAndTech } from './AeroExperienceAndTech';
 import { AeroActionDock } from './AeroActionDock';
 import { AeroTaskbarVista } from './AeroTaskbarVista';
-import { PortfolioSwitcher } from '../PortfolioSwitcher';
+import { AeroWorldSelector } from './AeroWorldSelector';
 import { playAeroClick } from './soundEffectsAero';
 import { useLanguage } from '../../i18n';
 
@@ -47,8 +47,8 @@ export const FrutigerAeroPage: React.FC<FrutigerAeroPageProps> = ({ onNavigateMo
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-sm animate-pulse shrink-0" />
             <span className="text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
               {language === 'pt'
-                ? 'PROPOSTA 5: FRUTIGER AERO & AQUA ECOTOPIA'
-                : 'PROPOSAL 5: FRUTIGER AERO & AQUA ECOTOPIA'}
+                ? 'MUNDO 5: FRUTIGER AERO & AQUA ECOTOPIA'
+                : 'WORLD 5: FRUTIGER AERO & AQUA ECOTOPIA'}
             </span>
             <span className="hidden lg:inline text-sky-200 text-xs font-normal opacity-90">
               • Windows Live Messenger 8.5 • Three.js WebGL Bio-Spheres • Skeuomorphic Gel & Aero Glass
@@ -153,8 +153,8 @@ export const FrutigerAeroPage: React.FC<FrutigerAeroPageProps> = ({ onNavigateMo
         onNavigateModern={onNavigateModern}
       />
 
-      {/* 5. Floating Portfolio Switcher */}
-      <PortfolioSwitcher variant="floating" />
+      {/* 5. Floating Aero World Selector */}
+      <AeroWorldSelector />
     </div>
   );
 };

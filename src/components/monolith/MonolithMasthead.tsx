@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Volume2, VolumeX, ExternalLink } from 'lucide-react';
 import { isSoundEnabled, setSoundEnabled, playIndustrialClick } from './monolithAudio';
-import { PortfolioSwitcher } from '../PortfolioSwitcher';
+import { MonolithWorldSelector } from './MonolithWorldSelector';
 
 interface MonolithMastheadProps {
   onNavigateHome?: () => void;
@@ -69,7 +69,7 @@ export const MonolithMasthead: React.FC<MonolithMastheadProps> = ({
 
           {/* Switcher Dropdown in Masthead */}
           <div className="hidden sm:block">
-            <PortfolioSwitcher variant="navbar" />
+            <MonolithWorldSelector variant="navbar" />
           </div>
 
           {/* Home Return */}

@@ -44,7 +44,7 @@ export const SteamyTopBar: React.FC<SteamyTopBarProps> = ({ onNavigateModern }) 
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="w-full mx-auto px-4 sm:px-6 py-2.5 rounded-full bg-white/75 backdrop-blur-2xl border border-white/80 shadow-[0_12px_32px_rgba(30,45,65,0.06),inset_0_1.5px_2px_rgba(255,255,255,0.9)] flex items-center justify-between gap-3 text-xs"
       >
-        {/* Left Side: Status & Proposal Title */}
+        {/* Left Side: Status & World Title */}
         <div className="flex items-center gap-2.5 min-w-0">
           <div className="flex items-center gap-2 shrink-0">
             <span className="flex h-2.5 w-2.5 relative">
@@ -52,10 +52,10 @@ export const SteamyTopBar: React.FC<SteamyTopBarProps> = ({ onNavigateModern }) 
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500" />
             </span>
             <span className="font-extrabold tracking-wider text-[11px] text-slate-900 hidden sm:inline uppercase">
-              PROPOSTA 06 — STEAMY FROSTED GLASS
+              MUNDO 06 — STEAMY FROSTED GLASS
             </span>
             <span className="font-extrabold tracking-wider text-[11px] text-slate-900 sm:hidden">
-              PROPOSTA 06
+              MUNDO 06
             </span>
           </div>
 
@@ -116,10 +116,10 @@ export const SteamyTopBar: React.FC<SteamyTopBarProps> = ({ onNavigateModern }) 
                 >
                   <div className="px-3 py-2 border-b border-slate-100 flex items-center justify-between mb-1">
                     <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-                      <span>🎨</span> Hub de Portfólios
+                      <span>🎨</span> Hub de Mundos
                     </span>
                     <span className="text-[10px] text-sky-600 font-semibold font-mono">
-                      Alternar Visual
+                      Alternar Mundo
                     </span>
                   </div>
 

@@ -168,15 +168,15 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
               onClick={() => {
                 setIsMenuOpen(!isMenuOpen);
               }}
-              title="Alternar entre temas do portfólio"
+              title={isPt ? "Alternar entre mundos" : "Switch between worlds"}
               className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full apple-liquid-pill-light hover:bg-white text-slate-700 text-xs font-semibold shadow-xs transition-all cursor-pointer shrink-0"
             >
               <Sparkles className="w-3 h-3 text-indigo-500 shrink-0" />
-              <span className="hidden sm:inline">Hub</span>
+              <span className="hidden sm:inline">{isPt ? 'Mundos' : 'Worlds'}</span>
               <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} />
             </button>
 
-            {/* Dropdown Menu (Guaranteed not to break responsive viewports) */}
+            {/* Dropdown Menu (Guaranteed not to break responsive viewports or expand navbar) */}
             <AnimatePresence>
               {isMenuOpen && (
                 <motion.div
@@ -184,14 +184,15 @@ export const PrismNavbar: React.FC<PrismNavbarProps> = ({ onNavigateModern, onOp
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.96 }}
                   transition={{ duration: 0.16 }}
-                  className="absolute right-[-64px] xs:right-[-48px] sm:right-0 mt-2.5 w-[calc(100vw-2.5rem)] max-w-[320px] sm:w-80 rounded-2xl apple-liquid-glass-light border border-white/95 shadow-2xl p-2 z-50 text-left flex flex-col max-h-[min(480px,75vh)] overflow-hidden"
+                  style={{ position: 'absolute' }}
+                  className="!absolute top-full right-[-64px] xs:right-[-48px] sm:right-0 mt-2.5 w-[calc(100vw-2.5rem)] max-w-[320px] sm:w-80 rounded-2xl apple-liquid-glass-light border border-white/95 shadow-2xl p-2 z-50 text-left flex flex-col max-h-[min(480px,75vh)] overflow-hidden"
                 >
                   <div className="px-3 py-2 border-b border-slate-100 flex items-center justify-between mb-1 shrink-0">
                     <span className="text-[11px] font-bold text-slate-800 uppercase tracking-wider">
-                      {isPt ? 'Alternar Portfólio' : 'Switch Portfolio'}
+                      {isPt ? 'Alternar Mundo' : 'Switch World'}
                     </span>
                     <span className="text-[10px] text-indigo-600 font-semibold font-mono">
-                      {portfolioRegistry.filter((p) => p.status === 'active').length} {isPt ? 'Ativos' : 'Active'}
+                      {portfolioRegistry.filter((p) => p.status === 'active').length} {isPt ? 'Mundos' : 'Worlds'}
                     </span>
                   </div>
 

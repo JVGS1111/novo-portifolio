@@ -49,12 +49,12 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
           type="button"
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 text-xs font-mono text-slate-200 hover:text-white transition-all shadow-xs cursor-pointer"
-          title={language === 'pt' ? 'Alternar entre versões do portfólio' : 'Switch between portfolio versions'}
+          title={language === 'pt' ? 'Alternar entre mundos e landing pages' : 'Switch between worlds and landing pages'}
         >
           <span className="text-xs">{current.icon}</span>
           <span className="font-semibold text-[11px] hidden xl:inline">{current.shortName}</span>
           <span className="text-[9px] px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
-            {portfolioRegistry.filter((p) => p.status === 'active').length} {language === 'pt' ? 'temas' : 'themes'}
+            {portfolioRegistry.filter((p) => p.status === 'active').length} {language === 'pt' ? 'mundos' : 'worlds'}
           </span>
           <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
         </button>
@@ -72,7 +72,7 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
               <div className="px-3 py-2 border-b border-slate-800/80 mb-1 flex items-center justify-between">
                 <span className="text-[11px] font-mono uppercase font-bold text-slate-400 flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                  {language === 'pt' ? 'Galeria de Portfólios' : 'Portfolio Gallery'}
+                  {language === 'pt' ? 'Galeria de Mundos' : 'Worlds Gallery'}
                 </span>
                 <span className="text-[10px] font-mono text-cyan-400">
                   {language === 'pt' ? 'Hub Interativo' : 'Interactive Hub'}
@@ -153,10 +153,10 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
             <div className="px-3 py-2 border-b border-slate-800/80 mb-2 flex items-center justify-between">
               <span className="text-[11px] font-mono uppercase font-bold text-slate-300 flex items-center gap-1.5">
                 <span>🎨</span>
-                {language === 'pt' ? 'Seletor de Portfólio' : 'Portfolio Selector'}
+                {language === 'pt' ? 'Seletor de Mundos' : 'World Selector'}
               </span>
               <span className="text-[10px] font-mono text-cyan-400">
-                {portfolioRegistry.filter((p) => p.status === 'active').length} {language === 'pt' ? 'disponíveis' : 'available'}
+                {portfolioRegistry.filter((p) => p.status === 'active').length} {language === 'pt' ? 'mundos' : 'worlds'}
               </span>
             </div>
 
@@ -222,7 +222,7 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
         className="group flex items-center gap-2.5 px-4 py-2.5 bg-slate-900/90 hover:bg-slate-850 text-slate-100 font-mono text-xs font-semibold rounded-full border border-cyan-500/40 hover:border-cyan-400 shadow-xl shadow-cyan-950/40 backdrop-blur-md cursor-pointer transition-all duration-300"
-        title={language === 'pt' ? 'Alternar entre versões e conceitos de portfólio' : 'Switch between portfolio versions and concepts'}
+        title={language === 'pt' ? 'Alternar entre mundos e landing pages' : 'Switch between worlds and landing pages'}
       >
         <span className="flex h-2 w-2 relative">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
@@ -231,7 +231,7 @@ export const PortfolioSwitcher: React.FC<PortfolioSwitcherProps> = ({ variant = 
         <span className="text-base group-hover:rotate-12 transition-transform">{current.icon}</span>
         <span className="tracking-tight">{current.shortName}</span>
         <span className="text-[10px] uppercase px-1.5 py-0.5 rounded bg-cyan-500/20 border border-cyan-500/30 text-cyan-300">
-          {language === 'pt' ? 'Galeria' : 'Gallery'}
+          {language === 'pt' ? 'Mundos' : 'Worlds'}
         </span>
         <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </motion.button>

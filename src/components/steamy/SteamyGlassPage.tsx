@@ -8,7 +8,7 @@ import { PrismExperience } from './PrismExperience';
 import { PrismTechMatrix } from './PrismTechMatrix';
 import { PrismContact } from './PrismContact';
 import { PrismBottomBar } from './PrismBottomBar';
-import { PortfolioSwitcher } from '../PortfolioSwitcher';
+import { PrismWorldSelector } from './PrismWorldSelector';
 
 interface SteamyGlassPageProps {
   onNavigateModern?: () => void;
@@ -16,7 +16,7 @@ interface SteamyGlassPageProps {
 
 export const SteamyGlassPage: React.FC<SteamyGlassPageProps> = ({ onNavigateModern }) => {
   useEffect(() => {
-    document.title = 'João Vinícius Guerber | Proposta 06 — Luminous Prism Glassmorphism';
+    document.title = 'João Vinícius Guerber | Mundo 06 — Luminous Prism Glassmorphism';
     window.scrollTo({ top: 0, behavior: 'instant' });
     const originalBodyBg = document.body.style.backgroundColor;
     document.body.style.backgroundColor = '#EEF2F7';
@@ -73,8 +73,8 @@ export const SteamyGlassPage: React.FC<SteamyGlassPageProps> = ({ onNavigateMode
         <PrismBottomBar />
       </div>
 
-      {/* Floating Portfolio Hub Switcher */}
-      <PortfolioSwitcher variant="floating" />
+      {/* Floating World Selector */}
+      <PrismWorldSelector />
     </div>
   );
 };

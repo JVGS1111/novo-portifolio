@@ -238,7 +238,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       id: 'monolith',
       title: isPt ? 'Monolito Sci-Fi' : 'Sci-Fi Monolith',
       icon: '🗿',
-      badge: isPt ? 'Proposta 4' : 'Proposal 4',
+      badge: isPt ? 'Mundo 4' : 'World 4',
       action: () => {
         window.location.hash = '#/monolith';
       }
@@ -247,7 +247,7 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
       id: 'frutiger',
       title: 'Frutiger Aero MSN',
       icon: '🫧',
-      badge: isPt ? 'Proposta 5' : 'Proposal 5',
+      badge: isPt ? 'Mundo 5' : 'World 5',
       action: () => {
         window.location.hash = '#/proposta5';
       }
@@ -255,10 +255,19 @@ export const Windows98Page: React.FC<Windows98PageProps> = ({ onNavigateModern }
     {
       id: 'steamy',
       title: isPt ? 'Vidro Prismático' : 'Prism Glass',
-      icon: '💧',
-      badge: isPt ? 'Proposta 6' : 'Proposal 6',
+      icon: '💎',
+      badge: isPt ? 'Mundo 6' : 'World 6',
       action: () => {
         window.location.hash = '#/steamy-glass';
+      }
+    },
+    {
+      id: 'eva',
+      title: 'Evangelion NERV',
+      icon: '⚡',
+      badge: isPt ? 'Mundo 8' : 'World 8',
+      action: () => {
+        window.location.hash = '#/proposta-8';
       }
     }
   ];

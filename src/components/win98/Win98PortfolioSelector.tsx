@@ -47,11 +47,11 @@ export const Win98PortfolioSelector: React.FC = () => {
             ? 'border-t-black border-l-black border-r-white border-b-white bg-[#DFDFDF] pt-[2px] pl-[2px]'
             : 'border-t-white border-l-white border-r-black border-b-black active:border-t-black active:border-l-black active:border-r-white active:border-b-white'
         }`}
-        title="Alternar entre temas e conceitos de portfólio"
+        title="Alternar entre mundos e landing pages"
       >
         <span className="text-sm">{current.icon}</span>
         <span className="truncate max-w-[140px] sm:max-w-none">
-          {current.shortName} <span className="font-normal text-slate-700">({portfolioRegistry.filter((p) => p.status === 'active').length} temas)</span>
+          {current.shortName} <span className="font-normal text-slate-700">({portfolioRegistry.filter((p) => p.status === 'active').length} mundos)</span>
         </span>
         <span className="text-[9px] ml-0.5">▼</span>
       </button>
@@ -60,7 +60,7 @@ export const Win98PortfolioSelector: React.FC = () => {
       {isOpen && (
         <div className="absolute right-0 mt-1 w-72 sm:w-80 bg-[#C0C0C0] p-1 border-2 border-t-white border-l-white border-r-black border-b-black shadow-[4px_4px_12px_rgba(0,0,0,0.5)] z-[9500]">
           <div className="bg-[#000080] text-white px-2 py-1 font-bold text-[11px] mb-1 flex items-center justify-between">
-            <span>🎨 Selecionar Versão / Conceito</span>
+            <span>🎨 Selecionar Mundo / Versão</span>
             <span className="text-[9px] font-normal text-blue-200">Guerber Hub</span>
           </div>
 
@@ -111,7 +111,7 @@ export const Win98PortfolioSelector: React.FC = () => {
           </div>
 
           <div className="pt-1 mt-1 border-t border-[#808080] text-[9.5px] text-slate-700 text-right pr-1">
-            Novos conceitos podem ser adicionados no hub.
+            Novos mundos podem ser adicionados no hub.
           </div>
         </div>
       )}

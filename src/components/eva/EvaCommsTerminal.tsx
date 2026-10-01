@@ -9,7 +9,7 @@ interface EvaCommsTerminalProps {
 
 export const EvaCommsTerminal: React.FC<EvaCommsTerminalProps> = ({ content }) => {
   const [copied, setCopied] = useState(false);
-  const email = 'joaovguerber@gmail.com';
+  const email = 'joaoviniciusgs@gmail.com';
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);

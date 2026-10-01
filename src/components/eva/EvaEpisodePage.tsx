@@ -8,7 +8,7 @@ import { EvaEpisodeActs } from './EvaEpisodeActs';
 import { EvaMagiBank } from './EvaMagiBank';
 import { EvaCommsTerminal } from './EvaCommsTerminal';
 import { EvaHoneycombBackground } from './EvaHoneycombBackground';
-import { PortfolioSwitcher } from '../PortfolioSwitcher';
+import { EvaWorldSelector } from './EvaWorldSelector';
 import { Globe, Sparkles, ArrowLeft } from 'lucide-react';
 
 interface EvaEpisodePageProps {
@@ -297,8 +297,8 @@ export const EvaEpisodePage: React.FC<EvaEpisodePageProps> = ({ onNavigateModern
         </section>
       </main>
 
-      {/* Floating Theme Switcher */}
-      <PortfolioSwitcher variant="floating" />
+      {/* Floating Tactical World Selector */}
+      <EvaWorldSelector />
 
       {/* Bottom Emergency Hazard Strip */}
       <footer className="mt-12">

@@ -4,11 +4,13 @@ Este documento define o contexto, a arquitetura e as regras obrigatórias para q
 
 ---
 
-## 1. Visão Geral do Projeto
+## 1. Visão Geral do Projeto: Um Multiverso de "Mundos" (Worlds)
 
 Este repositório (**`novo-portifolio`**) **não é um portfólio estático ou isolado**. Ele é um **hub criativo e laboratório contínuo de múltiplos portfólios, conceitos de UI/UX, temas visuais e experimentos interativos** convivendo sob a mesma base de código.
 
-Aqui coexistem diferentes propostas visuais (ex.: portfólio moderno/executivo de alta tecnologia, sistema operacional retrô Windows 98, além de futuras ideias e protótipos de apresentação profissional).
+> [!IMPORTANT]
+> **CONCEITO CENTRAL: CADA PÁGINA É UM "MUNDO" (WORLD)**
+> No projeto, toda e qualquer landing page independente, conceito visual ou tema de portfólio é tratado formalmente como um **"Mundo" (World)** (antigo termo *proposta*). Cada mundo possui sua própria identidade estética, física de animação, design tokens, áudio procedimental (ou ausência dele), regras visuais e atmosfera própria.
 
 - **Hospedagem / Deploy**: GitHub Pages (`https://jvgs1111.github.io/novo-portifolio/`).
 - **Base Path do Vite**: `/novo-portifolio/` (definido em `vite.config.ts`).
@@ -16,35 +18,51 @@ Aqui coexistem diferentes propostas visuais (ex.: portfólio moderno/executivo d
 
 ---
 
-## 2. REGRA DE OURO: Documentação Obrigatória de Novas Páginas e Ideias
+## 2. REGRAS DE OURO PARA AGENTES DE IA
 
-> [!IMPORTANT]
-> **Toda vez que uma nova página, portfólio temático, ideia visual ou protótipo for adicionado, o agente DEVE documentar e atualizar a lista de páginas existentes neste arquivo (`AGENTS.md`) e, se relevante, no `README.md`.**
+### 1. "Criar Nova Página" = Literalmente Criar um Novo "Mundo" Independente
+- **Nunca mexer nem sobrescrever os mundos existentes**: Quando o usuário disser "criar uma nova página" (ou "criar uma nova proposta/ideia"), ele está instruindo expressamente a criar um **novo Mundo independente** (uma nova landing page com sua própria pasta isolada em `src/components/<novo-mundo>`, rota hash exclusiva em `src/App.tsx`, componentes dedicados e seletor com identidade visual própria).
+- **Preservação Absoluta**: É terminantemente proibido sobrescrever, alterar, descaracterizar ou remover as páginas/mundos já existentes ao criar uma nova página.
 
-### Obrigações do Agente ao criar ou alterar páginas:
-1. **Nunca sobrescrever ou remover do catálogo** as páginas e experimentos existentes, a menos que solicitado expressamente pelo usuário.
-2. **Registrar a nova página** na seção [3. Catálogo de Páginas e Portfólios](#3-catálogo-de-páginas-e-portfólios) abaixo, preenchendo todos os campos da tabela e o detalhamento técnico.
-3. **Garantir navegabilidade**: Adicionar um meio de acesso (hash, botão de alternância flutuante ou menu seletor) para que o usuário final consiga transitar entre as ideias.
-4. **Isolamento de estilo e estado**: Garantir que estilos específicos (ex.: fontes retrô, classes de scrollbar, temas claros/escuros, cursores customizados) não vazem de uma página para outra.
-5. **Internacionalização Obrigatória (Inglês e Português - Inglês como Principal)**: Toda nova página, portfólio temático ou experimento DEVE obrigatoriamente suportar **Inglês (`en`)** e **Português (`pt`)**, sendo o **Inglês o idioma principal/padrão (default)** do portfólio. Não crie páginas monolíngues nem inicie páginas tendo o português como idioma padrão. Textos de interface, cases, habilidades e modais devem fornecer ambas as traduções e permitir alternância de idioma.
+### 2. Modificações em Páginas Existentes
+- Se o usuário pedir para mexer, ajustar, corrigir ou adicionar algo em alguma página e **ficar claro de qual página/mundo ele está falando**, siga em frente aplicando as alterações **única e exclusivamente nessa página/mundo**, sem afetar os outros.
+
+### 3. Regra de Desambiguação Obrigatória (Sempre Questionar em Caso de Dúvida)
+- **Sempre que houver qualquer dúvida, incerteza ou ambiguidade** sobre qual página ou mundo o usuário deseja alterar, qual conceito deve ser adotado ou qual escopo deve ser tocado, o agente **DEVE obrigatoriamente questionar o usuário** antes de tomar qualquer decisão ou modificar arquivos. Nunca adivinhe ou presuma intenções quando houver mais de uma interpretação possível.
+
+### 4. Identidade Visual Própria para Seletores de Mundo (World Selectors)
+- **Cada select de selecionar mundo (mudar para outra landing page) TEM QUE TER SUA PRÓPRIA IDENTIDADE VISUAL**.
+- É proibido forçar ou usar indiscriminadamente o layout/estilo do mundo moderno (dark slate / ciano cyberpunk) em outros mundos.
+- Cada mundo deve possuir seu seletor estilizado de acordo com o seu próprio universo (ex.: Apple Liquid Glass translúcido para Steamy Glass; concreto brutalista com stencil e âmbar para Monolith; botões de gelatina convexos e vidro Vista Aero para Frutiger Aero; terminal NERV/MAGI com faixas de perigo para Evangelion; combobox clássico cinza 3D para Windows 98).
+- A lista de opções em si (`portfolioRegistry.ts`) alimenta todos os seletores e não precisa sofrer alterações estruturais. Se algum mundo já possui identidade própria, ela deve ser mantida.
+
+### 5. Documentação Obrigatória de Novos Mundos
+- Toda vez que uma nova página/mundo temático for adicionado, o agente **DEVE documentar e registrar** o novo mundo na tabela da seção [3. Catálogo de Mundos e Portfólios](#3-catálogo-de-mundos-e-portfólios) deste arquivo (`AGENTS.md`) e, se relevante, no `README.md`.
+
+### 6. Isolamento de Estilo e Estado
+- Garantir que estilos específicos (ex.: fontes retrô, classes de scrollbar, temas claros/escuros, cursores customizados) não vazem de uma página para outra.
+
+### 7. Internacionalização Obrigatória (Inglês e Português - Inglês como Principal)
+- Todo novo mundo, portfólio temático ou experimento **DEVE obrigatoriamente suportar Inglês (`en`) e Português (`pt`)**, sendo o **Inglês o idioma principal/padrão (default)**. Textos de interface, cases, habilidades e modais devem fornecer ambas as traduções e permitir alternância de idioma.
 
 ---
 
-## 3. Catálogo de Páginas e Portfólios
+## 3. Catálogo de Mundos e Portfólios
 
-Mantenha esta seção sempre atualizada com todos os portfólios e páginas disponíveis no repositório:
+Mantenha esta seção sempre atualizada com todos os mundos disponíveis no repositório:
 
-| # | Nome do Portfólio / Ideia | Rota / Hash | Componente Raiz | Status | Descrição e Conceito |
-|---|---------------------------|-------------|-----------------|--------|----------------------|
-| 1 | **Modern Executive & High-Tech** | `#/` ou vazio | `src/App.tsx` (Default) | Ativo | Portfólio corporativo de alta conversão, estética dark mode/cyberpunk futurista, 3D interativo com Three.js, internacionalização com EN padrão e seletor multilíngue (EN, PT, ES, DE, JA), cursor com física e métricas. |
-| 2 | **Retro Desktop Windows 98** | `#/win98` ou `#win98` | `src/components/win98/Windows98Page.tsx` | Ativo | Simulação de SO retrô Win98, janelas arrastáveis, barra de tarefas com toggle bilíngue `[🇺🇸 EN / 🇧🇷 PT]` (EN padrão), áudio sintetizado, apps funcionais (DOS Prompt, IE, Cases, CPU/RAM, Lixeira) e CRT. |
-| 3 | **Luminous Prism Glassmorphism (Proposta 06)** | `#/steamy-glass`, `#/glass` ou `#/proposta-6` | `src/components/steamy/SteamyGlassPage.tsx` | Ativo | Vidro prismático luminoso, física 3D interativa de tilt e brilho especular dinâmico no IDE code card (`export function buildProduct()`), pill de idioma `EN | PT` (EN padrão), 3 cases com mockups e 5 métricas de hiperescala. |
-| 4 | **Monolithic Concrete Sci-Fi Brutalism (Proposta 04)** | `#/monolith` ou `#/proposta-4` | `src/components/monolith/MonolithicBrutalismPage.tsx` | Ativo | Brutalismo colossal sci-fi de concreto monolítico, Three.js PBR interativo com rotação orbital pesada, botão industrial `[EN / PT]` (EN padrão), telemetria HUD ao vivo, áudio procedural Web Audio API, 5 métricas auditadas, 3 cases e 32 habilidades. |
-| 5 | **Frutiger Aero & Aqua Ecotopia (Proposta 05)** | `#/proposta5` ou `#/frutiger-aero` | `src/components/frutiger/FrutigerAeroPage.tsx` | Ativo | Estética anos 2000 Frutiger Aero / Aqua Ecotopia, seletor de idioma `[🇺🇸 EN | 🇧🇷 PT]` (EN padrão), MSN Live Messenger 8.5 funcional com Wizz/shake, Three.js WebGL 2.0 Bio-Spheres, 5 cartões Aero Glass, 3 cases e barra Vista. |
+| # | Nome do Mundo / Ideia | Rota / Hash | Componente Raiz | Status | Descrição e Conceito |
+|---|-----------------------|-------------|-----------------|--------|----------------------|
+| 1 | **Modern Executive & High-Tech (Mundo 1)** | `#/` ou vazio | `src/App.tsx` (Default) | Ativo | Portfólio corporativo de alta conversão, estética dark mode/cyberpunk futurista, 3D interativo com Three.js, internacionalização com EN padrão e seletor multilíngue (EN, PT, ES, DE, JA), cursor com física e métricas. |
+| 2 | **Retro Desktop Windows 98 (Mundo 2)** | `#/win98` ou `#win98` | `src/components/win98/Windows98Page.tsx` | Ativo | Simulação de SO retrô Win98, janelas arrastáveis, barra de tarefas com toggle bilíngue `[🇺🇸 EN / 🇧🇷 PT]` (EN padrão), áudio sintetizado, apps funcionais (DOS Prompt, IE, Cases, CPU/RAM, Lixeira) e CRT. |
+| 3 | **Luminous Prism Glassmorphism (Mundo 6)** | `#/steamy-glass`, `#/glass` ou `#/mundo-6` | `src/components/steamy/SteamyGlassPage.tsx` | Ativo | Vidro prismático luminoso, física 3D interativa de tilt e brilho especular dinâmico no IDE code card (`export function buildProduct()`), pill de idioma `EN | PT` (EN padrão), 3 cases com mockups e 5 métricas de hiperescala. |
+| 4 | **Monolithic Concrete Sci-Fi Brutalism (Mundo 4)** | `#/monolith` ou `#/mundo-4` | `src/components/monolith/MonolithicBrutalismPage.tsx` | Ativo | Brutalismo colossal sci-fi de concreto monolítico, Three.js PBR interativo com rotação orbital pesada, botão industrial `[EN / PT]` (EN padrão), telemetria HUD ao vivo, áudio procedural Web Audio API, 5 métricas auditadas, 3 cases e 32 habilidades. |
+| 5 | **Frutiger Aero & Aqua Ecotopia (Mundo 5)** | `#/proposta5`, `#/mundo5` ou `#/frutiger-aero` | `src/components/frutiger/FrutigerAeroPage.tsx` | Ativo | Estética anos 2000 Frutiger Aero / Aqua Ecotopia, seletor de idioma `[🇺🇸 EN | 🇧🇷 PT]` (EN padrão), MSN Live Messenger 8.5 funcional com Wizz/shake, Three.js WebGL 2.0 Bio-Spheres, 5 cartões Aero Glass, 3 cases e barra Vista. |
 | 6 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Protótipo Figma / Em breve | Catalogado | Console administrativo corporativo NT 5.0, visualizador de eventos, gerenciador de serviços e diagnóstico. |
 | 7 | **Windows XP Luna & Bliss Golden Era** | `#/winxp` | Protótipo Figma / Em breve | Catalogado | A era dourada dos anos 2000 com wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde. |
-| 8 | **Evangelion Tactical NERV HUD (Proposta 07)** | `#/nerv`, `#/evangelion` ou `#/proposta-7` | Protótipo Figma (`22:2461`) | Catalogado / Protótipo | Interface tática militar inspirada em Neon Genesis Evangelion e NERV Central Dogma. Inclui supercomputador MAGI (Melchior, Balthasar, Casper), harmônicos de A.T. Field (octógonos concêntricos), telemetria com internal battery e sync ratio de 99.4%, faixas de perigo zebradas (hazard stripes), selos de emergência (`非常事態` / `極秘`) e dossiê militar de engenharia. |
-| 9 | **Neon Genesis Evangelion Episode UI & MAGI (Proposta 08)** | `#/proposta-8`, `#/central-dogma`, `#/dogma`, `#/eva` ou `#/nerv` | `src/components/eva/EvaEpisodePage.tsx` | Ativo | Página inspirada na UI cinematográfica e tipografia icônica dos episódios de Neon Genesis Evangelion. Inclui cartões de título de episódios no estilo Matisse (kanji monumental e subtítulos ocidentais com modal eyecatch), A.T. Field interativo com harmônicos octogonais, câmara de deliberação tripartite do supercomputador MAGI (Melchior, Balthasar, Casper) com consultas arquiteturais em tempo real, contagem regressiva de bateria interna (com restauração de cabo umbilical), osciloscópio de sincronia do nervo A10 (99.42%), 5 métricas auditadas, 4 dossiês de combate estruturados como episódios, banco sináptico MAGI de 32 competências, credencial GitHub Copilot Certified e terminal de transmissão com cópia de email em 1 clique. Zero áudio/som ("sem som só coda"). |
+| 8 | **Evangelion Tactical NERV HUD & Hangar (Mundo 7)** | `#/nerv`, `#/hangar`, `#/tactical` ou `#/mundo-7` | `src/components/nerv/NervTacticalHangarPage.tsx` | Ativo | Interface militar e cockpit de lançamento NERV Cage / Geofront. Arte visual monumental do hangar com EVA-01 e silhueta do engenheiro na passarela, terminal pessoal técnico em pergaminho off-white com kanji/katakana `ソフトウェアエンジニア`, abas numéricas 01 a 06, HUD lateral com wireframe do EVA-01, monitor MAGI, radar topográfico de Hakone/Tokyo-3, rail inferior de projetos com dossiê tático e seletor NERV exclusivo. |
+| 9 | **Neon Genesis Evangelion Episode UI & MAGI (Mundo 8)** | `#/proposta-8`, `#/mundo-8`, `#/central-dogma`, `#/dogma` | `src/components/eva/EvaEpisodePage.tsx` | Ativo | Página inspirada na UI cinematográfica e tipografia icônica dos episódios de Neon Genesis Evangelion. Inclui cartões de título de episódios no estilo Matisse (kanji monumental e subtítulos ocidentais com modal eyecatch), A.T. Field interativo com harmônicos octogonais, câmara de deliberação tripartite do supercomputador MAGI (Melchior, Balthasar, Casper) com consultas arquiteturais em tempo real, contagem regressiva de bateria interna (com restauração de cabo umbilical), osciloscópio de sincronia do nervo A10 (99.42%), 5 métricas auditadas, 4 dossiês de combate estruturados como episódios, banco sináptico MAGI de 32 competências, credencial GitHub Copilot Certified e terminal de transmissão com cópia de email em 1 clique. Zero áudio/som ("sem som só coda"). |
+| 10 | **Xbox Original Verde Cristal & Bio-Mechanical Dashboard (Mundo 9)** | `#/xbox`, `#/verde-cristal` ou `#/mundo-9` | `src/components/xbox/XboxOriginalPage.tsx` | Ativo | Estética bio-mecânica Y2K e hardware industrial inspirada no Xbox Original edição especial Verde Cristal e no dashboard conceitual de Horace Luke. Inclui chassi 3D interativo procedural ("caixa" translúcida com textura física de plástico moldado, heatpipes de cobre, dissipador de alumínio, ventoinha giratória e orbe do Jewel Medallion com refração), cockpit com canais em lâminas curvas (Blades), telemetria com 64.000 blocos de memória, 3 cases/estojos de jogos translúcidos em 3D com DVD holográfico deslizante e dossiê técnico, PCB dev kernel com 32 microchips interligados por barramentos e dock com atalhos de controle `(A)`, `(B)`, `(X)`, `(Y)`. |
 
 ---
 
@@ -54,11 +72,18 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
 - **Fonte da Verdade**: Todos os portfólios existentes e planejados estão centralizados em `src/data/portfolioRegistry.ts`.
 - Qualquer nova página ou ideia deve ser registrada nessa lista para alimentar automaticamente os componentes de alternância.
 
-#### Componentes de Alternância (Switchers)
-- `PortfolioSwitcher.tsx`: Seletor moderno em formato de galeria flutuante ou navbar, com animações em Framer Motion e tags de status.
-- `Win98PortfolioSelector.tsx`: Combobox retrô estilizado fiel aos diálogos clássicos do Windows 98.
+#### Componentes de Alternância e Seletores de Mundos (World Selectors)
+Cada mundo possui seu próprio seletor com identidade visual exclusiva:
+- `PortfolioSwitcher.tsx`: Seletor do Mundo Moderno (Cyberpunk Dark / Neon Cyan) em galeria flutuante ou navbar.
+- `Win98PortfolioSelector.tsx`: Combobox retrô cinza 3D chanfrado (#C0C0C0) com áudio Web Audio fiel aos diálogos clássicos do Windows 98 (Mundo 2).
+- `PrismWorldSelector.tsx`: Pílula e dropdown em Apple Liquid Glass translúcido com dispersão prismática e reflexo especular para o Mundo 06 (Steamy Glass).
+- `MonolithWorldSelector.tsx`: Seletor brutalista em concreto monolítico escuro com tipografia mono, brackets `[ // WORLDS ]`, áudio de corte laser e cliques industriais para o Mundo 04 (Monolith).
+- `AeroWorldSelector.tsx`: Botão de gelatina aquática azul convexa com bolhas e janela autêntica Windows Vista Aero Glass com som procedural de bolha d'água para o Mundo 05 (Frutiger Aero).
+- `NervWorldSelector.tsx`: Seletor tático de coordenadas NERV militar com faixas de perigo zebradas vermelhas/pretas, badges `[LEVEL-A]` e dropdown tático para o Mundo 07 (NERV Tactical Hangar).
+- `EvaWorldSelector.tsx`: Terminal tático militar NERV / MAGI com faixas zebradas de perigo, laranja de emergência, carimbos kanji e telemetria para o Mundo 08 (Evangelion Episode UI).
+- `XboxWorldSelector.tsx`: Pílula de policarbonato verde cristal com domo de jewel esmeralda 3D e prompt tátil `(A) BOOT DISK` para o Mundo 09 (Xbox Original).
 
-#### 1. Modern Executive & High-Tech Portfolio
+#### 1. Modern Executive & High-Tech Portfolio (Mundo 1)
 - **Acesso**: Raiz (`/` ou `#/`)
 - **Estilo Visual**: Dark Theme (`#07090e`), neon cyan/emerald, tipografia moderna, blur e glassmorphism.
 - **Destaques**:
@@ -66,9 +91,9 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
   - `LanguageProvider.tsx`: Suporte a múltiplos idiomas (PT-BR, EN, ES, DE, JA).
   - `MotionCursor.tsx` & `ScrollProgress.tsx`: Feedback háptico visual com Framer Motion.
   - Seções: `Hero`, `ImpactMetrics`, `CaseStudies`, `ExperienceTimeline`, `TechMatrix`, `CertificationsEducation`, `ContactFooter`.
-  - `PortfolioSwitcher.tsx`: Menu interativo para transição entre temas.
+  - `PortfolioSwitcher.tsx`: Menu interativo para transição entre mundos.
 
-#### 2. Retro Desktop Windows 98 Portfolio
+#### 2. Retro Desktop Windows 98 Portfolio (Mundo 2)
 - **Acesso**: Hash `#win98`
 - **Estilo Visual**: Cinza clássico `#c0c0c0`, bordas 3D chanfradas, fontes pixeladas MS Sans Serif, efeito scanline CRT opcional (`CrtOverlay.tsx`).
 - **Destaques**:
@@ -83,13 +108,14 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
     - `RecycleBinApp.tsx`: Lixeira com itens descartados e easter eggs.
   - Menu Iniciar funcional com opção de Desligamento do sistema (`ShutdownScreen.tsx`) e seletor `Win98PortfolioSelector.tsx`.
 
-#### 3. Luminous Prism & Apple Liquid Glass Portfolio (Proposta 06)
-- **Acesso**: Hash `#/steamy-glass`, `#/glass` ou `#/proposta-6`
+#### 3. Luminous Prism & Apple Liquid Glass Portfolio (Mundo 06)
+- **Acesso**: Hash `#/steamy-glass`, `#/glass`, `#/mundo-6` ou `#/proposta-6`
 - **Estilo Visual**: Luminous Studio White & Apple Liquid Glass (`#F4F6F9`), vidro líquido com refração física óptica profunda (`backdrop-filter: blur(28px) saturate(190%) contrast(104%)`), realce interno especular multicamadas (`inset 0 2px 3px rgba(255,255,255,1)` e `inset 0 0 24px rgba(255,255,255,0.4)`), friso superior com dispersão cromática iridescente, reflexos cáusticos arco-íris e sombras ambientais fluidas.
 - **Destaques de Motion Design e Interatividade**:
   - `PrismBackground.tsx`: Sistema de Aurora Líquida com orbes fluidos em deriva contínua (`liquid-drift-1`, `2`, `3` em ciano, violeta, rosa e pêssego), feixes de luz cáusticos cintilantes e **lente óptica de refração dinâmica seguindo o cursor do mouse** com amortecimento inercial contínuo (lerp via `requestAnimationFrame`) e dispersão prismática.
   - `PrismHeroVisual.tsx`: Card de código monumental em Apple Liquid Glass (`apple-liquid-card-light`) com física 3D interativa (Framer Motion tilt multi-eixo com amortecimento inercial, brilho especular dinâmico seguindo o cursor, valores interativos clicáveis, semáforo macOS e botão circular de ação em pílula líquida). O stepper vertical redundante ("Design, Develop, etc.") foi removido conforme solicitação de design limpo.
   - `PrismNavbar.tsx`: Cápsula de navegação e controles no padrão visionOS / Dynamic Island com pílulas líquidas (`apple-liquid-pill-light`), seletor bilíngue translúcido e dropdown líquido.
+  - `PrismWorldSelector.tsx`: Seletor de mundos exclusivo em Apple Liquid Glass com reflexo especular vítreo e menus translúcidos.
   - `PrismHeroSection.tsx`: Recriação fiel da referência conceitual:
     - Badge `● FULLSTACK & MOBILE DEVELOPER` em pílula de vidro líquido com pulso.
     - Título monumental `Turning ideas into real products.` com gradiente iridescente azul-púrpura na palavra "ideas".
@@ -108,8 +134,8 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
   - `PrismBottomBar.tsx`: Especificação óptica de design tokens de vidro líquido (transmissão 0.94, IOR 1.54, Abbe 58.6) em pílulas translúcidas.
   - Otimizações de Performance & Estabilidade: Áudio desativado por preferência de usuário ("sem som só foco"), eliminação total de 'pop de componente' (cards e seções renderizados sólidos e estáveis imediatamente sem estados de tela em branco durante o scroll), header responsivo blindado contra quebras de layout ao abrir o select de portfólios (com fechamento por clique externo/Escape, limites de largura `calc(100vw-2.5rem)` e scroll vertical para até 9 temas), redução de raio de blur para 8px com aceleração por GPU (`transform-gpu`, `translateZ(0)`), eliminação de mais de 90 filtros de blur aninhados via `.apple-liquid-chip` e suspensão de loops RAF de fundo durante o scroll (`glass-section-contain`), garantindo rolagem a 60-120 FPS ultra-fluida.
 
-#### 4. Frutiger Aero & Aqua Ecotopia (Proposta 05)
-- **Acesso**: Hash `#/proposta5` ou `#/frutiger-aero`
+#### 4. Frutiger Aero & Aqua Ecotopia (Mundo 05)
+- **Acesso**: Hash `#/proposta5`, `#/mundo5` ou `#/frutiger-aero`
 - **Estilo Visual**: Céu azul cerúleo vibrante (`#0D8BF2`), colinas verdes orgânicas (`#2ED18C`), reflexos aquáticos calmos, botões gelatinosos convexos (skeuomorphic gel buttons com sweep de luz), bolhas d'água 3D translúcidas e vidro Aero Vista (`backdrop-filter: blur(20px)`).
 - **Destaques**:
   - `ThreeAquaSpheres.tsx`: Experimento interativo Three.js WebGL 2.0 com 3 esferas aquáticas de material físico (`MeshPhysicalMaterial`, transmissão 0.88, IOR 1.333, reflexos cáusticos, partículas micro-bolhas flutuantes e órbita suave por cursor/toque).
@@ -117,14 +143,16 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
     - **Wizz (Chamar Atenção)** funcional com física de vibração da janela (`animate-wizz`) e áudio procedimental via Web Audio API.
     - Chat interativo onde o visitante pode enviar mensagens com resposta inteligente simulada do João Vinícius e feedback sonoro autêntico.
   - `FrutigerBackground.tsx`: Cenário atmosférico com sunburst radial, colinas em camadas e 8 bolhas d'água interativas que estouram com som procedural (`playBubblePop()`) e reaparecem.
+  - `AeroWorldSelector.tsx`: Botão flutuante aqua gel convexo com pop procedural de bolhas e janela popup autêntica Windows Vista Aero Glass.
   - `AeroMetricsSection.tsx`: 5 cards de vidro Aero com números monumentais (-98% crashes, -55% RAM, -75% boot, +$10k AWS, 0%→40% testes) e efeito de reflexo de luz no hover.
   - `AeroCaseStudies.tsx`: 3 janelas com cases arquiteturais de hiperescala (banQi, IA/Automação e Design System) com badges de seção e titlebars Vista Aero autênticas.
   - `AeroExperienceAndTech.tsx`: Trajetória executiva (4 posições) e matriz tecnológica aquática com 32 competências.
   - `AeroActionDock.tsx`: Docas de chamada para ação com botões de gelatina translúcidos (MSN Live, Currículo, E-mail).
-  - `AeroTaskbarVista.tsx`: Barra de tarefas Vista Aero translúcida com relógio digital ao vivo, botão do menu Iniciar, controle de áudio e seletor rápido de portfólios.
+  - `AeroTaskbarVista.tsx`: Barra de tarefas Vista Aero translúcida com relógio digital ao vivo, botão do menu Iniciar, controle de áudio e seletor rápido de mundos.
   - **Headers & Titlebars Vista Aero Glass**: Gradientes de vidro ciano-azul contínuos com reflexo especular vítreo (`::before`), brilho de texto característico do Windows Vista (`aero-titlebar-text` com glow aura) e botões de controle gel esféricos 3D (`aero-ctrl-btn`) eliminando qualquer corte horizontal no texto.
-#### 5. Monolithic Concrete Sci-Fi Brutalism (Proposta 04)
-- **Acesso**: Hash `#/monolith` ou `#/proposta-4`
+
+#### 5. Monolithic Concrete Sci-Fi Brutalism (Mundo 04)
+- **Acesso**: Hash `#/monolith`, `#/mundo-4` ou `#/proposta-4`
 - **Estilo Visual**: Brutalismo monumental cinematográfico sci-fi ("BUILDING SOFTWARE FOR A BIGGER TOMORROW"), superfícies de concreto escuro texturizado (`#16181c` / `#0a0d12`), reflexos aquáticos molhados, fendas verticais iluminadas em ouro/âmbar (`#ffaa33`), névoa volumétrica e silhueta humana de escala épica, tipografia Space Grotesk com tracking largo e telemetria mono.
 - **Destaques**:
   - `MonolithCinematicCanvas.tsx`: Experiência WebGL 2.5D Depth-Map Parallax Shader + Volumetric Mist:
@@ -132,6 +160,7 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
     - Shader GLSL refinado com paralaxe tridimensional suave guiado pelo cursor ou giroscópio mobile, sem estourar as cores naturais da pintura original.
     - Cores escuras e reflexos naturais preservados nas poças d'água e rochas molhadas.
     - 32 puffs de névoa volumétrica procedural (sprites com gradiente suave) flutuando e deslizando com física de vento em diferentes profundidades Z.
+  - `MonolithWorldSelector.tsx`: Seletor de mundos brutalista com blocos de concreto, stencil industrial `[ // WORLDS_SECTOR ]`, linhas douradas e áudio tátil de cliques e laser.
   - `MonolithCinematicHero.tsx`: Recriação 1:1 da interface conceitual:
     - Cabeçalho minimalista `JV — JOÃO VINÍCIUS SOFTWARE DEVELOPER`, links `HOME`, `PROJECTS`, `EXPERIENCE`, `ABOUT` e botão bracketed `[ /// CONTACT /// ]`.
     - Tipografia display monumental `BUILDING SOFTWARE FOR A BIGGER TOMORROW`.
@@ -146,8 +175,8 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
   - `MonolithContact.tsx`: Terminal de transmissão criptografado direto com cópia de email com 1 clique e formulário.
   - `monolithAudio.ts`: Áudio tátil procedural via Web Audio API (drone atmosférico sub-grave `54Hz`, cliques metálicos e hum de laser).
 
-#### 6. Evangelion Tactical NERV HUD / MAGI System (Proposta 07)
-- **Acesso**: Hash `#/nerv`, `#/evangelion` ou `#/proposta-7` | Protótipo Figma (Node `22:2461`)
+#### 6. Evangelion Tactical NERV HUD / MAGI System (Mundo 07)
+- **Acesso**: Hash `#/nerv`, `#/evangelion`, `#/mundo-7` ou `#/proposta-7` | Protótipo Figma (Node `22:2461`)
 - **Estilo Visual**: Preto tático absoluto (`#060709`), Laranja de Emergência NERV (`#FF5500`), Âmbar de Advertência (`#FFAA00`), Vermelho Alerta (`#FF1E28`), Verde Neon de Sincronia (`#00FF66`), tipografia militar com dados monospaçados, faixas diagonais de perigo (hazard stripes), selos de segurança japoneses (`非常事態`, `極秘`, `承認`) e estética clínica de sala de operações de Neon Genesis Evangelion.
 - **Destaques de Design e Elementos de Interface**:
   - `MASTHEAD`: Faixa superior zebrada de advertência, identificação `NERV // CENTRAL DOGMA // TACTICAL HUD v3.33`, telemetria de inicialização e alerta `● ACTIVE: EMERGENCY STANDBY // PILOT SYNC NOMINAL`.
@@ -157,11 +186,12 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
   - `OPERAÇÕES DE COMBATE (CASES)`: Cases estruturados com `▲ THREAT / ANOMALY:`, `■ COUNTERMEASURE:` e `◆ AUDITED OUTCOME:`.
   - `REGISTRO DE SERVIÇO & MATRIZ SINÁPTICA`: 4 posições de carreira e 32 competências distribuídas nos 4 domínios táticos do banco sináptico MAGI.
 
-#### 7. Neon Genesis Evangelion Episode UI & MAGI (Proposta 08)
-- **Acesso**: Hash `#/proposta-8`, `#/central-dogma`, `#/dogma`, `#/eva` ou `#/nerv`
+#### 7. Neon Genesis Evangelion Episode UI & MAGI (Mundo 08)
+- **Acesso**: Hash `#/proposta-8`, `#/mundo-8`, `#/central-dogma`, `#/dogma`, `#/eva` ou `#/nerv`
 - **Componente Raiz**: `src/components/eva/EvaEpisodePage.tsx`
 - **Status**: Ativo
 - **Estilo Visual e Conceito**: Experiência imersiva inspirada na estética cinematográfica, tipografia visceral de episódios e interface tática da Gainax / Hideaki Anno em *Neon Genesis Evangelion*. Sem elementos genéricos: layout escuro de alto contraste (`#020204`), tipografia Matisse (Shippori Mincho com kanjis monumentais e subtítulos em Cinzel/Space Grotesk), faixas zebradas de perigo (hazard stripes), selos militares de carimbo (`極秘 · TOP SECRET`, `非常事態 · EMERGENCY`, `任務完了 · VERIFIED`), telemetria monospaçada e sem áudio ("sem som só coda").
+  - `EvaWorldSelector.tsx`: Terminal de coordenadas MAGI com selos militares, faixas de perigo zebradas e indicador [承認].
   - `EvaHoneycombBackground.tsx`: Malha de fundo animada em Canvas 2D de alta performance com tesselação de colmeia hexagonal e pentagonal intercalada, onda de radar contínua, ativações sinápticas aleatórias de células MAGI e iluminação interativa sob o cursor do mouse. Inclui botão de alternância `[ ⬡ COLMEIA / ⬠ PENTÁGONO ]` no cabeçalho.
   - `EvaTitleCard.tsx`: Modal cinematográfico de cartões de título de episódios (EYECATCH) navegável com controles de navegação, kanjis colossais (`使徒、襲来`, `見知らぬ、天井`, `鳴らない、電話`, `瞬間、心、重ねて`, `世界の中心でアイを叫んだけもの`), diretivas táticas e identificação do piloto João Vinícius Guerber.
   - `EvaAtFieldCanvas.tsx`: Campo de Força de Terror Absoluto (A.T. Field) interativo em Canvas com octógonos concêntricos luminosos em laranja/âmbar, mira em retícula e distorções harmônicas reagindo à posição do cursor em tempo real (`PATTERN: BLUE / パターン青`).
@@ -181,9 +211,39 @@ Mantenha esta seção sempre atualizada com todos os portfólios e páginas disp
   - `EvaCommsTerminal.tsx`: Terminal de transmissão direta criptografada com cópia de e-mail com 1 clique e feedback instantâneo, comlinks do LinkedIn e GitHub e download do currículo executivo.
   - **Internacionalização**: Suporte bilíngue nativo e completo com seletor `EN | PT` (Inglês como padrão / default), conforme as regras de ouro.
 
+#### 6. Evangelion Tactical NERV HUD & Hangar Terminal (Mundo 7)
+- **Acesso**: Hash `#/nerv`, `#/hangar`, `#/tactical`, `#/proposta-7` ou `#/mundo-7`
+- **Componente Raiz**: `src/components/nerv/NervTacticalHangarPage.tsx`
+- **Status**: Ativo
+- **Estilo Visual e Conceito**: Cockpit operacional e terminal técnico militar NERV Cage / Geofront diretamente inspirado no design de interface de Neon Genesis Evangelion.
+  - `NervTopNav.tsx`: Barra superior com emblema NERV com frase clássica (*GOD'S IN HIS HEAVEN. ALL'S RIGHT WITH THE WORLD*), identificação de engenheiro e título japonês `ソフトウェアエンジニア`, abas de navegação 01 a 06 com sublinhado vermelho, relógio digital ao vivo comutável entre Tóquio-3 (JST) e Brasília (BRT), pílula bilíngue `[🇺🇸 EN / 🇧🇷 PT]` (EN padrão) e seletor NERV exclusivo.
+  - `NervLeftTabBar.tsx`: Barra vertical numérica lateral (01 HOME, 02 PROJECTS, 03 EXPERIENCE, 04 SKILLS, 05 ABOUT, 06 CONTACT), bloco de faixas de perigo diagonais zebradas em vermelho e preto `///` e selo de carimbo `NERV TECHNOLOGICAL RESEARCH DIVISION`.
+  - `NervPersonalTerminal.tsx`: Card monumental em pergaminho off-white técnico com marcadores de registro em cruz `+`, `PERSONAL TERMINAL ——> USER: JVG`, tipografia display monumental em katakana `ソフトウェアエンジニア`, subtítulo em vermelho `JOÃO VINÍCIUS GUERBER`, slogan bilíngue `スケールするプロダクトと体験を構築する / BUILDING SCALABLE PRODUCTS AND EXPERIENCES`, botões operacionais `VER PROJETOS ↗` e `BAIXAR CV ——`, e chiclet `CORE SKILLS 主要スキル` com as competências de sustentação técnica.
+  - `NervHangarView.tsx`: Ilustração monumental em alta resolução da jaula do EVA-01 no hangar industrial, gantry cranes, cabos de alta tensão, pilar de concreto marcado `01 EVA`, silhueta do engenheiro na passarela observando a máquina, balizas vermelhas piscantes e brilho bio-luminescente nos olhos do EVA-01.
+  - `NervRightSidebarHud.tsx`: HUD tático militar com telemetria do EVA-01 (`STANDBY / COMBAT ACTIVE`), taxa de sincronia do piloto (99.4%) com osciloscópio de barras ao vivo, desenho esquemático em wireframe da cabeça do EVA-01 com linhas laser vermelhas, telemetria MAGI e radar topográfico vetorial da caldeira de Tóquio-3 com coordenadas geográficas.
+  - `NervSelectedProjects.tsx`: Trilha horizontal inferior com 3 cartões translúcidos com bordas vermelhas e números monumentais (01 BanQi App, 02 Guepsi, 03 Biblioteca de Tools), tags de stack e métricas imediatas.
+  - `NervDossierModal.tsx`: Modal expansível de dossiê militar tático contendo avaliação de ameaça, desafio, solução de engenharia, arquitetura e resultados de cada projeto, além de dossiês completos de carreira militar/indústria, matriz de habilidades de 32 competências com barras de proficiência, perfil do arquiteto e canal direto de transmissão criptografada com cópia de e-mail em 1 clique.
+  - `NervWorldSelector.tsx`: Seletor de coordenadas dimensionais exclusivo com moldura vermelha NERV, faixas de perigo zebradas e telemetria de mundos.
+
+#### 7. Xbox Original Verde Cristal & Bio-Mechanical Dashboard (Mundo 9)
+- **Acesso**: Hash `#/xbox`, `#/verde-cristal`, `#/mundo-9` ou `#/proposta-9`
+- **Estilo Visual**: Estética bio-mecânica Y2K e hardware industrial inspirada na lendária edição especial Translucent Green Crystal do Xbox Original e no dashboard futurista de Horace Luke (Creative Director na Microsoft). Tons de verde esmeralda profundo (`#000502`, `#011408`), verde neon radioativo / fósforo 520nm (`#00ff55`), linhas de cobre e dissipadores de alumínio expostos, e scanlines CRT autênticas.
+- **Destaques de Engenharia e Design Alternativo**:
+  - `XboxChassisCanvas.tsx`: "Caixa" translúcida 3D interativa em Three.js substituindo a foto estática. Modelada proceduralmente com material físico de policarbonato translúcido (`transmission: 0.82`, `thickness: 2.2`, `ior: 1.54`, `clearcoat: 0.4`), textura estocástica de injeção plástica (orange-peel bump map gerado em canvas), costelas em "X" em relevo no topo, blindagem metálica RF perfurada, placa-mãe PCB com LEDs de telemetria piscantes, bloco dissipador de alumínio, heatpipes de cobre, ventoinha de resfriamento giratória interna com modo Turbo (2.400 -> 4.800 RPM), orbe Jewel central em 3D com refração e pulso de energia, órbita 360° interativa por arrasto de mouse/touch e modo Raio-X.
+  - `XboxDashboardMasthead.tsx`: Barra superior estilo BIOS do console com Jewel mini, versão do firmware (`TITAN GREEN CRYSTAL BIOS v1.00.5960`), status Xbox Live online (`GAMERTAG: JVGS1111`), medidor de blocos de memória e telemetria de áudio Dolby 5.1 e temperatura.
+  - `XboxBladeNavigator.tsx`: Navegador alternativo por canais curvos estilo "Blades" do dashboard do Xbox (`[ 00 // CHASSIS ]`, `[ 01 // MEMORY ]`, `[ 02 // DISC BAY ]`, `[ 03 // SILICON ]`, `[ 04 // EEPROM ]`, `[ 05 // COMM DOCK ]`).
+  - `XboxChassisHero.tsx`: Cockpit bio-mecânico assimétrico com perfil do arquiteto, 3 núcleos de execução (Runtime Kernel, Graphics & Physics, Cloud Infra), botões de controle tátil e o canvas 3D do chassi.
+  - `XboxMemoryManager.tsx`: Console de gerenciamento de 64.000 blocos de memória com grade animada de 64 clusters de LED verde fósforo e 5 blocos de auditoria (-98% crashes, -55% RAM, -75% boot velocity, +$10k economia mensal, 40% cobertura de testes).
+  - `XboxDiscDriveCases.tsx`: Baia de drive óptico apresentando 3 estojos (keep cases) translúcidos de DVD do Xbox em perspectiva 3D com DVD holográfico laser que desliza para fora no hover e modal de dossiê técnico de arquitetura ao pressionar `(A) BOOT TITLE`.
+  - `XboxDevKernelPcb.tsx`: Placa de circuito impresso (PCB) com barramentos de cobre e 32 microchips montados em 4 bancos de hardware, com destaque para a credencial oficial GitHub Copilot Certified.
+  - `XboxCareerEeprom.tsx`: Crônica operacional gravada em setores de memória flash EEPROM não-volátil (Invillia/Casas Bahia/banQi, WiiD, Freelance, Academia).
+  - `XboxCommDock.tsx`: Doca de comunicação com barramento para 4 portas de controle, cópia de e-mail com 1 clique e atalhos de controle globais (`A`, `B`, `X`, `Y` ou teclas numéricas `0` a `5`).
+  - `XboxWorldSelector.tsx`: Seletor de mundos exclusivo em formato de medalhão Jewel do Xbox em policarbonato verde cristal com domo 3D e menu estilo BIOS Boot Disk.
+  - **Internacionalização**: Suporte nativo completo a Inglês (`en` - padrão) e Português (`pt`).
+
 ---
 
-## 4. Como Adicionar uma Nova Página / Ideia (Passo a Passo)
+## 4. Como Adicionar uma Nova Página / Novo Mundo (Passo a Passo)
 
 Para manter a consistência e a organização do ecossistema de múltiplos portfólios, siga estas etapas:
 
@@ -212,14 +272,13 @@ Toda nova página deve obrigatoriamente suportar **Inglês e Português**, adota
 - Definir `'en'` (Inglês) como idioma primário de inicialização/fallback.
 - Disponibilizar mecanismo acessível de troca de idioma (seletor/toggle `EN | PT`) na interface do portfólio.
 
-### Passo 4: Adicionar Ponto de Entrada / Switcher
-Permita que o visitante descubra a nova página:
-- Adicione um atalho no menu ou botão flutuante no portfólio Moderno.
-- Adicione um atalho no Windows 98 (ex.: ícone no Desktop ou item no menu Iniciar).
-- Certifique-se de que a nova página também possua uma forma de retornar ao portfólio principal.
+### Passo 4: Criar Seletor de Mundo com Identidade Própria e Adicionar ao Registro
+- **Identidade Própria Obrigatória**: Toda nova página/mundo deve possuir seu próprio **World Selector** desenhado e estilizado de acordo com a sua temática visual exclusiva (sem reutilizar layouts de outros mundos).
+- **Registro Central**: Adicione o novo mundo no catálogo central `src/data/portfolioRegistry.ts` com id, nomes, hash (`#/mundo-x`), tags bilíngues (`tag: 'Mundo X'`, `tagEn: 'World X'`), vibração de época e ícone característico.
+- **Atalhos nos demais mundos**: Adicione atalho nos menus e desktops dos mundos existentes (ex.: desktop icon no Windows 98, menus de navegação).
 
 ### Passo 5: Atualizar a Documentação (OBRIGATÓRIO)
-- Atualize a tabela e o detalhamento técnico em [3. Catálogo de Páginas e Portfólios](#3-catálogo-de-páginas-e-portfólios) neste arquivo (`AGENTS.md`).
+- Atualize a tabela e o detalhamento técnico em [3. Catálogo de Mundos e Portfólios](#3-catálogo-de-mundos-e-portfólios) neste arquivo (`AGENTS.md`).
 - Se houver novas dependências ou particularidades de build, mencione-as aqui.
 
 ### Passo 6: Verificação de Qualidade

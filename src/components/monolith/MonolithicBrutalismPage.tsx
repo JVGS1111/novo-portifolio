@@ -6,7 +6,7 @@ import { MonolithCaseStudies } from './MonolithCaseStudies';
 import { MonolithExperience } from './MonolithExperience';
 import { MonolithTechMatrix } from './MonolithTechMatrix';
 import { MonolithContact } from './MonolithContact';
-import { PortfolioSwitcher } from '../PortfolioSwitcher';
+import { MonolithWorldSelector } from './MonolithWorldSelector';
 import { ArrowUp, Compass } from 'lucide-react';
 import { playIndustrialClick } from './monolithAudio';
 import { useLanguage } from '../../i18n';
@@ -260,8 +260,8 @@ export const MonolithicBrutalismPage: React.FC<MonolithicBrutalismPageProps> = (
         )}
       </AnimatePresence>
 
-      {/* Floating Portfolio Switcher */}
-      <PortfolioSwitcher variant="floating" />
+      {/* Floating Monolith World Selector */}
+      <MonolithWorldSelector variant="floating" />
     </div>
   );
 };

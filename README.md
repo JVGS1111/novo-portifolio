@@ -12,12 +12,13 @@
 |---|---------------------------|-------------|--------|-----------|
 | 1 | **Modern Executive & High-Tech** | `#/` | Ativo | Three.js 3D interativo, estética dark mode/cyberpunk, i18n (5 idiomas), métricas de impacto e animações Framer Motion. |
 | 2 | **Retro Desktop Windows 98** | `#/win98` | Ativo | Simulação completa do Windows 98 SE com janelas arrastáveis, efeitos sonoros sintetizados via Web Audio API, CRT overlay e aplicativos clássicos. |
-| 3 | **Steamy Frosted Glass & Bath Fog (Proposta 06)** | `#/steamy-glass` | Ativo | Vidro embaçado tátil, névoa térmica matinal, silhuetas botânicas, espelho interativo para limpar vapor com dedo/cursor (Web Audio API), 5 Dew Pods de métricas e refração física. |
-| 4 | **Monolithic Concrete Sci-Fi Brutalism (Proposta 04)** | `#/monolith` | Ativo | Cidadela monumental 3D em Three.js PBR realista ("BUILDING SOFTWARE FOR A BIGGER TOMORROW"), fendas verticais de luz âmbar, água reflexiva, névoa volumétrica, silhueta do explorador e modo de inspeção 3D livre. |
-| 5 | **Frutiger Aero & Aqua Ecotopia (Proposta 05)** | `#/proposta5` | Ativo | Estética 2000s Frutiger Aero, MSN 8.5 com Wizz/shake real, Three.js esferas aquáticas com cáusticas, botões de gelatina skeuomórficos e barra Vista. |
-| 6 | **Neon Genesis Evangelion Episode UI & MAGI (Proposta 08)** | `#/proposta-8` | Ativo | Estética cinematográfica e tipografia de episódios de Evangelion (Matisse kanji), A.T. Field interativo, deliberação MAGI, contagem de bateria interna e dossiês de combate. Sem som ("só coda"). |
-| 7 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Em Breve | Console administrativo corporativo NT 5.0, visualizador de eventos e diagnóstico (protótipo de alta fidelidade no Figma). |
-| 8 | **Windows XP Luna Golden Era** | `#/winxp` | Em Breve | Wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde (protótipo de alta fidelidade no Figma). |
+| 3 | **Steamy Frosted Glass & Bath Fog (Mundo 06)** | `#/steamy-glass` ou `#/mundo-6` | Ativo | Vidro embaçado tátil, névoa térmica matinal, silhuetas botânicas, espelho interativo para limpar vapor com dedo/cursor (Web Audio API), 5 Dew Pods de métricas e refração física. |
+| 4 | **Monolithic Concrete Sci-Fi Brutalism (Mundo 04)** | `#/monolith` ou `#/mundo-4` | Ativo | Cidadela monumental 3D em Three.js PBR realista ("BUILDING SOFTWARE FOR A BIGGER TOMORROW"), fendas verticais de luz âmbar, água reflexiva, névoa volumétrica, silhueta do explorador e modo de inspeção 3D livre. |
+| 5 | **Frutiger Aero & Aqua Ecotopia (Mundo 05)** | `#/proposta5` ou `#/mundo5` | Ativo | Estética 2000s Frutiger Aero, MSN 8.5 com Wizz/shake real, Three.js esferas aquáticas com cáusticas, botões de gelatina skeuomórficos e barra Vista. |
+| 6 | **Neon Genesis Evangelion Episode UI & MAGI (Mundo 08)** | `#/proposta-8` ou `#/mundo-8` | Ativo | Estética cinematográfica e tipografia de episódios de Evangelion (Matisse kanji), A.T. Field interativo, deliberação MAGI, contagem de bateria interna e dossiês de combate. Sem som ("só coda"). |
+| 7 | **Xbox Original Verde Cristal & Bio-Mechanical Dashboard (Mundo 09)** | `#/xbox` ou `#/mundo-9` | Ativo | Estética Y2K e dashboard bio-mecânico estilo Horace Luke: chassi 3D interativo procedural ("caixa" translúcida com textura física de plástico, heatpipes, ventoinha e jewel), canais em lâminas curvas, 64k blocos de memória e estojos 3D de jogos. |
+| 8 | **Windows 2000 Pro Enterprise MMC** | `#/win2000` | Em Breve | Console administrativo corporativo NT 5.0, visualizador de eventos e diagnóstico (protótipo de alta fidelidade no Figma). |
+| 9 | **Windows XP Luna Golden Era** | `#/winxp` | Em Breve | Wallpaper Bliss, MSN Messenger 6.2 e barras temáticas Luna azul/verde (protótipo de alta fidelidade no Figma). |
 
 ---
 
@@ -43,7 +44,7 @@ export const portfolioRegistry: PortfolioItem[] = [
 ];
 ```
 
-Todos os seletores (`PortfolioSwitcher` moderno e `Win98PortfolioSelector` retrô) consomem automaticamente essa lista.
+Cada mundo possui seu próprio seletor de mundos (`WorldSelector`) com identidade visual exclusiva (Apple Liquid Glass, Monólito Brutalista, Frutiger Aero, NERV Tactical e Windows 98), todos consumindo centralizadamente essa lista.
 
 ---
 
